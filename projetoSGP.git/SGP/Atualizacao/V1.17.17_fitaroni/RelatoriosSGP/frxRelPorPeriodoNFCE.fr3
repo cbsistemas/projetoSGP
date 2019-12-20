@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="5.2.3" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="4095" PreviewOptions.Zoom="1" PrintOptions.Printer="Padrão" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="43567,7005298611" ReportOptions.Description.Text="" ReportOptions.LastChange="43727,7660542708" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;begin&#13;&#10;&#13;&#10;end." OnReportPrint="frxReportOnReportPrint">
+  <Datasets>
+    <item DataSet="frxConfig" DataSetName="frxConfig"/>
+    <item DataSet="frmVendas.frxNFCe" DataSetName="frxNFCe"/>
+  </Datasets>
+  <Variables>
+    <item Name=" MinhasVariaveis"/>
+    <item Name="dtFim"/>
+    <item Name="dtInicio"/>
+    <item Name="qtnConfirmada"/>
+    <item Name="qtnOff"/>
+    <item Name="vlrOffTot"/>
+    <item Name="vlrConfirmadaTot"/>
+  </Variables>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="256" LeftMargin="5" RightMargin="5" TopMargin="5" BottomMargin="5" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="34,01577" Left="0" Top="631,18151" Width="755,906">
+      <TfrxMemoView Name="Memo1" Left="672,75634" Top="10,33859" Width="75,5906" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" HAlign="haRight" ParentFont="False" Text="[Page#]"/>
+      <TfrxMemoView Name="Memo16" Left="15,11812" Top="11,33859" Width="294,80334" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="Relatório Fornecido por CBSistemas     Emissão:"/>
+      <TfrxMemoView Name="Date" Left="313,70099" Top="10,33859" Width="79,37013" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[Date]"/>
+      <TfrxMemoView Name="Time" Left="393,07112" Top="10,33859" Width="79,37013" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[Time]"/>
+    </TfrxPageFooter>
+    <TfrxGroupHeader Name="GroupHeader1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="71,81107" Left="0" Top="211,65368" Width="755,906" Condition="frxNFCe.&#34;DATA_EMISSAO&#34;">
+      <TfrxMemoView Name="Memo3" Left="11,27069316" Top="47,13389" Width="57,64614474" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Série"/>
+      <TfrxMemoView Name="Memo4" Left="71,35366053" Top="47,13389" Width="70,46836263" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Número"/>
+      <TfrxMemoView Name="Memo5" Left="142,40388368" Top="47,13389" Width="325,01456579" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Chave"/>
+      <TfrxMemoView Name="Memo6" Left="470,09562948" Top="47,13389" Width="107,11982895" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Protocolo"/>
+      <TfrxMemoView Name="Memo7" Left="647,21134105" Top="46,40699158" Width="106,01747895" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="Valor "/>
+      <TfrxShapeView Name="Shape2" Left="0" Top="5,12705421" Width="755,52472211" Height="30,85787526" Fill.BackColor="-16777194" Shape="skRoundRectangle"/>
+      <TfrxMemoView Name="Memo14" Left="581,05263158" Top="47,54810684" Width="62,85958421" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="Itens"/>
+      <TfrxMemoView Name="frxNFCeDATA_EMISSAO" Left="8,42105263" Top="10,83286105" Width="94,10697211" Height="18,89765" DataSet="frmVendas.frxNFCe" DataSetName="frxNFCe" Text="[frxNFCe.&#34;DATA_EMISSAO&#34;]"/>
+    </TfrxGroupHeader>
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="23,29881526" Left="0" Top="306,14193" Width="755,906" ColumnWidth="0" ColumnGap="0" DataSet="frmVendas.frxNFCe" DataSetName="frxNFCe" RowCount="0">
+      <TfrxMemoView Name="frxNFCeSERIE" Left="8,78947368" Top="0,55513737" Width="61,47539316" Height="18,89765" DataField="SERIE" DataSet="frmVendas.frxNFCe" DataSetName="frxNFCe" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[frxNFCe.&#34;SERIE&#34;]"/>
+      <TfrxMemoView Name="frxNFCeCODIGO_NFCE" Left="71,94736842" Top="0,55513737" Width="68,84381421" Height="18,89765" DataField="CODIGO_NFCE" DataSet="frmVendas.frxNFCe" DataSetName="frxNFCe" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxNFCe.&#34;CODIGO_NFCE&#34;]"/>
+      <TfrxMemoView Name="frxNFCeCHAVE_CONSULTA" Left="140" Top="1,60776895" Width="325,89333789" Height="18,89765" DataField="CHAVE_CONSULTA" DataSet="frmVendas.frxNFCe" DataSetName="frxNFCe" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxNFCe.&#34;CHAVE_CONSULTA&#34;]"/>
+      <TfrxMemoView Name="frxNFCeNUMERO_PROTOCOLO" Left="469,47368421" Top="1,60776895" Width="109,68933737" Height="18,89765" DataField="NUMERO_PROTOCOLO" DataSet="frmVendas.frxNFCe" DataSetName="frxNFCe" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxNFCe.&#34;NUMERO_PROTOCOLO&#34;]"/>
+      <TfrxMemoView Name="frxNFCeQTN_ITENS" Left="582,10526316" Top="1,55513737" Width="79,37013" Height="18,89765" DataField="QTN_ITENS" DataSet="frmVendas.frxNFCe" DataSetName="frxNFCe" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[frxNFCe.&#34;QTN_ITENS&#34;]"/>
+      <TfrxMemoView Name="frxNFCeVLR_TOTAL" Left="664,21052632" Top="1,55513737" Width="89,89644579" Height="18,89765" DataField="VLR_TOTAL" DataSet="frmVendas.frxNFCe" DataSetName="frxNFCe" DisplayFormat.DecimalSeparator="," DisplayFormat.FormatStr="%2.2m" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" HAlign="haRight" ParentFont="False" Text="[frxNFCe.&#34;VLR_TOTAL&#34;]"/>
+    </TfrxMasterData>
+    <TfrxPageHeader Name="PageHeader1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="133,20349578" Left="0" Top="18,89765" Width="755,906">
+      <TfrxLineView Name="Line1" Left="7,12806369" Top="4,27671421" Width="740,78788" Height="0" Color="0" Diagonal="True"/>
+      <TfrxMemoView Name="Memo2" Left="1,05263158" Top="58,00240842" Width="752,12647" Height="30,23624" Font.Charset="1" Font.Color="0" Font.Height="-27" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="Extrato da NFC-e"/>
+      <TfrxMemoView Name="frxConfigNOME" Left="-0,43099631" Top="11,83577421" Width="755,906" Height="18,89765" StretchMode="smMaxHeight" DataSet="frxConfig" DataSetName="frxConfig" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[frxConfig.&#34;NOME&#34;]   CNPJ:[frxConfig.&#34;CNPJ&#34;]  FILIAL:[frxConfig.&#34;FILIAL&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="frxConfigENDERECO" Left="-0,43099631" Top="30,73342421" Width="755,906" Height="18,89765" StretchMode="smMaxHeight" DataSet="frxConfig" DataSetName="frxConfig" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[frxConfig.&#34;ENDERECO&#34;] [frxConfig.&#34;BAIRRO&#34;]-[frxConfig.&#34;CIDADE&#34;]-[frxConfig.&#34;UF&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo8" Left="476,41110895" Top="105,76737263" Width="78,69877632" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Período de:"/>
+      <TfrxMemoView Name="Memo10" Left="640,62163528" Top="105,76737263" Width="27,11982895" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="até:"/>
+      <TfrxMemoView Name="dtInicio" Left="557,46374054" Top="105,76737263" Width="79,37013" Height="18,89765" Text="[dtInicio]"/>
+      <TfrxMemoView Name="dtFim" Left="671,14795107" Top="105,76737263" Width="79,37013" Height="18,89765" Text="[dtFim]"/>
+    </TfrxPageHeader>
+    <TfrxGroupFooter Name="GroupFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="22,67718" Left="0" Top="351,49629" Width="755,906">
+      <TfrxSysMemoView Name="SysMemo1" Left="653,68421053" Top="1,13528895" Width="100,80403947" Height="18,89765" DisplayFormat.DecimalSeparator="," DisplayFormat.FormatStr="%2.2m" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;frxNFCe.&#34;VLR_TOTAL&#34;&#62;,MasterData1)]"/>
+      <TfrxMemoView Name="Memo9" Left="544,21052632" Top="1,13528895" Width="106,01747895" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="Total do dia: "/>
+    </TfrxGroupFooter>
+    <TfrxReportSummary Name="ReportSummary1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="172,15086422" Left="0" Top="434,64595" Width="755,906">
+      <TfrxMemoView Name="Memo11" Left="648,42105263" Top="43,40668158" Width="106,01747895" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="Valor Total "/>
+      <TfrxSysMemoView Name="SysMemo2" Left="649,47368421" Top="135,66983947" Width="103,96193421" Height="18,89765" DisplayFormat.DecimalSeparator="," DisplayFormat.FormatStr="%2.2m" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="[SUM(&#60;frxNFCe.&#34;VLR_TOTAL&#34;&#62;,MasterData1)]"/>
+      <TfrxShapeView Name="Shape1" Left="-1,05263158" Top="10,03826053" Width="755,52472211" Height="30,85787526" Fill.BackColor="-16777194" Shape="skRoundRectangle"/>
+      <TfrxMemoView Name="Memo12" Left="2,10526315" Top="15,88036579" Width="106,01747895" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="Totalizadores "/>
+      <TfrxMemoView Name="Memo13" Left="8,42105263" Top="45,30141842" Width="106,01747895" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Status"/>
+      <TfrxMemoView Name="Memo15" Left="307,36842105" Top="44,30141842" Width="106,01747895" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="NFC"/>
+      <TfrxMemoView Name="Memo17" Left="307,36842105" Top="134,45931316" Width="106,06719737" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="[COUNT(MasterData1)]"/>
+      <TfrxLineView Name="Line2" Left="1,05263158" Top="129,24878684" Width="753,68421053" Height="0" Color="0" Frame.Typ="4"/>
+      <TfrxMemoView Name="Memo19" Left="8,42105263" Top="77,61720789" Width="107,11982895" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Autorizadas"/>
+      <TfrxMemoView Name="Memo20" Left="8,42105263" Top="101,72247105" Width="107,11982895" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Offline"/>
+      <TfrxMemoView Name="qtnOff" Left="307,36842105" Top="98,66983947" Width="106,73855105" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="[qtnOff]"/>
+      <TfrxMemoView Name="qtnConfirmada" Left="307,36842105" Top="75,45931316" Width="106,73855105" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="[qtnConfirmada]"/>
+      <TfrxMemoView Name="vlrConfirmadaTot" Left="648,42105263" Top="73,45931316" Width="107,79118263" Height="18,89765" DisplayFormat.DecimalSeparator="," DisplayFormat.FormatStr="%2.2m" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="[vlrConfirmadaTot]"/>
+      <TfrxMemoView Name="vlrOffTot" Left="648,42105263" Top="101,88036579" Width="107,79118263" Height="18,89765" DisplayFormat.DecimalSeparator="," DisplayFormat.FormatStr="%2.2m" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="[vlrOffTot]"/>
+    </TfrxReportSummary>
+  </TfrxReportPage>
+</TfrxReport>

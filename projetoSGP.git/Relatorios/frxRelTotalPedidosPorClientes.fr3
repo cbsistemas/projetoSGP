@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="5.2.3" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="4095" PreviewOptions.Zoom="1" PrintOptions.Printer="Padrão   " PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="42054,6655382986" ReportOptions.Description.Text="" ReportOptions.LastChange="43595,7579459144" ScriptLanguage="PascalScript" ScriptText.Text="procedure MasterData1OnBeforePrint(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;  if shpZeb.Color = clWhite then&#13;&#10;        shpZeb.Color := $00FCFCFC                &#13;&#10;      else&#13;&#10;        shpZeb.Color := clWhite;&#13;&#10;                                                      &#13;&#10;end;&#13;&#10;&#13;&#10;begin&#13;&#10;&#13;&#10;end." OnReportPrint="frxReportOnReportPrint">
+  <Datasets>
+    <item DataSet="frxConfig" DataSetName="frxConfig"/>
+    <item DataSet="frmPedidos.frxPedidosClienteAgrup" DataSetName="frxPedidosClienteAgrup"/>
+  </Datasets>
+  <Variables>
+    <item Name=" Minhas"/>
+    <item Name="dtInicio"/>
+    <item Name="dtFim"/>
+    <item Name="totVendas"/>
+    <item Name="vlrTotal"/>
+    <item Name="Filial"/>
+    <item Name="totItens"/>
+    <item Name="vendedor"/>
+  </Variables>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="5" RightMargin="5" TopMargin="5" BottomMargin="5" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="208,62934276" Left="0" Top="18,89765" Width="755,906">
+      <TfrxMemoView Name="frxMovIntTP" Left="0" Top="104,33859" Width="755,906" Height="37,7953" DataSetName="frxMovInt" Font.Charset="1" Font.Color="0" Font.Height="-27" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="Relatório Total de Pedidos por Cliente"/>
+      <TfrxMemoView Name="Memo3" Left="7,55906" Top="172,37013" Width="45,35436" Height="18,89765" DisplayFormat.DecimalSeparator="," Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Filial:"/>
+      <TfrxMemoView Name="Memo2" Left="464,88219" Top="145,91342" Width="30,23624" Height="18,89765" DisplayFormat.DecimalSeparator="," Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Dê:"/>
+      <TfrxMemoView Name="Memo4" Left="614,60668" Top="145,91342" Width="34,01577" Height="18,89765" DisplayFormat.DecimalSeparator="," Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Até:"/>
+      <TfrxMemoView Name="dtInicio" Left="495,11843" Top="145,91342" Width="94,48825" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[dtInicio]"/>
+      <TfrxMemoView Name="dtFim" Left="648,62245" Top="145,91342" Width="90,70872" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[dtFim]"/>
+      <TfrxMemoView Name="totVendas" Left="520,11843" Top="172,37013" Width="60,47248" Height="18,89765" DisplayFormat.DecimalSeparator="," DisplayFormat.FormatStr="#0" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[totVendas]"/>
+      <TfrxMemoView Name="vlrTotal" Left="648,62245" Top="172,37013" Width="105,82684" Height="18,89765" DisplayFormat.DecimalSeparator="," DisplayFormat.FormatStr="R$ #,##0.00" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[vlrTotal]"/>
+      <TfrxMemoView Name="Memo8" Left="406,73253" Top="172,37013" Width="113,3859" Height="18,89765" DisplayFormat.DecimalSeparator="," Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Total de Vendas:"/>
+      <TfrxMemoView Name="Memo9" Left="580,59091" Top="172,37013" Width="68,03154" Height="18,89765" DisplayFormat.DecimalSeparator="," Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Vlr. Total:"/>
+      <TfrxMemoView Name="Filial" Left="52,91342" Top="172,37013" Width="177,63791" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[Filial]"/>
+      <TfrxMemoView Name="Memo12" Left="355,26005" Top="172,37013" Width="49,13389" Height="18,89765" DisplayFormat.DecimalSeparator="," DisplayFormat.FormatStr="#0" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[totItens]"/>
+      <TfrxMemoView Name="Memo14" Left="238,09462" Top="172,37013" Width="117,16543" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Total de Clientes:"/>
+      <TfrxMemoView Name="Memo6" Left="7,55906" Top="145,91342" Width="75,5906" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Vendedor:"/>
+      <TfrxMemoView Name="Memo16" Left="83,14966" Top="145,91342" Width="370,39394" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[vendedor]"/>
+      <TfrxMemoView Name="Memo20" Align="baWidth" Left="755,906" Top="86,92919" Width="0" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[frxConfig.&#34;TELEFONE&#34;]"/>
+      <TfrxLineView Name="Line3" Align="baCenter" Left="43,464685315" Top="7,55906" Width="668,97662937" Height="0" Color="0" Frame.Style="fsDot" Diagonal="True"/>
+      <TfrxMemoView Name="Memo18" Align="baWidth" Left="0" Top="37,7953" Width="755,906" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[frxConfig.&#34;ENDERECO&#34;]"/>
+      <TfrxMemoView Name="Memo19" Align="baWidth" Left="0" Top="56,69295" Width="755,906" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[frxConfig.&#34;BAIRRO&#34;], [frxConfig.&#34;CIDADE&#34;] - [frxConfig.&#34;UF&#34;]"/>
+      <TfrxMemoView Name="Memo17" Align="baWidth" Left="0" Top="75,5906" Width="755,906" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[frxConfig.&#34;TELEFONE&#34;]"/>
+      <TfrxMemoView Name="frxConfigNOME" Align="baWidth" Left="0" Top="17,89765" Width="755,906" Height="18,89765" DataField="NOME" DataSet="frxConfig" DataSetName="frxConfig" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="[frxConfig.&#34;NOME&#34;]"/>
+    </TfrxReportTitle>
+    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="34,01577" Left="0" Top="427,08689" Width="755,906">
+      <TfrxMemoView Name="Memo13" Left="623,62245" Top="7,33859" Width="94,48825" Height="18,89765" DisplayFormat.DecimalSeparator="," Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="Página: [Page]"/>
+      <TfrxLineView Name="Line1" Left="0" Top="3,77953" Width="755,906" Height="0" Color="0" Diagonal="True"/>
+      <TfrxMemoView Name="Memo11" Left="234,33086" Top="10,33859" Width="94,48825" Height="18,89765" DisplayFormat.DecimalSeparator="," Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[Date]"/>
+      <TfrxMemoView Name="Memo21" Left="7,55906" Top="10,33859" Width="226,7718" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="Fornecido por CBSistemas  Emissão: "/>
+      <TfrxMemoView Name="Time" Left="328,81911" Top="11,33859" Width="79,37013" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[Time]"/>
+    </TfrxPageFooter>
+    <TfrxHeader Name="Header1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="30,23622047" Left="0" Top="287,24428" Width="755,906">
+      <TfrxShapeView Name="Shape4" Align="baCenter" Left="6,10250000000201E-5" Top="0" Width="755,90587795" Height="30,23624" Curve="1" Fill.BackColor="-16777194" Shape="skRoundRectangle"/>
+      <TfrxMemoView Name="Memo7" Left="499,44125" Top="5,77953" Width="75,5906" Height="18,89765" DisplayFormat.DecimalSeparator="," Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Vlr. Total"/>
+      <TfrxMemoView Name="Memo5" Left="11,33859" Top="5,77953" Width="272,12616" Height="18,89765" DisplayFormat.DecimalSeparator="," Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Cliente"/>
+      <TfrxMemoView Name="Memo1" Left="416,7483" Top="5,77953" Width="60,47248" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Vendas"/>
+      <TfrxMemoView Name="Memo10" Left="668,85869" Top="4,55906" Width="83,14966" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Vlr. Total %"/>
+      <TfrxMemoView Name="Memo15" Left="586,38621" Top="4,55906" Width="71,81107" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Vendas %"/>
+    </TfrxHeader>
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="27,23624" Left="0" Top="340,1577" Width="755,906" OnBeforePrint="MasterData1OnBeforePrint" ColumnWidth="0" ColumnGap="0" DataSet="frmPedidos.frxPedidosClienteAgrup" DataSetName="frxPedidosClienteAgrup" RowCount="0">
+      <TfrxShapeView Name="shpZeb" Left="2" Top="0" Width="752,12647" Height="27,21259843" Visibility="3" Fill.BackColor="16777215" Frame.Style="fsDot"/>
+      <TfrxMemoView Name="frxPedidosClienteAgrupCLIENTE" Left="11,33859" Top="3,77953" Width="385,51206" Height="18,89765" DataField="CLIENTE" DataSet="frmPedidos.frxPedidosClienteAgrup" DataSetName="frxPedidosClienteAgrup" Text="[frxPedidosClienteAgrup.&#34;CLIENTE&#34;]"/>
+      <TfrxMemoView Name="frxPedidosClienteAgrupQTN_TOTAL_VENDAS" Left="404,18924" Top="3,77953" Width="71,81107" Height="18,89765" DataField="QTN_TOTAL_VENDAS" DataSet="frmPedidos.frxPedidosClienteAgrup" DataSetName="frxPedidosClienteAgrup" DisplayFormat.DecimalSeparator="," DisplayFormat.FormatStr="#0" DisplayFormat.Kind="fkNumeric" HAlign="haRight" Text="[frxPedidosClienteAgrup.&#34;QTN_TOTAL_VENDAS&#34;]"/>
+      <TfrxMemoView Name="frxPedidosClienteAgrupVLR_TOTAL_VENDA" Left="485,89796" Top="3,77953" Width="90,70872" Height="18,89765" DataField="VLR_TOTAL_VENDA" DataSet="frmPedidos.frxPedidosClienteAgrup" DataSetName="frxPedidosClienteAgrup" DisplayFormat.DecimalSeparator="," DisplayFormat.FormatStr="R$ #,##0.00" DisplayFormat.Kind="fkNumeric" HAlign="haRight" Text="[frxPedidosClienteAgrup.&#34;VLR_TOTAL_VENDA&#34;]"/>
+      <TfrxMemoView Name="frxPedidosClienteAgrupPORCENT_QTN_VENDAS" Left="593,38621" Top="3,77953" Width="64,25201" Height="18,89765" DataField="PORCENT_QTN_VENDAS" DataSet="frmPedidos.frxPedidosClienteAgrup" DataSetName="frxPedidosClienteAgrup" DisplayFormat.DecimalSeparator="," DisplayFormat.FormatStr="#0 %" DisplayFormat.Kind="fkNumeric" HAlign="haRight" Text="[frxPedidosClienteAgrup.&#34;PORCENT_QTN_VENDAS&#34;]"/>
+      <TfrxMemoView Name="frxPedidosClienteAgrupPORCENT_VLR_VENDAS" Left="676,53587" Top="3,77953" Width="64,25201" Height="18,89765" DataField="PORCENT_VLR_VENDAS" DataSet="frmPedidos.frxPedidosClienteAgrup" DataSetName="frxPedidosClienteAgrup" DisplayFormat.DecimalSeparator="," DisplayFormat.FormatStr="#0 %" DisplayFormat.Kind="fkNumeric" HAlign="haRight" Text="[frxPedidosClienteAgrup.&#34;PORCENT_VLR_VENDAS&#34;]"/>
+    </TfrxMasterData>
+  </TfrxReportPage>
+</TfrxReport>

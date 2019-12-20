@@ -1,0 +1,46 @@
+unit untTroco;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzButton, Vcl.StdCtrls, Vcl.Mask,
+  RzEdit, RzBckgnd, Vcl.ExtCtrls, RzPanel, RzLabel;
+
+type
+  TfrmTroco = class(TForm)
+    RzLabel4: TRzLabel;
+    RzPanel1: TRzPanel;
+    RzLabel1: TRzLabel;
+    RzBackground1: TRzBackground;
+    RzLabel6: TRzLabel;
+    lblDescAcre: TRzLabel;
+    RzLabel2: TRzLabel;
+    RzLabel3: TRzLabel;
+    RzLabel5: TRzLabel;
+    RzEdit1: TRzEdit;
+    RzEdit2: TRzEdit;
+    RzEdit3: TRzEdit;
+    RzEdit4: TRzEdit;
+    RzEdit5: TRzEdit;
+    RzBitBtn1: TRzBitBtn;
+    procedure RzBitBtn1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmTroco: TfrmTroco;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmTroco.RzBitBtn1Click(Sender: TObject);
+begin
+  ModalResult := mrOk;
+end;
+
+end.

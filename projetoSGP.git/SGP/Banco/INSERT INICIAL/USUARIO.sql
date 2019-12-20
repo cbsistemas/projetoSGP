@@ -1,0 +1,4 @@
+INSERT INTO USUARIO (ID, NOME, LOGIN, SENHA, ENVIADO_WEB, IDFILIAL) VALUES (1, 'Administrador', 'admin', '®¤¬¢¦', NULL, 1);
+
+
+COMMIT WORK;

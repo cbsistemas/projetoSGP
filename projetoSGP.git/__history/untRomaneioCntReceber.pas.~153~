@@ -1,0 +1,605 @@
+unit untRomaneioCntReceber;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzButton, Vcl.StdCtrls, RzLabel,
+  Vcl.Imaging.pngimage, Vcl.ExtCtrls, JvExExtCtrls, JvImage, RzPanel, RzSplit,
+  Vcl.Grids, Vcl.DBGrids, JvExDBGrids, JvDBGrid, Vcl.DBCtrls, RzDBCmbo,
+  Vcl.Mask, RzEdit, RzDBEdit, RzTabs, RzBckgnd, Data.DB, FIBDataSet, pFIBDataSet,
+  Datasnap.Provider, Datasnap.DBClient, pFIBClientDataSet, FIBQuery, pFIBQuery, System.Math,
+  frxClass, frxDBSet, dxGDIPlusClasses;
+
+type
+  TfrmRomaneioCntReceber = class(TForm)
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloCliente: TRzLabel;
+    lblTituloTotal: TRzLabel;
+    lblTotal: TRzLabel;
+    btnPrior: TRzBitBtn;
+    btnFirst: TRzBitBtn;
+    btnNext: TRzBitBtn;
+    btnLast: TRzBitBtn;
+    btnTodos: TRzBitBtn;
+    btnInprimir: TRzBitBtn;
+    RzSplitter1: TRzSplitter;
+    RzPanel2: TRzPanel;
+    btnIncluir: TRzBitBtn;
+    btnGravar: TRzBitBtn;
+    btnAlterar: TRzBitBtn;
+    btnDelete: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    btnFinalizar: TRzBitBtn;
+    RzBackground1: TRzBackground;
+    pgcControl: TRzPageControl;
+    tbsTabela: TRzTabSheet;
+    tbsForm: TRzTabSheet;
+    RzGroupBox1: TRzGroupBox;
+    lblCidade: TRzLabel;
+    lblDtInc: TRzLabel;
+    RzLabel1: TRzLabel;
+    RzLabel7: TRzLabel;
+    RzLabel17: TRzLabel;
+    RzLabel5: TRzLabel;
+    edtDt_Inc: TRzDBEdit;
+    edtID: TRzDBEdit;
+    RzDBEdit5: TRzDBEdit;
+    RzDBEdit7: TRzDBEdit;
+    cbxVendedor: TRzDBLookupComboBox;
+    RzDBEdit2: TRzDBEdit;
+    RzGroupBox2: TRzGroupBox;
+    pnlLancItens: TRzPanel;
+    btnPedidoExcluir: TRzBitBtn;
+    btnPedidoIncluir: TRzBitBtn;
+    gdrItens: TJvDBGrid;
+    pgcStatus: TRzPageControl;
+    tbsStatusEntregues: TRzTabSheet;
+    tbsStatusAberto: TRzTabSheet;
+    gdrRomaneioAberto: TJvDBGrid;
+    RzPanel3: TRzPanel;
+    RzDBEdit1: TRzDBEdit;
+    RzLabel2: TRzLabel;
+    RzDBEdit3: TRzDBEdit;
+    RzLabel3: TRzLabel;
+    fdsRomCntReceber: TpFIBDataSet;
+    dsRomCntReceber: TDataSource;
+    cdsRomCntReceber: TpFIBClientDataSet;
+    dspRomCntReceber: TDataSetProvider;
+    fdsItemRomCntReceber: TpFIBDataSet;
+    dspItemRomCntReceber: TDataSetProvider;
+    dsItemRomCntReceber: TDataSource;
+    fdsRomCntReceberID: TFIBBCDField;
+    fdsRomCntReceberIDFILIAL: TFIBBCDField;
+    fdsRomCntReceberDT_INC: TFIBDateField;
+    fdsRomCntReceberDT_ALT: TFIBDateField;
+    fdsRomCntReceberIDVENDEDOR: TFIBBCDField;
+    fdsRomCntReceberDT_FECHAMENTO: TFIBDateField;
+    fdsRomCntReceberENVIADO_WEB: TFIBStringField;
+    fdsRomCntReceberVLR_TOTAL_RECEBER: TFIBBCDField;
+    fdsRomCntReceberVLR_TOTAL_RECEBIDO: TFIBBCDField;
+    cdsRomCntReceberID: TpFIBClientBCDField;
+    cdsRomCntReceberIDFILIAL: TpFIBClientBCDField;
+    cdsRomCntReceberDT_INC: TDateField;
+    cdsRomCntReceberDT_ALT: TDateField;
+    cdsRomCntReceberIDVENDEDOR: TpFIBClientBCDField;
+    cdsRomCntReceberDT_FECHAMENTO: TDateField;
+    cdsRomCntReceberENVIADO_WEB: TStringField;
+    cdsRomCntReceberVLR_TOTAL_RECEBER: TpFIBClientBCDField;
+    cdsRomCntReceberVLR_TOTAL_RECEBIDO: TpFIBClientBCDField;
+    fdsVendedor: TpFIBDataSet;
+    fdsVendedorID: TFIBBCDField;
+    fdsVendedorNOME: TFIBStringField;
+    dsVendedor: TDataSource;
+    fdsRomCntReceberSTATUS: TFIBStringField;
+    cdsRomCntReceberSTATUS: TStringField;
+    qryComand: TpFIBQuery;
+    fdsRomCntReceberVENDEDOR: TFIBStringField;
+    cdsRomCntReceberVENDEDOR: TStringField;
+    fdsRomCntReceberQTN_NOTAS: TFIBBCDField;
+    cdsRomCntReceberQTN_NOTAS: TpFIBClientBCDField;
+    fdsItemRomCntReceberIDROMANEIO: TFIBBCDField;
+    fdsItemRomCntReceberITEM: TFIBSmallIntField;
+    fdsItemRomCntReceberIDRECITEM: TFIBBCDField;
+    fdsItemRomCntReceberIDFILIAL: TFIBBCDField;
+    fdsItemRomCntReceberVLR_RECEBIDO: TFIBBCDField;
+    fdsItemRomCntReceberENVIADO_WEB: TFIBStringField;
+    fdsItemRomCntReceberCLIENTE: TFIBStringField;
+    fdsItemRomCntReceberREFERENCIA: TFIBStringField;
+    fdsItemRomCntReceberVLR_RECEBER: TFIBBCDField;
+    fdsItemRomCntReceberDT_INC: TFIBDateField;
+    cdsItemRomCntReceber: TpFIBClientDataSet;
+    cdsItemRomCntReceberIDROMANEIO: TpFIBClientBCDField;
+    cdsItemRomCntReceberITEM: TSmallintField;
+    cdsItemRomCntReceberIDRECITEM: TpFIBClientBCDField;
+    cdsItemRomCntReceberIDFILIAL: TpFIBClientBCDField;
+    cdsItemRomCntReceberVLR_RECEBIDO: TpFIBClientBCDField;
+    cdsItemRomCntReceberENVIADO_WEB: TStringField;
+    cdsItemRomCntReceberCLIENTE: TStringField;
+    cdsItemRomCntReceberREFERENCIA: TStringField;
+    cdsItemRomCntReceberVLR_RECEBER: TpFIBClientBCDField;
+    cdsItemRomCntReceberDT_INC: TDateField;
+    fdsItemRomCntReceberIDVENDA: TFIBBCDField;
+    cdsItemRomCntReceberIDVENDA: TpFIBClientBCDField;
+    fdsItemRomCntReceberVALOR_PAGO: TFIBBCDField;
+    cdsItemRomCntReceberVALOR_PAGO: TpFIBClientBCDField;
+    fdsItemRomCntReceberREC_DINHEIRO: TFIBBCDField;
+    cdsItemRomCntReceberREC_DINHEIRO: TpFIBClientBCDField;
+    fdsItemRomCntReceberPARCELA: TFIBStringField;
+    cdsItemRomCntReceberPARCELA: TStringField;
+    fdsItemRomCntReceberIDRECEBER: TFIBBCDField;
+    cdsItemRomCntReceberIDRECEBER: TpFIBClientBCDField;
+    fdsItemRomCntReceberVALOR_DOC: TFIBBCDField;
+    fdsItemRomCntReceberDESCONTO: TFIBBCDField;
+    cdsItemRomCntReceberVALOR_DOC: TpFIBClientBCDField;
+    cdsItemRomCntReceberDESCONTO: TpFIBClientBCDField;
+    fdsItemRomCntReceberIDCLIENTE: TFIBBCDField;
+    cdsItemRomCntReceberIDCLIENTE: TpFIBClientBCDField;
+    frxDBRomCntReceber: TfrxDBDataset;
+    frxDBItensRomCntReceber: TfrxDBDataset;
+    fdsItemRomCntReceberDT_VENC: TFIBDateField;
+    cdsItemRomCntReceberDT_VENC: TDateField;
+    fdsRomCntReceberST: TFIBStringField;
+    cdsRomCntReceberST: TStringField;
+    procedure FormCreate(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure btnIncluirClick(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnPedidoIncluirClick(Sender: TObject);
+    procedure btnAlterarClick(Sender: TObject);
+    procedure tbsFormShow(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnPedidoExcluirClick(Sender: TObject);
+    procedure btnDeleteClick(Sender: TObject);
+    procedure btnFinalizarClick(Sender: TObject);
+    procedure cdsRomCntReceberAfterScroll(DataSet: TDataSet);
+    procedure gdrItensDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure gdrRomaneioAbertoDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumn;
+      State: TGridDrawState);
+    procedure btnInprimirClick(Sender: TObject);
+    procedure tbsStatusAbertoShow(Sender: TObject);
+  private
+    procedure EditaInsere;
+    procedure GravaCancela;
+    procedure RetornaItensRomaneio;
+    procedure VisualizaPorStatus(status: string);
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRomaneioCntReceber: TfrmRomaneioCntReceber;
+
+implementation
+
+{$R *.dfm}
+
+uses untData, untPesqCntReceber, untPagIncReceber;
+
+procedure TfrmRomaneioCntReceber.btnAlterarClick(Sender: TObject);
+begin
+  EditaInsere;
+  cdsRomCntReceber.Edit;
+  cdsRomCntReceberDT_ALT.AsDateTime := Now;
+end;
+
+procedure TfrmRomaneioCntReceber.btnCancelarClick(Sender: TObject);
+var
+  maxID : Integer;
+begin
+  Case MessageBox(Application.Handle, Pchar('Deseja realmente cancelar a  Inclusão/Alteração do Romaneio atual?'), 'Atenção', MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) of
+          idYes: begin
+                      if cdsRomCntReceber.State in [dsInsert] then
+                      begin
+                        with qryComand do
+                        begin
+                          Close;
+                          SQL.Clear;
+                          SQL.Add('SELECT MAX(ID) MAXID FROM ROMANEIO_CNTRECEBER');
+                          Prepare;
+                          ExecQuery;
+                          maxID := FieldByName('MAXID').AsInteger;
+                        end;
+
+                        with qryComand do
+                        begin
+                          Close;
+                          SQL.Clear;
+                          SQL.Add('ALTER SEQUENCE GEN_ID_ROMANEIO_CNTRECEBER RESTART WITH ' + IntToStr(maxID));
+                          Prepare;
+                          ExecQuery;
+                        end;
+                      end;
+
+                      cdsRomCntReceber.CancelUpdates;
+                      cdsItemRomCntReceber.CancelUpdates;
+                      GravaCancela;
+                 end;
+      end;
+end;
+
+procedure TfrmRomaneioCntReceber.btnDeleteClick(Sender: TObject);
+begin
+  Case MessageBox(Application.Handle, Pchar('Deseja realmente EXCLUIR o Romaneio atual?'), 'Atenção', MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) of
+          idYes: begin
+                      RetornaItensRomaneio;
+
+                      while not(cdsItemRomCntReceber.Eof) do
+                      begin
+                        cdsItemRomCntReceber.Delete;
+                        cdsItemRomCntReceber.ApplyUpdates(0);
+                        cdsItemRomCntReceber.Next;
+                      end;
+                      cdsRomCntReceber.Delete;
+                      cdsRomCntReceber.ApplyUpdates(0);
+                      DM.Conexao.CommitRetaining;
+                      GravaCancela;
+                 end;
+      end;
+end;
+
+procedure TfrmRomaneioCntReceber.btnFinalizarClick(Sender: TObject);
+begin
+  EditaInsere;
+  Application.MessageBox('Informe o valor recebido para cada nota do romanio.', 'Finalização do Romaneio', MB_OK+MB_ICONEXCLAMATION);
+  cdsRomCntReceber.Edit;
+  cdsRomCntReceberDT_FECHAMENTO.AsDateTime := Now;
+  cdsRomCntReceberSTATUS.AsString := 'FC';
+  if cdsItemRomCntReceber.IsEmpty then
+    RetornaItensRomaneio;
+
+  while not(cdsItemRomCntReceber.Eof) do
+  begin
+    try
+      frmPagIncReceber := TfrmPagIncReceber.Create(nil);
+      frmPagIncReceber.Caption := 'Baixa de Documento de Cliente';
+      frmPagIncReceber.lblTitulo.Caption := 'Baixa de Documento de Cliente';
+
+      frmPagIncReceber.cdsDocumentos.Append;
+      frmPagIncReceber.cdsDocumentosIdDoc.AsInteger := cdsItemRomCntReceberIDRECITEM.AsInteger;
+      frmPagIncReceber.cdsDocumentosIdVenda.AsInteger := cdsItemRomCntReceberIDVENDA.AsInteger;
+      frmPagIncReceber.cdsDocumentosREFERENCIA.AsString := cdsItemRomCntReceberREFERENCIA.AsString;
+      frmPagIncReceber.cdsDocumentosIdFilial.AsInteger := cdsItemRomCntReceberIDFILIAL.AsInteger;
+      frmPagIncReceber.cdsDocumentosVALOR_PAGO.AsFloat := cdsItemRomCntReceberVALOR_PAGO.AsFloat;
+      frmPagIncReceber.cdsDocumentosVALOR_DOC.AsFloat := cdsItemRomCntReceberVALOR_DOC.AsFloat - cdsItemRomCntReceberDESCONTO.AsFloat;
+      frmPagIncReceber.cdsDocumentosREC_DINHEIRO.AsFloat := cdsItemRomCntReceberREC_DINHEIRO.AsFloat;
+      frmPagIncReceber.cdsDocumentosPAGAMENTO_MOEDA.AsString := EmptyStr;
+      frmPagIncReceber.cdsDocumentosPARCELA.AsString := cdsItemRomCntReceberPARCELA.AsString;
+      frmPagIncReceber.cdsDocumentosIDRECEBER.AsInteger := cdsItemRomCntReceberIDRECEBER.AsInteger;
+      frmPagIncReceber.cdsDocumentos.Post;
+
+      frmPagIncReceber.valorDoc := cdsItemRomCntReceberVLR_RECEBER.AsFloat;;
+      frmPagIncReceber.creditoTotal := 0;
+      frmPagIncReceber.idCliente := cdsItemRomCntReceberIDCLIENTE.AsInteger;
+      frmPagIncReceber.modo := 'Pagamento';
+      frmPagIncReceber.edtNota.Enabled := False;
+      frmPagIncReceber.edtParcelasNT.Enabled := False;
+
+      frmPagIncReceber.edtCliente.Text := cdsItemRomCntReceberCLIENTE.AsString;
+
+      frmPagIncReceber.ShowModal;
+    finally
+      if frmPagIncReceber.ModalResult = mrOk then
+      begin
+        cdsItemRomCntReceber.Edit;
+        cdsItemRomCntReceberVLR_RECEBIDO.AsFloat := frmPagIncReceber.valorDinheiro + frmPagIncReceber.valorCheque + frmPagIncReceber.valorCartao;
+        cdsItemRomCntReceber.Post;
+
+        cdsRomCntReceberVLR_TOTAL_RECEBIDO.AsFloat := cdsRomCntReceberVLR_TOTAL_RECEBIDO.AsFloat + cdsItemRomCntReceberVLR_RECEBIDO.AsFloat;
+      end;
+
+      frmPagIncReceber.Free;
+    end;
+    cdsItemRomCntReceber.Next;
+  end;
+
+  Application.MessageBox('Notas recebidas e Romaneio finalizado com sucesso!', 'Finalização do Romaneio', MB_OK+MB_ICONEXCLAMATION);
+  btnGravar.Click;
+end;
+
+procedure TfrmRomaneioCntReceber.btnGravarClick(Sender: TObject);
+begin
+  cdsRomCntReceber.ApplyUpdates(0);
+  cdsItemRomCntReceber.ApplyUpdates(0);
+  DM.Conexao.CommitRetaining;
+  GravaCancela;
+end;
+
+procedure TfrmRomaneioCntReceber.btnIncluirClick(Sender: TObject);
+begin
+  cdsRomCntReceber.Append;
+  cdsRomCntReceberDT_Inc.AsDateTime := Now;
+  cdsRomCntReceberSTATUS.AsString := 'AB';
+  cdsRomCntReceberIDFILIAL.AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+  cdsRomCntReceberENVIADO_WEB.AsString := 'N';
+
+  EditaInsere;
+
+  with qryComand do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add('SELECT GEN_ID(GEN_ID_ROMANEIO_CNTRECEBER,1) FROM RDB$DATABASE');
+    Prepare;
+    ExecQuery;
+    cdsRomCntReceberID.AsInteger := FieldByName('GEN_ID').AsInteger;
+  end;
+
+end;
+
+procedure TfrmRomaneioCntReceber.btnInprimirClick(Sender: TObject);
+var
+  idTemp, idFilialTemp : string;
+begin
+
+  idTemp := cdsRomCntReceberid.AsString;
+  idFilialTemp := cdsRomCntReceberIDFILIAL.AsString;
+
+  cdsRomCntReceber.Close;
+  with fdsRomCntReceber do
+  begin
+    Close;
+    Conditions.Clear;
+    Conditions.AddCondition('IDROMANEIO', 'RCR.ID = ' + idTemp, True);
+    Conditions.AddCondition('IDFILIA', 'RCR.IDFILIAL = ' + idFilialTemp, True);
+    Conditions.Apply;
+    Prepare;
+    Open;
+  end;
+  cdsRomCntReceber.Open;
+
+  RetornaItensRomaneio;
+
+  DM.frxReport1.Clear;
+  DM.frxReport1.LoadFromFile(ExtractFilePath(Application.ExeName) + '/Relatorios/frxRomaneioCntReceber.fr3');
+  DM.frxReport1.PrepareReport(True);
+  DM.frxReport1.ShowReport(True);
+
+  with fdsRomCntReceber do
+  begin
+    Close;
+    Conditions.Clear;
+    Conditions.Apply;
+    Prepare;
+    Open;
+  end;
+
+  cdsRomCntReceber.Close;
+  fdsRomCntReceber.Open;
+  cdsRomCntReceber.Open;
+  GravaCancela;
+end;
+
+procedure TfrmRomaneioCntReceber.btnPedidoExcluirClick(Sender: TObject);
+begin
+  Case MessageBox(Application.Handle, Pchar('Deseja realmente excluir esta nota do Romaneio atual?'), 'Atenção', MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) of
+          idYes: begin
+                      cdsRomCntReceberVLR_TOTAL_RECEBER.AsFloat := cdsRomCntReceberVLR_TOTAL_RECEBER.AsFloat - cdsItemRomCntReceberVLR_RECEBER.AsFloat;
+                      cdsRomCntReceberQTN_NOTAS.AsInteger := cdsRomCntReceberQTN_NOTAS.AsInteger - 1;
+                      cdsItemRomCntReceber.Delete;
+                      btnPedidoIncluir.SetFocus;
+                 end;
+      end;
+end;
+
+procedure TfrmRomaneioCntReceber.btnPedidoIncluirClick(Sender: TObject);
+var
+  vlrReceber : Double;
+begin
+   Try
+    frmPesqCntReceber := TfrmPesqCntReceber.Create(nil);
+    frmPesqCntReceber.ShowModal;
+  Finally
+    if frmPesqCntReceber.ModalResult = mrOk then
+    begin
+      frmPesqCntReceber.fdsCntReceberItens.First;
+      while not(frmPesqCntReceber.fdsCntReceberItens.Eof) do
+      begin
+        if frmPesqCntReceber.fdsCntReceberItensBAIXA_AGRUPADA.AsString = 'S' then
+        begin
+          if cdsItemRomCntReceber.Locate('REFERENCIA', frmPesqCntReceber.fdsCntReceberItensREFERENCIA.AsString, []) then
+          begin
+            Application.MessageBox(PChar('A Nota ' + frmPesqCntReceber.fdsCntReceberItensREFERENCIA.AsString + ' já está inclusa neste Romaneio.'),'Anteção',MB_OK+MB_ICONERROR);
+          end
+          else
+          begin
+            vlrReceber := RoundTo(frmPesqCntReceber.fdsCntReceberItensVALOR.AsFloat - frmPesqCntReceber.fdsCntReceberItensVALOR_PAGO.AsFloat - frmPesqCntReceber.fdsCntReceberItensDESCONTO.AsFloat, -2);
+            cdsItemRomCntReceber.Append;
+            cdsItemRomCntReceberREFERENCIA.AsString := frmPesqCntReceber.fdsCntReceberItensREFERENCIA.AsString;
+            cdsItemRomCntReceberIDROMANEIO.AsInteger := cdsRomCntReceberID.AsInteger;
+            cdsItemRomCntReceberIDRECITEM.AsInteger := frmPesqCntReceber.fdsCntReceberItensID.AsInteger;
+            cdsItemRomCntReceberIDFILIAL.AsInteger := cdsRomCntReceberIDFILIAL.AsInteger;
+            cdsItemRomCntReceberVLR_RECEBER.AsFloat := vlrReceber;
+            cdsItemRomCntReceberVLR_RECEBIDO.AsFloat := 0;
+            cdsItemRomCntReceberCLIENTE.AsString := frmPesqCntReceber.fdsCntReceberItensCLIENTE.AsString;
+            cdsItemRomCntReceber.Post;
+
+            cdsRomCntReceberVLR_TOTAL_RECEBER.AsFloat := cdsRomCntReceberVLR_TOTAL_RECEBER.AsFloat + vlrReceber;
+            cdsRomCntReceberQTN_NOTAS.AsInteger := cdsRomCntReceberQTN_NOTAS.AsInteger + 1;
+
+            frmPesqCntReceber.fdsCntReceberItens.Edit;
+            frmPesqCntReceber.fdsCntReceberItensBAIXA_AGRUPADA.AsString := EmptyStr;
+            frmPesqCntReceber.fdsCntReceberItens.Post;
+          end;
+        end;
+        frmPesqCntReceber.fdsCntReceberItens.Next;
+      end;
+    end;
+    frmPesqCntReceber.Free;
+   End;
+end;
+
+procedure TfrmRomaneioCntReceber.cdsRomCntReceberAfterScroll(DataSet: TDataSet);
+begin
+  if cdsRomCntReceberSTATUS.AsString = 'FC' then
+  begin
+    btnFinalizar.Enabled := False;
+    btnAlterar.Enabled := False
+  end
+  else
+  begin
+    btnFinalizar.Enabled := True;
+    btnAlterar.Enabled := True;
+  end;
+
+  if pgcControl.ActivePageIndex = 1 then
+  begin
+    RetornaItensRomaneio;
+  end;
+end;
+
+procedure TfrmRomaneioCntReceber.EditaInsere;
+var
+  i : Smallint;
+begin
+  for i := 0 to ComponentCount -1 do
+  begin
+    if (Components[i] is TRzPageControl) then
+    begin
+      TRzPageControl(Components[i]).ActivePageIndex:= 1;
+      TRzPageControl(Components[i]).Pages[0].TabVisible := False;
+    end;
+
+    if (Components[i] is TRzBitBtn) then
+    begin
+      if Components[i].Tag = 1 then
+        TRzBitBtn(Components[i]).Enabled := False
+      else
+        TRzBitBtn(Components[i]).Enabled := True;
+    end;
+  end;
+  cbxVendedor.SetFocus;
+end;
+
+procedure TfrmRomaneioCntReceber.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  if cdsRomCntReceber.State in [dsInsert, dsEdit] then
+  begin
+    Application.MessageBox('Salve ou Cancele a Inclusão/Alteração do Romaneio antes de sair.','Atenção', MB_OK+MB_ICONWARNING);
+    Abort;
+  end
+  else
+  begin
+    Action := caFree;
+  frmRomaneioCntReceber := nil;
+  end;
+end;
+
+procedure TfrmRomaneioCntReceber.FormCreate(Sender: TObject);
+begin
+  tbsTabela.Show;
+  tbsStatusAberto.Show;
+ // lblTotal.Caption := IntToStr(cdsRomCntReceber.RecordCount);
+  fdsVendedor.Open;
+  fdsVendedor.Last;
+  fdsVendedor.First;
+end;
+
+procedure TfrmRomaneioCntReceber.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+    SelectNext(ActiveControl, True, True);
+  end;
+end;
+
+procedure TfrmRomaneioCntReceber.gdrItensDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  if not odd(cdsItemRomCntReceber.RecNo) then
+  begin
+    gdrItens.Canvas.Brush.Color := DM.gridOddColor;
+    gdrItens.Canvas.FillRect(Rect);
+    gdrItens.DefaultDrawDataCell(rect,Column.Field,state);
+  end;
+end;
+
+procedure TfrmRomaneioCntReceber.gdrRomaneioAbertoDrawColumnCell(
+  Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn;
+  State: TGridDrawState);
+begin
+  if not odd(cdsRomCntReceber.RecNo) then
+  begin
+    gdrRomaneioAberto.Canvas.Brush.Color := DM.gridOddColor;
+    gdrRomaneioAberto.Canvas.FillRect(Rect);
+    gdrRomaneioAberto.DefaultDrawDataCell(rect,Column.Field,state);
+  end;
+end;
+
+procedure TfrmRomaneioCntReceber.GravaCancela;
+var
+  i : Smallint;
+begin
+  for i := 0 to ComponentCount -1 do
+  begin
+    if (Components[i] is TRzPageControl) then
+    begin
+      TRzPageControl(Components[i]).Pages[0].TabVisible := True;
+      TRzPageControl(Components[i]).ActivePageIndex:= 0;
+    end
+    else
+    begin
+      if (Components[i] is TRzBitBtn) then
+      begin
+        if Components[i].Tag = 1 then
+          TRzBitBtn(Components[i]).Enabled := True
+        else
+          TRzBitBtn(Components[i]).Enabled := False;
+      end;
+    end;
+  end;
+  fdsRomCntReceber.Refresh;
+  cdsRomCntReceber.Refresh;
+  tbsStatusAberto.Show;
+end;
+
+procedure TfrmRomaneioCntReceber.RetornaItensRomaneio;
+begin
+  if not(cdsRomCntReceber.State in [dsInsert, dsEdit]) and (cdsRomCntReceber.RecordCount > 0) then
+  begin
+    cdsItemRomCntReceber.Close;
+    with fdsItemRomCntReceber do
+    begin
+      Close;
+      ParamByName('IDROMANEIO').AsInteger := cdsRomCntReceberID.AsInteger;
+      ParamByName('IDFILIAL').AsInteger := cdsRomCntReceberIDFILIAL.AsInteger;
+      Prepare;
+      Open;
+    end;
+  end;
+  cdsItemRomCntReceber.Open;
+  cdsItemRomCntReceber.First;
+end;
+
+procedure TfrmRomaneioCntReceber.tbsFormShow(Sender: TObject);
+begin
+  RetornaItensRomaneio;
+end;
+
+procedure TfrmRomaneioCntReceber.tbsStatusAbertoShow(Sender: TObject);
+begin
+  VisualizaPorStatus('AB');
+end;
+
+procedure TfrmRomaneioCntReceber.VisualizaPorStatus(status: string);
+begin
+  cdsRomCntReceber.Close;
+  with fdsRomCntReceber do
+  begin
+    Close;
+    Conditions.Clear;
+    Conditions.AddCondition('STATUS', 'RCR.STATUS = ' + QuotedStr(status), True);
+    Conditions.Apply;
+    Prepare;
+    Open;
+  end;
+  cdsRomCntReceber.Open;
+end;
+
+end.

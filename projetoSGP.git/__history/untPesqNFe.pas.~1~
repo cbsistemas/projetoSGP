@@ -1,0 +1,59 @@
+unit untPesqNFe;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzButton, Vcl.StdCtrls, RzLabel,
+  dxGDIPlusClasses, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Data.DB, FIBDataSet,
+  pFIBDataSet;
+
+type
+  TForm1 = class(TForm)
+    Panel1: TPanel;
+    DBGrid1: TDBGrid;
+    Panel2: TPanel;
+    Image1: TImage;
+    lblTituloCliente: TRzLabel;
+    edtPesqCliente: TEdit;
+    Edit2: TEdit;
+    RzBitBtn1: TRzBitBtn;
+    btnPesqCliente: TRzBitBtn;
+    Label1: TLabel;
+    Label2: TLabel;
+    fdsNFe: TpFIBDataSet;
+    dsNFe: TDataSource;
+    procedure btnPesqClienteClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+  idCliente:Integer;
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+uses untPesqCliente;
+
+procedure TForm1.btnPesqClienteClick(Sender: TObject);
+begin
+  Try
+    frmPesqCliente := TfrmPesqCliente.Create(nil);
+    frmPesqCliente.ShowModal;
+  Finally
+    if frmPesqCliente.ModalResult = mrOk then
+    begin
+      idCliente := frmPesqCliente.fdsClientesID.AsInteger;
+      edtPesqCliente.Text := frmPesqCliente.fdsClientesNOME.AsString;
+      //RetornaClienteId(edtClienteCodigo.Text);
+    end;
+    frmPesqCliente.Free;
+  End
+end;
+
+end.

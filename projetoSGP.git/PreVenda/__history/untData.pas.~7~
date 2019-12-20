@@ -1,0 +1,82 @@
+unit untData;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FIBDatabase, pFIBDatabase, Data.DB,
+  FIBDataSet, pFIBDataSet;
+
+type
+  TDM = class(TDataModule)
+    conexao: TpFIBDatabase;
+    trans: TpFIBTransaction;
+    fdsConfig: TpFIBDataSet;
+    fdsConfigID: TFIBBCDField;
+    fdsConfigIDFILIAL: TFIBBCDField;
+    fdsConfigRAZAO: TFIBStringField;
+    fdsConfigCNPJ: TFIBStringField;
+    fdsConfigIE: TFIBStringField;
+    fdsConfigENDERECO: TFIBStringField;
+    fdsConfigBAIRRO: TFIBStringField;
+    fdsConfigIDCIDADE: TFIBBCDField;
+    fdsConfigCEP: TFIBStringField;
+    fdsConfigTELEFONE: TFIBStringField;
+    fdsConfigFAX: TFIBStringField;
+    fdsConfigEMAIL: TFIBStringField;
+    fdsConfigSITE: TFIBStringField;
+    fdsConfigLOGO_IMG_CAMINHO: TFIBStringField;
+    fdsConfigNOME: TFIBStringField;
+    fdsConfigIDCLIENTEPADRAO: TFIBBCDField;
+    fdsConfigIDVENDEDORPADRAO: TFIBBCDField;
+    fdsConfigFABRICA: TFIBStringField;
+    fdsConfigIDFORM_PAG_PAD: TFIBBCDField;
+    fdsConfigIDPORTADOR_PADRAO: TFIBBCDField;
+    fdsConfigUTILIZAR_TABELA_PRECO: TFIBStringField;
+    fdsConfigCLIENTE_EXIBIR_PJ: TFIBStringField;
+    fdsConfigHORA_BKP: TFIBTimeField;
+    fdsConfigBAIXA_AUTO_CARTAO: TFIBStringField;
+    fdsConfigPARAM: TFIBStringField;
+    fdsConfigCHAVE: TFIBStringField;
+    fdsConfigHOJE: TFIBStringField;
+    fdsConfigCIDADE: TFIBStringField;
+    fdsConfigUF: TFIBStringField;
+    fdsConfigCARENCIA_JUROS: TFIBIntegerField;
+    fdsConfigVALOR_MULTA_ATRASO: TFIBBCDField;
+    fdsConfigJUROS_DIA: TFIBBCDField;
+    fdsConfigPDV_DESC_MAX_VENDA: TFIBBCDField;
+    fdsUsuarioPermic: TpFIBDataSet;
+    fdsUsuarioPermicIDUSUARIO: TFIBBCDField;
+    fdsUsuarioPermicIDFILIAL: TFIBBCDField;
+    fdsUsuarioPermicDT_INC: TFIBDateField;
+    fdsUsuarioPermicDT_ALT: TFIBDateField;
+    fdsUsuarioPermicRECEBIMENTO: TFIBStringField;
+    fdsUsuarioPermicDESC_MAX_ITEM: TFIBStringField;
+    fdsUsuarioPermicDESC_MAX_TOT_VENDA: TFIBStringField;
+    fdsUsuarioPermicVER_MOVIMENTO: TFIBStringField;
+    fdsUsuarioPermicSANGRIA: TFIBStringField;
+    fdsUsuarioPermicSUPRIMENTO: TFIBStringField;
+    fdsUsuarioPermicFECHAMENTO: TFIBStringField;
+    fdsUsuarioPermicALTERAR_PREC_UNIT: TFIBStringField;
+    fdsUsuarioPermicDEVOLUCAO: TFIBStringField;
+    fdsUsuarioPermicESTOQUE_ZERADO_VENDER: TFIBStringField;
+    fdsUsuarioPermicLIBERAR_CLIENTE_BLOQ: TFIBStringField;
+  private
+    { Private declarations }
+  public
+    const
+      gridOddColor = $00D2E8D2;
+
+    var
+      idUsuario : Integer;
+  end;
+
+var
+  DM: TDM;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

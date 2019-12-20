@@ -1,0 +1,3 @@
+update movimento_cnt_receber MR set MR.IDCLIENTE = (SELECT mAX(R.idcliente) FROM movimento_cnt_receber_item MI, cnt_receber_item RI,cnt_receber R WHERE R.ID= RI.IDRECEBER and RI.ID = MI.IDDOC and  MI.idmovimento = MR.ID);
+COMMIT WORK;
+

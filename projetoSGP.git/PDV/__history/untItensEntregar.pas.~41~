@@ -1,0 +1,167 @@
+unit untItensEntregar;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, FIBDataSet, pFIBDataSet, Grids, DBGrids, JvExDBGrids, JvDBGrid,
+  StdCtrls, Mask, RzEdit, RzButton, RzLabel, dxGDIPlusClasses, ExtCtrls,
+  JvExExtCtrls, JvImage, RzPanel, RzBckgnd;
+
+type
+  TfrmItensEntregar = class(TForm)
+    RzBackground1: TRzBackground;
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloCliente: TRzLabel;
+    JvDBGrid1: TJvDBGrid;
+    RzPanel2: TRzPanel;
+    btnSelecionar: TRzBitBtn;
+    fdsVendaItens: TpFIBDataSet;
+    dsVendaItens: TDataSource;
+    fdsVendaItensIDVENDA: TFIBBCDField;
+    fdsVendaItensITEM: TFIBSmallIntField;
+    fdsVendaItensIDPROD_ITEM: TFIBBCDField;
+    fdsVendaItensDT_INC: TFIBDateField;
+    fdsVendaItensQTN: TFIBBCDField;
+    fdsVendaItensVLR_UNITARIO: TFIBBCDField;
+    fdsVendaItensVLR_DESCONTO: TFIBBCDField;
+    fdsVendaItensVLR_TOTAL: TFIBBCDField;
+    fdsVendaItensPESO: TFIBBCDField;
+    fdsVendaItensQTN_RETORNO: TFIBIntegerField;
+    fdsVendaItensMOTIVO_RETORNO: TFIBStringField;
+    fdsVendaItensENVIADO_WEB: TFIBStringField;
+    fdsVendaItensIDFILIAL: TFIBBCDField;
+    fdsVendaItensENTREGAR: TFIBStringField;
+    fdsVendaItensNOME: TFIBStringField;
+    fdsVendaItensENTRE: TStringField;
+    btnCancelar: TRzBitBtn;
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure Pesquisar;
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnSelecionarClick(Sender: TObject);
+    procedure JvDBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure FormActivate(Sender: TObject);
+    procedure JvDBGrid1CellClick(Column: TColumn);
+  private
+    { Private declarations }
+  public
+    idVenda : integer;
+    pesoEntregar : Double;
+  end;
+
+var
+  frmItensEntregar: TfrmItensEntregar;
+
+implementation
+
+uses untData;
+
+{$R *.dfm}
+
+procedure TfrmItensEntregar.btnCancelarClick(Sender: TObject);
+begin
+  Case MessageBox(Application.Handle, Pchar('Deseja realmente cancelar o lançamento de entrega de Itens da Venda?'), 'Atenção', MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) of
+          idYes: begin
+                    DM.trans.RollbackRetaining;
+                    ModalResult := mrCancel;
+                 end;
+        end;
+end;
+
+procedure TfrmItensEntregar.btnSelecionarClick(Sender: TObject);
+begin
+  DM.trans.CommitRetaining;
+  ModalResult := mrOk;
+end;
+
+procedure TfrmItensEntregar.FormActivate(Sender: TObject);
+begin
+  with fdsVendaItens do
+  begin
+    Close;
+    ParamByName('IDVENDA').AsInteger := idVenda;
+    ParamByName('IDFILIAL').AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+    Prepare;
+    Open;
+  end;
+end;
+
+procedure TfrmItensEntregar.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+
+    if Key = VK_ESCAPE then
+    begin
+      btnSelecionar.Click;
+    end;
+    
+end;
+
+procedure TfrmItensEntregar.JvDBGrid1CellClick(Column: TColumn);
+begin
+  if JvDBGrid1.SelectedField.FieldName = 'ENTRE' then
+    begin
+      fdsVendaItens.Edit;
+
+      if fdsVendaItensENTREGAR.AsString = 'S' then
+      begin
+        fdsVendaItensENTREGAR.AsString := 'N';
+        pesoEntregar := pesoEntregar - (fdsVendaItensPESO.AsFloat * fdsVendaItensQTN.AsFloat);
+      end
+      else
+      begin
+        fdsVendaItensENTREGAR.AsString := 'S';
+        pesoEntregar := pesoEntregar + (fdsVendaItensPESO.AsFloat * fdsVendaItensQTN.AsFloat);
+      end;
+
+      fdsVendaItens.Post;    
+    end;
+end;
+
+procedure TfrmItensEntregar.JvDBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+var
+  Check: Integer;
+  R: TRect;
+begin
+  if not odd(fdsVendaItens.RecNo) then
+  begin
+    JvDBGrid1.Canvas.Brush.Color := clMoneyGreen;
+    JvDBGrid1.Canvas.FillRect(Rect);
+    JvDBGrid1.DefaultDrawDataCell(rect,Column.Field,state);
+  end;
+
+  if Column.FieldName =  'ENTRE' then
+  begin
+    JvDBGrid1.Canvas.FillRect(Rect);
+    Check := 0;
+    if fdsVendaItensENTREGAR.AsString = 'S' then
+      Check := DFCS_CHECKED
+    else
+      Check := 0;
+
+    R := Rect;
+    InflateRect(R, -1,-1);
+    DrawFrameControl(JvDBGrid1.Canvas.Handle,R,DFC_BUTTON, DFCS_BUTTONCHECK or Check);    
+  end;
+end;
+
+procedure TfrmItensEntregar.Pesquisar;
+var
+  sql : string;
+begin
+
+  with fdsVendaItens do
+  begin
+    Close;
+    Conditions.Clear;
+  //  Conditions.AddCondition('NOME', ' UPPER(NOME) LIKE '+ QuotedStr('%' + edtNome.Text + '%'), True);
+    Conditions.Apply;
+    Prepare;
+    Open;
+  end;
+end;
+
+end.

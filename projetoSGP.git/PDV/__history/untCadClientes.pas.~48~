@@ -1,0 +1,890 @@
+unit untCadClientes;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, FIBQuery, pFIBQuery, DB, FIBDataSet, pFIBDataSet, RzDBEdit, StdCtrls,
+  Mask, RzEdit, Grids, DBGrids, JvExDBGrids, JvDBGrid, RzTabs, RzButton,
+  RzLabel, dxGDIPlusClasses, ExtCtrls, JvExExtCtrls, JvImage, RzPanel, RzBckgnd,
+  RzCmboBx, RzDBCmbo, DBCtrls, ComCtrls, RzDTP, RzDBDTP, JvExComCtrls,
+  JvDateTimePicker, JvDBDateTimePicker, ComObj, Menus,
+  ActnList, ShellAPI, frxClass, frxDBSet, System.Actions, Vcl.Imaging.pngimage,
+  RzRadChk;
+
+type
+  TfrmCadClientes = class(TForm)
+    RzBackground1: TRzBackground;
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloCliente: TRzLabel;
+    lblTituloTotal: TRzLabel;
+    lblTotal: TRzLabel;
+    btnPrior: TRzBitBtn;
+    btnFirst: TRzBitBtn;
+    btnNext: TRzBitBtn;
+    btnLast: TRzBitBtn;
+    btnTodos: TRzBitBtn;
+    pgcControl: TRzPageControl;
+    tbsTabela: TRzTabSheet;
+    tbsForm: TRzTabSheet;
+    JvDBGrid1: TJvDBGrid;
+    lblCodigo: TRzLabel;
+    lblDtAlt: TRzLabel;
+    lblDtInc: TRzLabel;
+    lblEndereco: TRzLabel;
+    lblCEP: TRzLabel;
+    lblProficao: TRzLabel;
+    lblBairro: TRzLabel;
+    edtID: TRzDBEdit;
+    edtCEP: TRzDBEdit;
+    edtDt_Inc: TRzDBEdit;
+    edtDt_Alt: TRzDBEdit;
+    edtEndereco: TRzDBEdit;
+    edtBairro: TRzDBEdit;
+    edtProf: TRzDBEdit;
+    RzPanel2: TRzPanel;
+    btnIncluir: TRzBitBtn;
+    btnGravar: TRzBitBtn;
+    btnAlterar: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    fdsClientes: TpFIBDataSet;
+    dsClientes: TDataSource;
+    qryGeral: TpFIBQuery;
+    fdsClientesID: TFIBBCDField;
+    fdsClientesDT_INC: TFIBDateField;
+    fdsClientesDT_ALT: TFIBDateField;
+    fdsClientesSTATUS: TFIBStringField;
+    fdsClientesNOME: TFIBStringField;
+    fdsClientesDT_NASC: TFIBDateField;
+    fdsClientesTELEFONE: TFIBStringField;
+    fdsClientesENDERECO: TFIBStringField;
+    fdsClientesBAIRRO: TFIBStringField;
+    fdsClientesIDCIDADE: TFIBBCDField;
+    fdsClientesCEP: TFIBStringField;
+    fdsClientesRG: TFIBStringField;
+    fdsClientesCPF: TFIBStringField;
+    fdsClientesSEXO: TFIBStringField;
+    fdsClientesPROFISSAO: TFIBStringField;
+    fdsClientesEMAIL: TFIBStringField;
+    edtTelefone: TRzDBEdit;
+    edtCelular: TRzDBEdit;
+    edtEmail: TRzDBEdit;
+    fdsClientesCELULAR: TFIBStringField;
+    lblEmail: TRzLabel;
+    lblTelefone: TRzLabel;
+    lblCelular: TRzLabel;
+    lblSexo: TRzLabel;
+    lblStatus: TRzLabel;
+    RzLabel1: TRzLabel;
+    cbxSexo: TRzDBComboBox;
+    cbxStatus: TRzDBComboBox;
+    cbxTipo: TRzDBComboBox;
+    fdsClientesTIPO: TFIBStringField;
+    btnPesqCidade: TRzBitBtn;
+    lblUF: TRzLabel;
+    lblCidade: TRzLabel;
+    fdsClientesCIDADE: TFIBStringField;
+    fdsClientesUF: TFIBStringField;
+    fdsClientesRAZAOSOCIAL: TFIBStringField;
+    fdsClientesCONTATO: TFIBStringField;
+    fdsClientesCNPJ: TFIBStringField;
+    fdsClientesIE: TFIBStringField;
+    lblVendedor: TRzLabel;
+    fdsVendedor: TpFIBDataSet;
+    dsVendedor: TDataSource;
+    fdsClientesIDVENDEDOR: TFIBBCDField;
+    fdsVendedorID: TFIBBCDField;
+    fdsVendedorNOME: TFIBStringField;
+    lcbVendedor: TRzDBLookupComboBox;
+    edtCidade: TRzDBEdit;
+    edtUF: TRzDBEdit;
+    fdsClientesEMAIL_NFE: TFIBStringField;
+    edtEmailNFE: TRzDBEdit;
+    lblEmailNFE: TRzLabel;
+    edtNome: TRzDBEdit;
+    lblNome: TRzLabel;
+    pnlJuridico: TPanel;
+    RzLabel2: TRzLabel;
+    RzLabel3: TRzLabel;
+    edtRazao: TRzDBEdit;
+    edtContato: TRzDBEdit;
+    pnlFisica: TPanel;
+    lblRG: TRzLabel;
+    lblCPF: TRzLabel;
+    edtRG: TRzDBEdit;
+    edtCPF: TRzDBEdit;
+    lblDtNasc: TRzLabel;
+    RzDBDateTimePicker1: TRzDBDateTimePicker;
+    pnlJuridico2: TPanel;
+    RzLabel8: TRzLabel;
+    RzLabel9: TRzLabel;
+    RzDBEdit3: TRzDBEdit;
+    RzDBEdit4: TRzDBEdit;
+    edtKMTotal: TRzDBEdit;
+    RzLabel4: TRzLabel;
+    fdsClientesKM_TOTAL: TFIBSmallIntField;
+    RzGroupBox1: TRzGroupBox;
+    RzLabel5: TRzLabel;
+    RzDBDateTimePicker2: TRzDBDateTimePicker;
+    RzLabel6: TRzLabel;
+    lbcFormaPagamento: TRzDBLookupComboBox;
+    RzDBEdit1: TRzDBEdit;
+    RzLabel7: TRzLabel;
+    fdsClientesDT_ULTIMO_CONTATO: TFIBDateField;
+    fdsClientesLIMITE_CREDITO: TFIBBCDField;
+    fdsFormaPagamento: TpFIBDataSet;
+    FIBBCDField1: TFIBBCDField;
+    FIBStringField1: TFIBStringField;
+    dsFormaPagamento: TDataSource;
+    fdsClientesIDFORMA_PAGAMENTO: TFIBBCDField;
+    RzLabel10: TRzLabel;
+    RzDBLookupComboBox1: TRzDBLookupComboBox;
+    fdsRota: TpFIBDataSet;
+    FIBBCDField2: TFIBBCDField;
+    FIBStringField2: TFIBStringField;
+    dsRota: TDataSource;
+    fdsClientesIDROTA: TFIBBCDField;
+    fdsClientesENVIADO_WEB: TFIBStringField;
+    fdsClientesIDFILIAL: TFIBBCDField;
+    ActionList1: TActionList;
+    impEtiq: TAction;
+    impContra: TAction;
+    ppmImprimir: TPopupMenu;
+    ImprimirPedidoAtual1: TMenuItem;
+    RelatriodePedidosSinttico1: TMenuItem;
+    frxClientes: TfrxDBDataset;
+    RzDBEdit2: TRzDBEdit;
+    RzLabel11: TRzLabel;
+    fdsClientesREFERENCIA: TFIBStringField;
+    fdsClientesPROPRIETARIO: TFIBStringField;
+    fdsClientesCREDITO: TFIBBCDField;
+    fdsClientesLOCAL_TRABALHO: TFIBStringField;
+    fdsClientesTEM_EMPILHADEIRA: TFIBStringField;
+    fdsClientesIDCLIENTE_APP: TFIBBCDField;
+    fdsClientesNUMERO: TFIBStringField;
+    RzDBEdit6: TRzDBEdit;
+    RzLabel15: TRzLabel;
+    fdsClientesCOMPLEMENTO: TFIBStringField;
+    fdsClientesOBSERVACAO: TFIBStringField;
+    fdsClientesSTATUS_DESCRICAO: TFIBStringField;
+    Label1: TLabel;
+    fdsCidade: TpFIBDataSet;
+    fdsCidadeID: TFIBBCDField;
+    fdsCidadeDT_INC: TFIBDateField;
+    fdsCidadeDT_ALT: TFIBDateField;
+    fdsCidadeSTATUS: TFIBStringField;
+    fdsCidadeCODIGO: TFIBBCDField;
+    fdsCidadeNOME: TFIBStringField;
+    fdsCidadeUF: TFIBStringField;
+    fdsCidadeCEP: TFIBStringField;
+    edtIdCidade: TRzEdit;
+    edtComplemento: TRzDBEdit;
+    LinkLabel1: TLinkLabel;
+    chkEmpilhadeira: TRzCheckBox;
+    pgcInfoAdicional: TRzPageControl;
+    TabSheet1: TRzTabSheet;
+    tbsReferencia: TRzTabSheet;
+    tbsObservacao: TRzTabSheet;
+    DBMemo1: TDBMemo;
+    DBMemo2: TDBMemo;
+    fdsClientesCODCIDADE: TFIBStringField;
+    fdsClientesINDICADOR_IE: TFIBStringField;
+    cbxIndicadorIE: TRzDBComboBox;
+    pnlProdutorRural: TPanel;
+    RzLabel12: TRzLabel;
+    RzLabel13: TRzLabel;
+    RzDBEdit5: TRzDBEdit;
+    RzDBEdit7: TRzDBEdit;
+    RzLabel14: TRzLabel;
+    edtIE: TRzDBEdit;
+    RzLabel16: TRzLabel;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure FormCreate(Sender: TObject);
+    procedure EditaInsere;
+    procedure GravaCancela;
+    procedure btnIncluirClick(Sender: TObject);
+    procedure btnAlterarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
+    procedure edtProfKeyPress(Sender: TObject; var Key: Char);
+    procedure btnPesqCidadeClick(Sender: TObject);
+    procedure tbsFormShow(Sender: TObject);
+    procedure btnPriorClick(Sender: TObject);
+    procedure btnFirstClick(Sender: TObject);
+    procedure btnNextClick(Sender: TObject);
+    procedure btnLastClick(Sender: TObject);
+    procedure btnTodosClick(Sender: TObject);
+    procedure JvDBGrid1TitleClick(Column: TColumn);
+    procedure btnDeleteClick(Sender: TObject);
+    procedure fdsClientesAfterScroll(DataSet: TDataSet);
+    procedure controlaTipoPessoa;
+    procedure ImpContrato;
+    procedure ImpContrato2;
+    procedure PesquisaCliente(condicao: string);
+    procedure cbxTipoChange(Sender: TObject);
+    procedure JvDBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure JvDBGrid1KeyPress(Sender: TObject; var Key: Char);
+    procedure btnInprimirClick(Sender: TObject);
+    procedure ControlaExibicaoPJ;
+    procedure JvDBGrid1MouseMove(Sender: TObject; Shift: TShiftState; X,
+      Y: Integer);
+    procedure impContraExecute(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure edtIdCidadeExit(Sender: TObject);
+    procedure chkEmpilhadeiraClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+const
+  tamPFisica : integer = 580; //481
+  tamPJuridica: integer = 615;
+
+var
+  frmCadClientes: TfrmCadClientes;
+
+implementation
+
+uses untPrincipal, untData, uUtils, untPesqCidade, untPesqCliente;
+
+{$R *.dfm}
+
+procedure TfrmCadClientes.btnAlterarClick(Sender: TObject);
+begin
+  fdsClientes.Edit;
+  fdsClientesDT_ALT.AsDateTime := Now;
+  fdsClientesENVIADO_WEB.AsString := 'N';
+  EditaInsere;
+end;
+
+procedure TfrmCadClientes.btnCancelarClick(Sender: TObject);
+begin
+  fdsClientes.Cancel;
+  DM.Conexao.RollbackRetaining;
+  GravaCancela;
+end;
+
+procedure TfrmCadClientes.btnDeleteClick(Sender: TObject);
+begin   
+  if fdsClientes.RecordCount > 0 then
+  begin
+    Case MessageBox(Application.Handle, Pchar('Deseja realmente excluir o registro atual?'), 'Atenção', MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) of
+          idYes: begin
+                    fdsClientes.Delete;
+                    DM.Conexao.CommitRetaining;
+                    lblTotal.Caption := intToStr(fdsClientes.RecordCount);
+                 end;
+      end;
+  end;
+end;
+
+procedure TfrmCadClientes.btnFirstClick(Sender: TObject);
+begin
+  fdsClientes.Prior;
+end;
+
+procedure TfrmCadClientes.btnGravarClick(Sender: TObject);
+var
+  utils : TUtils;
+  i : Smallint;
+  campoVazio : Boolean;
+  nomeCliente : string;
+begin
+  if Trim(fdsClientesIE.AsString).IsEmpty then
+    fdsClientesIE.AsString := 'ISENTO';
+
+  campoVazio := False;
+//  for i := 0 to ComponentCount -1 do
+//  begin
+//    if (Components[i].Tag = 15) then
+//    begin
+//        if utils.VerificaCampoObrigatorio(TRzDBEdit(Components[i])) then
+//          campoVazio := True;
+//    end;
+//  end;
+
+  if campoVazio then
+    Application.MessageBox('Existem campos obrigatórios sem preencher.','Anteção',MB_OK+MB_ICONERROR)
+  else
+  begin
+    nomeCliente := fdsClientesNOME.AsString;
+    fdsClientes.Post;
+    DM.Conexao.CommitRetaining;
+    GravaCancela;
+    if not(frmPesqCliente = nil) then
+    begin
+      frmPesqCliente.edtNome.Text := nomeCliente;
+      frmCadClientes.Close;
+    end;
+    fdsClientes.Locate('NOME', nomeCliente, []);
+  end;
+end;
+
+procedure TfrmCadClientes.btnIncluirClick(Sender: TObject);
+begin
+  fdsClientes.Append;
+  fdsClientesDT_Inc.AsDateTime := Now;
+  fdsClientesSEXO.AsString := 'M';
+  fdsClientesSTATUS.AsString := 'L';
+  fdsClientesTIPO.AsString := 'F';
+  fdsClientesDT_NASC.AsDateTime := now;
+  fdsClientesDT_ULTIMO_CONTATO.AsDateTime := now;
+  fdsClientesIDFORMA_PAGAMENTO.AsInteger := 1;
+  fdsClientesIDROTA.AsInteger := 1;
+  fdsClientesIDVENDEDOR.AsInteger := 1;
+  fdsClientesIDFILIAl.AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+  fdsClientesIE.AsString := 'ISENTO';
+  edtCidade.Clear;
+  edtUF.Clear;
+  controlaTipoPessoa;
+  EditaInsere;
+end;
+
+procedure TfrmCadClientes.btnInprimirClick(Sender: TObject);
+begin
+  ppmImprimir.Popup(frmCadClientes.Left + 390, frmCadClientes.top + 110);
+end;
+
+procedure TfrmCadClientes.btnLastClick(Sender: TObject);
+begin
+  fdsClientes.Last;
+end;
+
+procedure TfrmCadClientes.btnNextClick(Sender: TObject);
+begin
+  fdsClientes.Next;
+end;
+
+procedure TfrmCadClientes.EditaInsere;
+var
+  i : Smallint;
+begin
+  for i := 0 to ComponentCount -1 do
+  begin
+    if (Components[i] is TRzPageControl) then
+    begin
+      TRzPageControl(Components[i]).ActivePageIndex:= 1;
+      TRzPageControl(Components[i]).Pages[0].TabVisible := False;
+    end;
+
+    if (Components[i] is TRzBitBtn) then
+    begin
+      if Components[i].Tag = 1 then
+        TRzBitBtn(Components[i]).Enabled := False
+      else
+        TRzBitBtn(Components[i]).Enabled := True;
+    end;
+  end;
+  edtNome.SetFocus;
+end;
+
+procedure TfrmCadClientes.edtIdCidadeExit(Sender: TObject);
+var
+utils: TUtils;
+begin
+ if fdsClientes.State in [dsInsert, dsEdit] then
+  begin
+    edtIdCidade.Text := FloatToStr(utils.ValidaInteiroFloat(edtIdCidade.Text, 'I'));
+
+    if fdsCidade.Locate('ID', edtIdCidade.Text, []) then
+    begin
+      fdsClientesIDCIDADE.AsInteger := fdsCidadeID.AsInteger;
+      edtCidade.Text := fdsCidadeNOME.AsString;
+      edtUF.Text := fdsCidadeUF.AsString;
+      edtCEP.SetFocus;
+    end
+    else
+      btnPesqCidade.Click;
+  end;
+end;
+
+procedure TfrmCadClientes.edtProfKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    btnGravar.SetFocus;
+  end;
+end;
+
+procedure TfrmCadClientes.fdsClientesAfterScroll(DataSet: TDataSet);
+begin
+  if tbsForm.Showing then
+  begin
+    controlaTipoPessoa;
+  end;
+
+end;
+
+procedure TfrmCadClientes.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := caFree;
+  frmCadClientes := nil;
+end;
+
+procedure TfrmCadClientes.FormCreate(Sender: TObject);
+begin
+  tbsTabela.Show;
+  ControlaExibicaoPJ;
+  fdsClientes.Open;
+  fdsClientes.Last;
+  fdsClientes.First;
+  lblTotal.Caption := IntToStr(fdsClientes.RecordCount);
+  fdsVendedor.Open;
+  fdsVendedor.Last;
+  fdsVendedor.First;
+  fdsCidade.Open;
+  fdsFormaPagamento.Open;
+  fdsFormaPagamento.Last;
+  fdsFormaPagamento.First;
+  fdsRota.Open;
+  fdsRota.Last;
+  fdsRota.First;
+end;
+
+procedure TfrmCadClientes.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (Key = VK_ESCAPE) then
+  begin
+    if not(fdsClientes.State in [dsInsert, dsEdit]) then
+    begin
+      frmCadClientes.Close;
+    end;
+  end;
+end;
+
+procedure TfrmCadClientes.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+    SelectNext(ActiveControl, True, True);
+  end;
+end;
+
+procedure TfrmCadClientes.FormShow(Sender: TObject);
+begin
+  if not(frmPesqCliente = nil) then
+    btnIncluir.Click;
+end;
+
+procedure TfrmCadClientes.GravaCancela;
+var
+  i : Smallint;
+  utils : TUtils;
+  editando : Boolean;
+begin
+  for i := 0 to ComponentCount -1 do
+  begin
+    if (Components[i] is TRzPageControl) then
+    begin
+      TRzPageControl(Components[i]).Pages[0].TabVisible := True;
+      TRzPageControl(Components[i]).ActivePageIndex:= 0;
+    end
+    else
+    begin
+      if (Components[i] is TRzBitBtn) then
+      begin
+        if Components[i].Tag = 1 then
+          TRzBitBtn(Components[i]).Enabled := True
+        else
+          TRzBitBtn(Components[i]).Enabled := False;
+      end
+      else
+      begin
+        if Components[i].Tag = 15 then
+        begin
+          if (Components[i] is TRzEdit) then
+            utils.ResetColorCampo(TRzDBEdit(Components[i]), true)
+          else
+            utils.ResetColorCampo(TRzDBEdit(Components[i]), false);
+        end;
+      end;
+    end;
+  end;
+  lblTotal.Caption := intToStr(fdsClientes.RecordCount);
+end;
+
+procedure TfrmCadClientes.impContraExecute(Sender: TObject);
+begin
+  impContrato2;
+end;
+
+procedure TfrmCadClientes.ImpContrato;
+type 
+  twordreplaceflags = set of (wrfreplaceall, wrfmatchcase, wrfmatchwildcards); 
+const 
+  wdfindcontinue     = 1; 
+  wdreplaceone       = 1; 
+  wdreplaceall       = 2; 
+  wddonotsavechanges = 0; 
+var 
+  wordapp: olevariant; 
+
+begin 
+if not fileexists(extractfiledir(application.exename)+'\Cartas\modelo1.doc') then
+   raise exception.create('Arquivo não encontrato:' + extractfiledir(application.exename)+'\Cartas\modelo1.doc');
+
+   try
+   wordapp := createoleobject('word.application'); 
+   except
+      messagedlg ('Microsoft Word não encontrato.', mterror, [mbok], 0); 
+   end; 
+
+   wordapp.visible := true; 
+   wordapp.documents.open(extractfiledir(application.exename)+'\Cartas\modelo1.doc');
+   wordapp.selection.find.clearformatting;
+   wordapp.selection.find.forward := true; 
+
+   wordapp.selection.find.wrap := wdfindcontinue; 
+   wordapp.selection.find.format := false; 
+   wordapp.selection.find.matchwholeword := true; 
+   wordapp.selection.find.matchsoundslike := false; 
+   wordapp.selection.find.matchallwordforms := false; 
+
+   //registro do cliente
+   wordapp.selection.find.text := '#Nome'; 
+   wordapp.selection.find.replacement.text := fdsClientesNOME.AsString;
+   wordapp.selection.find.execute(replace := wdreplaceall); 
+
+   wordapp.selection.find.text := '#Endereco';
+   wordapp.selection.find.replacement.text := fdsClientesENDERECO.AsString;
+   wordapp.selection.find.execute(replace := wdreplaceall);
+
+   wordapp.selection.find.text := '#Bairro';
+   wordapp.selection.find.replacement.text := fdsClientesBAIRRO.AsString;
+   wordapp.selection.find.execute(replace := wdreplaceall);
+
+   wordapp.selection.find.text := '#Cidade';
+   wordapp.selection.find.replacement.text := fdsClientesCIDADE.AsString;
+   wordapp.selection.find.execute(replace := wdreplaceall);
+
+   wordapp.selection.find.text := '#Cep';
+   wordapp.selection.find.replacement.text := fdsClientesCEP.AsString;
+   wordapp.selection.find.execute(replace := wdreplaceall);
+
+   wordapp.selection.find.text := '#Data';
+   wordapp.selection.find.replacement.text := DateToStr(Now);
+   wordapp.selection.find.execute(replace := wdreplaceall);
+
+  { wordapp.selection.find.text := '#scep';
+   wordapp.selection.find.replacement.text := dmdados.sdsauxiliar.fieldbyname('cep').text;
+   wordapp.selection.find.execute(replace := wdreplaceall);
+
+   wordapp.selection.find.text := '#suf';
+   wordapp.selection.find.replacement.text := dmdados.sdsauxiliar.fieldbyname('uf').text;
+   wordapp.selection.find.execute(replace := wdreplaceall);
+
+   wordapp.selection.find.text := '#scnpj';
+   wordapp.selection.find.replacement.text := dmdados.sdsauxiliar.fieldbyname('cnpj').text;
+   wordapp.selection.find.execute(replace := wdreplaceall);
+
+   wordapp.selection.find.text := '#snome';
+   wordapp.selection.find.replacement.text := edit2.text;
+   wordapp.selection.find.execute(replace := wdreplaceall); 
+
+   wordapp.selection.find.text := '#scargo'; 
+   wordapp.selection.find.replacement.text := edit3.text; 
+   wordapp.selection.find.execute(replace := wdreplaceall); 
+
+   wordapp.selection.find.text := '#snacionalidade'; 
+   wordapp.selection.find.replacement.text := edit4.text; 
+   wordapp.selection.find.execute(replace := wdreplaceall); 
+
+   wordapp.selection.find.text := '#scivil'; 
+   wordapp.selection.find.replacement.text := edit5.text; 
+   wordapp.selection.find.execute(replace := wdreplaceall); 
+
+   wordapp.selection.find.text := '#scpf'; 
+   wordapp.selection.find.replacement.text := edit6.text; 
+   wordapp.selection.find.execute(replace := wdreplaceall); 
+
+   wordapp.selection.find.text := '#slocal'; 
+   wordapp.selection.find.replacement.text := 'São Paulo, '+ 
+                                              formatdatetime('dd',date)+' de '+ 
+                                              formatdatetime('mmmm',date)+' de '+ 
+                                              formatdatetime('yyyy',date); 
+   wordapp.selection.find.execute(replace := wdreplaceall); 
+
+   wordapp.selection.find.text := '#stest1'; 
+   wordapp.selection.find.replacement.text := edit7.text; 
+   wordapp.selection.find.execute(replace := wdreplaceall); 
+
+   wordapp.selection.find.text := '#srg1'; 
+   wordapp.selection.find.replacement.text := edit8.text; 
+   wordapp.selection.find.execute(replace := wdreplaceall); 
+
+   wordapp.selection.find.text := '#stest2'; 
+   wordapp.selection.find.replacement.text := edit9.text; 
+   wordapp.selection.find.execute(replace := wdreplaceall); 
+
+   wordapp.selection.find.text := '#srg2'; 
+   wordapp.selection.find.replacement.text := edit10.text; 
+   wordapp.selection.find.execute(replace := wdreplaceall);        }
+
+  // wordapp.activedocument.printout;
+ //  wordapp.activedocument.close(wddonotsavechanges);
+ //  wordapp.quit;
+
+   wordapp := unassigned;
+end;
+
+procedure TfrmCadClientes.ImpContrato2;
+var
+  WinWord, Docs, Doc: Variant;
+begin
+  WinWord := CreateOleObject('Word.Application');
+
+  // Tornar o word visivel
+  WinWord.Visible := True;
+
+  // Abrir arquivo para edição
+  Doc:= WinWord.Documents.Open(ExtractFilePath(Application.ExeName)+'\Cartas\modelo1.doc');
+
+  // Substituir itens do arquivo por texto escolhido
+  Doc.Content.Find.Execute(FindText := '#Nome' , ReplaceWith := fdsClientesNOME.AsString);
+
+  // Salvar Documento
+  Doc.SaveAs(ExtractFilePath(Application.ExeName) + 'Contratos\' + fdsClientesID.AsString + '.doc');
+
+  ShellExecute(Application.Handle, 'print', Pchar(ExtractFilePath(Application.ExeName) + 'Contratos\' + fdsClientesID.AsString + '.doc'),nil,nil,0);
+
+
+  WinWord.Quit; // Fechar
+
+
+end;
+
+procedure TfrmCadClientes.JvDBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  if not odd(fdsClientes.RecNo) then
+  begin
+    JvDBGrid1.Canvas.Brush.Color := DM.gridOddColor;
+    JvDBGrid1.Canvas.FillRect(Rect);
+    JvDBGrid1.DefaultDrawDataCell(rect,Column.Field,state);
+  end;
+end;
+
+procedure TfrmCadClientes.JvDBGrid1KeyPress(Sender: TObject; var Key: Char);
+var
+  coluna : string;
+begin
+  if (KEY = 'p') then
+  begin
+    coluna := JvDBGrid1.SelectedField.FieldName;
+    if coluna = 'NOME' then
+    Begin
+      Try
+        frmPesqCliente := TfrmPesqCliente.Create(nil);
+        frmPesqCliente.ShowModal;
+      Finally
+        if frmPesqCliente.ModalResult = mrOk then
+        begin
+          PesquisaCliente('CL.ID = ' + frmPesqCliente.fdsClientesID.AsString);
+        end;
+        frmPesqCliente.Free;
+        frmPesqCliente := nil;
+      End;
+    end
+    else
+    begin
+      if coluna = 'CIDADE' then
+      begin
+        Try
+          frmPesqCidade := TfrmPesqCidade.Create(nil);
+          frmPesqCidade.ShowModal;
+        Finally
+          if frmPesqCidade.ModalResult = mrOk then
+          begin
+            PesquisaCliente('CL.IDCIDADE = ' + frmPesqCidade.fdsCidadesID.AsString);
+          end;
+          frmPesqCidade.Free;
+        End;
+      end;
+    end;
+  end;
+end;
+
+procedure TfrmCadClientes.JvDBGrid1MouseMove(Sender: TObject;
+  Shift: TShiftState; X, Y: Integer);
+//var
+ // pPosicao: TGridCoord;
+begin
+ // pPosicao := TDBGrid(Sender).MouseCoord(x,y);
+  //ShowMessage('Lina: ' + IntToStr(pPosicao.y));
+end;
+
+procedure TfrmCadClientes.JvDBGrid1TitleClick(Column: TColumn);
+begin
+  fdsClientes.Close;
+  fdsClientes.OrderClause := Column.FieldName;
+  fdsClientes.Open;
+end;
+
+procedure TfrmCadClientes.PesquisaCliente(condicao: string);
+var
+  tempIdCliente : string;
+begin
+  with fdsClientes do
+  begin
+    Close;
+    Conditions.Clear;
+    Conditions.AddCondition('PESQ', condicao, True);
+    Conditions.Apply;
+ //   SelectSQL.SaveToFile('c:\pedido.sql');
+    Prepare;
+    OrderClause := 'CL.ID';
+    Open;
+  end;
+end;
+
+procedure TfrmCadClientes.tbsFormShow(Sender: TObject);
+begin
+  controlaTipoPessoa;
+   edtIdCidade.Text := fdsClientesIDCIDADE.AsString;
+
+  if fdsClientesTEM_EMPILHADEIRA.AsString = 'S' then
+    chkEmpilhadeira.Checked := True
+  else
+    chkEmpilhadeira.Checked := False;
+
+  pgcInfoAdicional.ActivePageIndex := 0 ;
+
+  if not(Trim(fdsClientesOBSERVACAO.AsString) = '') then
+    tbsObservacao.Color := $008080FF
+  else
+    tbsObservacao.Color := clWhite;
+end;
+
+procedure TfrmCadClientes.btnPesqCidadeClick(Sender: TObject);
+begin
+  Try
+    frmPesqCidade := TfrmPesqCidade.Create(nil);
+    frmPesqCidade.ShowModal;
+  Finally
+    if frmPesqCidade.ModalResult = mrOk then
+    begin
+      edtIdCidade.Text := frmPesqCidade.fdsCidadesID.AsString;
+      fdsClientesIDCIDADE.AsInteger := frmPesqCidade.fdsCidadesID.AsInteger;
+      edtCidade.Text := frmPesqCidade.fdsCidadesNOME.AsString;
+      edtUF.Text := frmPesqCidade.fdsCidadesUF.AsString;
+    end;
+    frmPesqCidade.Free;
+  End;
+  edtCEP.SetFocus;
+end;
+
+procedure TfrmCadClientes.btnPriorClick(Sender: TObject);
+begin
+  fdsClientes.First;
+end;
+
+procedure TfrmCadClientes.btnTodosClick(Sender: TObject);
+begin
+  with fdsClientes do
+  begin
+    Close;
+    Conditions.Clear;
+    Conditions.Apply;
+    Prepare;
+    Open;
+  end;
+end;
+
+procedure TfrmCadClientes.cbxTipoChange(Sender: TObject);
+begin
+  if fdsClientes.State in [dsEdit, dsInsert] then
+    controlaTipoPessoa;
+end;
+
+procedure TfrmCadClientes.chkEmpilhadeiraClick(Sender: TObject);
+begin
+    if fdsClientes.State in [dsInsert, dsEdit] then
+  begin
+    if chkEmpilhadeira.Checked then
+      fdsClientesTEM_EMPILHADEIRA.AsString := 'S'
+    else
+      fdsClientesTEM_EMPILHADEIRA.AsString := 'N';
+  end;
+end;
+
+procedure TfrmCadClientes.ControlaExibicaoPJ;
+begin
+  if DM.fdsConfigCLIENTE_EXIBIR_PJ.AsString = 'N' then
+  begin
+    fdsClientes.Conditions.AddCondition('TIPO', 'TIPO = ' + QuotedStr('F'), True);
+    fdsClientes.Conditions.Apply;
+  end;
+end;
+
+procedure TfrmCadClientes.controlaTipoPessoa;
+begin
+  if cbxTipo.Value = 'F' then
+  begin
+    frmCadClientes.Height := tamPFisica;
+    pnlFisica.Visible := True;
+    pnlFisica.Enabled := True;
+    pnlJuridico.Visible := False;
+    pnlJuridico.Enabled := False;
+    pnlJuridico2.Visible := False;
+    pnlJuridico2.Enabled := False;
+    lblEmailNFE.Visible := False;
+    edtEmailNFE.Visible := False;
+    lblNome.Caption := 'Nome';
+    lblProficao.Caption := 'Profissão';
+    lblProficao.Top := 345;//249;
+    lblProficao.Left := 317;
+    edtProf.Width := 326; // 326;
+    edtProf.Top := 365;
+    edtProf.Left := 317;
+  end;
+  if cbxTipo.Value = 'J' then
+  begin
+    pnlJuridico.Visible := True;
+    pnlJuridico.Enabled := True;
+    pnlJuridico2.Visible := True;
+    pnlJuridico2.Enabled := True;
+    pnlFisica.Visible := False;
+    pnlFisica.Enabled := False;
+    lblEmailNFE.Visible := True;
+    edtEmailNFE.Visible := True;
+    frmCadClientes.Height := tamPJuridica;
+    lblNome.Caption := 'Nome Fantasia';
+    lblProficao.Caption := 'Cargo';
+    lblProficao.Top := 107;
+    lblProficao.Left := 490;
+    edtProf.Width := 153;
+    edtProf.Top := 126;
+    edtProf.Left := 490;
+  end;
+
+  if cbxTipo.Value = 'R' then
+  begin
+    frmCadClientes.Height := tamPFisica;
+    pnlFisica.Visible := True;
+    pnlFisica.Enabled := True;
+    pnlJuridico.Visible := False;
+    pnlJuridico.Enabled := False;
+    pnlJuridico2.Visible := False;
+    pnlJuridico2.Enabled := False;
+    lblEmailNFE.Visible := False;
+    edtEmailNFE.Visible := False;
+    lblNome.Caption := 'Nome';
+    lblProficao.Caption := 'Profissão';
+    lblProficao.Top := 249;
+    lblProficao.Left := 317;
+    edtProf.Width := 326;
+    edtProf.Top := 269;
+    edtProf.Left := 317;
+  end
+
+end;
+
+end.

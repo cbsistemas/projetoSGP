@@ -1,0 +1,25 @@
+unit untRecebimentoDetalhe;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzBckgnd;
+
+type
+  TfrmRecebimentoDetalhe = class(TForm)
+    RzBackground1: TRzBackground;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRecebimentoDetalhe: TfrmRecebimentoDetalhe;
+
+implementation
+
+{$R *.dfm}
+
+end.

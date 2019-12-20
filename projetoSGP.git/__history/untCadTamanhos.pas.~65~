@@ -1,0 +1,447 @@
+unit untCadTamanhos;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, dxGDIPlusClasses, ExtCtrls, JvExExtCtrls, JvImage, RzBckgnd, DB,
+  FIBDataSet, pFIBDataSet, StdCtrls, RzCmboBx, RzDBCmbo, Mask, RzEdit, RzDBEdit,
+  RzLabel, Grids, DBGrids, JvExDBGrids, JvDBGrid, RzTabs, RzButton, RzPanel,
+  DBCtrls, RzDBGrid, Vcl.Imaging.pngimage;
+
+type
+  TfrmCadTamanhos = class(TForm)
+    RzPanel2: TRzPanel;
+    btnIncluir: TRzBitBtn;
+    btnGravar: TRzBitBtn;
+    btnAlterar: TRzBitBtn;
+    btnDelete: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    pgcControl: TRzPageControl;
+    tbsTabela: TRzTabSheet;
+    JvDBGrid1: TJvDBGrid;
+    tbsForm: TRzTabSheet;
+    lblCodigo: TRzLabel;
+    lblDtAlt: TRzLabel;
+    lblDtInc: TRzLabel;
+    lblNome: TRzLabel;
+    lblRG: TRzLabel;
+    lblStatus: TRzLabel;
+    edtID: TRzDBEdit;
+    edtDt_Inc: TRzDBEdit;
+    edtDt_Alt: TRzDBEdit;
+    edtNome: TRzDBEdit;
+    edtReferencia: TRzDBEdit;
+    cbxStatus: TRzDBComboBox;
+    fdsTamanho: TpFIBDataSet;
+    dsTamanho: TDataSource;
+    RzBackground1: TRzBackground;
+    RzPanel1: TRzPanel;
+    imgPrincipal: TJvImage;
+    lblTitulo: TRzLabel;
+    lblTituloTotal: TRzLabel;
+    lblTotal: TRzLabel;
+    btnPrior: TRzBitBtn;
+    btnFirst: TRzBitBtn;
+    btnNext: TRzBitBtn;
+    btnLast: TRzBitBtn;
+    btnTodos: TRzBitBtn;
+    fdsTamanhoID: TFIBBCDField;
+    fdsTamanhoDT_INC: TFIBDateField;
+    fdsTamanhoDT_ALT: TFIBDateField;
+    fdsTamanhoSTATUS: TFIBStringField;
+    fdsTamanhoNOME: TFIBStringField;
+    fdsTamanhoREFERENCIA: TFIBStringField;
+    RzGroupBox2: TRzGroupBox;
+    RzLabel4: TRzLabel;
+    RzLabel5: TRzLabel;
+    RzLabel6: TRzLabel;
+    RzDBEdit4: TRzDBEdit;
+    RzDBEdit5: TRzDBEdit;
+    RzDBEdit6: TRzDBEdit;
+    fdsTamanhoALTURA_I: TFIBBCDField;
+    fdsTamanhoLARGURA_I: TFIBBCDField;
+    fdsTamanhoPROFUNDIDADE_I: TFIBBCDField;
+    fdsTamanhoALTURA_E: TFIBBCDField;
+    fdsTamanhoLARGURA_E: TFIBBCDField;
+    fdsTamanhoPROFUNDIDADE_E: TFIBBCDField;
+    RzGroupBox1: TRzGroupBox;
+    grdGrupos: TRzDBGrid;
+    btnGrupoIncluir: TRzBitBtn;
+    btnGrupoAltStatus: TRzBitBtn;
+    btnGrupoExcluir: TRzBitBtn;
+    fdsTamanho_Grupo: TpFIBDataSet;
+    dsTamanho_Grupo: TDataSource;
+    fdsTamanho_GrupoIDTAMANHO: TFIBBCDField;
+    fdsTamanho_GrupoIDGRUPO: TFIBBCDField;
+    fdsTamanho_GrupoDT_INC: TFIBDateField;
+    fdsTamanho_GrupoDT_ALT: TFIBDateField;
+    fdsTamanho_GrupoSTATUS: TFIBStringField;
+    fdsTamanho_GrupoST: TFIBStringField;
+    fdsTamanho_GrupoGRUPO: TFIBStringField;
+    fdsTamanhoENVIADO_WEB: TFIBStringField;
+    procedure btnPriorClick(Sender: TObject);
+    procedure btnFirstClick(Sender: TObject);
+    procedure btnNextClick(Sender: TObject);
+    procedure btnLastClick(Sender: TObject);
+    procedure btnTodosClick(Sender: TObject);
+    procedure EditaInsere;
+    procedure GravaCancela;
+    procedure btnIncluirClick(Sender: TObject);
+    procedure btnAlterarClick(Sender: TObject);
+    procedure btnDeleteClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure fdsTamanhoAfterScroll(DataSet: TDataSet);
+    procedure btnGrupoIncluirClick(Sender: TObject);
+    procedure btnGrupoAltStatusClick(Sender: TObject);
+    procedure btnGrupoExcluirClick(Sender: TObject);
+    procedure JvDBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure JvDBGrid1TitleClick(Column: TColumn);
+    procedure FormActivate(Sender: TObject);
+    procedure GerarRelacionamentos;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadTamanhos: TfrmCadTamanhos;
+  ordem: string[4]; //controla a ordenação: Asc / Desc
+
+implementation
+
+uses uUtils, untData, untPesqGrupo, untPrincipal, untSelectGrupos;
+
+{$R *.dfm}
+
+procedure TfrmCadTamanhos.btnAlterarClick(Sender: TObject);
+begin
+  fdsTamanho.Edit;
+  fdsTamanhoDT_ALT.AsDateTime := Now;
+  fdsTamanhoENVIADO_WEB.AsString := 'N';
+  EditaInsere;
+end;
+
+procedure TfrmCadTamanhos.btnCancelarClick(Sender: TObject);
+begin
+  fdsTamanho.Cancel;
+  DM.Conexao.RollbackRetaining;
+  GravaCancela;
+end;
+
+procedure TfrmCadTamanhos.btnDeleteClick(Sender: TObject);
+begin
+  if fdsTamanho.RecordCount > 0 then
+  begin
+    Case MessageBox(Application.Handle, Pchar('Deseja realmente excluir o registro atual?'), 'Atenção', MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) of
+          idYes: begin
+                    fdsTamanho.Delete;
+                    DM.Conexao.CommitRetaining;
+                    lblTotal.Caption := intToStr(fdsTamanho.RecordCount);
+                 end;
+      end;
+  end;
+end;
+
+procedure TfrmCadTamanhos.btnFirstClick(Sender: TObject);
+begin
+  fdsTamanho.Prior;
+end;
+
+procedure TfrmCadTamanhos.btnGravarClick(Sender: TObject);
+var
+  utils : TUtils;
+  i : Smallint;
+  campoVazio : Boolean;
+  incluindo : Boolean;
+begin
+  campoVazio := False;
+  incluindo := False;
+  for i := 0 to ComponentCount -1 do
+  begin
+    if (Components[i].Tag = 15) then
+    begin
+        if utils.VerificaCampoObrigatorio(TRzDBEdit(Components[i])) then
+          campoVazio := True;
+    end;
+  end;
+
+  if campoVazio then
+    Application.MessageBox('Existem campos obrigatórios sem preencher.','Anteção',MB_OK+MB_ICONERROR)
+  else
+  begin
+    if fdsTamanho.State in [dsInsert] then
+      incluindo := True;
+
+    fdsTamanho.Post;
+    DM.Conexao.CommitRetaining;
+    GravaCancela;
+
+    if incluindo then
+    begin
+      GerarRelacionamentos;
+    end;
+  end;
+end;
+
+procedure TfrmCadTamanhos.btnGrupoAltStatusClick(Sender: TObject);
+begin
+  With fdsTamanho_Grupo do
+  begin
+    Edit;
+    if fdsTamanho_GrupoSTATUS.AsString = 'A' then
+      fdsTamanho_GrupoSTATUS.AsString := 'I'
+    else
+      fdsTamanho_GrupoSTATUS.AsString := 'A';
+    Post;
+    DM.Conexao.CommitRetaining;
+    Close;
+    Open;
+    Last;
+    First;
+  end;
+end;
+
+procedure TfrmCadTamanhos.btnGrupoExcluirClick(Sender: TObject);
+begin
+  if fdsTamanho_Grupo.RecordCount > 0 then
+  begin
+    Case MessageBox(Application.Handle, Pchar('Deseja realmente retirar o Grupo atual deste Tamanho?'), 'Atenção', MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) of
+          idYes: begin
+                    fdsTamanho_Grupo.Delete;
+                    DM.Conexao.CommitRetaining;
+                 end;
+      end;
+  end;
+end;
+
+procedure TfrmCadTamanhos.btnGrupoIncluirClick(Sender: TObject);
+begin
+//  Try
+//    frmPesqGrupo := TfrmPesqGrupo.Create(nil);
+//    frmPesqGrupo.ShowModal;
+//  Finally
+//    if frmPesqGrupo.ModalResult = mrOk then
+//    begin
+//      fdsTamanho_Grupo.Insert;
+//      fdsTamanho_GrupoIDGRUPO.AsInteger := frmPesqGrupo.fdsGruposID.AsInteger;
+//      fdsTamanho_GrupoIDTamanho.AsInteger := fdsTamanhoID.AsInteger;
+//      fdsTamanho_GrupoDT_INC.AsDateTime := Now;
+//      fdsTamanho_GrupoSTATUS.AsString := 'A';
+//      fdsTamanho_Grupo.Post;
+//      DM.Conexao.CommitRetaining;
+//    end;
+//    frmPesqGrupo.Free;
+//    fdsTamanho_Grupo.Close;
+//    fdsTamanho_Grupo.Open;
+//    fdsTamanho_Grupo.Last;
+//    fdsTamanho_Grupo.First;
+//  End;
+
+    GerarRelacionamentos;
+
+end;
+
+procedure TfrmCadTamanhos.btnIncluirClick(Sender: TObject);
+begin
+  fdsTamanho_Grupo.Close;
+  fdsTamanho.Append;
+  fdsTamanhoDT_Inc.AsDateTime := Now;
+  fdsTamanhoSTATUS.AsString := 'A';
+  EditaInsere;
+end;
+
+procedure TfrmCadTamanhos.btnLastClick(Sender: TObject);
+begin
+  fdsTamanho.Last;
+end;
+
+procedure TfrmCadTamanhos.btnNextClick(Sender: TObject);
+begin
+  fdsTamanho.Next;
+end;
+
+procedure TfrmCadTamanhos.btnPriorClick(Sender: TObject);
+begin
+  fdsTamanho.First;
+end;
+
+procedure TfrmCadTamanhos.btnTodosClick(Sender: TObject);
+begin
+  fdsTamanho.Close;
+  fdsTamanho.Open;
+  fdsTamanho.Last;
+  fdsTamanho.First;
+end;
+
+procedure TfrmCadTamanhos.EditaInsere;
+var
+  i : Smallint;
+begin
+  for i := 0 to ComponentCount -1 do
+  begin
+    if (Components[i] is TRzPageControl) then
+    begin
+      TRzPageControl(Components[i]).ActivePageIndex:= 1;
+      TRzPageControl(Components[i]).Pages[0].TabVisible := False;
+    end;
+
+    if (Components[i] is TRzBitBtn) then
+    begin
+      if Components[i].Tag = 1 then
+        TRzBitBtn(Components[i]).Enabled := False
+      else
+        TRzBitBtn(Components[i]).Enabled := True;
+    end;
+  end;
+  edtNome.SetFocus;
+end;
+
+procedure TfrmCadTamanhos.fdsTamanhoAfterScroll(DataSet: TDataSet);
+begin
+  with fdsTamanho_Grupo do
+  begin
+    Close;
+    ParamByName('IDTAMANHO').AsInteger := fdsTamanhoID.AsInteger;
+    OrderClause := 'Nome';
+    Prepare;
+    Open;
+  end;
+end;
+
+procedure TfrmCadTamanhos.FormActivate(Sender: TObject);
+begin
+  if frmPrincipal.autopecas = 'S' then
+  begin
+    frmCadTamanhos.Caption := 'Cadastro de Aplicação';
+    lblTitulo.Caption := 'Aplicação';
+    lblTituloTotal.Caption := 'Total de aplicações';
+    imgPrincipal.Picture.LoadFromFile(ExtractFilePath(Application.ExeName) + '\content\Aplicacao_AutoPecas_64x64.png');
+  end;
+end;
+
+procedure TfrmCadTamanhos.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := caFree;
+  frmCadTamanhos := nil;
+end;
+
+procedure TfrmCadTamanhos.FormCreate(Sender: TObject);
+begin
+  tbsTabela.Show;
+  fdsTamanho.OrderClause := 'ID';
+  fdsTamanho.Open;
+  fdsTamanho.Last;
+  fdsTamanho.First;
+  lblTotal.Caption := IntToStr(fdsTamanho.RecordCount);
+end;
+
+procedure TfrmCadTamanhos.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+    SelectNext(ActiveControl, True, True);
+  end;
+end;
+
+procedure TfrmCadTamanhos.GerarRelacionamentos;
+begin
+  Try
+    frmSelectGrupos := TfrmSelectGrupos.Create(nil);
+    frmSelectGrupos.idTabela := fdsTamanhoID.AsInteger;
+    frmSelectGrupos.tabela := 'Tamanho';
+
+    while not(fdsTamanho_Grupo.Eof) do
+    begin
+      if frmSelectGrupos.cdsGrupo.Locate('ID', fdsTamanho_GrupoIDGRUPO.AsString, []) then
+      begin
+        frmSelectGrupos.cdsGrupo.Edit;
+        frmSelectGrupos.cdsGrupoSELECT.AsString := 'S';
+        frmSelectGrupos.cdsGrupo.Post;
+      end;
+      fdsTamanho_Grupo.Next;
+    end;
+
+    frmSelectGrupos.ShowModal;
+  Finally
+    if frmSelectGrupos.ModalResult = mrOk then
+    begin
+      Application.MessageBox('Relacionamentos com Grupos realizado com sucesso.', 'Relacionamentos finalizado.', MB_OK+MB_ICONEXCLAMATION);
+      fdsTamanho_Grupo.Close;
+      fdsTamanho_Grupo.Open;
+    end;
+    frmSelectGrupos.Free;
+  End;
+end;
+
+procedure TfrmCadTamanhos.GravaCancela;
+var
+  i : Smallint;
+  utils : TUtils;
+begin
+  for i := 0 to ComponentCount -1 do
+  begin
+    if (Components[i] is TRzPageControl) then
+    begin
+      TRzPageControl(Components[i]).Pages[0].TabVisible := True;
+      TRzPageControl(Components[i]).ActivePageIndex:= 0;
+    end
+    else
+    begin
+      if (Components[i] is TRzBitBtn) then
+      begin
+        if Components[i].Tag = 1 then
+          TRzBitBtn(Components[i]).Enabled := True
+        else
+          TRzBitBtn(Components[i]).Enabled := False;
+      end
+      else
+      begin
+        if Components[i].Tag = 15 then
+        begin
+          if (Components[i] is TRzEdit) then
+            utils.ResetColorCampo(TRzDBEdit(Components[i]), true)
+          else
+            utils.ResetColorCampo(TRzDBEdit(Components[i]), false);
+        end;
+      end;
+    end;
+  end;
+
+  fdsTamanho.Close;
+  fdsTamanho.Open;
+  fdsTamanho.Last;
+  lblTotal.Caption := intToStr(fdsTamanho.RecordCount);
+end;
+
+procedure TfrmCadTamanhos.JvDBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  if not odd(fdsTamanho.RecNo) then
+  begin
+    JvDBGrid1.Canvas.Brush.Color := DM.gridOddColor;
+    JvDBGrid1.Canvas.FillRect(Rect);
+    JvDBGrid1.DefaultDrawDataCell(rect,Column.Field,state);
+  end;
+end;
+
+procedure TfrmCadTamanhos.JvDBGrid1TitleClick(Column: TColumn);
+begin
+  fdsTamanho.Close;
+  fdsTamanho.OrderClause := Column.FieldName + ' ' + ordem;
+  fdsTamanho.Open;
+
+  if ordem = 'ASC' then
+    ordem := 'DESC'
+  else
+    ordem := 'ASC';
+end;
+
+end.

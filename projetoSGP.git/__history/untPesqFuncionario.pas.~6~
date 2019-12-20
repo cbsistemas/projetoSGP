@@ -1,0 +1,130 @@
+unit untPesqFuncionario;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, FIBDataSet, pFIBDataSet, Grids, DBGrids, JvExDBGrids, JvDBGrid,
+  StdCtrls, Mask, RzEdit, RzButton, RzLabel, dxGDIPlusClasses, ExtCtrls,
+  JvExExtCtrls, JvImage, RzPanel, RzBckgnd, Vcl.Imaging.pngimage;
+
+type
+  TfrmPesqFuncionario = class(TForm)
+    RzBackground1: TRzBackground;
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloCliente: TRzLabel;
+    lblNome: TRzLabel;
+    btnTodos: TRzBitBtn;
+    btnPesquisar: TRzBitBtn;
+    edtNome: TRzEdit;
+    JvDBGrid1: TJvDBGrid;
+    RzPanel2: TRzPanel;
+    btnSelecionar: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    dsFuncionarios: TDataSource;
+    fdsFuncionarios: TpFIBDataSet;
+    fdsFuncionariosID: TFIBBCDField;
+    fdsFuncionariosNOME: TFIBStringField;
+    procedure btnTodosClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure Pesquisar;
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnSelecionarClick(Sender: TObject);
+    procedure btnPesquisarClick(Sender: TObject);
+    procedure edtNomeChange(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure JvDBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPesqFuncionario: TfrmPesqFuncionario;
+
+implementation
+
+uses untLogin, untData;
+
+{$R *.dfm}
+
+procedure TfrmPesqFuncionario.btnCancelarClick(Sender: TObject);
+begin
+  ModalResult := mrCancel;
+end;
+
+procedure TfrmPesqFuncionario.btnPesquisarClick(Sender: TObject);
+begin
+  Pesquisar;
+end;
+
+procedure TfrmPesqFuncionario.btnSelecionarClick(Sender: TObject);
+begin
+  ModalResult := mrOk;
+end;
+
+procedure TfrmPesqFuncionario.btnTodosClick(Sender: TObject);
+var
+  sql : string;
+begin
+  fdsFuncionarios.Close;
+  fdsFuncionarios.SelectSQL.Clear;
+  sql := 'SELECT ID, NOME FROM FUNCIONARIO';
+  fdsFuncionarios.SelectSQL.Add(sql);
+  fdsFuncionarios.OrderClause := 'NOME';
+  fdsFuncionarios.Prepare;
+  fdsFuncionarios.Open;
+  fdsFuncionarios.Last;
+  fdsFuncionarios.First;
+end;
+
+procedure TfrmPesqFuncionario.edtNomeChange(Sender: TObject);
+begin
+  Pesquisar;
+end;
+
+procedure TfrmPesqFuncionario.FormActivate(Sender: TObject);
+begin
+  edtNome.SetFocus;
+  fdsFuncionarios.Open;
+  fdsFuncionarios.First;
+end;
+
+procedure TfrmPesqFuncionario.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = VK_F5 then
+  begin
+    btnSelecionar.Click;
+  end;
+end;
+
+procedure TfrmPesqFuncionario.JvDBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  if not odd(fdsFuncionarios.RecNo) then
+  begin
+    JvDBGrid1.Canvas.Brush.Color := DM.gridOddColor;
+    JvDBGrid1.Canvas.FillRect(Rect);
+    JvDBGrid1.DefaultDrawDataCell(rect,Column.Field,state);
+  end;
+end;
+
+procedure TfrmPesqFuncionario.Pesquisar;
+var
+  sql : string;
+begin
+  fdsFuncionarios.Close;
+  fdsFuncionarios.SelectSQL.Clear;
+  sql := 'SELECT ID, NOME FROM FUNCIONARIO WHERE UPPER(NOME) LIKE '+ QuotedStr('%' + edtNome.Text + '%');
+  fdsFuncionarios.SelectSQL.Add(sql);
+  ControlaExibicaoPJ;
+  fdsFuncionarios.OrderClause := 'NOME';
+  fdsFuncionarios.Prepare;
+  fdsFuncionarios.Open;
+end;
+
+end.

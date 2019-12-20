@@ -1,0 +1,25 @@
+unit untGraficoPedidos;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, JvExControls, JvChart;
+
+type
+  TfrmGraficoPedidos = class(TForm)
+    JvChart1: TJvChart;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmGraficoPedidos: TfrmGraficoPedidos;
+
+implementation
+
+{$R *.dfm}
+
+end.

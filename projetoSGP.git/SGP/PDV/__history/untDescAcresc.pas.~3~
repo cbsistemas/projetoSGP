@@ -1,0 +1,39 @@
+unit untDescAcresc;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, RzButton, StdCtrls, RzLabel, ExtCtrls, RzPanel;
+
+type
+  TfrmDescAcresc = class(TForm)
+    RzPanel1: TRzPanel;
+    RzLabel4: TRzLabel;
+    RzBitBtn1: TRzBitBtn;
+    btnDesconto: TRzBitBtn;
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmDescAcresc: TfrmDescAcresc;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmDescAcresc.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = #68 then
+    //
+  else
+    if Key = #65 then
+      //
+end;
+
+end.

@@ -1,0 +1,137 @@
+unit untSuprimento;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, RzPanel, RzRadGrp, StdCtrls, Mask, RzEdit, RzBckgnd, RzLabel,
+  dxGDIPlusClasses, ExtCtrls, JvExExtCtrls, JvImage, RzButton,
+  Vcl.Imaging.pngimage, Data.DB, FIBDataSet, pFIBDataSet, Vcl.ComCtrls;
+
+type
+  TfrmSuprimento = class(TForm)
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    RzLabel4: TRzLabel;
+    RzBackground1: TRzBackground;
+    btnOK: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    RzPanel2: TRzPanel;
+    RzLabel1: TRzLabel;
+    edtValor: TRzEdit;
+    RzLabel2: TRzLabel;
+    mmoMotivo: TRzMemo;
+    fdsMovimentoCaixa: TpFIBDataSet;
+    fdsMovimentoCaixaID: TFIBBCDField;
+    fdsMovimentoCaixaIDCAIXA: TFIBBCDField;
+    fdsMovimentoCaixaIDFILIAL: TFIBBCDField;
+    fdsMovimentoCaixaDT_INC: TFIBDateField;
+    fdsMovimentoCaixaHR_INC: TFIBTimeField;
+    fdsMovimentoCaixaIDUSUARIO: TFIBBCDField;
+    fdsMovimentoCaixaCONTROLE: TFIBBCDField;
+    fdsMovimentoCaixaTIPO: TFIBStringField;
+    fdsMovimentoCaixaMOEDA: TFIBStringField;
+    fdsMovimentoCaixaVLR_ENTRADA: TFIBBCDField;
+    fdsMovimentoCaixaVLR_VENDA: TFIBBCDField;
+    fdsMovimentoCaixaVLR_TOTAL: TFIBBCDField;
+    fdsMovimentoCaixaVLR_DESCONTO: TFIBBCDField;
+    fdsMovimentoCaixaTROCO: TFIBBCDField;
+    fdsMovimentoCaixaENVIADO_WEB: TFIBStringField;
+    fdsMovimentoCaixaIDMOVIMENTO: TFIBBCDField;
+    fdsMovimentoCaixaHISTORICO: TFIBStringField;
+    fdsMovimentoCaixaOPERADOR: TFIBStringField;
+    fdsMovimentoCaixaVLR_CHEQUE: TFIBBCDField;
+    fdsMovimentoCaixaVLR_CARTAO: TFIBBCDField;
+    fdsMovimentoCaixaVLR_NOTA: TFIBBCDField;
+    fdsMovimentoCaixaVLR_FINANCEIRA: TFIBBCDField;
+    fdsMovimentoCaixaVLR_VALEDESCONTO: TFIBBCDField;
+    fdsMovimentoCaixaVLR_TICKET: TFIBBCDField;
+    redComprovante: TRzRichEdit;
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnOKClick(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure edtValorExit(Sender: TObject);
+    procedure edtValorEnter(Sender: TObject);
+    procedure GravaSuprimento;
+  private
+    { Private declarations }
+  public
+    var
+      valor : Double;
+      tipo : string;
+  end;
+
+var
+  frmSuprimento: TfrmSuprimento;
+
+implementation
+
+uses uUtils, untData;
+
+{$R *.dfm}
+
+procedure TfrmSuprimento.btnCancelarClick(Sender: TObject);
+begin
+  ModalResult := mrCancel;
+end;
+
+procedure TfrmSuprimento.btnOKClick(Sender: TObject);
+var
+  utils : TUtils;
+begin
+
+  valor := StrToFloat(utils.RetiraMascaraDinheiro(edtValor.Text));
+  if valor <= 0 then
+  begin
+    Application.MessageBox('Informe um valor maior que zero para o suprimento ou clique em cancelar.', 'Atenção', MB_OK+MB_ICONWARNING);
+    edtValor.SetFocus;
+  end
+  else
+  begin
+    GravaSuprimento;
+    ModalResult := mrOk;
+  end;
+end;
+
+procedure TfrmSuprimento.edtValorEnter(Sender: TObject);
+var
+  utils : TUtils;
+begin
+  edtValor.Text := utils.RetiraMascaraDinheiro(edtValor.Text);
+end;
+
+procedure TfrmSuprimento.edtValorExit(Sender: TObject);
+var
+  utils : TUtils;
+begin
+  edtValor.Text := utils.AdicionaMascaraDinheiro(edtValor.Text);
+end;
+
+procedure TfrmSuprimento.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+    SelectNext(ActiveControl, True, True);
+  end;
+end;
+
+procedure TfrmSuprimento.GravaSuprimento;
+begin
+  fdsMovimentoCaixa.Open;
+  fdsMovimentoCaixa.Append;
+  fdsMovimentoCaixaCONTROLE.AsInteger := DM.controle;
+  fdsMovimentoCaixaIDCAIXA.AsInteger := DM.numCaixa;
+  fdsMovimentoCaixaIDFILIAL.AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+  fdsMovimentoCaixaIDUSUARIO.AsInteger := DM.idUsuario;
+  fdsMovimentoCaixaTIPO.AsString := 'SU';
+  fdsMovimentoCaixaMOEDA.AsString := 'DN';
+  fdsMovimentoCaixaVLR_TOTAL.AsFloat := frmSuprimento.valor;
+  fdsMovimentoCaixaVLR_VENDA.AsFloat := frmSuprimento.valor;
+  fdsMovimentoCaixaVLR_ENTRADA.AsFloat := fdsMovimentoCaixaVLR_TOTAL.AsFloat;
+  fdsMovimentoCaixaHISTORICO.AsString := frmSuprimento.mmoMotivo.Text;
+  fdsMovimentoCaixa.Post;
+  DM.conexao.CommitRetaining;
+end;
+
+end.

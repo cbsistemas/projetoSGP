@@ -1,0 +1,24 @@
+unit untIncItem;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs;
+
+type
+  TfrmIncItem = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmIncItem: TfrmIncItem;
+
+implementation
+
+{$R *.dfm}
+
+end.

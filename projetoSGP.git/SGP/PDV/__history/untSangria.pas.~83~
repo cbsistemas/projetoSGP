@@ -1,0 +1,238 @@
+unit untSangria;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, RzPanel, RzRadGrp, StdCtrls, Mask, RzEdit, RzBckgnd, RzLabel,
+  dxGDIPlusClasses, ExtCtrls, JvExExtCtrls, JvImage, RzButton,
+  Vcl.Imaging.pngimage, Data.DB, FIBDataSet, pFIBDataSet, Vcl.ComCtrls,
+  FIBDatabase, pFIBDatabase;
+
+type
+  TfrmSangria = class(TForm)
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    RzLabel4: TRzLabel;
+    RzBackground1: TRzBackground;
+    rdgTipoSangria: TRzRadioGroup;
+    RzLabel1: TRzLabel;
+    edtValor: TRzEdit;
+    mmoMotivo: TRzMemo;
+    RzLabel2: TRzLabel;
+    btnOK: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    fdsMovCaixa: TpFIBDataSet;
+    fdsMovCaixaID: TFIBBCDField;
+    fdsMovCaixaIDCAIXA: TFIBBCDField;
+    fdsMovCaixaIDFILIAL: TFIBBCDField;
+    fdsMovCaixaDT_INC: TFIBDateField;
+    fdsMovCaixaHR_INC: TFIBTimeField;
+    fdsMovCaixaIDUSUARIO: TFIBBCDField;
+    fdsMovCaixaCONTROLE: TFIBBCDField;
+    fdsMovCaixaTIPO: TFIBStringField;
+    fdsMovCaixaMOEDA: TFIBStringField;
+    fdsMovCaixaVLR_ENTRADA: TFIBBCDField;
+    fdsMovCaixaVLR_VENDA: TFIBBCDField;
+    fdsMovCaixaVLR_TOTAL: TFIBBCDField;
+    fdsMovCaixaVLR_DESCONTO: TFIBBCDField;
+    fdsMovCaixaTROCO: TFIBBCDField;
+    fdsMovCaixaENVIADO_WEB: TFIBStringField;
+    fdsMovCaixaIDMOVIMENTO: TFIBBCDField;
+    fdsMovCaixaHISTORICO: TFIBStringField;
+    fdsMovCaixaOPERADOR: TFIBStringField;
+    fdsMovCaixaVLR_CHEQUE: TFIBBCDField;
+    fdsMovCaixaVLR_CARTAO: TFIBBCDField;
+    fdsMovCaixaVLR_NOTA: TFIBBCDField;
+    fdsMovCaixaVLR_FINANCEIRA: TFIBBCDField;
+    fdsMovCaixaVLR_VALEDESCONTO: TFIBBCDField;
+    fdsMovCaixaVLR_TICKET: TFIBBCDField;
+    redComprovante: TRzRichEdit;
+    transSangria: TpFIBTransaction;
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnOKClick(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure edtValorExit(Sender: TObject);
+    procedure edtValorEnter(Sender: TObject);
+    procedure GravaSangria;
+    procedure ImprimirComprovante;
+    procedure FormActivate(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+  private
+    { Private declarations }
+  public
+    var
+      valor, saldoCaixaDN, saldoCaixaCH : Double;
+      tipo, autorizadoPor : string;
+  end;
+
+var
+  frmSangria: TfrmSangria;
+
+implementation
+
+uses uUtils, untData, untMovimentacaoCaixa, untPrincipal, untTotalizadores;
+
+{$R *.dfm}
+
+procedure TfrmSangria.btnCancelarClick(Sender: TObject);
+begin
+  ModalResult := mrCancel;
+end;
+
+procedure TfrmSangria.btnOKClick(Sender: TObject);
+var
+  utils : TUtils;
+begin
+  valor := StrToFloat(utils.RetiraMascaraDinheiro(edtValor.Text));
+
+  if rdgTipoSangria.ItemIndex = 0 then
+     tipo := 'DN'
+  else
+     tipo := 'CH';
+
+  if Trim(mmoMotivo.Text) = EmptyStr then
+  begin
+    Application.MessageBox('É obrigatório o lançamento de um motivo para a sangria.', 'Atenção', MB_OK+MB_ICONWARNING);
+    mmoMotivo.SetFocus;
+  end
+  else if valor <= 0 then
+        begin
+          Application.MessageBox('Informe um valor maior que zero para a sangria ou clique em cancelar.', 'Atenção', MB_OK+MB_ICONWARNING);
+          edtValor.SetFocus;
+        end
+        else if (tipo = 'DN') and (saldoCaixaDN < valor) then
+              begin
+                Application.MessageBox('Saldo em Dinheiro insuficiente para realizar esse valor de Sangria.', 'Atenção', MB_OK+MB_ICONWARNING);
+                edtValor.SetFocus;
+              end
+              else if (tipo = 'CH') and (saldoCaixaCH < valor) then
+                    begin
+                      Application.MessageBox('Saldo em Cheque insuficiente para realizar esse valor de Sangria.', 'Atenção', MB_OK+MB_ICONWARNING);
+                      edtValor.SetFocus;
+                    end
+                    else
+                    begin
+                      GravaSangria;
+                      if (DM.impVenda <> 0) then
+                      begin
+                        if (perguntaImp = 'S') then
+                        begin
+                          Case MessageBox(Application.Handle, Pchar('Deseja imprimir a sangria?'), 'Atenção', MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) of
+                            idYes:
+                              begin
+                                ImprimirComprovante;
+                              end;
+                          end;
+                        end
+                        else
+                          ImprimirComprovante;
+                      end;
+                      ModalResult := mrOk;
+                    end;
+end;
+
+procedure TfrmSangria.edtValorEnter(Sender: TObject);
+var
+  utils : TUtils;
+begin
+  edtValor.Text := utils.RetiraMascaraDinheiro(edtValor.Text);
+end;
+
+procedure TfrmSangria.edtValorExit(Sender: TObject);
+var
+  utils : TUtils;
+begin
+  edtValor.Text := utils.AdicionaMascaraDinheiro(edtValor.Text);
+end;
+
+procedure TfrmSangria.FormActivate(Sender: TObject);
+begin
+  Try
+      frmTotalizadores := TfrmTotalizadores.Create(nil);
+      frmTotalizadores.ShowModal;
+   Finally
+      if frmTotalizadores.ModalResult = mrOk then
+      begin
+        saldoCaixaDN := frmTotalizadores.DNAbertura + frmTotalizadores.DNVenda + frmTotalizadores.SuprimentoDN - frmTotalizadores.SangriaDN;
+        saldoCaixaCH := frmTotalizadores.CHVenda;
+      end;
+      frmTotalizadores.FreeOnRelease;
+  End;
+end;
+
+procedure TfrmSangria.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+if Key = VK_ESCAPE then
+  begin
+    btnCancelar.Click;
+  end
+end;
+
+procedure TfrmSangria.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+    SelectNext(ActiveControl, True, True);
+  end;
+end;
+
+procedure TfrmSangria.GravaSangria;
+begin
+  fdsMovCaixa.Open;
+  fdsMovCaixa.Append;
+  fdsMovCaixaCONTROLE.AsInteger := DM.controle;
+  fdsMovCaixaIDCAIXA.AsInteger := DM.numCaixa;
+  fdsMovCaixaIDFILIAL.AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+  fdsMovCaixaIDUSUARIO.AsInteger := DM.idUsuario;
+  fdsMovCaixaTIPO.AsString := 'SA';
+  fdsMovCaixaMOEDA.AsString := frmSangria.tipo;
+  fdsMovCaixaVLR_TOTAL.AsFloat := frmSangria.valor;
+  fdsMovCaixaVLR_VENDA.AsFloat := frmSangria.valor;
+  fdsMovCaixaVLR_ENTRADA.AsFloat := fdsMovCaixaVLR_TOTAL.AsFloat;
+  fdsMovCaixaHISTORICO.AsString := frmSangria.mmoMotivo.Text;
+  fdsMovCaixa.Post;
+  transSangria.CommitRetaining;
+end;
+
+procedure TfrmSangria.ImprimirComprovante;
+var
+  cArquivo: TextFile;
+begin
+  if (DM.impVenda = 1) or (DM.impVenda = 3) then  //Impressora de cupom
+  begin
+    redComprovante.Clear;
+    redComprovante.Lines.Add('');
+    redComprovante.Lines.Add('     COMPROVANTE DE SANGRIA');
+    redComprovante.Lines.Add(' -----------------------------------------');
+    redComprovante.Lines.Add('');
+    redComprovante.Lines.Add('  ' + frmPrincipal.lblOperador.Caption);
+    redComprovante.Lines.Add('  AUTORIZADO POR: ' + autorizadoPor);
+    redComprovante.Lines.Add('');
+    redComprovante.Lines.Add('  DATA: ' + DateTimeToStr(Now));
+    redComprovante.Lines.Add('  VALOR: ' + edtValor.Text);
+    redComprovante.Lines.Add('');
+    redComprovante.Lines.Add('MOTIVO: ' + mmoMotivo.Text);
+    redComprovante.Lines.Add(' -----------------------------------------');
+    redComprovante.Lines.Add('');
+
+    try
+      AssignFile(cArquivo, dm.fdsConfigIMP_CUPOM.AsString);
+      Rewrite(cArquivo);
+      Writeln(cArquivo, redComprovante.Text);
+      Writeln(cArquivo);
+      CloseFile(cArquivo);
+
+    except on e: Exception do
+    begin
+      ShowMessage(e.Message);
+    end;
+//
+  end;
+
+  end;
+end;
+
+end.

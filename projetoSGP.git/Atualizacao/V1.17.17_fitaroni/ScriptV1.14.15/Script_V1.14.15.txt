@@ -1,0 +1,8 @@
+update venda_item VI set VI.IDGRUPO =(SELECT PO.IDGRUPO FROM PRODUTO_ITEM P, PRODUTO PO WHERE PO.id=P.idproduto and P.id = VI.idprod_item);
+update venda_item vi set vi.prec_custo_medio= (select pi.prec_custo_medio from produto_item pi where pi.id = vi.idprod_item);
+update venda_item vi set vi.prec_custo_medio = 0 where vi.prec_custo_medio is null;
+update NFE_ITEM NI set NI.IDGRUPO =(SELECT PO.IDGRUPO FROM PRODUTO_ITEM P, PRODUTO PO WHERE PO.id=P.idproduto and P.id = NI.idprod_item);
+update NFE_ITEM Ni set Ni.prec_custo_medio= (select pi.prec_custo_medio from produto_item pi where pi.id = Ni.idprod_item);
+update NFE_ITEM Ni set Ni.prec_custo_medio=0 where Ni.prec_custo_medio is null;
+
+COMMIT WORK;

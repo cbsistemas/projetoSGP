@@ -1,0 +1,440 @@
+object frmRecebimentoDetalhe: TfrmRecebimentoDetalhe
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Detalhe de Recebimento'
+  ClientHeight = 399
+  ClientWidth = 465
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  DesignSize = (
+    465
+    399)
+  PixelsPerInch = 96
+  TextHeight = 13
+  object RzBackground1: TRzBackground
+    Left = 0
+    Top = 0
+    Width = 465
+    Height = 399
+    Active = True
+    Align = alClient
+    GradientColorStart = -1
+    GradientColorStop = 2497553
+    GradientDirection = gdDiagonalDown
+    ImageStyle = isCenter
+    ShowGradient = True
+    ShowImage = False
+    ShowTexture = False
+    ExplicitWidth = 627
+    ExplicitHeight = 345
+  end
+  object RzPanel1: TRzPanel
+    Left = 8
+    Top = 145
+    Width = 439
+    Height = 247
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 0
+    Transparent = True
+    ExplicitWidth = 611
+    ExplicitHeight = 217
+    object RzLabel8: TRzLabel
+      Left = 18
+      Top = 15
+      Width = 45
+      Height = 13
+      Caption = 'Desconto'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object RzLabel6: TRzLabel
+      Left = 138
+      Top = 15
+      Width = 39
+      Height = 13
+      Caption = 'Dinheiro'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object RzLabel7: TRzLabel
+      Left = 250
+      Top = 15
+      Width = 37
+      Height = 13
+      Caption = 'Cheque'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object RzLabel9: TRzLabel
+      Left = 250
+      Top = 79
+      Width = 33
+      Height = 13
+      Caption = 'Cart'#227'o'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object RzLabel3: TRzLabel
+      Left = 250
+      Top = 143
+      Width = 23
+      Height = 13
+      Caption = 'Nota'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object RzLabel11: TRzLabel
+      Left = 362
+      Top = 143
+      Width = 40
+      Height = 13
+      Caption = 'Parcelas'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object RzLabel5: TRzLabel
+      Left = 359
+      Top = 79
+      Width = 40
+      Height = 13
+      Caption = 'Parcelas'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object RzLabel10: TRzLabel
+      Left = 359
+      Top = 15
+      Width = 40
+      Height = 13
+      Caption = 'Parcelas'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object edtDesconto: TRzEdit
+      Left = 16
+      Top = 34
+      Width = 105
+      Height = 31
+      Text = 'R$ 0,00'
+      Alignment = taRightJustify
+      Color = clMoneyGreen
+      DisabledColor = clInfoBk
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+    end
+    object edtDinheiro: TRzEdit
+      Left = 136
+      Top = 34
+      Width = 105
+      Height = 31
+      Text = 'R$ 0,00'
+      Alignment = taRightJustify
+      Color = clMoneyGreen
+      DisabledColor = clInfoBk
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+    end
+    object edtCartao: TRzEdit
+      Left = 248
+      Top = 98
+      Width = 105
+      Height = 31
+      Text = 'R$ 0,00'
+      Alignment = taRightJustify
+      Color = clMoneyGreen
+      DisabledColor = clInfoBk
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
+    end
+    object edtNota: TRzEdit
+      Left = 248
+      Top = 162
+      Width = 105
+      Height = 31
+      Text = 'R$ 0,00'
+      Alignment = taRightJustify
+      Color = clInfoBk
+      DisabledColor = clInfoBk
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      FocusColor = clMoneyGreen
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 3
+    end
+    object edtParcelasNT: TRzEdit
+      Left = 362
+      Top = 162
+      Width = 55
+      Height = 31
+      Text = '1'
+      Color = clMoneyGreen
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 4
+    end
+    object edtParcelasCT: TRzEdit
+      Left = 362
+      Top = 98
+      Width = 55
+      Height = 31
+      Text = '1'
+      Color = clMoneyGreen
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 5
+    end
+    object edtParcelasCH: TRzEdit
+      Left = 362
+      Top = 34
+      Width = 55
+      Height = 31
+      Text = '1'
+      Color = clMoneyGreen
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 6
+    end
+    object edtCheque: TRzEdit
+      Left = 248
+      Top = 34
+      Width = 105
+      Height = 31
+      Text = 'R$ 0,00'
+      Alignment = taRightJustify
+      Color = clMoneyGreen
+      DisabledColor = clInfoBk
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 7
+    end
+  end
+  object RzPanel2: TRzPanel
+    Left = 8
+    Top = 8
+    Width = 439
+    Height = 129
+    Anchors = [akLeft, akTop, akRight]
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+    Transparent = True
+    ExplicitWidth = 611
+    object RzLabel1: TRzLabel
+      Left = 18
+      Top = 8
+      Width = 54
+      Height = 13
+      Caption = 'Documento'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object RzLabel2: TRzLabel
+      Left = 16
+      Top = 64
+      Width = 33
+      Height = 13
+      Caption = 'Cliente'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object RzLabel4: TRzLabel
+      Left = 248
+      Top = 8
+      Width = 24
+      Height = 13
+      Caption = 'Valor'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object RzLabel12: TRzLabel
+      Left = 127
+      Top = 8
+      Width = 72
+      Height = 13
+      Caption = 'Dt. Pagamento'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object RzEdit1: TRzEdit
+      Left = 16
+      Top = 27
+      Width = 105
+      Height = 31
+      Text = 'R$ 0,00'
+      Alignment = taRightJustify
+      Color = clMoneyGreen
+      DisabledColor = clInfoBk
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+    end
+    object RzEdit2: TRzEdit
+      Left = 16
+      Top = 83
+      Width = 337
+      Height = 31
+      Text = 'R$ 0,00'
+      Alignment = taRightJustify
+      Color = clMoneyGreen
+      DisabledColor = clInfoBk
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+    end
+    object RzEdit3: TRzEdit
+      Left = 127
+      Top = 27
+      Width = 115
+      Height = 31
+      Text = 'R$ 0,00'
+      Alignment = taRightJustify
+      Color = clMoneyGreen
+      DisabledColor = clInfoBk
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
+    end
+    object RzEdit4: TRzEdit
+      Left = 248
+      Top = 27
+      Width = 105
+      Height = 31
+      Text = 'R$ 0,00'
+      Alignment = taRightJustify
+      Color = clMoneyGreen
+      DisabledColor = clInfoBk
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 3
+    end
+  end
+end

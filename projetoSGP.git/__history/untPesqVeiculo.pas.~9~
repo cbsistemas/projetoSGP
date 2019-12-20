@@ -1,0 +1,80 @@
+unit untPesqVeiculo;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, FIBDataSet, pFIBDataSet,
+  Vcl.Grids, Vcl.DBGrids, JvExDBGrids, JvDBGrid, Vcl.StdCtrls, Vcl.Mask, RzEdit,
+  RzButton, RzLabel, Vcl.Imaging.pngimage, Vcl.ExtCtrls, JvExExtCtrls, JvImage,
+  RzPanel, RzBckgnd;
+
+type
+  TfrmPesqVeiculo = class(TForm)
+    RzBackground1: TRzBackground;
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloCliente: TRzLabel;
+    lblNome: TRzLabel;
+    btnTodos: TRzBitBtn;
+    btnPesquisar: TRzBitBtn;
+    edtNome: TRzEdit;
+    JvDBGrid1: TJvDBGrid;
+    dsVeiculo: TDataSource;
+    fdsVeiculo: TpFIBDataSet;
+    btnCancelar: TRzBitBtn;
+    btnSelecionar: TRzBitBtn;
+    fdsVeiculoID: TFIBBCDField;
+    fdsVeiculoNOME: TFIBStringField;
+    fdsVeiculoPLACA: TFIBStringField;
+    fdsVeiculoUF: TFIBStringField;
+    procedure btnSelecionarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure edtNomeKeyPress(Sender: TObject; var Key: Char);
+  private
+    procedure Pesquisar;
+  public
+    var
+      idTransportadora : Integer;
+  end;
+
+var
+  frmPesqVeiculo: TfrmPesqVeiculo;
+
+implementation
+
+{$R *.dfm}
+
+{ TfrmPesqVeiculo }
+
+procedure TfrmPesqVeiculo.btnCancelarClick(Sender: TObject);
+begin
+  ModalResult := mrCancel;
+end;
+
+procedure TfrmPesqVeiculo.btnSelecionarClick(Sender: TObject);
+begin
+  ModalResult := mrOk;
+end;
+
+procedure TfrmPesqVeiculo.edtNomeKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Pesquisar;
+    Key := #0;
+  end;
+end;
+
+procedure TfrmPesqVeiculo.Pesquisar;
+var
+  sql : string;
+begin
+  fdsVeiculo.Close;
+  fdsVeiculo.ParamByName('IDTRANSPORTADORA').AsInteger := idTransportadora;
+  fdsVeiculo.ParamByName('NOME').AsString:= edtNome.Text;
+  fdsVeiculo.Prepare;
+  fdsVeiculo.Open;
+end;
+
+end.

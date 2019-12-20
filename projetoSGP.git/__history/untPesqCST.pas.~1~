@@ -1,0 +1,37 @@
+unit untPesqCST;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Data.DB, FIBDataSet,
+  pFIBDataSet, Vcl.StdCtrls, Vcl.Mask, RzEdit, RzButton, RzLabel, RzPanel,
+  Vcl.Grids, Vcl.DBGrids, RzDBGrid;
+
+type
+  TfrmPesqCST = class(TForm)
+    RzDBGrid1: TRzDBGrid;
+    RzPanel1: TRzPanel;
+    lblTituloCliente: TRzLabel;
+    lblNome: TRzLabel;
+    btnTodos: TRzBitBtn;
+    btnPesquisar: TRzBitBtn;
+    edtNome: TRzEdit;
+    fdsCst: TpFIBDataSet;
+    Panel1: TPanel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPesqCST: TfrmPesqCST;
+
+implementation
+
+{$R *.dfm}
+
+uses untData;
+
+end.

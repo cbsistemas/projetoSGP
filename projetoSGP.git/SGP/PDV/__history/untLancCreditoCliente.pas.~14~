@@ -1,0 +1,81 @@
+unit untLancCreditoCliente;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzBckgnd, Vcl.StdCtrls, RzLabel,
+  dxGDIPlusClasses, Vcl.ExtCtrls, JvExExtCtrls, JvImage, RzPanel, Vcl.Mask,
+  RzEdit, RzButton;
+
+type
+  TfrmLancCreditoCliente = class(TForm)
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    RzLabel4: TRzLabel;
+    RzBackground1: TRzBackground;
+    RzLabel1: TRzLabel;
+    RzLabel2: TRzLabel;
+    edtValor: TRzEdit;
+    btnOK: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    procedure edtValorEnter(Sender: TObject);
+    procedure edtValorExit(Sender: TObject);
+    procedure btnOKClick(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+  private
+    { Private declarations }
+  public
+    creditoAtual : Double;
+  end;
+
+var
+  frmLancCreditoCliente: TfrmLancCreditoCliente;
+
+implementation
+
+{$R *.dfm}
+
+uses uUtils;
+
+procedure TfrmLancCreditoCliente.btnOKClick(Sender: TObject);
+var
+  utils : TUtils;
+begin
+  valor := StrToFloat(utils.RetiraMascaraDinheiro(edtValor.Text));
+
+  if valor <= 0 then
+  begin
+    Application.MessageBox('Informe um valor maior que zero para o crédito ou clique em cancelar.', 'Atenção', MB_OK+MB_ICONWARNING);
+    edtValor.SetFocus;
+    abort;
+  end;
+
+  creditoAtual
+
+end;
+
+procedure TfrmLancCreditoCliente.edtValorEnter(Sender: TObject);
+var
+  utils : TUtils;
+begin
+  edtValor.Text := utils.RetiraMascaraDinheiro(edtValor.Text);
+end;
+
+procedure TfrmLancCreditoCliente.edtValorExit(Sender: TObject);
+var
+  utils : TUtils;
+begin
+  edtValor.Text := utils.AdicionaMascaraDinheiro(edtValor.Text);
+end;
+
+procedure TfrmLancCreditoCliente.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+    SelectNext(ActiveControl, True, True);
+  end;
+end;
+
+end.

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2016/05/02 19:02:51.000.930,=C:\Users\vfr\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2016/05/02 19:29:50.000.474,D:\Delphi\Sistemas\SGP\PreVenda\untPrincipal.dfm=C:\Users\vfr\Documents\RAD Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2016/05/02 19:29:50.000.474,D:\Delphi\Sistemas\SGP\PreVenda\untPrincipal.pas=C:\Users\vfr\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2016/05/02 19:29:56.000.664,D:\Delphi\Sistemas\SGP\PreVenda\PreVenda.dproj=C:\Users\vfr\Documents\RAD Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2016/05/02 19:39:53.000.904,=D:\Delphi\Sistemas\SGP\PreVenda\Unit1.pas</Transaction>
+    <Transaction>2016/05/02 19:42:20.000.162,D:\Delphi\Sistemas\SGP\PreVenda\untData.pas=D:\Delphi\Sistemas\SGP\PreVenda\Unit1.pas</Transaction>
+    <Transaction>2016/05/02 19:42:20.000.162,D:\Delphi\Sistemas\SGP\PreVenda\untData.dfm=D:\Delphi\Sistemas\SGP\PreVenda\Unit1.dfm</Transaction>
+    <Transaction>2016/05/04 01:15:16.000.489,=D:\Delphi\Sistemas\SGP\PreVenda\untPesqProdutoItens.pas</Transaction>
+    <Transaction>2016/05/04 01:27:51.000.806,=D:\Delphi\Sistemas\SGP\PreVenda\uVerificaPermicao.pas</Transaction>
+    <Transaction>2016/05/04 01:28:22.000.551,=D:\Delphi\Sistemas\SGP\PreVenda\untLogin.pas</Transaction>
+    <Transaction>2016/05/04 11:50:07.000.081,=D:\Delphi\Sistemas\SGP\PreVenda\uUtils.pas</Transaction>
+    <Transaction>2016/05/04 12:01:56.000.859,=D:\Delphi\Sistemas\SGP\PreVenda\Unit1.pas</Transaction>
+    <Transaction>2016/05/04 12:02:50.000.851,D:\Delphi\Sistemas\SGP\PreVenda\Unit1.dfm=D:\Delphi\Sistemas\SGP\PreVenda\untVendaFinalizacao.dfm</Transaction>
+    <Transaction>2016/05/04 12:02:50.000.851,D:\Delphi\Sistemas\SGP\PreVenda\Unit1.pas=D:\Delphi\Sistemas\SGP\PreVenda\untVendaFinalizacao.pas</Transaction>
+    <Transaction>2016/05/05 13:29:44.000.031,=D:\Delphi\Sistemas\SGP\PreVenda\untPesqCliente.pas</Transaction>
+    <Transaction>2016/05/05 13:38:47.000.801,=D:\Delphi\Sistemas\SGP\PreVenda\untCadClientes.pas</Transaction>
+    <Transaction>2016/05/05 13:40:09.000.142,=D:\Delphi\Sistemas\SGP\PreVenda\untPesqCidade.pas</Transaction>
+    <Transaction>2016/05/05 13:47:56.000.155,=D:\Delphi\Sistemas\SGP\PreVenda\untPesqVendedor.pas</Transaction>
+    <Transaction>2016/05/05 14:08:14.000.248,=D:\Delphi\Sistemas\SGP\PreVenda\untTabelaPrecos.pas</Transaction>
+    <Transaction>2016/05/05 15:02:10.000.636,=D:\Delphi\Sistemas\SGP\uRegistro.pas</Transaction>
+    <Transaction>2016/05/09 08:45:59.000.769,=D:\Delphi\Sistemas\SGP\PreVenda\untCancelarItem.pas</Transaction>
+    <Transaction>2016/07/29 10:35:11.000.843,=D:\Delphi\Sistemas\SGP\PreVenda\untSelTabPreco.pas</Transaction>
+    <Transaction>2017/05/06 15:35:07.000.843,=D:\Delphi\Sistemas\SGP\PreVenda\Unit1.pas</Transaction>
+    <Transaction>2017/05/06 15:36:25.000.877,D:\Delphi\Sistemas\SGP\PreVenda\Unit1.pas=D:\Delphi\Sistemas\SGP\PreVenda\untPesqPreVenda.pas</Transaction>
+    <Transaction>2017/05/06 15:36:25.000.877,D:\Delphi\Sistemas\SGP\PreVenda\Unit1.dfm=D:\Delphi\Sistemas\SGP\PreVenda\untPesqPreVenda.dfm</Transaction>
+    <Transaction>2019/08/12 17:22:09.000.888,=D:\Delphi\Sistemas\SGP\PreVenda\OKCNHLP1.pas</Transaction>
+    <Transaction>2019/08/12 17:22:09.000.506,=c:\program files (x86)\embarcadero\rad studio\12.0\ObjRepos\EN\DelphiWin32\OKCANCL1.PAS</Transaction>
+    <Transaction>2019/08/12 17:22:37.000.189,=D:\Delphi\Sistemas\SGP\PreVenda\Unit1.pas</Transaction>
+    <Transaction>2019/08/12 17:23:36.000.217,D:\Delphi\Sistemas\SGP\PreVenda\Unit1.pas=D:\Delphi\Sistemas\SGP\PreVenda\untMenssagens.pas</Transaction>
+    <Transaction>2019/08/12 17:23:36.000.217,D:\Delphi\Sistemas\SGP\PreVenda\Unit1.dfm=D:\Delphi\Sistemas\SGP\PreVenda\untMenssagens.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -1,0 +1,267 @@
+unit untRestaurarVenda;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Datasnap.DBClient, pFIBClientDataSet,
+  Datasnap.Provider, Data.DB, FIBDataSet, pFIBDataSet, RzButton, Vcl.StdCtrls,
+  Vcl.Mask, RzEdit, RzDBEdit, RzPanel, Vcl.Grids, Vcl.DBGrids, JvExDBGrids,
+  JvDBGrid, RzTabs, RzLabel, dxGDIPlusClasses, Vcl.ExtCtrls, JvExExtCtrls,
+  JvImage, RzBckgnd;
+
+type
+  TfrmRestaurarVenda = class(TForm)
+    RzBackground1: TRzBackground;
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloCliente: TRzLabel;
+    imgFlagYellow: TImage;
+    imgFlagRed: TImage;
+    imgFlagGreen: TImage;
+    imgFlagYellow2: TImage;
+    imgFlagRed2: TImage;
+    imgFlagGreen2: TImage;
+    pgcControl: TRzPageControl;
+    tbsVenda: TRzTabSheet;
+    gdrVendas: TJvDBGrid;
+    tbsItens: TRzTabSheet;
+    RzGroupBox1: TRzGroupBox;
+    lblCodigo: TRzLabel;
+    lblDtInc: TRzLabel;
+    RzLabel1: TRzLabel;
+    RzLabel7: TRzLabel;
+    RzLabel17: TRzLabel;
+    edtPrefixo: TRzDBEdit;
+    edtDt_Inc: TRzDBEdit;
+    edtID: TRzDBEdit;
+    RzDBEdit5: TRzDBEdit;
+    RzDBEdit7: TRzDBEdit;
+    RzGroupBox2: TRzGroupBox;
+    gdrVendaItens: TJvDBGrid;
+    btnGravar: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    dsVenda: TDataSource;
+    fdsVenda: TpFIBDataSet;
+    fdsVendaItens: TpFIBDataSet;
+    dspVendaItens: TpFIBDataSetProvider;
+    dsVendaItens: TDataSource;
+    cdsVendaItens: TpFIBClientDataSet;
+    fdsVendaID: TFIBBCDField;
+    fdsVendaIDFILIAL: TFIBBCDField;
+    fdsVendaIDCAIXA: TFIBBCDField;
+    fdsVendaDT_INC: TFIBDateField;
+    fdsVendaSTATUS: TFIBStringField;
+    fdsVendaIDCLIENTE: TFIBBCDField;
+    fdsVendaIDVENDEDOR: TFIBBCDField;
+    fdsVendaIDFORMA_PAG: TFIBBCDField;
+    fdsVendaVLR_TOTITEM: TFIBBCDField;
+    fdsVendaVLR_DESCONTO: TFIBBCDField;
+    fdsVendaVLR_ENTRADA: TFIBBCDField;
+    fdsVendaVLR_FRETE: TFIBBCDField;
+    fdsVendaVLR_TOTAL: TFIBBCDField;
+    fdsVendaVLR_VENDA: TFIBBCDField;
+    fdsVendaPESO: TFIBBCDField;
+    fdsVendaPREFIXO: TFIBStringField;
+    fdsVendaDT_FECHAMENTO: TFIBDateField;
+    fdsVendaSUBTRIBUTARIA: TFIBBCDField;
+    fdsVendaENVIADO_WEB: TFIBStringField;
+    fdsVendaENTREGAR: TFIBStringField;
+    fdsVendaOBS: TFIBStringField;
+    fdsVendaTOT_PARCELA: TFIBSmallIntField;
+    fdsVendaNUM_CAIXA: TFIBIntegerField;
+    fdsVendaItensIDVENDA: TFIBBCDField;
+    fdsVendaItensITEM: TFIBSmallIntField;
+    fdsVendaItensIDPROD_ITEM: TFIBBCDField;
+    fdsVendaItensDT_INC: TFIBDateField;
+    fdsVendaItensQTN: TFIBBCDField;
+    fdsVendaItensVLR_UNITARIO: TFIBBCDField;
+    fdsVendaItensVLR_DESC_ACRE: TFIBBCDField;
+    fdsVendaItensVLR_TOTAL: TFIBBCDField;
+    fdsVendaItensPESO: TFIBBCDField;
+    fdsVendaItensQTN_RETORNO: TFIBIntegerField;
+    fdsVendaItensMOTIVO_RETORNO: TFIBStringField;
+    fdsVendaItensENVIADO_WEB: TFIBStringField;
+    fdsVendaItensIDFILIAL: TFIBBCDField;
+    fdsVendaItensENTREGAR: TFIBStringField;
+    fdsVendaItensTIPO_DESC_ACRE: TFIBStringField;
+    fdsVendaItensNOME: TFIBStringField;
+    fdsVendaItensCOD_FABRICA: TFIBStringField;
+    cdsVendaItensIDVENDA: TpFIBClientBCDField;
+    cdsVendaItensITEM: TSmallintField;
+    cdsVendaItensIDPROD_ITEM: TpFIBClientBCDField;
+    cdsVendaItensDT_INC: TDateField;
+    cdsVendaItensQTN: TpFIBClientBCDField;
+    cdsVendaItensVLR_UNITARIO: TpFIBClientBCDField;
+    cdsVendaItensVLR_DESC_ACRE: TpFIBClientBCDField;
+    cdsVendaItensVLR_TOTAL: TpFIBClientBCDField;
+    cdsVendaItensPESO: TpFIBClientBCDField;
+    cdsVendaItensQTN_RETORNO: TIntegerField;
+    cdsVendaItensMOTIVO_RETORNO: TStringField;
+    cdsVendaItensENVIADO_WEB: TStringField;
+    cdsVendaItensIDFILIAL: TpFIBClientBCDField;
+    cdsVendaItensENTREGAR: TStringField;
+    cdsVendaItensTIPO_DESC_ACRE: TStringField;
+    cdsVendaItensNOME: TStringField;
+    cdsVendaItensCOD_FABRICA: TStringField;
+    procedure FormCreate(Sender: TObject);
+    procedure fdsVendaAfterScroll(DataSet: TDataSet);
+    procedure RetornaItens;
+    procedure tbsItensShow(Sender: TObject);
+    procedure gdrVendasDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure gdrVendaItensDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRestaurarVenda: TfrmRestaurarVenda;
+
+implementation
+
+{$R *.dfm}
+
+uses untData;
+
+procedure TfrmRestaurarVenda.btnCancelarClick(Sender: TObject);
+begin
+  ModalResult := mrCancel;
+end;
+
+procedure TfrmRestaurarVenda.btnGravarClick(Sender: TObject);
+begin
+  RetornaItens;
+  ModalResult := mrOk;
+end;
+
+procedure TfrmRestaurarVenda.fdsVendaAfterScroll(DataSet: TDataSet);
+begin
+  if (pgcControl.ActivePageIndex = 1) then
+    RetornaItens;
+end;
+
+procedure TfrmRestaurarVenda.FormCreate(Sender: TObject);
+begin
+  fdsVenda.Open;
+  tbsVenda.Show;
+end;
+
+procedure TfrmRestaurarVenda.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = VK_F5 then
+  begin
+    btnGravar.Click;
+  end
+  else
+    if Key = VK_ESCAPE then
+    begin
+      btnCancelar.Click;
+    end;
+end;
+
+procedure TfrmRestaurarVenda.gdrVendaItensDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  if not odd(cdsVendaItens.RecNo) then
+  begin
+    gdrVendaItens.Canvas.Brush.Color := DM.gridOddColor;
+    gdrVendaItens.Canvas.FillRect(Rect);
+    gdrVendaItens.DefaultDrawDataCell(rect,Column.Field,state);
+  end;
+end;
+
+procedure TfrmRestaurarVenda.gdrVendasDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+var
+  status : string;
+  Bitmap : TBitmap;
+begin
+
+//  gdrVendasConfirmadas.Canvas.Font.Color:= clYellow; // coloque aqui a cor desejada para a fonte
+
+  if not odd(fdsVenda.RecNo) then
+  begin
+    gdrVendas.Canvas.Brush.Color := DM.gridOddColor;
+    gdrVendas.Canvas.FillRect(Rect);
+    gdrVendas.DefaultDrawDataCell(rect,Column.Field,state);
+
+    if (Column.Index = 2) and not(fdsVenda.IsEmpty) then
+    begin
+      status := fdsVendaSTATUS.AsString;
+      if status = 'AB' then
+      begin
+        Bitmap := imgFlagYellow2.Picture.Bitmap
+      end
+      else
+        if status = 'FC' then
+          Bitmap := imgFlagGreen2.Picture.Bitmap
+        else
+          if status = 'CA' then
+          Bitmap := imgFlagRed2.Picture.Bitmap;
+
+      with TDBGrid(Sender) do
+      begin
+      Canvas.Draw((Rect.Right - Rect.Left - Bitmap.Width) div 2 + Rect.Left,
+      (Rect.Bottom - Rect.Top - Bitmap.Height) div 2 + Rect.Top, Bitmap);
+      // ou: Canvas.Draw(Rect.Left, Rect.Top, Bitmap);
+      end;
+    end;
+  end
+  else
+  begin
+    if Column.Index = 2 then
+    begin
+      status := fdsVendaSTATUS.AsString;
+      if status = 'AB' then
+      begin
+        Bitmap := imgFlagYellow.Picture.Bitmap
+      end
+      else
+        if status = 'FC' then
+          Bitmap := imgFlagGreen.Picture.Bitmap
+        else
+          if status = 'CA' then
+          Bitmap := imgFlagRed.Picture.Bitmap;
+
+      with TDBGrid(Sender) do
+      begin
+      Canvas.Draw((Rect.Right - Rect.Left - Bitmap.Width) div 2 + Rect.Left,
+      (Rect.Bottom - Rect.Top - Bitmap.Height) div 2 + Rect.Top, Bitmap);
+      // ou: Canvas.Draw(Rect.Left, Rect.Top, Bitmap);
+      end;
+    end;
+  end;
+end;
+
+procedure TfrmRestaurarVenda.RetornaItens;
+begin
+  if not(fdsVenda.RecordCount = 0) then
+  begin
+    cdsVendaItens.Close;
+    with fdsVendaItens do
+    begin
+      Close;
+      Conditions.Clear;
+      Conditions.AddCondition('VENDAID', 'IDVENDA = ' + fdsVendaID.AsString, True);
+      Conditions.Apply;
+      Prepare;
+      Open;
+    end;
+    cdsVendaItens.Open;
+  end;
+end;
+
+procedure TfrmRestaurarVenda.tbsItensShow(Sender: TObject);
+begin
+  RetornaItens;
+end;
+
+end.

@@ -1,0 +1,32 @@
+object frmSelImpressora: TfrmSelImpressora
+  Left = 0
+  Top = 0
+  Caption = 'Selecione a impressora de Cupom'
+  ClientHeight = 149
+  ClientWidth = 399
+  Color = clWhite
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object RzBackground1: TRzBackground
+    Left = 0
+    Top = 93
+    Width = 399
+    Height = 56
+    Active = True
+    Align = alBottom
+    GradientColorStart = -1
+    GradientColorStop = 2497553
+    GradientDirection = gdDiagonalDown
+    ImageStyle = isCenter
+    ShowGradient = True
+    ShowImage = False
+    ShowTexture = False
+    ExplicitTop = 128
+  end
+end

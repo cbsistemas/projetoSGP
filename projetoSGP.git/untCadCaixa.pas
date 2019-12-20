@@ -1,0 +1,231 @@
+unit untCadCaixa;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, DB,Vcl.Dialogs,Printers, RzButton, RzCmboBx,
+  Vcl.StdCtrls, RzDBCmbo, RzLabel, Vcl.ExtCtrls, RzPanel, Vcl.Mask, RzEdit,
+  RzDBEdit, RzRadChk, RzDBChk, RzRadGrp, RzDBRGrp, Vcl.ComCtrls, RzDTP,
+  RzDBDTP, FIBQuery, pFIBQuery, Bde.DBTables, FIBDatabase, pFIBDatabase,pFIBErrorHandler,FIB,IniFiles;
+
+type
+  TfrmCadCaixa = class(TForm)
+    RzDBEdit1: TRzDBEdit;
+    RzDBEdit3: TRzDBEdit;
+    RzDBEdit4: TRzDBEdit;
+    RzGroupBox4: TRzGroupBox;
+    edtTimeOut: TRzDBEdit;
+    cbxModeloBalanca: TRzDBComboBox;
+    cbxPortaSerial: TRzDBComboBox;
+    cbxBaud: TRzDBComboBox;
+    cbxDatabts: TRzDBComboBox;
+    cbxParity: TRzDBComboBox;
+    cbxStop: TRzDBComboBox;
+    cbxHandshaking: TRzDBComboBox;
+    RzLabel2: TRzLabel;
+    RzLabel3: TRzLabel;
+    RzLabel4: TRzLabel;
+    RzGroupBox2: TRzGroupBox;
+    RzDBCheckBox1: TRzDBCheckBox;
+    RzDBCheckBox2: TRzDBCheckBox;
+    RzDBCheckBox3: TRzDBCheckBox;
+    RzDBCheckBox4: TRzDBCheckBox;
+    Panel1: TPanel;
+    btnCancelar: TRzBitBtn;
+    btnGravar: TRzBitBtn;
+    RzGroupBox1: TRzGroupBox;
+    RzLabel1: TRzLabel;
+    cbxModeloImpressora: TRzComboBox;
+    RzLabel6: TRzLabel;
+    cbxImpressoras: TRzDBComboBox;
+    rgbGen: TRzDBRadioGroup;
+    RzDBDateTimePicker1: TRzDBDateTimePicker;
+    RzLabel5: TRzLabel;
+    RzLabel14: TRzLabel;
+    RzDBEdit2: TRzDBEdit;
+    btnCertNumSerie: TRzBitBtn;
+    RzLabel15: TRzLabel;
+    RzDBEdit11: TRzDBEdit;
+    RzDBEdit5: TRzDBEdit;
+    RzLabel7: TRzLabel;
+    qryGen: TpFIBQuery;
+    qryVerificaCaixa: TpFIBQuery;
+    RzDBRadioGroup11: TRzDBRadioGroup;
+    rgbNfce: TRzRadioGroup;
+    rgbTipoCaixa: TRzDBRadioGroup;
+    procedure FormCreate(Sender: TObject);
+    procedure cbxModeloImpressoraChange(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnCertNumSerieClick(Sender: TObject);
+    procedure rgbGenChange(Sender: TObject);
+    procedure RzDBEdit1Exit(Sender: TObject);
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadCaixa: TfrmCadCaixa;
+
+implementation
+
+{$R *.dfm}
+
+uses untData, untPrincipal, untDataThread;
+
+procedure TfrmCadCaixa.cbxModeloImpressoraChange(Sender: TObject);
+begin
+ DM.fdsCaixaMODELO_IMPRESSORA.AsString := cbxModeloImpressora.Value;
+end;
+
+procedure TfrmCadCaixa.FormCreate(Sender: TObject);
+var
+  I:integer;
+  NFCe:String[1];
+  ArqIni: TIniFile;
+begin
+  for I := 0 to Printer.Printers.Count - 1 do
+  begin
+    cbxImpressoras.Add(Printer.Printers[I]);
+  end;
+
+  cbxModeloImpressora.Value := DM.fdsCaixaMODELO_IMPRESSORA.AsString;
+
+   //Verifica se emite NFE ou não através do arquivo INI
+  ArqIni := TIniFile.Create(ExtractFilePath(Application.ExeName) + '\PATH.INI');
+  try
+    NFCe := ArqIni.ReadString('CAMINHOS', 'NFCE','');
+  finally
+    ArqIni.Free;
+  end;
+  if NFCe = 'N' then
+  begin
+   rgbNfce.ItemIndex:=1;
+  end
+  else
+  begin
+    rgbNfce.ItemIndex:=0;
+  end;
+end;
+
+procedure TfrmCadCaixa.rgbGenChange(Sender: TObject);
+begin
+ if Assigned(frmCadCaixa) then
+ begin
+  if Dm.fdsCaixa.State in [dsEdit,dsInsert] then
+  begin
+    with qryGen do
+    begin
+     close;
+     sql.Clear;
+     SQL.Add('SELECT CODIGO,NUM_SERIE FROM  GERA_GEN_VENDA('+ quotedStr(rgbGen.Value)+', '+QuotedStr('S')+', '+QuotedStr('0')+','+quotedStr('0')+')');
+     prepare;
+     ExecQuery;
+
+      Dm.fdsCaixaULTIMA_NFCE.AsInteger:= FieldByName('CODIGO').AsInteger;
+      DM.fdsCaixaSERIE_NFCE.AsInteger:= FieldByName('NUM_SERIE').AsInteger;
+    end;
+  end;
+ end;
+end;
+
+procedure TfrmCadCaixa.RzDBEdit1Exit(Sender: TObject);
+var
+ result:boolean;
+begin
+ if (DM.fdsCaixaIDFILIAL.AsInteger>0)  and (DM.fdsCaixa.State=dsInsert) then
+ begin
+  result:=false;
+  with qryVerificaCaixa do
+  begin
+   close;
+   ParamByName('NUM_CAIXA').AsInteger:= DM.fdsCaixaNUM_CAIXA.AsInteger;
+   ParamByName('IDFILIAL').AsInteger:=DM.fdsCaixaIDFILIAL.AsInteger;
+   prepare;
+   ExecQuery;
+
+   if qryVerificaCaixa.RecordCount>0 then
+   result:= true ;
+  end;
+  if result=true then
+  begin
+   Application.MessageBox('Já existe um caixa cadastrado com esse número,Por favor insira outra numeração.','Atenção',MB_OK+MB_ICONINFORMATION);
+   DM.fdsCaixaNUM_CAIXA.AsInteger:=0;
+   Dm.fdsCaixaNUM_CAIXA.FocusControl;
+   Abort;
+  end;
+ end;
+
+end;
+
+procedure TfrmCadCaixa.btnCancelarClick(Sender: TObject);
+begin
+Case MessageBox(Application.Handle, Pchar('Deseja Realmente Cancelar?'),
+    'Atenção', MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) of
+    idYes:
+      begin
+        if dm.fdsCaixa.State in [dsInsert, dsEdit] then
+        begin
+          dm.fdsCaixa.Cancel;
+         dm.Conexao.RollbackRetaining;
+        end;
+        modalResult:= mrCancel;
+      end;
+
+    idNo:
+      begin
+        Abort;
+      end;
+  end;
+end;
+
+procedure TfrmCadCaixa.btnCertNumSerieClick(Sender: TObject);
+begin
+  Try
+  frmPrincipal.ACBrNFe1.SSL.SelecionarCertificado;
+  if frmPrincipal.ACBrNFe1.SSL.CertificadoLido then
+  dm.fdsCaixaCERT_NUM_SERIE.AsString := frmPrincipal.ACBrNFe1.SSL.CertNumeroSerie ;
+  Except
+    on E: Exception do
+    begin
+      Application.MessageBox('Nenhum certificado selecionado.', 'Atenção',
+        MB_OK + MB_ICONQUESTION);
+    end;
+  End;
+end;
+
+procedure TfrmCadCaixa.btnGravarClick(Sender: TObject);
+var
+  mensagem:String;
+  NFCe:Char;
+  ArqIni: TIniFile;
+begin
+ if dm.fdsCaixa.State in [dsInsert] then
+ mensagem:= 'Deseja realmente cadastrar o caixa?'
+ else
+ mensagem:= 'Deseja realmente salvar as alterações?';
+ case MessageBox(Application.Handle,
+    Pchar(mensagem), 'Atenção',
+    MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) of
+    idYes:begin
+            ArqIni := TIniFile.Create(ExtractFilePath(Application.ExeName) + '\PATH.INI');
+            try
+              if rgbNfce.ItemIndex = 0 then
+                ArqIni.WriteString('CAMINHOS', 'NFCE','S')
+              else
+                ArqIni.WriteString('CAMINHOS', 'NFCE','N');
+            finally
+              ArqIni.Free;
+            end;
+           DM.fdsCaixa.Post;
+           dm.Conexao.CommitRetaining;
+           ModalResult:=mrOK;
+          end;
+ end;
+end;
+
+end.

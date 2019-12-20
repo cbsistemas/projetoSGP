@@ -1,0 +1,39 @@
+unit untTipoCartaoCredito;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzButton, RzBckgnd, dxGDIPlusClasses,
+  Vcl.ExtCtrls, JvExExtCtrls, JvImage, Vcl.StdCtrls, RzLabel;
+
+type
+  TfrmTipoCartaoCredito = class(TForm)
+    RzLabel1: TRzLabel;
+    imgCartaoDebito: TJvImage;
+    imgCartaoCredito: TJvImage;
+    RzBackground1: TRzBackground;
+    btnCancelar: TRzBitBtn;
+    procedure imgCartaoDebitoClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmTipoCartaoCredito: TfrmTipoCartaoCredito;
+
+implementation
+
+{$R *.dfm}
+
+uses untVendaFinalizacao;
+
+procedure TfrmTipoCartaoCredito.imgCartaoDebitoClick(Sender: TObject);
+begin
+  rmVendaFinalizacao.tipoCartao := 'CD';
+  ModalResult := mrOk;
+end;
+
+end.

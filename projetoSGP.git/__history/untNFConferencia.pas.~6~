@@ -1,0 +1,146 @@
+unit untNFConferencia;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzBckgnd, dxGDIPlusClasses,
+  Vcl.ExtCtrls, JvExExtCtrls, JvImage, RzPanel, Data.DB, Datasnap.Provider,
+  pFIBClientDataSet, Datasnap.DBClient, Vcl.Grids, Vcl.DBGrids, JvExDBGrids,
+  JvDBGrid, RzEdit, RzButton, Vcl.StdCtrls, Vcl.Mask, RzDBEdit, RzLabel;
+
+type
+  TfrmNFConferencia = class(TForm)
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    RzBackground1: TRzBackground;
+    cdsCabecalhoNF: TpFIBClientDataSet;
+    cdsItensNf: TpFIBClientDataSet;
+    dspCabecalhoNF: TpFIBDataSetProvider;
+    dspItensNf: TpFIBDataSetProvider;
+    dsCabecalhoNF: TDataSource;
+    dsItensNf: TDataSource;
+    cdsItensNfIDPEDIDO: TpFIBClientBCDField;
+    cdsItensNfITEM: TSmallintField;
+    cdsItensNfIDPROD_ITEM: TpFIBClientBCDField;
+    cdsItensNfDT_INC: TDateField;
+    cdsItensNfDT_ALT: TDateField;
+    cdsItensNfQTN: TpFIBClientBCDField;
+    cdsItensNfVLR_UNITARIO: TpFIBClientBCDField;
+    cdsItensNfVLR_DESCONTO: TpFIBClientBCDField;
+    cdsItensNfVLR_TOTAL: TpFIBClientBCDField;
+    cdsItensNfPESO: TpFIBClientBCDField;
+    cdsItensNfQTN_RETORNO: TpFIBClientBCDField;
+    cdsItensNfMOTIVO_RETORNO: TStringField;
+    cdsItensNfNOME: TStringField;
+    cdsItensNfENTRE: TStringField;
+    cdsItensNfENTREGUE: TStringField;
+    cdsItensNfIDFILIAL: TpFIBClientBCDField;
+    cdsItensNfENVIADO_WEB: TStringField;
+    cdsItensNfCOD_FABRICA: TStringField;
+    cdsItensNfNCM: TStringField;
+    cdsItensNfCFOP: TStringField;
+    cdsItensNfCEST: TStringField;
+    cdsItensNfUNIDADE: TStringField;
+    cdsItensNfCSOSN: TStringField;
+    cdsItensNfIBPT_NACIONA_FEDERAL: TpFIBClientBCDField;
+    cdsItensNfNUM_VENDA: TpFIBClientBCDField;
+    cdsItensNfORDEM: TIntegerField;
+    cdsCabecalhoNFID: TpFIBClientBCDField;
+    cdsCabecalhoNFDT_INC: TDateField;
+    cdsCabecalhoNFSTATUS: TStringField;
+    cdsCabecalhoNFIDCLIENTE: TpFIBClientBCDField;
+    cdsCabecalhoNFIDVENDEDOR: TpFIBClientBCDField;
+    cdsCabecalhoNFIDFORMA_PAG: TpFIBClientBCDField;
+    cdsCabecalhoNFVLR_TOTITEM: TpFIBClientBCDField;
+    cdsCabecalhoNFVLR_DESCONTO: TpFIBClientBCDField;
+    cdsCabecalhoNFVLR_FRETE: TpFIBClientBCDField;
+    cdsCabecalhoNFVLR_TOTAL: TpFIBClientBCDField;
+    cdsCabecalhoNFPESO: TpFIBClientBCDField;
+    cdsCabecalhoNFPREFIXO: TStringField;
+    cdsCabecalhoNFDT_ALT: TDateField;
+    cdsCabecalhoNFDT_CONFIRMACAO: TDateField;
+    cdsCabecalhoNFDT_FECHAMENTO: TDateField;
+    cdsCabecalhoNFTELEFONE: TStringField;
+    cdsCabecalhoNFNOTA: TStringField;
+    cdsCabecalhoNFCLIENTE: TStringField;
+    cdsCabecalhoNFVENDEDOR: TStringField;
+    cdsCabecalhoNFST: TStringField;
+    cdsCabecalhoNFKM_TOTAL: TSmallintField;
+    cdsCabecalhoNFRAZAOSOCIAL: TStringField;
+    cdsCabecalhoNFEMAIL: TStringField;
+    cdsCabecalhoNFENDERECO: TStringField;
+    cdsCabecalhoNFCEP: TStringField;
+    cdsCabecalhoNFBAIRRO: TStringField;
+    cdsCabecalhoNFCIDADE: TStringField;
+    cdsCabecalhoNFDOCUMENTO: TStringField;
+    cdsCabecalhoNFSUBTRIBUTARIA: TpFIBClientBCDField;
+    cdsCabecalhoNFFORMA_PAG: TStringField;
+    cdsCabecalhoNFCONTATO: TStringField;
+    cdsCabecalhoNFIDFILIAL: TpFIBClientBCDField;
+    cdsCabecalhoNFFILIAL: TStringField;
+    cdsCabecalhoNFENVIADO_WEB: TStringField;
+    cdsCabecalhoNFREFERENCIA: TStringField;
+    cdsCabecalhoNFPRAZO: TStringField;
+    cdsCabecalhoNFVISUALIZADO: TStringField;
+    cdsCabecalhoNFDT_PAGAMENTO: TDateField;
+    cdsCabecalhoNFIDPEDIDO_APP: TpFIBClientBCDField;
+    cdsCabecalhoNFCELULAR: TStringField;
+    cdsCabecalhoNFUF: TStringField;
+    cdsCabecalhoNFIE: TStringField;
+    cdsCabecalhoNFCIDADE_CODIGO: TpFIBClientBCDField;
+    cdsCabecalhoNFCODIGO_NFE: TIntegerField;
+    cdsCabecalhoNFTIPO: TStringField;
+    cdsCabecalhoNFCHAVE_CONSULTA: TStringField;
+    cdsCabecalhoNFNUMERO_PROTOCOLO: TStringField;
+    cdsCabecalhoNFNUMERO: TStringField;
+    cdsCabecalhoNFTIPO_DESC_ACRESC: TStringField;
+    cdsCabecalhoNFNATUREZA_OPERACAO: TStringField;
+    cdsCabecalhoNFOBS: TStringField;
+    cdsCabecalhoNFCHAVE_NF_DEVOLUCAO: TStringField;
+    cdsCabecalhoNFTIPO_FRETE: TIntegerField;
+    cdsCabecalhoNFIDTRANSPORTADORA: TpFIBClientBCDField;
+    cdsCabecalhoNFIDVEICULO: TpFIBClientBCDField;
+    cdsCabecalhoNFTRANSP_QTN_VOLUME: TIntegerField;
+    cdsCabecalhoNFTRANSP_ESPECIE: TStringField;
+    cdsCabecalhoNFTRANSP_MARCA: TStringField;
+    cdsCabecalhoNFTRANSP_NUMERACAO: TIntegerField;
+    cdsCabecalhoNFCOMPLEMENTO: TStringField;
+    RzGroupBox2: TRzGroupBox;
+    pnlLancItens: TRzPanel;
+    RzLabel9: TRzLabel;
+    RzLabel10: TRzLabel;
+    RzLabel11: TRzLabel;
+    RzLabel12: TRzLabel;
+    RzLabel13: TRzLabel;
+    RzLabel23: TRzLabel;
+    RzLabel24: TRzLabel;
+    edtQtnItem: TRzDBEdit;
+    RzDBEdit8: TRzDBEdit;
+    edtItemDesconto: TRzDBEdit;
+    RzDBEdit10: TRzDBEdit;
+    btnItemGravar: TRzBitBtn;
+    btnItemCancelar: TRzBitBtn;
+    btnItemExcluir: TRzBitBtn;
+    btnItemAlterar: TRzBitBtn;
+    btnItensIncluir: TRzBitBtn;
+    edtItemNome: TRzEdit;
+    edtItemCodigo: TRzEdit;
+    btnIncItensVenda: TRzBitBtn;
+    gdrItens: TJvDBGrid;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmNFConferencia: TfrmNFConferencia;
+
+implementation
+
+{$R *.dfm}
+
+uses untPedidos;
+
+end.

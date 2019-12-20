@@ -1,0 +1,28 @@
+unit untDescAcresc;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, RzButton, StdCtrls, RzLabel, ExtCtrls, RzPanel;
+
+type
+  TfrmDescAcresc = class(TForm)
+    RzPanel1: TRzPanel;
+    RzLabel4: TRzLabel;
+    RzBitBtn1: TRzBitBtn;
+    btnDesconto: TRzBitBtn;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmDescAcresc: TfrmDescAcresc;
+
+implementation
+
+{$R *.dfm}
+
+end.

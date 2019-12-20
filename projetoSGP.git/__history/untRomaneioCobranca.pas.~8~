@@ -1,0 +1,73 @@
+unit untRomaneioCobranca;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, RzEdit,
+  RzButton, RzLabel, Vcl.Imaging.pngimage, Vcl.ExtCtrls, JvExExtCtrls, JvImage,
+  RzPanel, RzBckgnd, dxGDIPlusClasses, RzDBEdit, Vcl.Grids, Vcl.DBGrids,
+  JvExDBGrids, JvDBGrid, RzTabs, RzCmboBx, Data.DB, FIBDataSet, pFIBDataSet;
+
+type
+  TfrmRomaneioCobranca = class(TForm)
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloCliente: TRzLabel;
+    RzBackground1: TRzBackground;
+    pgcControl: TRzPageControl;
+    tbsSintetico: TRzTabSheet;
+    gdrReceberSintetico: TJvDBGrid;
+    tbsAnalitico: TRzTabSheet;
+    gdrReceberAnalitico: TJvDBGrid;
+    tbsForm: TRzTabSheet;
+    RzGroupBox1: TRzGroupBox;
+    lblNome: TRzLabel;
+    RzGroupBox2: TRzGroupBox;
+    gdrParcelas: TJvDBGrid;
+    btnIncluir: TRzBitBtn;
+    btnCancelarReceber: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    btnGravar: TRzBitBtn;
+    fdsCntReceber: TpFIBDataSet;
+    fdsCntReceberID: TFIBBCDField;
+    fdsCntReceberDT_INC: TFIBDateField;
+    fdsCntReceberDT_ALT: TFIBDateField;
+    fdsCntReceberPOSICAO: TFIBStringField;
+    fdsCntReceberPREFIXO: TFIBStringField;
+    fdsCntReceberREFERENCIA: TFIBStringField;
+    fdsCntReceberIDCLIENTE: TFIBBCDField;
+    fdsCntReceberACRESCIMO: TFIBBCDField;
+    fdsCntReceberDESCONTO: TFIBBCDField;
+    fdsCntReceberVALOR: TFIBBCDField;
+    fdsCntReceberVALOR_PAGO: TFIBBCDField;
+    fdsCntReceberIDPORTADOR: TFIBBCDField;
+    fdsCntReceberHISTORICO: TFIBStringField;
+    fdsCntReceberIDFORMA_PAG: TFIBBCDField;
+    fdsCntReceberIDVENDA: TFIBBCDField;
+    fdsCntReceberTIPO_VENDA: TFIBStringField;
+    fdsCntReceberTOT_PARCELA: TFIBStringField;
+    fdsCntReceberPARCELAS_PG: TFIBIntegerField;
+    fdsCntReceberCLIENTE: TFIBStringField;
+    fdsCntReceberFORMA_PAG: TFIBStringField;
+    fdsCntReceberDINHEIRO: TFIBBCDField;
+    fdsCntReceberIDFILIAL: TFIBBCDField;
+    fdsCntReceberTOT_RECEBIDO: TFloatField;
+    fdsCntReceberTOT_RECEBER: TFloatField;
+    fdsCntReceberVENDEDOR: TFIBStringField;
+    dsCntReceber: TDataSource;
+    cbxVendedor: TRzComboBox;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRomaneioCobranca: TfrmRomaneioCobranca;
+
+implementation
+
+{$R *.dfm}
+
+end.

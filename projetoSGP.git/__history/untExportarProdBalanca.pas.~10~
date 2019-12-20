@@ -1,0 +1,142 @@
+unit untExportarProdBalanca;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzButton, Vcl.StdCtrls, RzCmboBx,
+  Vcl.ExtCtrls, RzPanel, Data.DB, FIBDataSet, pFIBDataSet, Vcl.Grids,
+  Vcl.DBGrids, RzDBGrid, ACBrCargaBal, ACBrBase;
+
+type
+  TfrmExportarProdBalanca = class(TForm)
+    RzGroupBox2: TRzGroupBox;
+    Label10: TLabel;
+    Label11: TLabel;
+    cbxModeloBalanca: TRzComboBox;
+    edtDiretorio: TEdit;
+    btnDiretorio: TRzBitBtn;
+    fdsProdutoKG: TpFIBDataSet;
+    pFIBDataSet2: TpFIBDataSet;
+    dsProdutoKG: TDataSource;
+    gdrProdutos: TRzDBGrid;
+    RzBitBtn1: TRzBitBtn;
+    RzBitBtn2: TRzBitBtn;
+    RzBitBtn3: TRzBitBtn;
+    ACBrCargaBal1: TACBrCargaBal;
+    fdsProdutoKGID: TFIBBCDField;
+    fdsProdutoKGIDPRODUTO: TFIBBCDField;
+    fdsProdutoKGSTATUS: TFIBStringField;
+    fdsProdutoKGNOME: TFIBStringField;
+    fdsProdutoKGREFERENCIA: TFIBStringField;
+    fdsProdutoKGIDTAMANHO: TFIBBCDField;
+    fdsProdutoKGIDCOR: TFIBBCDField;
+    fdsProdutoKGPESO: TFIBBCDField;
+    fdsProdutoKGPREC_CUSTO: TFIBBCDField;
+    fdsProdutoKGCOD_FABRICA: TFIBStringField;
+    fdsProdutoKGPREC_ULTIMO_CUSTO: TFIBBCDField;
+    fdsProdutoKGDT_VALIDADE: TFIBDateField;
+    fdsProdutoKGUNIDADE: TFIBStringField;
+    fdsProdutoKGUTILIZA_BALANCA: TFIBStringField;
+    fdsProdutoKGPREC_VENDA: TFIBBCDField;
+    procedure btnDiretorioClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure RzBitBtn2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmExportarProdBalanca: TfrmExportarProdBalanca;
+
+implementation
+
+{$R *.dfm}
+
+uses untData,FileCtrl;
+
+procedure TfrmExportarProdBalanca.btnDiretorioClick(Sender: TObject);
+var
+  Diretorio: String;
+begin
+if SelectDirectory('Selecione o diretório onde serão gerados os arquivos:', '', Diretorio) then
+    edtDiretorio.Text := Diretorio;
+
+end;
+
+procedure TfrmExportarProdBalanca.FormCreate(Sender: TObject);
+begin
+fdsProdutoKG.Open;
+end;
+
+procedure TfrmExportarProdBalanca.RzBitBtn2Click(Sender: TObject);
+begin
+   try
+      if DM.fdsConfigTIPO_COD_PROD_ETIQUETABAL.AsString = EmptyStr then
+      begin
+        Application.MessageBox('Tipo de código do Produto não específicado.Por favor vá até a aba de configurações e indique o tipo do código do produto que sera exportado pelo arquivo.',
+        'Anteção', MB_OK + MB_ICONERROR);
+        cbxModeloBalanca.SetFocus;
+        Abort;
+      end;
+      // definição do modelo do arquivo, utilizado para padronizar o layout
+      // conforme a balança para a qual se vai gerar o arquivo
+      ACBrCargaBal1.Modelo := TACBrCargaBalModelo((cbxModeloBalanca.ItemIndex));
+
+      // adição dos itens que serão gerados no arquivo
+      ACBrCargaBal1.Produtos.Clear;
+      fdsProdutoKG.First;
+      While not fdsProdutoKG.Eof do
+      begin
+        with ACBrCargaBal1.Produtos.New do
+        begin
+          ModeloEtiqueta  := 1;
+          Tipo            := tpvPeso;//tpvEAN13;
+          if DM.fdsConfigTIPO_COD_PROD_ETIQUETABAL.AsString = 'CI'  then
+          Codigo          := fdsProdutoKGID.AsInteger
+          else
+          Codigo          := fdsProdutoKGREFERENCIA.AsInteger;
+
+          Descricao       := fdsProdutoKGNOME.AsString;
+          ValorVenda      := fdsProdutoKGPREC_VENDA.AsCurrency;//1.23;
+          //Validade        := 15;
+          Tecla           := 0;
+          //Receita         := Format('Receita do item %d', [I]);
+  //        Nutricional     := Format('Informação Nutricional do item %d', [I]);;
+
+//          Nutricional.Codigo:= fdsProdutoKGREFERENCIA.AsInteger;
+//          Nutricional.Qtd :=1;
+//          Nutricional.UndPorcao := tpGramas;
+//          Nutricional.PartInteira :=1;
+//          Nutricional.PartDecimal:= tpPara12;
+//          Nutricional.MedCaseira := tpColherSopa;
+//          Nutricional.ValorEnergetico := 20;
+//          Nutricional.Carboidrato := 2;
+//          Nutricional.Proteina := 3;
+//          Nutricional.GorduraTotal:= 4;
+//          Nutricional.GorduraSaturada:=5;
+//          Nutricional.GorduraTrans := 6;
+//          Nutricional.Fibra := 7;
+//          Nutricional.Sodio :=8;
+
+          Setor.Codigo    := 1;
+          Setor.Descricao := 'GERAL';
+        end;
+        fdsProdutoKG.Next;
+      end;
+
+      // gerar os arquivos para o diretório, informe somente o caminho do diretório
+      ACBrCargaBal1.GerarArquivos(edtDiretorio.Text);
+      ShowMessage('Arquivo gerado com sucesso!');
+    except
+      on E: Exception do
+      begin
+        // todo erro do componente levanta uma excessão
+        ShowMessage('Ocorreu o seguinte erro:' + sLineBreak + E.Message);
+      end;
+    end;
+end;
+
+end.

@@ -1,0 +1,51 @@
+unit untPesqIBPT;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, FIBDataSet, pFIBDataSet,
+  Vcl.Grids, Vcl.DBGrids, JvExDBGrids, JvDBGrid, Vcl.StdCtrls, Vcl.Mask, RzEdit,
+  RzButton, RzLabel, Vcl.Imaging.pngimage, Vcl.ExtCtrls, JvExExtCtrls, JvImage,
+  RzPanel;
+
+type
+  TfrmPesqIBPT = class(TForm)
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloCliente: TRzLabel;
+    lblNome: TRzLabel;
+    btnTodos: TRzBitBtn;
+    btnPesquisar: TRzBitBtn;
+    edtNome: TRzEdit;
+    JvDBGrid1: TJvDBGrid;
+    RzPanel2: TRzPanel;
+    btnSelecionar: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    fdsIBPT: TpFIBDataSet;
+    dsIBPT: TDataSource;
+    fdsIBPTID: TFIBBCDField;
+    fdsIBPTDT_ALT: TFIBDateField;
+    fdsIBPTUF: TFIBStringField;
+    fdsIBPTNCM: TFIBStringField;
+    fdsIBPTDESCRICAO: TFIBStringField;
+    fdsIBPTNACIONAL_FEDERAL: TFIBBCDField;
+    fdsIBPTNACIONAL_IMPORTADOS: TFIBBCDField;
+    fdsIBPTESTADUAL: TFIBBCDField;
+    fdsIBPTMUNICIPAL: TFIBBCDField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPesqIBPT: TfrmPesqIBPT;
+
+implementation
+
+{$R *.dfm}
+
+uses untData;
+
+end.

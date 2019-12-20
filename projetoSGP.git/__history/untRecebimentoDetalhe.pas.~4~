@@ -1,0 +1,52 @@
+unit untRecebimentoDetalhe;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzBckgnd, Vcl.StdCtrls, Vcl.Mask,
+  RzEdit, RzLabel, Vcl.ExtCtrls, RzPanel;
+
+type
+  TfrmRecebimentoDetalhe = class(TForm)
+    RzPanel1: TRzPanel;
+    RzBackground1: TRzBackground;
+    RzLabel8: TRzLabel;
+    edtDesconto: TRzEdit;
+    RzLabel6: TRzLabel;
+    edtDinheiro: TRzEdit;
+    RzLabel7: TRzLabel;
+    RzLabel9: TRzLabel;
+    edtCartao: TRzEdit;
+    RzLabel3: TRzLabel;
+    edtNota: TRzEdit;
+    edtParcelasNT: TRzEdit;
+    RzLabel11: TRzLabel;
+    edtParcelasCT: TRzEdit;
+    RzLabel5: TRzLabel;
+    edtParcelasCH: TRzEdit;
+    RzLabel10: TRzLabel;
+    edtCheque: TRzEdit;
+    RzPanel2: TRzPanel;
+    RzLabel1: TRzLabel;
+    RzEdit1: TRzEdit;
+    RzEdit2: TRzEdit;
+    RzLabel2: TRzLabel;
+    RzEdit3: TRzEdit;
+    RzLabel4: TRzLabel;
+    RzLabel12: TRzLabel;
+    RzEdit4: TRzEdit;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRecebimentoDetalhe: TfrmRecebimentoDetalhe;
+
+implementation
+
+{$R *.dfm}
+
+end.

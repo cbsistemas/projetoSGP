@@ -1,0 +1,120 @@
+unit untCadCartas;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, FIBDataSet, pFIBDataSet, dxGDIPlusClasses, ExtCtrls,
+  JvExExtCtrls, JvImage, StdCtrls, RzCmboBx, RzDBCmbo, Mask, RzEdit, RzDBEdit,
+  RzLabel, Grids, DBGrids, JvExDBGrids, JvDBGrid, jpeg, RzTabs, RzButton, RzPanel,
+  RzBckgnd, ComCtrls, DBCtrls, frxClass, frxDBSet, WPCTRRich, WPTbar, WPRTEDefs,
+  WPCTRMemo, WPRuler, ExtDlgs;
+
+type
+  TfrmCadCartas = class(TForm)
+    RzBackground1: TRzBackground;
+    RzPanel2: TRzPanel;
+    btnIncluir: TRzBitBtn;
+    btnGravar: TRzBitBtn;
+    btnAlterar: TRzBitBtn;
+    btnDelete: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    pgcControl: TRzPageControl;
+    tbsTabela: TRzTabSheet;
+    JvDBGrid1: TJvDBGrid;
+    tbsForm: TRzTabSheet;
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloCliente: TRzLabel;
+    lblTituloTotal: TRzLabel;
+    lblTotal: TRzLabel;
+    btnPrior: TRzBitBtn;
+    btnFirst: TRzBitBtn;
+    btnNext: TRzBitBtn;
+    btnLast: TRzBitBtn;
+    btnTodos: TRzBitBtn;
+    fdsCartas: TpFIBDataSet;
+    dsCartas: TDataSource;
+    fdsCartasID: TFIBBCDField;
+    fdsCartasSTATUS: TFIBStringField;
+    fdsCartasNOME: TFIBStringField;
+    fdsCartasDESCRICAO: TFIBStringField;
+    fdsCartasCORPO: TFIBBlobField;
+    frxDBDataset1: TfrxDBDataset;
+    RzPanel3: TRzPanel;
+    WPToolBar1: TWPToolBar;
+    WPVertRuler1: TWPVertRuler;
+    WPRuler1: TWPRuler;
+    WPRichText1: TWPRichText;
+    OpenPictureDialog1: TOpenPictureDialog;
+    btnImage: TRzBitBtn;
+    RzBitBtn1: TRzBitBtn;
+    RzBitBtn2: TRzBitBtn;
+    procedure tbsFormShow(Sender: TObject);
+    procedure btnImageClick(Sender: TObject);
+    procedure RzBitBtn1Click(Sender: TObject);
+    procedure RzBitBtn2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadCartas: TfrmCadCartas;
+
+implementation
+
+uses untData;
+
+{$R *.dfm}
+
+procedure TfrmCadCartas.btnImageClick(Sender: TObject);
+var
+  img : Tjpegimage;
+  i : integer;
+begin
+  if OpenPictureDialog1.Execute then
+  Begin
+    img:= Tjpegimage.Create;
+    img.LoadFromFile(OpenPictureDialog1.FileName);
+    WPRichText1.TextObjects.InsertCopy(img);
+   // WPRichText1.TextObjects.InsertMovableImage();
+    img.Free;
+
+
+    //  WPRichText1.TextObjects.ObjList[1].EmbeddedTextAsFloat;
+  End;
+
+end;
+
+procedure TfrmCadCartas.RzBitBtn1Click(Sender: TObject);
+begin
+  fdsCartas.Edit;
+  fdsCartasCORPO.AsString := WPRichText1.AsString;
+  fdsCartas.Post;
+  dm.Conexao.CommitRetaining;
+end;
+
+procedure TfrmCadCartas.RzBitBtn2Click(Sender: TObject);
+begin
+//  WPRichText1.AsString := fdsCartasCORPO.AsString;
+  WPRichText1.InsertGraphicDialog(
+     'Image Files@*.*',
+     false,
+     [wpobjRelativeToParagraph]);
+end;
+
+procedure TfrmCadCartas.tbsFormShow(Sender: TObject);
+begin
+  fdsCartas.Open;
+ { fdsCartas.Edit;
+  fdsCartasNOME.AsString := 'Outro Teste';
+  redCarta.Lines.LoadFromFile(ExtractFilePath(Application.ExeName) + 'Cartas/CartaBoleto.rtf');
+  fdsCartas.Post;
+  DM.Conexao.CommitRetaining;  }
+//  WPRichText1.AsString := fdsCartasCORPO.AsString;
+ // WPRichText1.Lines.LoadFromFile(ExtractFilePath(Application.ExeName) + 'Cartas/CartaBoleto.rtf');
+end;
+
+end.

@@ -1,0 +1,172 @@
+unit uResgistro;
+
+interface
+  uses
+    RzDBEdit, sysUtils, StrUtils, Windows, Graphics;
+
+  Type
+
+  TResgistro = class
+
+  public
+
+  function Cript(Acao, Valor: String): String;
+  function VerificaChave() : Boolean;
+
+  end;
+
+implementation
+
+{ TResgistro }
+
+uses untData;
+
+function TResgistro.Cript(Acao, Valor: String): String;
+Label Fim;
+var
+  KeyLen : Integer;
+  KeyPos : Integer;
+  OffSet : Integer;
+  Dest, Key : String;
+  SrcPos : Integer;
+  SrcAsc : Integer;
+  TmpSrcAsc : Integer;
+  Range : Integer;
+begin
+  if (Valor = '') Then
+  begin
+    Result:= '';
+    Goto Fim;
+  end;
+  //  KEY = Esta será a sua chave de criptografia
+  Key := 'IHNG91LNCN2EXSKPCA';
+  Dest := '';
+  KeyLen := Length(Key);
+  KeyPos := 0;
+  SrcPos := 0;
+  SrcAsc := 0;
+  Range := 256;
+  if (Acao = UpperCase('C')) then
+  begin
+    Randomize;
+    OffSet := Random(Range);
+    Dest := Format('%1.2x',[OffSet]);
+    for SrcPos := 1 to Length(Valor) do
+    begin
+      Application.ProcessMessages;
+      SrcAsc := (Ord(Valor[SrcPos]) + OffSet) Mod 255;
+      if KeyPos < KeyLen then
+      begin
+        KeyPos := KeyPos + 1
+      end
+      else
+      begin
+        KeyPos := 1;
+      end;
+      SrcAsc := SrcAsc Xor Ord(Key[KeyPos]);
+      Dest := Dest + Format('%1.2x',[SrcAsc]);
+      OffSet := SrcAsc;
+    end;
+  end
+  else
+  begin
+    if (Acao = UpperCase('D')) then
+    begin
+      OffSet := StrToInt('$' + copy(Valor,1,2));
+      SrcPos := 3;
+      repeat
+        SrcAsc := StrToInt('$' + copy(Valor,SrcPos,2));
+        if (KeyPos < KeyLen) Then
+        begin
+          KeyPos := KeyPos + 1;
+        end
+        else
+        begin
+          KeyPos := 1;
+        end;
+        TmpSrcAsc := SrcAsc Xor Ord(Key[KeyPos]);
+        if TmpSrcAsc <= OffSet then
+        begin
+          TmpSrcAsc := 255 + TmpSrcAsc - OffSet;
+        end
+        else
+        begin
+          TmpSrcAsc := TmpSrcAsc - OffSet;
+        end;
+        Dest := Dest + Chr(TmpSrcAsc);
+        OffSet := SrcAsc;
+        SrcPos := SrcPos + 2;
+      until (SrcPos >= Length(Valor));
+    end;
+  end;
+  Result:= Dest;
+  Fim:
+end;
+
+function TResgistro.VerificaChave() : Boolean;
+var
+  chave, cnpj: string;
+  dtLast, dtAtual, dtAtual2, dtExpira : TDate;
+  valorLastOpen, valorExpirar, valor: Integer;
+begin
+  try
+    if Trim(DM.fdsConfigPARAM.AsString) = EmptyStr then
+    begin
+      Result := False;
+    end
+    else
+    begin
+
+      chave := DM.fdsConfigCHAVE.AsString;
+      chave := Cript('D', chave);
+
+      dtLast := StrToDate(Cript('D', DM.fdsConfigPARAM.AsString));
+      dtAtual := StrToDate(DM.fdsConfigHOJE.AsString);
+      dtExpira := StrToDate(copy(chave, 0, 10));
+      cnpj := copy(chave, 11, Length(chave) - 1);
+
+      valorLastOpen := Trunc(dtAtual - dtLast);
+      valorExpirar :=  Trunc(dtExpira - dtAtual);
+
+      if (valorLastOpen >= 0) then
+      begin
+        if (valorExpirar <= 0) or (cnpj <> Dm.fdsConfigCNPJ.AsString) then
+        begin
+          DM.fdsConfig.Edit;
+          DM.fdsConfigPARAM.AsString := EmptyStr;
+          DM.fdsConfig.Post;
+          DM.Conexao.CommitRetaining;
+
+          Result := False;
+        end
+        else
+        begin
+          DM.fdsConfig.Edit;
+          DM.fdsConfigPARAM.AsString := Cript('C', DateToStr(now));
+          DM.fdsConfig.Post;
+          DM.Conexao.CommitRetaining;
+          Result := True;
+        end;
+      end
+      else
+      begin
+        Application.MessageBox('Seu sistema expirou, entre em contato com desenvolvedor','Atençao', MB_OK+MB_ICONWARNING);
+
+        DM.fdsConfig.Edit;
+        DM.fdsConfigPARAM.AsString := EmptyStr;
+        DM.fdsConfig.Post;
+        DM.Conexao.CommitRetaining;
+
+        Application.Terminate;
+      end;
+    end;
+  except
+    DM.fdsConfig.Edit;
+    DM.fdsConfigPARAM.AsString := EmptyStr;
+    DM.fdsConfig.Post;
+    DM.Conexao.CommitRetaining;
+    Result := False;
+  end;
+end;
+
+end.

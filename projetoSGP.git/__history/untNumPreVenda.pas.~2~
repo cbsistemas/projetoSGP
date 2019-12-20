@@ -1,0 +1,40 @@
+unit untNumPreVenda;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, RzEdit,
+  RzButton, RzLabel, Vcl.ExtCtrls, RzPanel;
+
+type
+  TfrmNumPreVenda = class(TForm)
+    RzPanel1: TRzPanel;
+    lblTituloCliente: TRzLabel;
+    btnConfirmar: TRzBitBtn;
+    edtNumPreVenda: TRzEdit;
+    procedure edtNumPreVendaExit(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmNumPreVenda: TfrmNumPreVenda;
+
+implementation
+
+{$R *.dfm}
+
+uses uUtils;
+
+procedure TfrmNumPreVenda.edtNumPreVendaExit(Sender: TObject);
+var
+  utils : TUtils;
+  num : Double;
+begin
+  num := utils.ValidaInteiroFloat(edtNumPreVenda.Text, 'I');
+end;
+
+end.

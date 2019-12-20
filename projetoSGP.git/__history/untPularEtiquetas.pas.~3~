@@ -1,0 +1,38 @@
+unit untPularEtiquetas;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzButton, Vcl.StdCtrls, Vcl.Mask,
+  RzEdit, RzLabel, Vcl.Imaging.pngimage, Vcl.ExtCtrls, JvExExtCtrls, JvImage,
+  RzPanel;
+
+type
+  TfrmPularEtiquetas = class(TForm)
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloImprecao: TRzLabel;
+    edtPularEtiquetas: TRzEdit;
+    btnConfirmar: TRzBitBtn;
+    RzBitBtn1: TRzBitBtn;
+    procedure btnConfirmarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPularEtiquetas: TfrmPularEtiquetas;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmPularEtiquetas.btnConfirmarClick(Sender: TObject);
+begin
+  ModalResult := mrOk;
+end;
+
+end.

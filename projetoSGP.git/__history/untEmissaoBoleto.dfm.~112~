@@ -1,0 +1,1861 @@
+object frmEmissaoBoleto: TfrmEmissaoBoleto
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Emiss'#227'o de Boleto'
+  ClientHeight = 358
+  ClientWidth = 500
+  Color = clWhite
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object RzBackground1: TRzBackground
+    Left = 0
+    Top = 0
+    Width = 500
+    Height = 358
+    Active = True
+    Align = alClient
+    GradientColorStart = -1
+    GradientColorStop = 2497553
+    GradientDirection = gdDiagonalDown
+    ImageStyle = isCenter
+    ShowGradient = True
+    ShowImage = False
+    ShowTexture = False
+    ExplicitLeft = 8
+    ExplicitTop = 70
+    ExplicitWidth = 512
+    ExplicitHeight = 292
+  end
+  object RzPanel1: TRzPanel
+    Left = 0
+    Top = 0
+    Width = 500
+    Height = 81
+    Align = alCustom
+    Anchors = [akLeft, akTop, akRight]
+    BorderOuter = fsFlatRounded
+    Color = clWhite
+    TabOrder = 0
+    ExplicitWidth = 520
+    object JvImage: TJvImage
+      Left = 9
+      Top = 0
+      Width = 64
+      Height = 64
+      Picture.Data = {
+        0954506E67496D61676589504E470D0A1A0A0000000D49484452000000400000
+        00400806000000AA6971DE0000000473424954080808087C0864880000000970
+        48597300000B1200000B1201D2DD7EFC0000001C74455874536F667477617265
+        0041646F62652046697265776F726B7320435336E8BCB28C00000F7F49444154
+        78DAED9A0754945716C7FFC3D0AB75ED2551D704895190A2311A3B2088107BBA
+        228AB8EE9ED8634F62898A820AEE26C644B326C6282D0A46C1A888804857C112
+        0B364411694387BDF7CE4010483639BBE77842E6E91C0EC3F7BDF27BB7FCEFFB
+        3E454D4D0DFECC4DA105A005A005F0ACE7A005A005A005A005A005A005A005F0
+        8C016CDCB8F12DCB3E7D26E92A954A858E0E14F44F7DC5B39EE2FFD86A6A7FD0
+        BFEA6A5451BB78F1E281458B167D5507203CE2A88FA5A5E587C6262616BABABA
+        0A5D5D25747494502808C31F1C00EF2FAFB1BABA0A9595FCA9AC511517E75FCA
+        B8B4D2D9D13140B169D3A6696EE3DD77999A9A19E9E9E9414F4F176404044047
+        003487A60620BB8F8A8A4AFA54A0A8A8B0243424D85311141C12D1DFDA7A8CA1
+        A1A1C2C0C0006401758B6F4E006A219005A0ACAC0CA5A5A535C949493F288243
+        428E5A5BDB8C34323252EA3300DA7D4533DAFDA7203000B28272025052525295
+        949418C900226C06D88E32363256EAEBEB8BF9F3DA150A1DD445903F7C531080
+        6A8907EC06E5E5E55095A8AA12CF9F3F4E0042236C6D6D471919AB013437F3AF
+        6DF5DD800194A85455090909C715210CC0CE6E94B8C09F0900B940C2B9730420
+        B41640630BE080A8D470A8AAAE8152A7692815945EF428753E35207E594294D3
+        F5FA0DAE6FEABBDFDB2AAAAAA1A7D4796A7CFE8E17DD18804A0D20F41700F082
+        6E65DDC6CEC04074EBDE1DAEAEAE38F8DD77B879EB265C5C5CD5A9A4B0105959
+        59F09A350B7BF7EC41CF5EBD9092920C4EA7CECECEC8CCCCC4C91F4F62E0A081
+        68DDBA3545DF729C8D39830F96AF40705010CCCCCCD0B973271CF8F65BAC5AB3
+        0687BE3B080B0B0BDCBA750B85D4F790A1436531D7AE5E85BE813EAE5EB9827E
+        FDFBCB224E9D3C056B1B1B74EED40965E565F2FB07CB96E1F8B163B42195E863
+        6989DD5FECC68A152BD1AA650BD9A45F001026008C1BC4007DD203B1B1711844
+        93B7B7B7C78EC09D98366532AED2649653A72A950AD9F7EF2326261AF1098918
+        336A241C1D9DB067CF97A0BEE0E7BF0D6161A1D8F5D967983C790AC1E9498B2A
+        C2367F3FE43ECEC37BEFBE830E1D3AC2CECE0E33664C47DE93277863DA3474ED
+        DA0DD1A74FE35EF67D2C5BB65CF6F268C45182658AF0F070BCF3EEBB2268767F
+        BE0B4E0499EF2F2828C4D62DBEB87BEF3E962C5E8C528AF213274CC0A4491371
+        E3E62D74EFD615E594FFEB0350A9EA01B0630B68024042C2798C18311C0E0307
+        9254DE04AF999EF45D02D6AD5BCF3E84070F1E203E3E0EC723A330E1750FBA76
+        24F6EFFF06144FE49A88A311F0F7F3A3057AE2F9E79F27F1518480801D644559
+        F8DB5C1FB46BD71ED6D6D602E0414E0E66797991457421F0B1C87E908DF7DF9F
+        2F004E449D80A9A9098E1F3F8E2953A7A28A006CDBE68F499327CBFD4504D6D7
+        7733AEDFB8890FC99238CF8F1B370EEEEEE365ACAE5D3A3702C041F09C000863
+        00F68D2C805D20E17C22460C1F8E81031DB071D366CCF49CA106B0BE1E80B878
+        444645E1750F02307204F67FA301B07E03ED5C04FCFCB66286673D003B76886B
+        CDF52100EDDBD1026C3063FA7BC8C979082F06409365000FB209C0FCF9E2CC51
+        27A2606A622A00A64E9D22B97C9BBF3F59D664B9BFB0A810BE9B37CB6EAF59B3
+        5A03C00DEEE3DD64AC2EE4660D5D402500E2B500D400EC9B00408228215103C0
+        8100D0003367340120BE1E8011F5006CD000D8DA0480DB1A00EDDA49209BF11E
+        0178A801D0B901006A51D4BFA9A906C0940600E87E0E98028082E79AD51A006E
+        04803E3C56170A9415554D0088D700B0B77768044097D2C9F9C4240C1F3E4C00
+        6CA2013C3500D6D3EEAA0164238E0044918F7A78B86324C5806FBEF95A00ACDF
+        F0092222C20580A700E8210076ECD88EACDB77E0E33307ED3906D85863BA0078
+        440066D26EA901641380F9F31748197B820098D401A0185055097F013045EEE7
+        6CB499E6C7FEAE06502A00C6D387C7EADCA92341AB6E0480E29716C0EF02F01E
+        A5A0A4A42489F09C0619406C5C1C4E520E1E4FFEC600BEFE7A9F00F884B24678
+        F81131D5E9D3A7A3478F9E62AADBB76F9374E5ED3D5B00D80CB0C1BBEFBC23A9
+        D193624C2D80FB9462172E5C2400A2222305C031CAF1D3A64E1300DBB76FC7C4
+        8993E4FEC2820250598FDB77EE62D5CA950260BCBBFBFF17C0461AE01F7F9F47
+        009225C0956A2C20E6EC591C3E7C041E94729A4A830D2D80D3E01D9AE8C2450B
+        61666A46C2A61F05C1E994F6280DCEF212007104952D80D360AD059892689234
+        48BBDE9405F8FAFAD6A5C17212462E24DC7E33000787818D00B0EC4DA4C50E1B
+        F69A08A12D5BB620EFF163A27C072D5BB6A4D2522D2D59CD0D1D3A048F7273A5
+        82541517CBFD2D5BB5E25C4B02278FD45D0BCA2ABAA8A68AAC20BF40D41E83E3
+        1C6E6E6E8687140059003D7AF448E4775969A9546D7C1D03E0099B9B5B486034
+        36311189CBC289C7362085584D73C9CFCF47972E5DF084C6E3BF27A7A460F4A8
+        51B873F71E3A75EC2052BE2180B8B8584D2D60DB580819909C3D47FE3E8A141E
+        ABAD8080402C5AB850D45DC33678F0601C0A0AC65FDAB6794A972BC98A589957
+        437D34C513E372E2F09170B8BA8CC5B5EB37D0E3B9EE727D190915165F7C9D4E
+        BDFA43877E6109BD7AD54A4C20931F403BCEFDD516EBD59A8A9D6B16163BBAD4
+        07FFED07B216C7D1A3252E70666179DCB81A242174F05050C44B2FF7936A9035
+        7C2D00A61B1B7B166E34519B01B6F0DDEA877973E788191F38F01DD5D325A8A6
+        5DBA79F326DE7C631AECEC1DF003F96851B14A06E27E08AAE80996AE1C337870
+        DED5D090104C7CDD1D892969E8DDBBB70454BEDED8D8842C4087265821DF8985
+        999B232D350576B4F0C81327317CD850E4E6E5CBA279C30CC9DD985729590DA7
+        3F6E6C2D478E1C86879B2B2E6464A25BB7EE75FDF11CB88EE16A303D35450DA0
+        6FBFFE8D0070DE8D2300E3EA01983B67B6FC2DE6CC19A8CA2A64074C0CF4A4B8
+        59BFF663DCBE972DBECAE6CE933A4385CF8DEBD76502835F7D552DB169D261A1
+        A198E0311E49A9E9E84505148FC94755A74F9DC4DDBB77F1C20B2F520135485C
+        A19CBE0F093A044F124BFEDB033076AC0BDAB4692DD29877978B2B3EE773A038
+        D5FB85BFE2497EA1C4967002E04E002E665E16F762400D01A4A524FF7E00ECA3
+        A74F9D7ACA055C5CC7212D2D15193418C781DCC7B9983A691205B358D2E15D48
+        8D65511C71C0B754ED75EAD401C1C13F03B0EA634981EA365EA7207AE5F265FA
+        7B478276031348E4ECDDB357FA741C3D528262DBB66DE13DC78752DD2AAAF4BE
+        A454EA2D8BE539B1285B47A977FE8205E246470EFF460087D8057E2380450BDE
+        477A5A1AA5180FF2B70A3E68C2659AF44FD7AE91F91FC78B5482F279A2D39831
+        483C9F4016709676E50559D8E0C1AFA06FDFBE541EFF88A090305AB01B92D32E
+        A0AF9525ECEDEC25789D8A8E46C7F6ED718E24B8839D2D162FFD402CEBCCD958
+        BCFACA208447FC40816D04129353616F6B83BFCD9B47E9D957CE313FD9B811CB
+        962E41D8618A2F639D1012F6DF01A40B8020B600EB2601700C1837D619036CD5
+        00962E5E24BBDFBD7B77317F3E647C929747FE5D820F3FFE18F3684297AF5E83
+        65EF5E08D8F94FCC993D0B8FF38BD0CAC2149FEDFA5CAAC95B94022FA45FC058
+        A731C8BCFA93F8EDCB04E1200551B682DC270568DDC21C9E5EB31074F0207228
+        3370EAE5051F8B3C8151238661DEDFFF81DDBB76E13E89279E2F670C73132391
+        DB2F5AF6A1DDFF1EA1DF1FC1F8712EB874F9CAAF5840D2EF03E043E245A9A344
+        74F4695456AB9FB6E8D067EDDAB52240A27E3C2931C09EC4C9C9D3D118F4CA2B
+        7206604AA98B15E4E0410E88898D4331A5CAD154385D271FBE78E102ED98B3D4
+        05721AAB09A005246E78A2F7481F701CB1A52078F45824C69005383A399350BA
+        87244A7505E4F3BC19AD2CCCA8FCF540666606323232C8128EC0CDF5370278B9
+        BFB59C08350240B99ACD89016CF1F317009CFF63CEC6A0A0482527AD868646B2
+        A0362D2DB074D972BCF5F6DB64017FA588FD2386BEF69A0030A3BECE50E01C36
+        F4552AB0929197F75803E0362E5DBA08172747ECFA7C37BA76EB2616C1136D4D
+        3AC2842AC05E9425D2525331D0DE96525BA4DCC7951E1FCC5CCCB884FC822249
+        882D494F383A3989824C2530EC0A6EAE639171F9AAF4DB1880AA2A355903A0DF
+        AF0070D100D84A00D8A495BA7A12ADEBB753D131786DC8608AD23B44F5991819
+        62E907CBB08EFCB7B4BC1286FABA58B97A0D3EA2529553185B968BB313B9C035
+        CA187AA405BAE13302C091BEB6715F376E5C2785B7450E6618005BCF20077B7C
+        BC761D562C5F863BF7B3D1894A6AD60565943ADB930E71A7AAF4CB2FBEA8B380
+        CC5F0190C20082D802AC6DE4B9405300C63A3B0A003FBF6D98431670FDFA4F12
+        694B499CF0B539149D030303C484E369A21DDAFD050B48307179FAAF4F779115
+        0CC16972072FD2F93E3E73A5183A141C4259C01D2914045F7EA90FDE78F34D7C
+        BD6F1FF67EF56FD21376A4FD4FC08732CE6C6F6F39934CBD7011FD5EB2C21CBA
+        7F26016E4B63F5B5EA23F545E0CE9DE0275A4B962CA1F23B9CDC2295FAB44218
+        892DD63097AF5C6B12003F17484D4A5403E8470058093E2D844C114D131F4632
+        979560E03F3FC5A7FFDA8988F070919D72724CE44DCDCC3192CC92CDFFB9E79E
+        93F33803CAF5AB57AE203081229674A95F6F5ACC2AB2028ED891543D7ACFF6C2
+        E1F0A3E8D9B38728B3C50B17E0ABBD7B49D9D5C8C3196FEF3958F3D14792E3D9
+        C4BDC9FABEDDBF1F13264CC4BE7DFF466A5A3A6653ED909E9E2E73E9D1A30759
+        CD760C21BDC12D24340C1E54A0B10BF0BC4A4A1B08215282296A00C111FD1980
+        C9D30038B7E65185762E3E0E2D5AB4A074F622D5002D24E2AA8395FA073F4ED3
+        27C95B4ED297D51663D1A1DF4DC90D72F39E88BEE7FCDDAA85058A4ACA0488FA
+        9183428228FFE7B18C0DF5F130F7311E53BDD1A64D1BB4A6B18A4AD435010331
+        A2FE1EE63C946B0D0C0C49651A8964CECABA2D8BE2404753476151B108B19C9C
+        1C9C3B174FB5CC08B9B6AADE81880028565525D701B01920C5507D00BCBDBA4A
+        F5C4AA456A96CBCD8AFACF066A7E7EE0D05453920CE6C9F321A680AB6DD4058F
+        C3FDD57FFAA6E4E7104A755AE37BEA3729D0A83FBEA7BAAABAEE3BD6FEDC6125
+        2DAA761EFC93D762442A9521D68EF3940B900524279E2700C1C111D636B60480
+        D3E09FE3C9504505578325554989090D00F0C3D1660EA08A0194370250EB02B5
+        4F879B31007949427D1E90A4768190A3FDADAD47D61E882895BA52833747007C
+        70C2A749B50722C9494991DA37446ADF11323337977784E48970337E47880170
+        16282C2850BF23A47E4B2CC2C7D2D2EA431353CD5B62EC06CAE6610575BB5FC5
+        AFC754CA5B62C545C5F9972E5D58E9ECE41450F79EE0FA0D1BDEB2B2B29A44D5
+        9E92733D5B0037C51FFC45C11A8DD090770438069012A30AF40049E79FDF13FC
+        33372D002D002D002D80673D072D002D002D002D002D8067D5FE03C4672A8FB9
+        BFEFE40000000049454E44AE426082}
+      Stretch = True
+    end
+    object lblTituloCliente: TRzLabel
+      Left = 79
+      Top = 25
+      Width = 141
+      Height = 18
+      Caption = 'Emiss'#227'o de Boletos'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Arial Rounded MT Bold'
+      Font.Style = [fsUnderline]
+      ParentFont = False
+    end
+  end
+  object RzPanel2: TRzPanel
+    Left = 0
+    Top = 305
+    Width = 500
+    Height = 52
+    Align = alCustom
+    Anchors = [akLeft, akRight, akBottom]
+    BorderOuter = fsGroove
+    TabOrder = 1
+    Transparent = True
+    ExplicitTop = 286
+    ExplicitWidth = 520
+    DesignSize = (
+      500
+      52)
+    object btnGravar: TRzBitBtn
+      Left = 414
+      Top = 8
+      Height = 35
+      FrameColor = 7617536
+      Anchors = [akRight, akBottom]
+      Caption = '&Gerar Boletos'
+      Color = 15791348
+      HotTrack = True
+      TabOrder = 0
+      OnClick = btnGravarClick
+      Glyph.Data = {
+        36060000424D3606000000000000360400002800000020000000100000000100
+        08000000000000020000630B0000630B00000001000000000000000000003300
+        00006600000099000000CC000000FF0000000033000033330000663300009933
+        0000CC330000FF33000000660000336600006666000099660000CC660000FF66
+        000000990000339900006699000099990000CC990000FF99000000CC000033CC
+        000066CC000099CC0000CCCC0000FFCC000000FF000033FF000066FF000099FF
+        0000CCFF0000FFFF000000003300330033006600330099003300CC003300FF00
+        330000333300333333006633330099333300CC333300FF333300006633003366
+        33006666330099663300CC663300FF6633000099330033993300669933009999
+        3300CC993300FF99330000CC330033CC330066CC330099CC3300CCCC3300FFCC
+        330000FF330033FF330066FF330099FF3300CCFF3300FFFF3300000066003300
+        66006600660099006600CC006600FF0066000033660033336600663366009933
+        6600CC336600FF33660000666600336666006666660099666600CC666600FF66
+        660000996600339966006699660099996600CC996600FF99660000CC660033CC
+        660066CC660099CC6600CCCC6600FFCC660000FF660033FF660066FF660099FF
+        6600CCFF6600FFFF660000009900330099006600990099009900CC009900FF00
+        990000339900333399006633990099339900CC339900FF339900006699003366
+        99006666990099669900CC669900FF6699000099990033999900669999009999
+        9900CC999900FF99990000CC990033CC990066CC990099CC9900CCCC9900FFCC
+        990000FF990033FF990066FF990099FF9900CCFF9900FFFF99000000CC003300
+        CC006600CC009900CC00CC00CC00FF00CC000033CC003333CC006633CC009933
+        CC00CC33CC00FF33CC000066CC003366CC006666CC009966CC00CC66CC00FF66
+        CC000099CC003399CC006699CC009999CC00CC99CC00FF99CC0000CCCC0033CC
+        CC0066CCCC0099CCCC00CCCCCC00FFCCCC0000FFCC0033FFCC0066FFCC0099FF
+        CC00CCFFCC00FFFFCC000000FF003300FF006600FF009900FF00CC00FF00FF00
+        FF000033FF003333FF006633FF009933FF00CC33FF00FF33FF000066FF003366
+        FF006666FF009966FF00CC66FF00FF66FF000099FF003399FF006699FF009999
+        FF00CC99FF00FF99FF0000CCFF0033CCFF0066CCFF0099CCFF00CCCCFF00FFCC
+        FF0000FFFF0033FFFF0066FFFF0099FFFF00CCFFFF00FFFFFF00000080000080
+        000000808000800000008000800080800000C0C0C00080808000191919004C4C
+        4C00B2B2B200E5E5E500C8AC2800E0CC6600F2EABF00B59B2400D8E9EC009933
+        6600D075A300ECC6D900646F710099A8AC00E2EFF10000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8180C
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E2DFE8E8E8E8E8E8E8E8E8E8E8E8E8181212
+        0CE8E8E8E8E8E8E8E8E8E8E8E8E28181DFE8E8E8E8E8E8E8E8E8E8E818121212
+        120CE8E8E8E8E8E8E8E8E8E8E281818181DFE8E8E8E8E8E8E8E8E81812121212
+        12120CE8E8E8E8E8E8E8E8E2818181818181DFE8E8E8E8E8E8E8E81812120C18
+        1212120CE8E8E8E8E8E8E8E28181DFE2818181DFE8E8E8E8E8E8E818120CE8E8
+        181212120CE8E8E8E8E8E8E281DFE8E8E2818181DFE8E8E8E8E8E8180CE8E8E8
+        E8181212120CE8E8E8E8E8E2DFE8E8E8E8E2818181DFE8E8E8E8E8E8E8E8E8E8
+        E8E8181212120CE8E8E8E8E8E8E8E8E8E8E8E2818181DFE8E8E8E8E8E8E8E8E8
+        E8E8E8181212120CE8E8E8E8E8E8E8E8E8E8E8E2818181DFE8E8E8E8E8E8E8E8
+        E8E8E8E81812120CE8E8E8E8E8E8E8E8E8E8E8E8E28181DFE8E8E8E8E8E8E8E8
+        E8E8E8E8E818120CE8E8E8E8E8E8E8E8E8E8E8E8E8E281DFE8E8E8E8E8E8E8E8
+        E8E8E8E8E8E8180CE8E8E8E8E8E8E8E8E8E8E8E8E8E8E2DFE8E8E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8}
+      NumGlyphs = 2
+      ExplicitLeft = 434
+    end
+    object btnCancelar: TRzBitBtn
+      Left = 333
+      Top = 8
+      Height = 35
+      FrameColor = 7617536
+      Anchors = [akRight, akBottom]
+      Caption = '&Cancelar'
+      Color = 15791348
+      HotTrack = True
+      TabOrder = 1
+      OnClick = btnCancelarClick
+      Glyph.Data = {
+        36060000424D3606000000000000360400002800000020000000100000000100
+        08000000000000020000630B0000630B00000001000000000000000000003300
+        00006600000099000000CC000000FF0000000033000033330000663300009933
+        0000CC330000FF33000000660000336600006666000099660000CC660000FF66
+        000000990000339900006699000099990000CC990000FF99000000CC000033CC
+        000066CC000099CC0000CCCC0000FFCC000000FF000033FF000066FF000099FF
+        0000CCFF0000FFFF000000003300330033006600330099003300CC003300FF00
+        330000333300333333006633330099333300CC333300FF333300006633003366
+        33006666330099663300CC663300FF6633000099330033993300669933009999
+        3300CC993300FF99330000CC330033CC330066CC330099CC3300CCCC3300FFCC
+        330000FF330033FF330066FF330099FF3300CCFF3300FFFF3300000066003300
+        66006600660099006600CC006600FF0066000033660033336600663366009933
+        6600CC336600FF33660000666600336666006666660099666600CC666600FF66
+        660000996600339966006699660099996600CC996600FF99660000CC660033CC
+        660066CC660099CC6600CCCC6600FFCC660000FF660033FF660066FF660099FF
+        6600CCFF6600FFFF660000009900330099006600990099009900CC009900FF00
+        990000339900333399006633990099339900CC339900FF339900006699003366
+        99006666990099669900CC669900FF6699000099990033999900669999009999
+        9900CC999900FF99990000CC990033CC990066CC990099CC9900CCCC9900FFCC
+        990000FF990033FF990066FF990099FF9900CCFF9900FFFF99000000CC003300
+        CC006600CC009900CC00CC00CC00FF00CC000033CC003333CC006633CC009933
+        CC00CC33CC00FF33CC000066CC003366CC006666CC009966CC00CC66CC00FF66
+        CC000099CC003399CC006699CC009999CC00CC99CC00FF99CC0000CCCC0033CC
+        CC0066CCCC0099CCCC00CCCCCC00FFCCCC0000FFCC0033FFCC0066FFCC0099FF
+        CC00CCFFCC00FFFFCC000000FF003300FF006600FF009900FF00CC00FF00FF00
+        FF000033FF003333FF006633FF009933FF00CC33FF00FF33FF000066FF003366
+        FF006666FF009966FF00CC66FF00FF66FF000099FF003399FF006699FF009999
+        FF00CC99FF00FF99FF0000CCFF0033CCFF0066CCFF0099CCFF00CCCCFF00FFCC
+        FF0000FFFF0033FFFF0066FFFF0099FFFF00CCFFFF00FFFFFF00000080000080
+        000000808000800000008000800080800000C0C0C00080808000191919004C4C
+        4C00B2B2B200E5E5E500C8AC2800E0CC6600F2EABF00B59B2400D8E9EC009933
+        6600D075A300ECC6D900646F710099A8AC00E2EFF10000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8B46C6C6CE8
+        E8E8E8E8B46C6C6CE8E8E8E2DFDFDFE8E8E8E8E8E2DFDFDFE8E8E8B49090906C
+        E8E8E8B49090906CE8E8E8E2818181DFE8E8E8E2818181DFE8E8E8E8B4909090
+        6CE8B49090906CE8E8E8E8E8E2818181DFE8E2818181DFE8E8E8E8E8E8B49090
+        906C9090906CE8E8E8E8E8E8E8E2818181DF818181DFE8E8E8E8E8E8E8E8B490
+        909090906CE8E8E8E8E8E8E8E8E8E28181818181DFE8E8E8E8E8E8E8E8E8E8B4
+        9090906CE8E8E8E8E8E8E8E8E8E8E8E2818181DFE8E8E8E8E8E8E8E8E8E8B490
+        909090906CE8E8E8E8E8E8E8E8E8E28181818181DFE8E8E8E8E8E8E8E8B49090
+        906C9090906CE8E8E8E8E8E8E8E2818181DF818181DFE8E8E8E8E8E8B4909090
+        6CE8B49090906CE8E8E8E8E8E2818181DFE8E2818181DFE8E8E8E8B49090906C
+        E8E8E8B49090906CE8E8E8E2818181DFE8E8E8E2818181DFE8E8E8B4B4B4B4E8
+        E8E8E8E8B4B4B4B4E8E8E8E2E2E2E2E8E8E8E8E8E2E2E2E2E8E8E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8}
+      NumGlyphs = 2
+      ExplicitLeft = 353
+    end
+  end
+  object pnlPeriodo: TRzGroupBox
+    Left = 22
+    Top = 99
+    Width = 208
+    Height = 103
+    Caption = 'Periodo'
+    GroupStyle = gsBanner
+    TabOrder = 2
+    Transparent = True
+    object RzLabel10: TRzLabel
+      Left = 8
+      Top = 49
+      Width = 134
+      Height = 13
+      Caption = 'Dia Vencimento Mensal:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Transparent = True
+    end
+    object RzLabel11: TRzLabel
+      Left = 8
+      Top = 71
+      Width = 39
+      Height = 13
+      Hint = 'Quantidade de meses para gera'#231#227'o de boletos'
+      Caption = 'Meses:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
+      Transparent = True
+    end
+    object RzLabel1: TRzLabel
+      Left = 8
+      Top = 27
+      Width = 140
+      Height = 13
+      Hint = 
+        'Gerar boleto a partir deste m'#234's corrente o a partir do pr'#243'ximo m' +
+        #234's?'
+      Caption = 'A partir do pr'#243'ximo m'#234's:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
+      Transparent = True
+    end
+    object speDiaVencimento: TRzSpinEdit
+      Left = 148
+      Top = 46
+      Width = 47
+      Height = 21
+      Hint = 
+        'Dia base para vencimento de cada boleto no m'#234's, caso n'#227'o tenha v' +
+        'encimento, deixar 0'
+      Max = 31.000000000000000000
+      Min = 1.000000000000000000
+      Value = 1.000000000000000000
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 0
+    end
+    object speMeses: TRzSpinEdit
+      Left = 53
+      Top = 68
+      Width = 47
+      Height = 21
+      Hint = 'Quantidade de meses para gera'#231#227'o de boletos'
+      Max = 24.000000000000000000
+      Min = 1.000000000000000000
+      Value = 1.000000000000000000
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 1
+    end
+    object chkProximoMes: TRzCheckBox
+      Left = 154
+      Top = 25
+      Width = 19
+      Height = 15
+      Hint = 
+        'Gerar boleto a partir deste m'#234's corrente o a partir do pr'#243'ximo m' +
+        #234's?'
+      Checked = True
+      ParentShowHint = False
+      ShowHint = True
+      State = cbChecked
+      TabOrder = 2
+      Transparent = True
+    end
+  end
+  object RzGroupBox1: TRzGroupBox
+    Left = 280
+    Top = 99
+    Width = 208
+    Height = 76
+    Caption = 'Valor Mensal'
+    GroupStyle = gsBanner
+    TabOrder = 3
+    Transparent = True
+    object edtValorBoleto: TRzEdit
+      Left = 80
+      Top = 32
+      Width = 121
+      Height = 27
+      Hint = 'Valor de cada boleto'
+      Text = 'R$ 0,00'
+      Alignment = taRightJustify
+      Color = clMoneyGreen
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 0
+      OnEnter = edtValorBoletoEnter
+      OnExit = edtValorBoletoExit
+    end
+  end
+  object pnlCliente: TRzGroupBox
+    Left = 22
+    Top = 241
+    Width = 254
+    Height = 57
+    Caption = 'Cliente'
+    Enabled = False
+    GroupStyle = gsBanner
+    TabOrder = 4
+    Transparent = True
+    object edtPesqCliente: TRzEdit
+      Left = 8
+      Top = 28
+      Width = 233
+      Height = 21
+      Text = 'TODOS'
+      Alignment = taCenter
+      CharCase = ecUpperCase
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGray
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      OnEnter = edtPesqClienteEnter
+      OnExit = edtPesqClienteExit
+      OnKeyPress = edtPesqClienteKeyPress
+    end
+  end
+  object rgbStatus: TRzRadioGroup
+    Left = 295
+    Top = 242
+    Width = 193
+    Height = 55
+    Caption = 'Status Cliente'
+    Columns = 5
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    GroupStyle = gsBanner
+    ItemFrameColor = 8409372
+    ItemHighlightColor = 2203937
+    ItemIndex = 1
+    Items.Strings = (
+      'Todos'
+      'Ativos'
+      'Inativos')
+    ParentFont = False
+    TabOrder = 5
+    Transparent = True
+  end
+  object chkNomeCliente: TJvCheckBox
+    Left = 78
+    Top = 243
+    Width = 13
+    Height = 17
+    Color = clBtnFace
+    ParentColor = False
+    TabOrder = 6
+    OnClick = chkNomeClienteClick
+    LinkedControls = <>
+  end
+  object pnlCidade: TRzGroupBox
+    Left = 236
+    Top = 178
+    Width = 254
+    Height = 57
+    Caption = 'Cidade'
+    Enabled = False
+    GroupStyle = gsBanner
+    TabOrder = 7
+    Transparent = True
+    object cbxCidade: TRzComboBox
+      Left = 8
+      Top = 25
+      Width = 233
+      Height = 21
+      Enabled = False
+      TabOrder = 0
+    end
+  end
+  object chkCidade: TJvCheckBox
+    Left = 293
+    Top = 181
+    Width = 13
+    Height = 17
+    Color = clBtnFace
+    ParentColor = False
+    TabOrder = 8
+    OnClick = chkCidadeClick
+    LinkedControls = <>
+  end
+  object fdsClientes: TpFIBDataSet
+    UpdateSQL.Strings = (
+      'UPDATE CLIENTE'
+      'SET '
+      '    DT_INC = :DT_INC,'
+      '    DT_ALT = :DT_ALT,'
+      '    STATUS = :STATUS,'
+      '    NOME = :NOME,'
+      '    DT_NASC = :DT_NASC,'
+      '    TELEFONE = :TELEFONE,'
+      '    ENDERECO = :ENDERECO,'
+      '    BAIRRO = :BAIRRO,'
+      '    IDCIDADE = :IDCIDADE,'
+      '    CEP = :CEP,'
+      '    RG = :RG,'
+      '    CPF = :CPF,'
+      '    SEXO = :SEXO,'
+      '    PROFISSAO = :PROFISSAO,'
+      '    EMAIL = :EMAIL,'
+      '    CELULAR = :CELULAR,'
+      '    TIPO = :TIPO,'
+      '    RAZAOSOCIAL = :RAZAOSOCIAL,'
+      '    CONTATO = :CONTATO,'
+      '    CNPJ = :CNPJ,'
+      '    IE = :IE,'
+      '    IDVENDEDOR = :IDVENDEDOR,'
+      '    EMAIL_NFE = :EMAIL_NFE,'
+      '    KM_TOTAL = :KM_TOTAL,'
+      '    DT_ULTIMO_CONTATO = :DT_ULTIMO_CONTATO,'
+      '    LIMITE_CREDITO = :LIMITE_CREDITO,'
+      '    IDFORMA_PAGAMENTO = :IDFORMA_PAGAMENTO,'
+      '    IDROTA = :IDROTA,'
+      '    ENVIADO_WEB = :ENVIADO_WEB,'
+      '    IDFILIAL = :IDFILIAL'
+      'WHERE'
+      '    ID = :OLD_ID'
+      '    ')
+    DeleteSQL.Strings = (
+      'DELETE FROM'
+      '    CLIENTE'
+      'WHERE'
+      '        ID = :OLD_ID'
+      '    ')
+    InsertSQL.Strings = (
+      'INSERT INTO CLIENTE('
+      '    ID,'
+      '    DT_INC,'
+      '    DT_ALT,'
+      '    STATUS,'
+      '    NOME,'
+      '    DT_NASC,'
+      '    TELEFONE,'
+      '    ENDERECO,'
+      '    BAIRRO,'
+      '    IDCIDADE,'
+      '    CEP,'
+      '    RG,'
+      '    CPF,'
+      '    SEXO,'
+      '    PROFISSAO,'
+      '    EMAIL,'
+      '    CELULAR,'
+      '    TIPO,'
+      '    RAZAOSOCIAL,'
+      '    CONTATO,'
+      '    CNPJ,'
+      '    IE,'
+      '    IDVENDEDOR,'
+      '    EMAIL_NFE,'
+      '    KM_TOTAL,'
+      '    DT_ULTIMO_CONTATO,'
+      '    LIMITE_CREDITO,'
+      '    IDFORMA_PAGAMENTO,'
+      '    IDROTA,'
+      '    ENVIADO_WEB,'
+      '    IDFILIAL'
+      ')'
+      'VALUES('
+      '    :ID,'
+      '    :DT_INC,'
+      '    :DT_ALT,'
+      '    :STATUS,'
+      '    :NOME,'
+      '    :DT_NASC,'
+      '    :TELEFONE,'
+      '    :ENDERECO,'
+      '    :BAIRRO,'
+      '    :IDCIDADE,'
+      '    :CEP,'
+      '    :RG,'
+      '    :CPF,'
+      '    :SEXO,'
+      '    :PROFISSAO,'
+      '    :EMAIL,'
+      '    :CELULAR,'
+      '    :TIPO,'
+      '    :RAZAOSOCIAL,'
+      '    :CONTATO,'
+      '    :CNPJ,'
+      '    :IE,'
+      '    :IDVENDEDOR,'
+      '    :EMAIL_NFE,'
+      '    :KM_TOTAL,'
+      '    :DT_ULTIMO_CONTATO,'
+      '    :LIMITE_CREDITO,'
+      '    :IDFORMA_PAGAMENTO,'
+      '    :IDROTA,'
+      '    :ENVIADO_WEB,'
+      '    :IDFILIAL'
+      ')')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '    CL.*,'
+      '    CI.NOME CIDADE,'
+      '    CI.UF    '
+      'FROM'
+      '    CLIENTE CL, CIDADE_IBGE CI  '
+      'WHERE( '
+      '    CI.ID = CL.IDCIDADE'
+      '     ) and (     CL.ID = :OLD_ID'
+      '     )'
+      '    ')
+    SelectSQL.Strings = (
+      'SELECT'
+      '    CL.*,'
+      '    CI.NOME CIDADE,'
+      '    CI.UF    '
+      'FROM'
+      '    CLIENTE CL, CIDADE_IBGE CI  '
+      'WHERE'
+      '    CI.ID = CL.IDCIDADE')
+    Transaction = DM.transPricipal
+    Database = DM.Conexao
+    DefaultFormats.DateTimeDisplayFormat = 'dd/mm/yyyy hh:mm:ss'
+    DefaultFormats.DisplayFormatDate = 'dd/mm/yyyy'
+    DefaultFormats.DisplayFormatTime = 'hh:mm:ss'
+    Left = 248
+    Top = 8
+    oFetchAll = True
+    object fdsClientesID: TFIBBCDField
+      FieldName = 'ID'
+      Size = 0
+    end
+    object fdsClientesDT_INC: TFIBDateField
+      DefaultExpression = 'CURRENT_DATE'
+      FieldName = 'DT_INC'
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object fdsClientesDT_ALT: TFIBDateField
+      FieldName = 'DT_ALT'
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object fdsClientesSTATUS: TFIBStringField
+      DefaultExpression = #39'A'#39
+      FieldName = 'STATUS'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsClientesNOME: TFIBStringField
+      FieldName = 'NOME'
+      Size = 250
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsClientesDT_NASC: TFIBDateField
+      FieldName = 'DT_NASC'
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object fdsClientesTELEFONE: TFIBStringField
+      FieldName = 'TELEFONE'
+      Size = 13
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsClientesENDERECO: TFIBStringField
+      FieldName = 'ENDERECO'
+      Size = 250
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsClientesBAIRRO: TFIBStringField
+      FieldName = 'BAIRRO'
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsClientesIDCIDADE: TFIBBCDField
+      FieldName = 'IDCIDADE'
+      Size = 0
+    end
+    object fdsClientesCEP: TFIBStringField
+      FieldName = 'CEP'
+      Size = 8
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsClientesRG: TFIBStringField
+      FieldName = 'RG'
+      Size = 15
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsClientesCPF: TFIBStringField
+      FieldName = 'CPF'
+      Size = 15
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsClientesSEXO: TFIBStringField
+      FieldName = 'SEXO'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsClientesPROFISSAO: TFIBStringField
+      FieldName = 'PROFISSAO'
+      Size = 100
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsClientesEMAIL: TFIBStringField
+      FieldName = 'EMAIL'
+      Size = 50
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsClientesCELULAR: TFIBStringField
+      FieldName = 'CELULAR'
+      Size = 13
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsClientesTIPO: TFIBStringField
+      FieldName = 'TIPO'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsClientesRAZAOSOCIAL: TFIBStringField
+      FieldName = 'RAZAOSOCIAL'
+      Size = 250
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsClientesCONTATO: TFIBStringField
+      FieldName = 'CONTATO'
+      Size = 250
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsClientesCNPJ: TFIBStringField
+      FieldName = 'CNPJ'
+      Size = 18
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsClientesIE: TFIBStringField
+      FieldName = 'IE'
+      Size = 18
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsClientesIDVENDEDOR: TFIBBCDField
+      FieldName = 'IDVENDEDOR'
+      Size = 0
+    end
+    object fdsClientesEMAIL_NFE: TFIBStringField
+      FieldName = 'EMAIL_NFE'
+      Size = 50
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsClientesKM_TOTAL: TFIBSmallIntField
+      FieldName = 'KM_TOTAL'
+    end
+    object fdsClientesDT_ULTIMO_CONTATO: TFIBDateField
+      FieldName = 'DT_ULTIMO_CONTATO'
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object fdsClientesLIMITE_CREDITO: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'LIMITE_CREDITO'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+      Size = 8
+    end
+    object fdsClientesIDFORMA_PAGAMENTO: TFIBBCDField
+      FieldName = 'IDFORMA_PAGAMENTO'
+      Size = 0
+    end
+    object fdsClientesIDROTA: TFIBBCDField
+      FieldName = 'IDROTA'
+      Size = 0
+    end
+    object fdsClientesENVIADO_WEB: TFIBStringField
+      DefaultExpression = #39'N'#39
+      FieldName = 'ENVIADO_WEB'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsClientesIDFILIAL: TFIBBCDField
+      FieldName = 'IDFILIAL'
+      Size = 0
+    end
+    object fdsClientesCIDADE: TFIBStringField
+      FieldName = 'CIDADE'
+      Size = 250
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsClientesUF: TFIBStringField
+      FieldName = 'UF'
+      Size = 2
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+  end
+  object fdsConfigBoleto: TpFIBDataSet
+    UpdateSQL.Strings = (
+      'UPDATE CONFIG_BOLETO'
+      'SET '
+      '    IDBANCO = :IDBANCO,'
+      '    DT_INC = :DT_INC,'
+      '    DT_ALT = :DT_ALT,'
+      '    DT_ULTIMO_RECEBIMENTO = :DT_ULTIMO_RECEBIMENTO,'
+      '    PATH_REMESSA = :PATH_REMESSA,'
+      '    PATH_RETORNO = :PATH_RETORNO,'
+      '    PATH_LOGOTIPO = :PATH_LOGOTIPO,'
+      '    PATH_GERARPDF = :PATH_GERARPDF,'
+      '    MENSAGEM = :MENSAGEM,'
+      '    DIAS_PROTESTO = :DIAS_PROTESTO,'
+      '    ESPECIE = :ESPECIE,'
+      '    MOEDA = :MOEDA,'
+      '    ACEITE = :ACEITE,'
+      '    CARTEIRA = :CARTEIRA,'
+      '    LOCAL_PAGTO = :LOCAL_PAGTO,'
+      '    INSTRUCAO_1 = :INSTRUCAO_1,'
+      '    INSTRUCAO_2 = :INSTRUCAO_2,'
+      '    CONT_REMESSA = :CONT_REMESSA,'
+      '    IDFORMA_PAG = :IDFORMA_PAG'
+      'WHERE'
+      '    ID = :OLD_ID'
+      '    and IDFILIAL = :OLD_IDFILIAL'
+      '    ')
+    DeleteSQL.Strings = (
+      'DELETE FROM'
+      '    CONFIG_BOLETO'
+      'WHERE'
+      '        ID = :OLD_ID'
+      '    and IDFILIAL = :OLD_IDFILIAL'
+      '    ')
+    InsertSQL.Strings = (
+      'INSERT INTO CONFIG_BOLETO('
+      '    ID,'
+      '    IDBANCO,'
+      '    IDFILIAL,'
+      '    DT_INC,'
+      '    DT_ALT,'
+      '    DT_ULTIMO_RECEBIMENTO,'
+      '    PATH_REMESSA,'
+      '    PATH_RETORNO,'
+      '    PATH_LOGOTIPO,'
+      '    PATH_GERARPDF,'
+      '    MENSAGEM,'
+      '    DIAS_PROTESTO,'
+      '    ESPECIE,'
+      '    MOEDA,'
+      '    ACEITE,'
+      '    CARTEIRA,'
+      '    LOCAL_PAGTO,'
+      '    INSTRUCAO_1,'
+      '    INSTRUCAO_2,'
+      '    CONT_REMESSA,'
+      '    IDFORMA_PAG'
+      ')'
+      'VALUES('
+      '    :ID,'
+      '    :IDBANCO,'
+      '    :IDFILIAL,'
+      '    :DT_INC,'
+      '    :DT_ALT,'
+      '    :DT_ULTIMO_RECEBIMENTO,'
+      '    :PATH_REMESSA,'
+      '    :PATH_RETORNO,'
+      '    :PATH_LOGOTIPO,'
+      '    :PATH_GERARPDF,'
+      '    :MENSAGEM,'
+      '    :DIAS_PROTESTO,'
+      '    :ESPECIE,'
+      '    :MOEDA,'
+      '    :ACEITE,'
+      '    :CARTEIRA,'
+      '    :LOCAL_PAGTO,'
+      '    :INSTRUCAO_1,'
+      '    :INSTRUCAO_2,'
+      '    :CONT_REMESSA,'
+      '    :IDFORMA_PAG'
+      ')')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '    *'
+      'FROM'
+      '    CONFIG_BOLETO '
+      ''
+      ' WHERE '
+      '        CONFIG_BOLETO.ID = :OLD_ID'
+      '    and CONFIG_BOLETO.IDFILIAL = :OLD_IDFILIAL'
+      '    ')
+    SelectSQL.Strings = (
+      'SELECT'
+      '    *'
+      'FROM'
+      '    CONFIG_BOLETO ')
+    Transaction = DM.transPricipal
+    Database = DM.Conexao
+    DefaultFormats.DateTimeDisplayFormat = 'dd/mm/yyyy hh:mm:ss'
+    DefaultFormats.DisplayFormatDate = 'dd/mm/yyyy'
+    DefaultFormats.DisplayFormatTime = 'hh:mm:ss'
+    Left = 280
+    Top = 40
+    oFetchAll = True
+    object fdsConfigBoletoID: TFIBIntegerField
+      FieldName = 'ID'
+    end
+    object fdsConfigBoletoIDBANCO: TFIBBCDField
+      FieldName = 'IDBANCO'
+      Size = 0
+    end
+    object fdsConfigBoletoIDFILIAL: TFIBBCDField
+      FieldName = 'IDFILIAL'
+      Size = 0
+    end
+    object fdsConfigBoletoDT_INC: TFIBDateField
+      DefaultExpression = 'CURRENT_DATE'
+      FieldName = 'DT_INC'
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object fdsConfigBoletoDT_ALT: TFIBDateField
+      FieldName = 'DT_ALT'
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object fdsConfigBoletoDT_ULTIMO_RECEBIMENTO: TFIBDateField
+      FieldName = 'DT_ULTIMO_RECEBIMENTO'
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object fdsConfigBoletoPATH_REMESSA: TFIBStringField
+      FieldName = 'PATH_REMESSA'
+      Size = 100
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigBoletoPATH_RETORNO: TFIBStringField
+      FieldName = 'PATH_RETORNO'
+      Size = 100
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigBoletoPATH_LOGOTIPO: TFIBStringField
+      FieldName = 'PATH_LOGOTIPO'
+      Size = 100
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigBoletoPATH_GERARPDF: TFIBStringField
+      FieldName = 'PATH_GERARPDF'
+      Size = 100
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigBoletoMENSAGEM: TFIBStringField
+      FieldName = 'MENSAGEM'
+      Size = 250
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigBoletoDIAS_PROTESTO: TFIBIntegerField
+      FieldName = 'DIAS_PROTESTO'
+    end
+    object fdsConfigBoletoESPECIE: TFIBStringField
+      FieldName = 'ESPECIE'
+      Size = 4
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigBoletoMOEDA: TFIBStringField
+      FieldName = 'MOEDA'
+      Size = 3
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigBoletoACEITE: TFIBStringField
+      FieldName = 'ACEITE'
+      Size = 3
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigBoletoCARTEIRA: TFIBStringField
+      FieldName = 'CARTEIRA'
+      Size = 3
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigBoletoLOCAL_PAGTO: TFIBStringField
+      FieldName = 'LOCAL_PAGTO'
+      Size = 100
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigBoletoINSTRUCAO_1: TFIBStringField
+      FieldName = 'INSTRUCAO_1'
+      Size = 100
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigBoletoINSTRUCAO_2: TFIBStringField
+      FieldName = 'INSTRUCAO_2'
+      Size = 100
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigBoletoCONT_REMESSA: TFIBIntegerField
+      FieldName = 'CONT_REMESSA'
+    end
+    object fdsConfigBoletoIDFORMA_PAG: TFIBBCDField
+      FieldName = 'IDFORMA_PAG'
+      Size = 0
+    end
+  end
+  object fdsCntReceber: TpFIBDataSet
+    UpdateSQL.Strings = (
+      'UPDATE CNT_RECEBER'
+      'SET '
+      '    DT_INC = :DT_INC,'
+      '    DT_ALT = :DT_ALT,'
+      '    POSICAO = :POSICAO,'
+      '    PREFIXO = :PREFIXO,'
+      '    REFERENCIA = :REFERENCIA,'
+      '    IDCLIENTE = :IDCLIENTE,'
+      '    ACRESCIMO = :ACRESCIMO,'
+      '    DESCONTO = :DESCONTO,'
+      '    VALOR = :VALOR,'
+      '    VALOR_PAGO = :VALOR_PAGO,'
+      '    IDPORTADOR = :IDPORTADOR,'
+      '    HISTORICO = :HISTORICO,'
+      '    IDFORMA_PAG = :IDFORMA_PAG,'
+      '    IDVENDA = :IDVENDA,'
+      '    TIPO_VENDA = :TIPO_VENDA,'
+      '    TOT_PARCELA = :TOT_PARCELA,'
+      '    PARCELAS_PG = :PARCELAS_PG,'
+      '    DINHEIRO = :DINHEIRO,'
+      '    ENVIADO_WEB = :ENVIADO_WEB'
+      'WHERE'
+      '    ID = :OLD_ID'
+      '    and IDFILIAL = :OLD_IDFILIAL'
+      '    ')
+    DeleteSQL.Strings = (
+      'DELETE FROM'
+      '    CNT_RECEBER'
+      'WHERE'
+      '        ID = :OLD_ID'
+      '    and IDFILIAL = :OLD_IDFILIAL'
+      '    ')
+    InsertSQL.Strings = (
+      'INSERT INTO CNT_RECEBER('
+      '    ID,'
+      '    IDFILIAL,'
+      '    DT_INC,'
+      '    DT_ALT,'
+      '    POSICAO,'
+      '    PREFIXO,'
+      '    REFERENCIA,'
+      '    IDCLIENTE,'
+      '    ACRESCIMO,'
+      '    DESCONTO,'
+      '    VALOR,'
+      '    VALOR_PAGO,'
+      '    IDPORTADOR,'
+      '    HISTORICO,'
+      '    IDFORMA_PAG,'
+      '    IDVENDA,'
+      '    TIPO_VENDA,'
+      '    TOT_PARCELA,'
+      '    PARCELAS_PG,'
+      '    DINHEIRO,'
+      '    ENVIADO_WEB'
+      ')'
+      'VALUES('
+      '    :ID,'
+      '    :IDFILIAL,'
+      '    :DT_INC,'
+      '    :DT_ALT,'
+      '    :POSICAO,'
+      '    :PREFIXO,'
+      '    :REFERENCIA,'
+      '    :IDCLIENTE,'
+      '    :ACRESCIMO,'
+      '    :DESCONTO,'
+      '    :VALOR,'
+      '    :VALOR_PAGO,'
+      '    :IDPORTADOR,'
+      '    :HISTORICO,'
+      '    :IDFORMA_PAG,'
+      '    :IDVENDA,'
+      '    :TIPO_VENDA,'
+      '    :TOT_PARCELA,'
+      '    :PARCELAS_PG,'
+      '    :DINHEIRO,'
+      '    :ENVIADO_WEB'
+      ')')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '    *'
+      'FROM'
+      '    CNT_RECEBER '
+      ''
+      ' WHERE '
+      '        CNT_RECEBER.ID = :OLD_ID'
+      '    and CNT_RECEBER.IDFILIAL = :OLD_IDFILIAL'
+      '    ')
+    SelectSQL.Strings = (
+      'SELECT'
+      '    *'
+      'FROM'
+      '    CNT_RECEBER ')
+    AutoUpdateOptions.UpdateTableName = 'CNT_RECEBER'
+    AutoUpdateOptions.KeyFields = 'ID'
+    AutoUpdateOptions.GeneratorName = 'GEN_ID_CNT_RECEBER'
+    AutoUpdateOptions.WhenGetGenID = wgOnNewRecord
+    Transaction = DM.transPricipal
+    Database = DM.Conexao
+    DefaultFormats.DateTimeDisplayFormat = 'dd/mm/yyyy hh:mm:ss'
+    DefaultFormats.DisplayFormatDate = 'dd/mm/yyyy'
+    DefaultFormats.DisplayFormatTime = 'hh:mm:ss'
+    Left = 328
+    Top = 8
+    oFetchAll = True
+    object fdsCntReceberID: TFIBBCDField
+      FieldName = 'ID'
+      Size = 0
+    end
+    object fdsCntReceberIDFILIAL: TFIBBCDField
+      FieldName = 'IDFILIAL'
+      Size = 0
+    end
+    object fdsCntReceberDT_INC: TFIBDateField
+      DefaultExpression = 'CURRENT_DATE'
+      FieldName = 'DT_INC'
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object fdsCntReceberDT_ALT: TFIBDateField
+      FieldName = 'DT_ALT'
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object fdsCntReceberPOSICAO: TFIBStringField
+      FieldName = 'POSICAO'
+      Size = 2
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsCntReceberPREFIXO: TFIBStringField
+      FieldName = 'PREFIXO'
+      Size = 2
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsCntReceberREFERENCIA: TFIBStringField
+      FieldName = 'REFERENCIA'
+      Size = 12
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsCntReceberIDCLIENTE: TFIBBCDField
+      FieldName = 'IDCLIENTE'
+      Size = 0
+    end
+    object fdsCntReceberACRESCIMO: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'ACRESCIMO'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+      Size = 8
+    end
+    object fdsCntReceberDESCONTO: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'DESCONTO'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+      Size = 8
+    end
+    object fdsCntReceberVALOR: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'VALOR'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+      Size = 8
+    end
+    object fdsCntReceberVALOR_PAGO: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'VALOR_PAGO'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+      Size = 8
+    end
+    object fdsCntReceberIDPORTADOR: TFIBBCDField
+      FieldName = 'IDPORTADOR'
+      Size = 0
+    end
+    object fdsCntReceberHISTORICO: TFIBStringField
+      FieldName = 'HISTORICO'
+      Size = 200
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsCntReceberIDFORMA_PAG: TFIBBCDField
+      FieldName = 'IDFORMA_PAG'
+      Size = 0
+    end
+    object fdsCntReceberIDVENDA: TFIBBCDField
+      FieldName = 'IDVENDA'
+      Size = 0
+    end
+    object fdsCntReceberTIPO_VENDA: TFIBStringField
+      FieldName = 'TIPO_VENDA'
+      Size = 2
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsCntReceberTOT_PARCELA: TFIBStringField
+      FieldName = 'TOT_PARCELA'
+      Size = 3
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsCntReceberPARCELAS_PG: TFIBIntegerField
+      DefaultExpression = '0'
+      FieldName = 'PARCELAS_PG'
+    end
+    object fdsCntReceberDINHEIRO: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'DINHEIRO'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+      Size = 8
+    end
+    object fdsCntReceberENVIADO_WEB: TFIBStringField
+      DefaultExpression = #39'N'#39
+      FieldName = 'ENVIADO_WEB'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+  end
+  object fdsCntReceberItem: TpFIBDataSet
+    UpdateSQL.Strings = (
+      'UPDATE CNT_RECEBER_ITEM'
+      'SET '
+      '    POSICAO = :POSICAO,'
+      '    PREFIXO = :PREFIXO,'
+      '    REFERENCIA = :REFERENCIA,'
+      '    IDRECEBER = :IDRECEBER,'
+      '    DT_VENC = :DT_VENC,'
+      '    DT_PAG = :DT_PAG,'
+      '    ACRESCIMO = :ACRESCIMO,'
+      '    DESCONTO = :DESCONTO,'
+      '    VALOR = :VALOR,'
+      '    VALOR_PAGO = :VALOR_PAGO,'
+      '    HISTORICO = :HISTORICO,'
+      '    PARCELA = :PARCELA,'
+      '    ENVIADO_WEB = :ENVIADO_WEB'
+      'WHERE'
+      '    ID = :OLD_ID'
+      '    and IDFILIAL = :OLD_IDFILIAL'
+      '    ')
+    DeleteSQL.Strings = (
+      'DELETE FROM'
+      '    CNT_RECEBER_ITEM'
+      'WHERE'
+      '        ID = :OLD_ID'
+      '    and IDFILIAL = :OLD_IDFILIAL'
+      '    ')
+    InsertSQL.Strings = (
+      'INSERT INTO CNT_RECEBER_ITEM('
+      '    ID,'
+      '    POSICAO,'
+      '    PREFIXO,'
+      '    REFERENCIA,'
+      '    IDRECEBER,'
+      '    DT_VENC,'
+      '    DT_PAG,'
+      '    ACRESCIMO,'
+      '    DESCONTO,'
+      '    VALOR,'
+      '    VALOR_PAGO,'
+      '    HISTORICO,'
+      '    PARCELA,'
+      '    ENVIADO_WEB,'
+      '    IDFILIAL'
+      ')'
+      'VALUES('
+      '    :ID,'
+      '    :POSICAO,'
+      '    :PREFIXO,'
+      '    :REFERENCIA,'
+      '    :IDRECEBER,'
+      '    :DT_VENC,'
+      '    :DT_PAG,'
+      '    :ACRESCIMO,'
+      '    :DESCONTO,'
+      '    :VALOR,'
+      '    :VALOR_PAGO,'
+      '    :HISTORICO,'
+      '    :PARCELA,'
+      '    :ENVIADO_WEB,'
+      '    :IDFILIAL'
+      ')')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '    *'
+      'FROM'
+      '    CNT_RECEBER_ITEM '
+      ''
+      ' WHERE '
+      '        CNT_RECEBER_ITEM.ID = :OLD_ID'
+      '    and CNT_RECEBER_ITEM.IDFILIAL = :OLD_IDFILIAL'
+      '    ')
+    SelectSQL.Strings = (
+      'SELECT'
+      '    *'
+      'FROM'
+      '    CNT_RECEBER_ITEM ')
+    Transaction = DM.transPricipal
+    Database = DM.Conexao
+    DefaultFormats.DateTimeDisplayFormat = 'dd/mm/yyyy hh:mm:ss'
+    DefaultFormats.DisplayFormatDate = 'dd/mm/yyyy'
+    DefaultFormats.DisplayFormatTime = 'hh:mm:ss'
+    Left = 360
+    Top = 8
+    oFetchAll = True
+    object fdsCntReceberItemID: TFIBBCDField
+      FieldName = 'ID'
+      Size = 0
+    end
+    object fdsCntReceberItemPOSICAO: TFIBStringField
+      FieldName = 'POSICAO'
+      Size = 2
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsCntReceberItemPREFIXO: TFIBStringField
+      FieldName = 'PREFIXO'
+      Size = 2
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsCntReceberItemREFERENCIA: TFIBStringField
+      FieldName = 'REFERENCIA'
+      Size = 12
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsCntReceberItemIDRECEBER: TFIBBCDField
+      FieldName = 'IDRECEBER'
+      Size = 0
+    end
+    object fdsCntReceberItemDT_VENC: TFIBDateField
+      FieldName = 'DT_VENC'
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object fdsCntReceberItemDT_PAG: TFIBDateField
+      FieldName = 'DT_PAG'
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object fdsCntReceberItemACRESCIMO: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'ACRESCIMO'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+      Size = 8
+    end
+    object fdsCntReceberItemDESCONTO: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'DESCONTO'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+      Size = 8
+    end
+    object fdsCntReceberItemVALOR: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'VALOR'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+      Size = 8
+    end
+    object fdsCntReceberItemVALOR_PAGO: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'VALOR_PAGO'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+      Size = 8
+    end
+    object fdsCntReceberItemHISTORICO: TFIBStringField
+      FieldName = 'HISTORICO'
+      Size = 200
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsCntReceberItemPARCELA: TFIBStringField
+      FieldName = 'PARCELA'
+      Size = 6
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsCntReceberItemENVIADO_WEB: TFIBStringField
+      DefaultExpression = #39'N'#39
+      FieldName = 'ENVIADO_WEB'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsCntReceberItemIDFILIAL: TFIBBCDField
+      FieldName = 'IDFILIAL'
+      Size = 0
+    end
+  end
+  object fdsCntReceberBoleto: TpFIBDataSet
+    Transaction = DM.transPricipal
+    Database = DM.Conexao
+    DefaultFormats.DateTimeDisplayFormat = 'dd/mm/yyyy hh:mm:ss'
+    DefaultFormats.DisplayFormatDate = 'dd/mm/yyyy'
+    DefaultFormats.DisplayFormatTime = 'hh:mm:ss'
+    Left = 392
+    Top = 8
+    oFetchAll = True
+  end
+  object fdsContaBanco: TpFIBDataSet
+    UpdateSQL.Strings = (
+      'UPDATE CONTA_BANCO'
+      'SET '
+      '    DT_INC = :DT_INC,'
+      '    DT_ALT = :DT_ALT,'
+      '    STATUS = :STATUS,'
+      '    IDBANCO = :IDBANCO,'
+      '    IDCIDADE = :IDCIDADE,'
+      '    NOME_BANCO = :NOME_BANCO,'
+      '    NOME_AGENCIA = :NOME_AGENCIA,'
+      '    NUMERO_AGENCIA = :NUMERO_AGENCIA,'
+      '    DIGITO_AGENCIA = :DIGITO_AGENCIA,'
+      '    NUMERO_CONTA = :NUMERO_CONTA,'
+      '    DIGITO_CONTA = :DIGITO_CONTA,'
+      '    NOSSO_NUMERO = :NOSSO_NUMERO,'
+      '    CEDENTE = :CEDENTE,'
+      '    COD_CEDENTE = :COD_CEDENTE,'
+      '    DIGITO_BANCO = :DIGITO_BANCO'
+      'WHERE'
+      '    ID = :OLD_ID'
+      '    and IDFILIAL = :OLD_IDFILIAL'
+      '    ')
+    DeleteSQL.Strings = (
+      'DELETE FROM'
+      '    CONTA_BANCO'
+      'WHERE'
+      '        ID = :OLD_ID'
+      '    and IDFILIAL = :OLD_IDFILIAL'
+      '    ')
+    InsertSQL.Strings = (
+      'INSERT INTO CONTA_BANCO('
+      '    ID,'
+      '    DT_INC,'
+      '    DT_ALT,'
+      '    STATUS,'
+      '    IDBANCO,'
+      '    IDCIDADE,'
+      '    IDFILIAL,'
+      '    NOME_BANCO,'
+      '    NOME_AGENCIA,'
+      '    NUMERO_AGENCIA,'
+      '    DIGITO_AGENCIA,'
+      '    NUMERO_CONTA,'
+      '    DIGITO_CONTA,'
+      '    NOSSO_NUMERO,'
+      '    CEDENTE,'
+      '    COD_CEDENTE,'
+      '    DIGITO_BANCO'
+      ')'
+      'VALUES('
+      '    :ID,'
+      '    :DT_INC,'
+      '    :DT_ALT,'
+      '    :STATUS,'
+      '    :IDBANCO,'
+      '    :IDCIDADE,'
+      '    :IDFILIAL,'
+      '    :NOME_BANCO,'
+      '    :NOME_AGENCIA,'
+      '    :NUMERO_AGENCIA,'
+      '    :DIGITO_AGENCIA,'
+      '    :NUMERO_CONTA,'
+      '    :DIGITO_CONTA,'
+      '    :NOSSO_NUMERO,'
+      '    :CEDENTE,'
+      '    :COD_CEDENTE,'
+      '    :DIGITO_BANCO'
+      ')')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '    *'
+      'FROM'
+      '    CONTA_BANCO '
+      ''
+      ' WHERE '
+      '        CONTA_BANCO.ID = :OLD_ID'
+      '    and CONTA_BANCO.IDFILIAL = :OLD_IDFILIAL'
+      '    ')
+    SelectSQL.Strings = (
+      'SELECT'
+      '    *'
+      'FROM'
+      '    CONTA_BANCO ')
+    Transaction = DM.transPricipal
+    Database = DM.Conexao
+    DefaultFormats.DateTimeDisplayFormat = 'dd/mm/yyyy hh:mm:ss'
+    DefaultFormats.DisplayFormatDate = 'dd/mm/yyyy'
+    DefaultFormats.DisplayFormatTime = 'hh:mm:ss'
+    Left = 280
+    Top = 8
+    oFetchAll = True
+    object fdsContaBancoID: TFIBBCDField
+      FieldName = 'ID'
+      Size = 0
+    end
+    object fdsContaBancoDT_INC: TFIBDateField
+      FieldName = 'DT_INC'
+    end
+    object fdsContaBancoDT_ALT: TFIBDateField
+      FieldName = 'DT_ALT'
+    end
+    object fdsContaBancoSTATUS: TFIBStringField
+      FieldName = 'STATUS'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsContaBancoIDBANCO: TFIBBCDField
+      FieldName = 'IDBANCO'
+      Size = 0
+    end
+    object fdsContaBancoIDCIDADE: TFIBBCDField
+      FieldName = 'IDCIDADE'
+      Size = 0
+    end
+    object fdsContaBancoIDFILIAL: TFIBBCDField
+      FieldName = 'IDFILIAL'
+      Size = 0
+    end
+    object fdsContaBancoNOME_BANCO: TFIBStringField
+      FieldName = 'NOME_BANCO'
+      Size = 50
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsContaBancoNOME_AGENCIA: TFIBStringField
+      FieldName = 'NOME_AGENCIA'
+      Size = 50
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsContaBancoNUMERO_AGENCIA: TFIBStringField
+      FieldName = 'NUMERO_AGENCIA'
+      Size = 10
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsContaBancoDIGITO_AGENCIA: TFIBStringField
+      FieldName = 'DIGITO_AGENCIA'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsContaBancoNUMERO_CONTA: TFIBStringField
+      FieldName = 'NUMERO_CONTA'
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsContaBancoDIGITO_CONTA: TFIBStringField
+      FieldName = 'DIGITO_CONTA'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsContaBancoNOSSO_NUMERO: TFIBIntegerField
+      FieldName = 'NOSSO_NUMERO'
+    end
+    object fdsContaBancoCEDENTE: TFIBStringField
+      FieldName = 'CEDENTE'
+      Size = 50
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsContaBancoCOD_CEDENTE: TFIBStringField
+      FieldName = 'COD_CEDENTE'
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsContaBancoDIGITO_BANCO: TFIBStringField
+      FieldName = 'DIGITO_BANCO'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+  end
+  object fdsCarta: TpFIBDataSet
+    UpdateSQL.Strings = (
+      'UPDATE CARTAS'
+      'SET '
+      '    STATUS = :STATUS,'
+      '    NOME = :NOME,'
+      '    DESCRICAO = :DESCRICAO,'
+      '    CORPO = :CORPO'
+      'WHERE'
+      '    ID = :OLD_ID'
+      '    ')
+    DeleteSQL.Strings = (
+      'DELETE FROM'
+      '    CARTAS'
+      'WHERE'
+      '        ID = :OLD_ID'
+      '    ')
+    InsertSQL.Strings = (
+      'INSERT INTO CARTAS('
+      '    ID,'
+      '    STATUS,'
+      '    NOME,'
+      '    DESCRICAO,'
+      '    CORPO'
+      ')'
+      'VALUES('
+      '    :ID,'
+      '    :STATUS,'
+      '    :NOME,'
+      '    :DESCRICAO,'
+      '    :CORPO'
+      ')')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '    *'
+      'FROM'
+      '    CARTAS '
+      ''
+      ' WHERE '
+      '        CARTAS.ID = :OLD_ID'
+      '    ')
+    SelectSQL.Strings = (
+      'SELECT'
+      '    *'
+      'FROM'
+      '    CARTAS ')
+    Transaction = DM.transPricipal
+    Database = DM.Conexao
+    DefaultFormats.DateTimeDisplayFormat = 'dd/mm/yyyy hh:mm:ss'
+    DefaultFormats.DisplayFormatDate = 'dd/mm/yyyy'
+    DefaultFormats.DisplayFormatTime = 'hh:mm:ss'
+    Left = 424
+    Top = 8
+    oFetchAll = True
+    object fdsCartaID: TFIBBCDField
+      FieldName = 'ID'
+      Size = 0
+    end
+    object fdsCartaSTATUS: TFIBStringField
+      DefaultExpression = #39'A'#39
+      FieldName = 'STATUS'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsCartaNOME: TFIBStringField
+      FieldName = 'NOME'
+      Size = 50
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsCartaDESCRICAO: TFIBStringField
+      FieldName = 'DESCRICAO'
+      Size = 200
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsCartaCORPO: TFIBBlobField
+      FieldName = 'CORPO'
+      Size = 8
+    end
+  end
+  object frxCarta: TfrxDBDataset
+    UserName = 'frxCarta'
+    CloseDataSource = False
+    FieldAliases.Strings = (
+      'ID=ID'
+      'STATUS=STATUS'
+      'NOME=NOME'
+      'DESCRICAO=DESCRICAO'
+      'CORPO=CORPO')
+    DataSet = fdsCarta
+    BCDToCurrency = False
+    Left = 424
+    Top = 48
+  end
+  object frxRichObject1: TfrxRichObject
+    Left = 384
+    Top = 48
+  end
+  object frxPDFExport1: TfrxPDFExport
+    UseFileCache = True
+    ShowProgress = True
+    OverwritePrompt = False
+    DataOnly = False
+    PrintOptimized = False
+    Outline = False
+    Background = False
+    HTMLTags = True
+    Quality = 95
+    Author = 'FastReport'
+    Subject = 'FastReport PDF export'
+    ProtectionFlags = [ePrint, eModify, eCopy, eAnnot]
+    HideToolbar = False
+    HideMenubar = False
+    HideWindowUI = False
+    FitWindow = False
+    CenterWindow = False
+    PrintScaling = False
+    Left = 240
+    Top = 48
+  end
+  object ACBrBoletoFCFR1: TACBrBoletoFCFR
+    ACBrBoleto = ACBrBoleto1
+    Left = 320
+    Top = 48
+  end
+  object ACBrBoleto1: TACBrBoleto
+    Banco.TamanhoMaximoNossoNum = 10
+    Banco.TipoCobranca = cobNenhum
+    Cedente.TipoInscricao = pJuridica
+    NumeroArquivo = 0
+    ACBrBoletoFC = ACBrBoletoFCFR1
+    Left = 352
+    Top = 48
+  end
+  object fdsCidade: TpFIBDataSet
+    RefreshSQL.Strings = (
+      '')
+    SelectSQL.Strings = (
+      'SELECT'
+      '    id,'
+      '    (NOME || '#39' - '#39' || UF) as CIDADE'
+      'FROM'
+      '    CIDADE_IBGE'
+      'ORDER BY'
+      '    NOME ')
+    AfterOpen = fdsCidadeAfterOpen
+    Transaction = DM.transPricipal
+    Database = DM.Conexao
+    DefaultFormats.DateTimeDisplayFormat = 'dd/mm/yyyy hh:mm:ss'
+    DefaultFormats.DisplayFormatDate = 'dd/mm/yyyy'
+    DefaultFormats.DisplayFormatTime = 'hh:mm:ss'
+    Left = 104
+    Top = 8
+    oFetchAll = True
+    object fdsCidadeID: TFIBBCDField
+      FieldName = 'ID'
+      Size = 0
+    end
+    object fdsCidadeCIDADE: TFIBStringField
+      FieldName = 'CIDADE'
+      Size = 255
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+  end
+  object dsCidade: TDataSource
+    DataSet = fdsCidade
+    Left = 104
+    Top = 48
+  end
+end

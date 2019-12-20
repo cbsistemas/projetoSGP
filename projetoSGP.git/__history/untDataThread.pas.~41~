@@ -1,0 +1,123 @@
+unit untDataThread;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FIBDatabase, pFIBDatabase, Data.DB,
+  FIBDataSet, pFIBDataSet, FIBQuery, pFIBQuery,DateUtils;
+
+type
+  TDMThread = class(TDataModule)
+    Conexao2: TpFIBDatabase;
+    trans: TpFIBTransaction;
+    fdsCntReceberItem: TpFIBDataSet;
+    qrySQL: TpFIBQuery;
+    fdsCntReceberItemID: TFIBBCDField;
+    fdsCntReceberItemPOSICAO: TFIBStringField;
+    fdsCntReceberItemPREFIXO: TFIBStringField;
+    fdsCntReceberItemREFERENCIA: TFIBStringField;
+    fdsCntReceberItemIDRECEBER: TFIBBCDField;
+    fdsCntReceberItemDT_VENC: TFIBDateField;
+    fdsCntReceberItemDT_PAG: TFIBDateField;
+    fdsCntReceberItemACRESCIMO: TFIBBCDField;
+    fdsCntReceberItemDESCONTO: TFIBBCDField;
+    fdsCntReceberItemVALOR: TFIBBCDField;
+    fdsCntReceberItemVALOR_PAGO: TFIBBCDField;
+    fdsCntReceberItemHISTORICO: TFIBStringField;
+    fdsCntReceberItemPARCELA: TFIBStringField;
+    fdsCntReceberItemENVIADO_WEB: TFIBStringField;
+    fdsCntReceberItemIDFILIAL: TFIBBCDField;
+    fdsCntReceberItemBAIXA_AGRUPADA: TFIBStringField;
+    fdsCntReceberItemPAGAMENTO_MOEDA: TFIBStringField;
+    fdsCntReceberItemREC_DESC_ACRE: TFIBBCDField;
+    fdsCntReceberItemREC_DINHEIRO: TFIBBCDField;
+    fdsCntReceberItemID_REC_ITEM: TFIBBCDField;
+    fdsCntReceberItemVALOR_JUROS_PAGO: TFIBBCDField;
+    procedure BaixaDoc(Prefixo: string;DiasBaixa:Integer=0);
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DMThread: TDMThread;
+
+implementation
+
+{ %CLASSGROUP 'Vcl.Controls.TControl' }
+
+{$R *.dfm}
+{ TDMThread }
+
+procedure TDMThread.BaixaDoc(Prefixo: string;DiasBaixa:Integer=0);
+var
+  tempParAtual, tempParcTotal, idFormaPag: Integer;
+begin
+  if Prefixo = 'CT' then
+    idFormaPag := 2;
+
+  if Prefixo = 'CD' then
+    idFormaPag := 3;
+
+  if Prefixo = 'CH' then
+    idFormaPag := 4;
+
+  with fdsCntReceberItem do
+  begin
+    Close;
+    ParamByName('DT_VENC').AsDateTime := IncDay(Now,-DiasBaixa);
+    ParamByName('PREFIXO').AsString := Prefixo;
+    Prepare;
+    Open;
+    First;
+
+    while not(EOF) do
+    begin
+      Edit;
+      fdsCntReceberItemPOSICAO.AsString := 'PG';
+      fdsCntReceberItemDT_PAG.AsDateTime := fdsCntReceberItemDT_VENC.AsDateTime;
+      fdsCntReceberItemVALOR_PAGO.AsFloat := fdsCntReceberItemVALOR.AsFloat;
+      fdsCntReceberItemHISTORICO.AsString := 'BAIXA AUTOMÁTICA';
+      fdsCntReceberItemREC_DINHEIRO.AsFloat := fdsCntReceberItemVALOR.AsFloat;
+      fdsCntReceberItemPAGAMENTO_MOEDA.AsString := Prefixo;
+      Post;
+
+      tempParAtual := StrToInt(Copy(fdsCntReceberItemPARCELA.AsString, 0, 3));
+      tempParcTotal := StrToInt(Copy(fdsCntReceberItemPARCELA.AsString, 4, 3));
+
+      if tempParAtual = tempParcTotal then
+      begin
+        with qrySQL do
+        begin
+          Close;
+          SQL.Clear;
+          SQL.Add('UPDATE CNT_RECEBER SET POSICAO = :POSICAO, VALOR_PAGO = VALOR, IDFORMA_PAG = :IDFORMA_PAG, ');
+          SQL.Add('HISTORICO = :HISTORICO WHERE ID = :IDRECEBER AND IDFILIAL = :IDFILIAL');
+          ParamByName('POSICAO').AsString := 'PG';
+          ParamByName('HISTORICO').AsString :=
+            'Pago por meio de baixa automática';
+          ParamByName('IDRECEBER').AsInteger :=
+            fdsCntReceberItemIDRECEBER.AsInteger;
+          ParamByName('IDFORMA_PAG').AsInteger := idFormaPag;
+          ParamByName('IDFILIAL').AsInteger :=
+            fdsCntReceberItemIDFILIAL.AsInteger;
+          Prepare;
+          ExecQuery;
+        end;
+      end;
+      Next;
+    end;
+
+    Conexao2.CommitRetaining;
+    Close;
+  end;
+end;
+
+procedure TDMThread.DataModuleCreate(Sender: TObject);
+begin
+  Conexao2.Connected := False;
+end;
+
+end.

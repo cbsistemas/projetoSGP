@@ -1,0 +1,283 @@
+unit untGrupoRelacion;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzBckgnd, RzButton, Vcl.StdCtrls,
+  RzLabel, Vcl.Imaging.pngimage, Vcl.ExtCtrls, JvExExtCtrls, JvImage, RzPanel,
+  Vcl.Grids, Vcl.DBGrids, JvExDBGrids, JvDBGrid, RzTabs, Data.DB,
+  Datasnap.DBClient, pFIBClientDataSet, FIBDataSet, pFIBDataSet;
+
+type
+  TfrmGrupoRelacion = class(TForm)
+    RzPanel1: TRzPanel;
+    imgPrincipal: TJvImage;
+    lblTitulo: TRzLabel;
+    lblTituloTotal: TRzLabel;
+    lblTotal: TRzLabel;
+    RzBackground1: TRzBackground;
+    RzPanel3: TRzPanel;
+    btnGravar: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    pgcControlCor: TRzPageControl;
+    tbsCor: TRzTabSheet;
+    gdrCor: TJvDBGrid;
+    pgControlTamanho: TRzPageControl;
+    tbsAplicacao: TRzTabSheet;
+    gdrTamanho: TJvDBGrid;
+    cdsCor: TpFIBClientDataSet;
+    cdsCorID: TIntegerField;
+    cdsCorNOME: TStringField;
+    cdsCorREFERENCIA: TStringField;
+    dsCor: TDataSource;
+    dsTamanho: TDataSource;
+    fdsCor_Grupo: TpFIBDataSet;
+    fdsCor_GrupoIDCOR: TFIBBCDField;
+    fdsCor_GrupoIDGRUPO: TFIBBCDField;
+    fdsCor_GrupoDT_INC: TFIBDateField;
+    fdsCor_GrupoDT_ALT: TFIBDateField;
+    fdsCor_GrupoSTATUS: TFIBStringField;
+    fdsCor_GrupoST: TFIBStringField;
+    fdsCor_GrupoGRUPO: TFIBStringField;
+    fdsCor: TpFIBDataSet;
+    fdsCorID: TFIBBCDField;
+    fdsCorDT_INC: TFIBDateField;
+    fdsCorDT_ALT: TFIBDateField;
+    fdsCorSTATUS: TFIBStringField;
+    fdsCorNOME: TFIBStringField;
+    fdsCorREFERENCIA: TFIBStringField;
+    fdsCorENVIADO_WEB: TFIBStringField;
+    fdsTamanho_Grupo: TpFIBDataSet;
+    fdsTamanho_GrupoIDTAMANHO: TFIBBCDField;
+    fdsTamanho_GrupoIDGRUPO: TFIBBCDField;
+    fdsTamanho_GrupoDT_INC: TFIBDateField;
+    fdsTamanho_GrupoDT_ALT: TFIBDateField;
+    fdsTamanho_GrupoSTATUS: TFIBStringField;
+    fdsTamanho_GrupoST: TFIBStringField;
+    fdsTamanho_GrupoGRUPO: TFIBStringField;
+    fdsTamanho: TpFIBDataSet;
+    fdsTamanhoID: TFIBBCDField;
+    fdsTamanhoDT_INC: TFIBDateField;
+    fdsTamanhoDT_ALT: TFIBDateField;
+    fdsTamanhoSTATUS: TFIBStringField;
+    fdsTamanhoNOME: TFIBStringField;
+    fdsTamanhoREFERENCIA: TFIBStringField;
+    fdsTamanhoALTURA_I: TFIBBCDField;
+    fdsTamanhoLARGURA_I: TFIBBCDField;
+    fdsTamanhoPROFUNDIDADE_I: TFIBBCDField;
+    fdsTamanhoALTURA_E: TFIBBCDField;
+    fdsTamanhoLARGURA_E: TFIBBCDField;
+    fdsTamanhoPROFUNDIDADE_E: TFIBBCDField;
+    fdsTamanhoENVIADO_WEB: TFIBStringField;
+    cdsTamanho: TpFIBClientDataSet;
+    cdsTamanhoID: TIntegerField;
+    cdsTamanhoNOME: TStringField;
+    cdsTamanhoREFERENCIA: TStringField;
+    cdsCorSELECT: TStringField;
+    cdsCorSEL: TStringField;
+    cdsTamanhoSELECT: TStringField;
+    cdsTamanhoSEL: TStringField;
+    procedure FormCreate(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure gdrCorDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure gdrCorCellClick(Column: TColumn);
+    procedure gdrTamanhoDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure gdrTamanhoCellClick(Column: TColumn);
+    procedure btnGravarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    idGrupo : Integer;
+  end;
+
+var
+  frmGrupoRelacion: TfrmGrupoRelacion;
+
+implementation
+
+{$R *.dfm}
+
+uses untData;
+
+procedure TfrmGrupoRelacion.btnCancelarClick(Sender: TObject);
+begin
+
+    Case MessageBox(Application.Handle, Pchar('Deseja realmente abandonar o relacionamento de grupos?'), 'Atenção', MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) of
+          idYes: begin
+                    ModalResult := mrCancel;
+                 end;
+      end;
+
+end;
+
+procedure TfrmGrupoRelacion.btnGravarClick(Sender: TObject);
+begin
+  cdsCor.First;
+
+  while not(cdsCor.Eof) do
+  begin
+    fdsCor_Grupo.Insert;
+    fdsCor_GrupoIDGRUPO.AsInteger := idGrupo;
+    fdsCor_GrupoIDCOR.AsInteger := cdsCorID.AsInteger;
+    fdsCor_GrupoDT_INC.AsDateTime := Now;
+    fdsCor_GrupoSTATUS.AsString := 'A';
+    fdsCor_Grupo.Post;
+    cdsCor.Next;
+  end;
+
+  cdsTamanho.First;
+
+  while not(cdsTamanho.Eof) do
+  begin
+    fdsTamanho_Grupo.Insert;
+    fdsTamanho_GrupoIDGRUPO.AsInteger := idGrupo;
+    fdsTamanho_GrupoIDTamanho.AsInteger := cdsTamanhoID.AsInteger;
+    fdsTamanho_GrupoDT_INC.AsDateTime := Now;
+    fdsTamanho_GrupoSTATUS.AsString := 'A';
+    fdsTamanho_Grupo.Post;
+  end;
+
+  DM.Conexao.CommitRetaining;
+end;
+
+procedure TfrmGrupoRelacion.FormCreate(Sender: TObject);
+begin
+  fdsCor.Open;
+  fdsCor_Grupo.Open;
+  fdsCor.First;
+  cdsCor.CreateDataSet;
+  cdsCor.Open;
+
+  while not(fdsCor.Eof) do
+  begin
+    cdsCor.Append;
+    cdsCorID.AsInteger := fdsCorID.AsInteger;
+    cdsCorNOME.AsString := fdsCorNOME.AsString;
+    cdsCorREFERENCIA.AsString := fdsCorREFERENCIA.AsString;
+    cdsCor.Post;
+    fdsCor.Next;
+  end;
+
+  fdsTamanho.Open;
+  fdsTamanho_Grupo.Open;
+  fdsTamanho.First;
+  cdsTamanho.CreateDataSet;
+  cdsTamanho.Open;
+
+  while not(fdsTamanho.Eof) do
+  begin
+    cdsTamanho.Append;
+    cdsTamanhoID.AsInteger := fdsTamanhoID.AsInteger;
+    cdsTamanhoNOME.AsString := fdsTamanhoNOME.AsString;
+    cdsTamanhoREFERENCIA.AsString := fdsTamanhoREFERENCIA.AsString;
+    cdsTamanho.Post;
+    fdsTamanho.Next;
+  end;
+
+  cdsCor.First;
+  cdsTamanho.First;
+
+end;
+
+procedure TfrmGrupoRelacion.gdrCorCellClick(Column: TColumn);
+begin
+  if gdrCor.SelectedField.FieldName = 'SEL' then
+  begin
+    cdsCor.Edit;
+
+    if cdsCorSELECT.AsString = 'S' then
+    begin
+      cdsCorSELECT.AsString := 'N';
+    end
+    else
+    begin
+      cdsCorSELECT.AsString := 'S';
+    end;
+
+    cdsCor.Post;
+
+  end;
+end;
+
+procedure TfrmGrupoRelacion.gdrCorDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+var
+  Check: Integer;
+  R: TRect;
+begin
+  if not odd(cdsCor.RecNo) then
+  begin
+    gdrCor.Canvas.Brush.Color := DM.gridOddColor;
+    gdrCor.Canvas.FillRect(Rect);
+    gdrCor.DefaultDrawDataCell(rect,Column.Field,state);
+  end;
+
+  if Column.FieldName =  'SEL' then
+  begin
+    gdrCor.Canvas.FillRect(Rect);
+    Check := 0;
+
+    if cdsCorSELECT.AsString = 'S' then
+      Check := DFCS_CHECKED
+    else
+      Check := 0;
+
+    R := Rect;
+    InflateRect(R, -1,-1);
+    DrawFrameControl(gdrCor.Canvas.Handle,R,DFC_BUTTON, DFCS_BUTTONCHECK or Check);
+  end;
+
+end;
+
+procedure TfrmGrupoRelacion.gdrTamanhoCellClick(Column: TColumn);
+begin
+  if gdrTamanho.SelectedField.FieldName = 'SEL' then
+  begin
+    cdsTamanho.Edit;
+
+    if cdsTamanhoSELECT.AsString = 'S' then
+    begin
+      cdsTamanhoSELECT.AsString := 'N';
+    end
+    else
+    begin
+      cdsTamanhoSELECT.AsString := 'S';
+    end;
+
+    cdsTamanho.Post;
+  end;
+end;
+
+procedure TfrmGrupoRelacion.gdrTamanhoDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+var
+  Check: Integer;
+  R: TRect;
+begin
+  if not odd(cdsTamanho.RecNo) then
+  begin
+    gdrTamanho.Canvas.Brush.Color := DM.gridOddColor;
+    gdrTamanho.Canvas.FillRect(Rect);
+    gdrTamanho.DefaultDrawDataCell(rect,Column.Field,state);
+  end;
+
+  if Column.FieldName =  'SEL' then
+  begin
+    gdrTamanho.Canvas.FillRect(Rect);
+    Check := 0;
+
+    if cdsTamanhoSELECT.AsString = 'S' then
+      Check := DFCS_CHECKED
+    else
+      Check := 0;
+
+    R := Rect;
+    InflateRect(R, -1,-1);
+    DrawFrameControl(gdrTamanho.Canvas.Handle,R,DFC_BUTTON, DFCS_BUTTONCHECK or Check);
+  end;
+end;
+
+end.

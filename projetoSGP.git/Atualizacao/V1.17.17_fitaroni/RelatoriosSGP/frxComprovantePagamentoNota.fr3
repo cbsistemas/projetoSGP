@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="5.2.3" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="4095" PreviewOptions.Zoom="1" PrintOptions.Printer="Padrão" PrintOptions.PrintOnSheet="0" PrintOptions.ShowDialog="False" ReportOptions.CreateDate="42983,6694028819" ReportOptions.Description.Text="" ReportOptions.LastChange="43752,4429994097" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;&#13;&#10;procedure MasterData1OnBeforePrint(Sender: TfrxComponent);&#13;&#10;begin    &#13;&#10;                     &#13;&#10;end;&#13;&#10;&#13;&#10;begin&#13;&#10;&#13;&#10;end." OnReportPrint="frxReportOnReportPrint">
+  <Datasets>
+    <item DataSet="frxConfig" DataSetName="frxConfig"/>
+    <item DataSet="frmCntReceber.frxDescAcre" DataSetName="frxDescAcre"/>
+    <item DataSet="frmCntReceber.frxFormaPagamento" DataSetName="frxFormaPagamento"/>
+    <item DataSet="frmCntReceber.frxMovCntReceberItem" DataSetName="frxMovCntReceberItem"/>
+  </Datasets>
+  <Variables>
+    <item Name=" New Category1"/>
+    <item Name="cliente"/>
+    <item Name="valor"/>
+    <item Name="dtInicio"/>
+    <item Name="dtFim"/>
+  </Variables>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" PaperWidth="80" PaperHeight="230" PaperSize="256" LeftMargin="0" RightMargin="0" TopMargin="0" BottomMargin="0" ColumnWidth="0" ColumnPositions.Text="" EndlessHeight="True" HGuides.Text="" VGuides.Text="7,55906">
+    <TfrxPageHeader Name="PageHeader1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="121,94496" Left="0" Top="18,89765" Width="302,3624">
+      <TfrxLineView Name="Line3" Align="baCenter" Left="11,338680315" Top="11,33859" Width="279,68503937" Height="0" Color="0" Frame.Style="fsDot" Diagonal="True"/>
+      <TfrxMemoView Name="Memo4" Left="-5,66928645" Top="41,57483" Width="302,36220472" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[frxConfig.&#34;ENDERECO&#34;]"/>
+      <TfrxMemoView Name="Memo9" Left="9,764E-5" Top="60,47248" Width="302,36220472" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[frxConfig.&#34;BAIRRO&#34;], [frxConfig.&#34;CIDADE&#34;] - [frxConfig.&#34;UF&#34;]"/>
+      <TfrxMemoView Name="Memo14" Left="-5,66928645" Top="79,37013" Width="302,36220472" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[frxConfig.&#34;TELEFONE&#34;]"/>
+      <TfrxMemoView Name="Memo15" Left="-5,3307941" Top="103,04731" Width="302,3624" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="COMPROVANTE DE PAGAMENTO"/>
+      <TfrxMemoView Name="frxConfigNOME" Left="7,55906" Top="21,67718" Width="287,24428" Height="18,89765" DataField="NOME" DataSet="frxConfig" DataSetName="frxConfig" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="[frxConfig.&#34;NOME&#34;]"/>
+    </TfrxPageHeader>
+    <TfrxHeader Name="Header1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="65,07131474" Left="0" Top="200,31509" Width="302,3624">
+      <TfrxMemoView Name="Memo1" Left="14,55906" Top="39,23624" Width="275,90569" Height="22,67718" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="REF.      VALOR  PAGO     VALOR  RESTANTE&#13;&#10;                              "/>
+      <TfrxMemoView Name="Memo3" Left="14,33859" Top="7,11812" Width="52,91342" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Cliente:"/>
+      <TfrxMemoView Name="cliente" Left="67,36842105" Top="7,10596263" Width="222,52802474" Height="18,89765" StretchMode="smMaxHeight" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[cliente]"/>
+    </TfrxHeader>
+    <TfrxFooter Name="Footer1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="31,67718" Left="0" Top="340,1577" Width="302,3624">
+      <TfrxLineView Name="Line2" Left="-3,77953" Top="0" Width="128,50402" Height="0" Color="0" Frame.Style="fsDot" Frame.Typ="4"/>
+      <TfrxMemoView Name="Memo6" Left="63,91342" Top="7,55906" Width="113,3859" Height="22,67718" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" ParentFont="False" Text=" Valor Total Pago :&#13;&#10;                              "/>
+      <TfrxMemoView Name="Memo7" Left="192,41744" Top="8,33859" Width="90,70872" Height="18,89765" AutoWidth="True" DisplayFormat.DecimalSeparator="," DisplayFormat.FormatStr="R$ #,##0.00" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[valor]"/>
+    </TfrxFooter>
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="30,23624" Left="0" Top="287,24428" Width="302,3624" ColumnWidth="0" ColumnGap="0" DataSet="frmCntReceber.frxMovCntReceberItem" DataSetName="frxMovCntReceberItem" RowCount="0">
+      <TfrxMemoView Name="frxMovCntReceberItemREFERENCIA" Left="14,92748105" Top="7,68320105" Width="94,31439053" Height="18,89765" DataField="REFERENCIA" DataSet="frmCntReceber.frxMovCntReceberItem" DataSetName="frxMovCntReceberItem" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxMovCntReceberItem.&#34;REFERENCIA&#34;]"/>
+      <TfrxMemoView Name="frxMovCntReceberItemVLR_PAGO_ATUAL" Left="111,57894737" Top="7,73291947" Width="88,84381421" Height="18,89765" DataField="VLR_PAGO_ATUAL" DataSet="frmCntReceber.frxMovCntReceberItem" DataSetName="frxMovCntReceberItem" DisplayFormat.DecimalSeparator="," DisplayFormat.FormatStr="R$ #,##0.00" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxMovCntReceberItem.&#34;VLR_PAGO_ATUAL&#34;]"/>
+      <TfrxMemoView Name="frxMovCntReceberItemVLR_RESTANTE" Left="205,26315789" Top="7,78555105" Width="85,68591947" Height="18,89765" DataField="VLR_RESTANTE" DataSet="frmCntReceber.frxMovCntReceberItem" DataSetName="frxMovCntReceberItem" DisplayFormat.DecimalSeparator="," DisplayFormat.FormatStr="R$ #,##0.00" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxMovCntReceberItem.&#34;VLR_RESTANTE&#34;]"/>
+    </TfrxMasterData>
+    <TfrxFooter Name="Footer2" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="40,57191684" Left="0" Top="536,69326" Width="302,3624">
+      <TfrxMemoView Name="Date" Left="75,47248" Top="21" Width="79,37013" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[Date]"/>
+      <TfrxMemoView Name="Time" Left="145,06308" Top="22" Width="79,37013" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[Time]"/>
+      <TfrxMemoView Name="Memo5" Left="9,55906" Top="2,72689842" Width="64,30172842" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Data Pag :"/>
+      <TfrxLineView Name="Line1" Align="baCenter" Left="11,338680315" Top="2,09621368" Width="279,68503937" Height="0" Color="0" Frame.Style="fsDot" Diagonal="True"/>
+      <TfrxMemoView Name="Memo10" Left="10,55906" Top="20,14884526" Width="64,30172842" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Emissão :"/>
+      <TfrxMemoView Name="dtInicio" Left="74,73684211" Top="2,25410842" Width="149,89644579" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[dtInicio]"/>
+    </TfrxFooter>
+    <TfrxMasterData Name="MasterData2" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="26,45671" Left="0" Top="487,55937" Width="302,3624" ColumnWidth="0" ColumnGap="0" DataSet="frmCntReceber.frxFormaPagamento" DataSetName="frxFormaPagamento" RowCount="0">
+      <TfrxMemoView Name="frxFormaPagamentoMOEDA" Left="92,25201" Top="0" Width="98,26778" Height="18,89765" AutoWidth="True" DataField="MOEDA" DataSet="frmCntReceber.frxFormaPagamento" DataSetName="frxFormaPagamento" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="[frxFormaPagamento.&#34;MOEDA&#34;]"/>
+      <TfrxMemoView Name="frxFormaPagamentoVALOR" Left="191,51979" Top="0" Width="90,70872" Height="18,89765" AutoWidth="True" DataField="VALOR" DataSet="frmCntReceber.frxFormaPagamento" DataSetName="frxFormaPagamento" DisplayFormat.FormatStr="%2.2m" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxFormaPagamento.&#34;VALOR&#34;]"/>
+    </TfrxMasterData>
+    <TfrxMasterData Name="MasterData3" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="27,07834526" Left="0" Top="393,07112" Width="302,3624" ColumnWidth="0" ColumnGap="0" DataSet="frmCntReceber.frxDescAcre" DataSetName="frxDescAcre" RowCount="0">
+      <TfrxMemoView Name="frxDescAcreMOEDA" Left="15,11812" Top="3,77953" Width="181,41744" Height="18,89765" AutoWidth="True" DataField="MOEDA" DataSet="frmCntReceber.frxDescAcre" DataSetName="frxDescAcre" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxDescAcre.&#34;MOEDA&#34;]"/>
+      <TfrxMemoView Name="frxDescAcreVALOR" Left="196,53556" Top="3,77953" Width="86,92919" Height="18,89765" AutoWidth="True" DataField="VALOR" DataSet="frmCntReceber.frxDescAcre" DataSetName="frxDescAcre" DisplayFormat.DecimalSeparator="," DisplayFormat.FormatStr="R$ #,##0.00" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxDescAcre.&#34;VALOR&#34;]"/>
+    </TfrxMasterData>
+    <TfrxHeader Name="Header2" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="22,67718" Left="0" Top="442,20501" Width="302,3624">
+      <TfrxMemoView Name="Memo8" Left="30,23624" Top="0" Width="158,74026" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Forma de Pagamento"/>
+    </TfrxHeader>
+  </TfrxReportPage>
+</TfrxReport>

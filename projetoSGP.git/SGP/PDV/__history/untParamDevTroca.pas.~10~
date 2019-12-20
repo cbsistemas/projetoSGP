@@ -1,0 +1,71 @@
+unit untParamDevTroca;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzRadChk, RzButton, Vcl.StdCtrls,
+  RzLabel, Vcl.ExtCtrls, RzPanel, FIBQuery, pFIBQuery;
+
+type
+  TfrmParamDevTroca = class(TForm)
+    RzPanel1: TRzPanel;
+    lblTituloCliente: TRzLabel;
+    btnConfirmar: TRzBitBtn;
+    RzRadioButton1: TRzRadioButton;
+    rbtDevolver: TRzRadioButton;
+    rbtCredito: TRzRadioButton;
+    qryComando: TpFIBQuery;
+    procedure FormCreate(Sender: TObject);
+    procedure RzRadioButton1Click(Sender: TObject);
+    procedure rbtDevolverClick(Sender: TObject);
+    procedure rbtCreditoClick(Sender: TObject);
+    procedure btnConfirmarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    tipo : string;
+    dtVenda : TDateTime;
+  end;
+
+var
+  frmParamDevTroca: TfrmParamDevTroca;
+
+implementation
+
+{$R *.dfm}
+
+uses untData;
+
+procedure TfrmParamDevTroca.btnConfirmarClick(Sender: TObject);
+begin
+  if tipo = '0' then
+  begin
+    Application.MessageBox('Selecione o tipo de devolução.', 'Atenção', MB_OK+MB_ICONEXCLAMATION);
+  end
+  else
+    ModalResult := mrOk;
+
+end;
+
+procedure TfrmParamDevTroca.FormCreate(Sender: TObject);
+begin
+  tipo := '0';
+end;
+
+procedure TfrmParamDevTroca.RzRadioButton1Click(Sender: TObject);
+begin
+  tipo := 'nova';
+end;
+
+procedure TfrmParamDevTroca.rbtDevolverClick(Sender: TObject);
+begin
+  tipo := 'devolver';
+end;
+
+procedure TfrmParamDevTroca.rbtCreditoClick(Sender: TObject);
+begin
+  tipo := 'credito';
+end;
+
+end.

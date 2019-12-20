@@ -1,0 +1,45 @@
+unit untTroco;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, RzPanel, StdCtrls, Mask, RzEdit, RzLabel, RzButton,
+  RzBckgnd;
+
+type
+  TfrmTroco = class(TForm)
+    RzBackground1: TRzBackground;
+    btnSair: TRzBitBtn;
+    RzLabel1: TRzLabel;
+    RzLabel2: TRzLabel;
+    RzLabel3: TRzLabel;
+    edtTotal: TRzEdit;
+    edtRecebido: TRzEdit;
+    edtTroco: TRzEdit;
+    RzPanel1: TRzPanel;
+    RzLabel4: TRzLabel;
+    lblDescAcre: TRzLabel;
+    edtDesconto: TRzEdit;
+    RzLabel6: TRzLabel;
+    edtSubtotal: TRzEdit;
+    procedure btnSairClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmTroco: TfrmTroco;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmTroco.btnSairClick(Sender: TObject);
+begin
+  ModalResult := mrOk;
+end;
+
+end.

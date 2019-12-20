@@ -1,0 +1,702 @@
+unit untCompraFinalizacao;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, RzEdit, RzLabel,
+  Vcl.Imaging.pngimage, Vcl.ExtCtrls, JvExExtCtrls, JvImage, RzPanel, RzCmboBx,
+  Vcl.Grids, Vcl.DBGrids, RzDBGrid, RzTabs, RzButton, RzBckgnd, Data.DB,
+  FIBDataSet, pFIBDataSet, Datasnap.DBClient, pFIBClientDataSet,
+  Datasnap.Provider, Math, FIBQuery, pFIBQuery;
+
+type
+  TfrmCompraFinalizacao = class(TForm)
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    RzLabel1: TRzLabel;
+    lblTituloTotal: TRzLabel;
+    edtValorVenda: TRzEdit;
+    RzBackground1: TRzBackground;
+    RzPanel3: TRzPanel;
+    dsFormaPagamento: TDataSource;
+    fdsCntPagar: TpFIBDataSet;
+    cdsPagarCheque: TpFIBClientDataSet;
+    dsPagarCheque: TDataSource;
+    dsPAgarItem: TDataSource;
+    cdsPagarItem: TpFIBClientDataSet;
+    fdsPagarItem: TpFIBDataSet;
+    fdsCntPagarID: TFIBBCDField;
+    fdsCntPagarIDFILIAL: TFIBBCDField;
+    fdsCntPagarDT_INC: TFIBDateField;
+    fdsCntPagarPOSICAO: TFIBStringField;
+    fdsCntPagarPREFIXO: TFIBStringField;
+    fdsCntPagarREFERENCIA: TFIBStringField;
+    fdsCntPagarIDFORNECEDOR: TFIBBCDField;
+    fdsCntPagarACRESCIMO: TFIBBCDField;
+    fdsCntPagarDESCONTO: TFIBBCDField;
+    fdsCntPagarVALOR: TFIBBCDField;
+    fdsCntPagarVALOR_PAGO: TFIBBCDField;
+    fdsCntPagarIDPORTADOR: TFIBBCDField;
+    fdsCntPagarHISTORICO: TFIBStringField;
+    fdsCntPagarIDFORMA_PAG: TFIBBCDField;
+    fdsCntPagarIDCOMPRA: TFIBBCDField;
+    fdsCntPagarTOT_PARCELA: TFIBStringField;
+    fdsCntPagarPARCELAS_PG: TFIBIntegerField;
+    fdsCntPagarDINHEIRO: TFIBBCDField;
+    fdsCntPagarENVIADO_WEB: TFIBStringField;
+    fdsPagarItemID: TFIBBCDField;
+    fdsPagarItemIDFILIAL: TFIBBCDField;
+    fdsPagarItemPOSICAO: TFIBStringField;
+    fdsPagarItemPREFIXO: TFIBStringField;
+    fdsPagarItemREFERENCIA: TFIBStringField;
+    fdsPagarItemIDPAGAR: TFIBBCDField;
+    fdsPagarItemDT_VENC: TFIBDateField;
+    fdsPagarItemDT_PAG: TFIBDateField;
+    fdsPagarItemACRESCIMO: TFIBBCDField;
+    fdsPagarItemDESCONTO: TFIBBCDField;
+    fdsPagarItemVALOR: TFIBBCDField;
+    fdsPagarItemVALOR_PAGO: TFIBBCDField;
+    fdsPagarItemHISTORICO: TFIBStringField;
+    fdsPagarItemPARCELA: TFIBStringField;
+    fdsPagarItemENVIADO_WEB: TFIBStringField;
+    cdsPagarItemID: TpFIBClientBCDField;
+    cdsPagarItemIDFILIAL: TpFIBClientBCDField;
+    cdsPagarItemPOSICAO: TStringField;
+    cdsPagarItemPREFIXO: TStringField;
+    cdsPagarItemREFERENCIA: TStringField;
+    cdsPagarItemIDPAGAR: TpFIBClientBCDField;
+    cdsPagarItemDT_VENC: TDateField;
+    cdsPagarItemDT_PAG: TDateField;
+    cdsPagarItemACRESCIMO: TpFIBClientBCDField;
+    cdsPagarItemDESCONTO: TpFIBClientBCDField;
+    cdsPagarItemVALOR: TpFIBClientBCDField;
+    cdsPagarItemVALOR_PAGO: TpFIBClientBCDField;
+    cdsPagarItemHISTORICO: TStringField;
+    cdsPagarItemPARCELA: TStringField;
+    cdsPagarItemENVIADO_WEB: TStringField;
+    fdsPagarItemNUM_DOCUMENTO: TFIBStringField;
+    cdsPagarItemNUM_DOCUMENTO: TStringField;
+    qryRetornaIDCntPagar_Item: TpFIBQuery;
+    cdsPagarChequeID: TpFIBClientBCDField;
+    cdsPagarChequeIDFILIAL: TpFIBClientBCDField;
+    cdsPagarChequeIDPAGAR_ITEM: TpFIBClientBCDField;
+    cdsPagarChequeIDBANCO: TpFIBClientBCDField;
+    cdsPagarChequeAGENCIA: TStringField;
+    cdsPagarChequeCONTA: TStringField;
+    cdsPagarChequeNUM_CHEQUE: TStringField;
+    cdsPagarChequeDT_EMISSAO: TDateField;
+    cdsPagarChequeEMITENTE: TStringField;
+    cdsPagarChequeVALOR: TpFIBClientBCDField;
+    cdsPagarChequeDT_VENCIMENTO: TDateField;
+    cdsPagarChequeNUM_BANCO: TIntegerField;
+    RzPanel2: TRzPanel;
+    RzLabel8: TRzLabel;
+    RzLabel12: TRzLabel;
+    RzLabel2: TRzLabel;
+    RzLabel3: TRzLabel;
+    RzLabel4: TRzLabel;
+    RzLabel11: TRzLabel;
+    RzLabel9: TRzLabel;
+    RzLabel10: TRzLabel;
+    RzLabel13: TRzLabel;
+    RzLabel14: TRzLabel;
+    RzLabel15: TRzLabel;
+    edtDinheiro: TRzEdit;
+    edtCheque: TRzEdit;
+    edtCartao: TRzEdit;
+    btnGerarParcelas: TRzBitBtn;
+    edtNota: TRzEdit;
+    edtParcelasNT: TRzEdit;
+    edtParcelasCT: TRzEdit;
+    edtParcelasCH: TRzEdit;
+    cbxTipoDesconto: TRzComboBox;
+    edtDesconto: TRzEdit;
+    lblCodigo: TRzLabel;
+    edtPrefixoCompra: TRzEdit;
+    edtIDCompra: TRzEdit;
+    RzLabel5: TRzLabel;
+    lblCidade: TRzLabel;
+    edtFornecedor: TRzEdit;
+    pgcParcelas: TRzPageControl;
+    tbsCheque: TRzTabSheet;
+    gdrCheque: TRzDBGrid;
+    cdsPagarChequePARCELA: TStringField;
+    qryInsertCntPagar_Item: TpFIBQuery;
+    qryInsertChequeCntPagar: TpFIBQuery;
+    btnCancelar: TRzBitBtn;
+    btnGravar: TRzBitBtn;
+    RzPageControl1: TRzPageControl;
+    tbsNota: TRzTabSheet;
+    gdrNota: TRzDBGrid;
+    RzLabel6: TRzLabel;
+    edtDescricao: TRzEdit;
+    procedure FormActivate(Sender: TObject);
+    procedure VerificaFormaPagamento;
+    procedure GerarDocumentos;
+    procedure PagamentoAVista;
+    procedure CalculaValorParcelar;
+    procedure GeraParcelaCheque(prefixo : string; parcelas: Integer; vlrParcelar: Double);
+    procedure GeraParcelaNota(prefixo: string; parcelas: Integer; vlrParcelar: Double);
+    procedure GravaCntPagar(valorTotal: Double; parcelasTotal: string; idFormaPag: integer);
+    procedure GravaCntPagarItem(prefixo, parcela: string; dtVenc: TDate; valor: Double);
+    function RetornaCntPagarItemID(idFilial: Integer; valor: Double; dt_venc: TDate): Integer;
+    procedure btnGerarParcelasClick(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure cdsPagarItemReconcileError(DataSet: TCustomClientDataSet;
+      E: EReconcileError; UpdateKind: TUpdateKind;
+      var Action: TReconcileAction);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure cbxTipoDescontoChange(Sender: TObject);
+    procedure edtDescontoEnter(Sender: TObject);
+    procedure edtDinheiroEnter(Sender: TObject);
+    procedure edtDinheiroExit(Sender: TObject);
+    procedure edtChequeEnter(Sender: TObject);
+    procedure edtChequeExit(Sender: TObject);
+    procedure edtCartaoEnter(Sender: TObject);
+    procedure edtCartaoExit(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    var
+        idCompra, idPagar, idFormaPag, idFornecedor, idBanco, nBanco, nAgencia, nConta, parcelas : Integer;
+        valorDoc, valorParcelar, valorDinheiro, valorDesconto, valorCheque, valorCartao : Double;
+        fornecedor, emitente: string;
+        tipoVenda, moeda: string[2];
+  end;
+
+var
+  frmCompraFinalizacao: TfrmCompraFinalizacao;
+
+implementation
+
+{$R *.dfm}
+
+uses uUtils, untData, untLancDadosBasicCheque;
+
+procedure TfrmCompraFinalizacao.btnCancelarClick(Sender: TObject);
+begin
+  Case MessageBox(Application.Handle, Pchar('Deseja realmente cancelar a finalização da Compra?'), 'Atenção', MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON1) of
+          idYes: begin
+                    ModalResult := mrCancel;
+                 end;
+        end;
+end;
+
+procedure TfrmCompraFinalizacao.btnGerarParcelasClick(Sender: TObject);
+begin
+  cdsPagarItem.EmptyDataSet;
+  cdsPagarCheque.EmptyDataSet;
+  parcelas := 0;
+
+  if valorCheque > 0 then
+  begin
+    Try
+      frmLancDadosBasicCheque := TfrmLancDadosBasicCheque.Create(nil);
+      frmLancDadosBasicCheque.edtEmitente.Text := DM.fdsConfigRAZAO.AsString;
+      frmLancDadosBasicCheque.ShowModal;
+    Finally
+      if frmLancDadosBasicCheque.ModalResult = mrOk then
+      begin
+        idBanco := frmLancDadosBasicCheque.idBanco;
+        nBanco := frmLancDadosBasicCheque.fdsBancoNUM_BANCO.AsInteger;
+        emitente := frmLancDadosBasicCheque.edtEmitente.Text;
+        nAgencia := StrToInt(frmLancDadosBasicCheque.edtAgencia.Text);
+        nConta := StrToInt(frmLancDadosBasicCheque.edtConta.Text);
+        parcelas := StrToInt(edtParcelasCH.Text);
+        GeraParcelaCheque('CH', parcelas, valorCheque);
+      end;
+      frmLancDadosBasicCheque.Free;
+    End;
+  end;
+
+  parcelas := 0;
+
+  if valorCartao > 0 then
+  begin
+    parcelas := StrToInt(edtParcelasCT.Text);
+    GeraParcelaNota('CT', parcelas, valorCartao);
+  end;
+
+  parcelas := 0;
+
+  if valorParcelar > 0 then
+  begin
+    parcelas := StrToInt(edtParcelasNT.Text);
+    GeraParcelaNota('NT', parcelas, valorParcelar);
+  end;
+
+  parcelas := 0;
+
+  btnGravar.SetFocus;
+end;
+
+procedure TfrmCompraFinalizacao.btnGravarClick(Sender: TObject);
+var
+  utils : TUtils;
+begin
+
+  cdsPagarCheque.First;
+  if cdsPagarCheque.RecordCount > 0 then
+  begin
+    while not(cdsPagarCheque.Eof) do
+    begin
+      if Trim(cdsPagarChequeNUM_CHEQUE.AsString) = '' then
+          begin
+            Application.MessageBox('Você deve preencher o nº de todos os cheques.', 'Atenção', MB_OK+MB_ICONEXCLAMATION);
+            Abort;
+          end
+          else
+            cdsPagarCheque.Next;
+    end;
+  end;
+
+  VerificaFormaPagamento;
+
+  if idFormaPag = 1 then
+    PagamentoAVista
+  else
+    GerarDocumentos;
+
+  ModalResult := mrOk;
+end;
+
+procedure TfrmCompraFinalizacao.CalculaValorParcelar;
+var
+  utils : TUtils;
+begin
+    valorParcelar := RoundTo(valorDoc - valorDesconto - valorDinheiro - valorCheque - valorCartao, -2);
+
+    if valorParcelar < 0 then
+      valorParcelar := 0;
+
+    edtNota.Text := utils.AdicionaMascaraDinheiro(FloatToStr(valorParcelar));
+end;
+
+procedure TfrmCompraFinalizacao.cbxTipoDescontoChange(Sender: TObject);
+begin
+  edtDesconto.SetFocus;
+end;
+
+procedure TfrmCompraFinalizacao.cdsPagarItemReconcileError(
+  DataSet: TCustomClientDataSet; E: EReconcileError; UpdateKind: TUpdateKind;
+  var Action: TReconcileAction);
+begin
+  ShowMessage(e.Message);
+end;
+
+procedure TfrmCompraFinalizacao.edtCartaoEnter(Sender: TObject);
+var
+  utils : TUtils;
+begin
+  edtCartao.Text := utils.RetiraMascaraDinheiro(edtCartao.Text);
+  edtCartao.SelectAll;
+end;
+
+procedure TfrmCompraFinalizacao.edtCartaoExit(Sender: TObject);
+var
+  utils : TUtils;
+begin
+  edtCartao.Text := FloatToStr(utils.ValidaInteiroFloat(edtCartao.Text, 'F'));
+  valorCartao :=  StrToFloat(edtCartao.Text);
+  edtCartao.Text := utils.AdicionaMascaraDinheiro(edtCartao.Text);
+
+  CalculaValorParcelar;
+end;
+
+procedure TfrmCompraFinalizacao.edtChequeEnter(Sender: TObject);
+var
+  utils : TUtils;
+begin
+  edtCheque.Text := utils.RetiraMascaraDinheiro(edtCheque.Text);
+  edtCheque.SelectAll;
+end;
+
+procedure TfrmCompraFinalizacao.edtChequeExit(Sender: TObject);
+var
+  utils : TUtils;
+begin
+  edtCheque.Text := FloatToStr(utils.ValidaInteiroFloat(edtCheque.Text, 'F'));
+  valorCheque :=  StrToFloat(edtCheque.Text);
+  edtCheque.Text := utils.AdicionaMascaraDinheiro(edtCheque.Text);
+
+  CalculaValorParcelar;
+end;
+
+procedure TfrmCompraFinalizacao.edtDescontoEnter(Sender: TObject);
+var
+  utils : TUtils;
+begin
+  edtDesconto.SelectAll;
+end;
+
+procedure TfrmCompraFinalizacao.edtDinheiroEnter(Sender: TObject);
+var
+  utils : TUtils;
+begin
+  edtDinheiro.Text := utils.RetiraMascaraDinheiro(edtDinheiro.Text);
+  edtDinheiro.SelectAll;
+end;
+
+procedure TfrmCompraFinalizacao.edtDinheiroExit(Sender: TObject);
+var
+  utils : TUtils;
+begin
+  edtDinheiro.Text := FloatToStr(utils.ValidaInteiroFloat(edtDinheiro.Text, 'F'));
+  valorDinheiro :=  StrToFloat(edtDinheiro.Text);
+  edtDinheiro.Text := utils.AdicionaMascaraDinheiro(edtDinheiro.Text);
+
+  CalculaValorParcelar;
+end;
+
+procedure TfrmCompraFinalizacao.FormActivate(Sender: TObject);
+var
+  utils : TUtils;
+begin
+  edtValorVenda.Text := utils.AdicionaMascaraDinheiro(FloatToStr(valorDoc));
+  valorDinheiro := 0;
+  valorDesconto := 0;
+  valorCheque := 0;
+  valorCartao := 0;
+  valorParcelar := valorDoc;
+
+  cdsPagarItem.CreateDataSet;
+  cdsPagarCheque.CreateDataSet;
+  cdsPagarItem.Open;
+  cdsPagarCheque.Open;
+  fdsCntPagar.Open;
+  fdsCntPagar.Append;
+  idPagar := fdsCntPagarID.AsInteger;
+  edtIDCompra.Text := IntToStr(idCompra);
+  edtPrefixoCompra.Text := 'CP';
+
+  edtFornecedor.Text := fornecedor;
+
+  idFormaPag := DM.fdsConfigIDFORM_PAG_PAD.AsInteger;
+  edtDesconto.SetFocus;
+  moeda := 'DN';
+
+end;
+
+procedure TfrmCompraFinalizacao.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+    SelectNext(ActiveControl, True, True);
+  end;
+end;
+
+procedure TfrmCompraFinalizacao.GeraParcelaCheque(prefixo: string;
+  parcelas: Integer; vlrParcelar: Double);
+var
+  i : integer;
+  parcelasTemp : string[3];
+  valorParcela : Double;
+  dataParcela : TDateTime;
+  utils: TUtils;
+begin
+  i := 1;
+
+  parcelasTemp := utils.FormataParcelas(IntToStr(parcelas));
+
+  valorParcela := vlrParcelar / parcelas;
+
+  valorParcela := RoundTo(valorParcela, -2);
+
+  dataParcela := Now;
+
+  for i := 1 to parcelas do
+  begin
+    cdsPagarCheque.Append;
+    cdsPagarChequeIDFILIAL.AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+    cdsPagarChequeEMITENTE.AsString := emitente;
+    cdsPagarChequeIDBANCO.AsInteger := idBanco;
+    cdsPagarChequeAGENCIA.AsInteger := nAgencia;
+    cdsPagarChequeCONTA.AsInteger := nConta;
+    cdsPagarChequeNUM_BANCO.AsInteger := nBanco;
+    dataParcela := dataParcela + 30;
+    cdsPagarChequeDT_VENCIMENTO.AsDateTime := dataParcela;
+    cdsPagarChequePARCELA.AsString:= utils.FormataParcelas(IntToStr(i)) + parcelasTemp;
+
+      if i = parcelas then
+      valorParcela := valorParcela + (vlrParcelar - (valorParcela * parcelas)); //joga os centavos faltando para a última parcela. Devido ao arredondamento
+    cdsPagarChequeVALOR.AsFloat := valorParcela;
+
+    cdsPagarCheque.Post;
+    tbsCheque.Show;
+  end;
+end;
+
+procedure TfrmCompraFinalizacao.GeraParcelaNota(prefixo: string;
+  parcelas: Integer; vlrParcelar: Double);
+var
+  i : integer;
+  parcelasTemp : string[3];
+  valorParcela : Double;
+  dataParcela : TDateTime;
+  utils: TUtils;
+begin
+  i := 1;
+
+  parcelasTemp := utils.FormataParcelas(IntToStr(parcelas));
+
+  valorParcela := vlrParcelar / parcelas;
+
+  valorParcela := RoundTo(valorParcela, -2);
+
+  dataParcela := Now;
+
+  for i := 1 to parcelas do
+  begin
+    cdsPagarItem.Append;
+    cdsPagarItemIDFILIAL.AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+    cdsPagarItemPOSICAO.AsString := 'AB';
+    cdsPagarItemPARCELA.AsString:= utils.FormataParcelas(IntToStr(i)) + parcelasTemp;
+    cdsPagarItemPREFIXO.AsString := prefixo;
+    dataParcela := dataParcela + 30;
+    cdsPagarItemDT_VENC.AsDateTime := dataParcela;
+
+    if i = parcelas then
+      valorParcela := valorParcela + (vlrParcelar - (valorParcela * parcelas)); //joga os centavos faltando para a última parcela. Devido ao arredondamento
+    cdsPagarItemVALOR.AsFloat := valorParcela;
+
+    cdsPagarItem.Post;
+  end;
+end;
+
+procedure TfrmCompraFinalizacao.GerarDocumentos;
+var
+   prefixoTemp : string[2];
+   idPagarItem: Integer;
+begin
+
+  cdsPagarCheque.First;
+
+  if cdsPagarCheque.RecordCount > 0 then
+  begin
+    GravaCntPagar(valorCheque, edtParcelasCH.Text, 4);
+
+    while not(cdsPagarCheque.Eof) do
+    begin
+      GravaCntPagarItem('CH', cdsPagarChequePARCELA.AsString, cdsPagarChequeDT_VENCIMENTO.AsDateTime, cdsPagarChequeVALOR.AsFloat);
+      idPagarItem := RetornaCntPagarItemID(cdsPagarChequeIDFILIAL.AsInteger, cdsPagarChequeVALOR.AsFloat, cdsPagarChequeDT_VENCIMENTO.AsDateTime);
+
+      qryInsertChequeCntPagar.Close;
+      qryInsertChequeCntPagar.ParamByName('IDPAGAR_ITEM').AsString := IntToStr(idPagarItem);
+      qryInsertChequeCntPagar.ParamByName('IDFILIAL').AsInteger := cdsPagarChequeIDFILIAL.AsInteger;
+      qryInsertChequeCntPagar.ParamByName('IDBANCO').AsString := IntToStr(idBanco);
+      qryInsertChequeCntPagar.ParamByName('AGENCIA').AsString := IntToStr(nAgencia);
+      qryInsertChequeCntPagar.ParamByName('CONTA').AsString := IntToStr(nConta);
+      qryInsertChequeCntPagar.ParamByName('NUM_CHEQUE').AsString := cdsPagarChequeNUM_CHEQUE.AsString;
+      qryInsertChequeCntPagar.ParamByName('DT_EMISSAO').AsDateTime := Now;
+      qryInsertChequeCntPagar.ParamByName('EMITENTE').AsString := cdsPagarChequeEMITENTE.AsString;
+      qryInsertChequeCntPagar.ParamByName('VALOR').AsFloat := cdsPagarChequeVALOR.AsFloat;
+      qryInsertChequeCntPagar.ParamByName('DT_VENCIMENTO').AsDateTime := cdsPagarChequeDT_VENCIMENTO.AsDateTime;
+      qryInsertChequeCntPagar.Prepare;
+      qryInsertChequeCntPagar.ExecQuery;
+
+      cdsPagarCheque.Next;
+    end;
+    moeda := 'CH';
+
+    DM.Conexao.CommitRetaining;
+  end;
+
+  cdsPagarItem.First;
+
+  prefixoTemp := cdsPagarItemPREFIXO.AsString;
+  while not(cdsPagarItem.Eof) do
+  Begin
+    if prefixoTemp = 'CT' then
+    begin
+      GravaCntPagar(valorCartao, edtParcelasCT.Text, 2);
+
+      while (prefixoTemp = 'CT') and not(cdsPagarItem.Eof) do
+      begin
+        GravaCntPagarItem(prefixoTemp, cdsPagarItemPARCELA.AsString, cdsPagarItemDT_VENC.AsDateTime, cdsPagarItemVALOR.AsFloat);
+        cdsPagarItem.Next;
+        prefixoTemp := cdsPagarItemPREFIXO.AsString;
+      end;
+      moeda := prefixoTemp;
+    end;
+
+    if (prefixoTemp = 'NT') then
+    begin
+      GravaCntPagar(valorParcelar, edtParcelasNT.Text, 6);
+
+      while (prefixoTemp = 'NT') and not(cdsPagarItem.Eof)  do
+      begin
+        GravaCntPagarItem(prefixoTemp, cdsPagarItemPARCELA.AsString, cdsPagarItemDT_VENC.AsDateTime, cdsPagarItemVALOR.AsFloat);
+        cdsPagarItem.Next;
+        prefixoTemp := cdsPagarItemPREFIXO.AsString;
+      end;
+      moeda := prefixoTemp;
+    end;
+
+    if prefixoTemp = 'FN' then
+    begin
+      GravaCntPagar(valorCartao, edtParcelasCT.Text, 5);
+
+      while (prefixoTemp = 'FN') and not(cdsPagarItem.Eof) do
+      begin
+        GravaCntPagarItem(prefixoTemp, cdsPagarItemPARCELA.AsString, cdsPagarItemDT_VENC.AsDateTime, cdsPagarItemVALOR.AsFloat);
+        cdsPagarItem.Next;
+        prefixoTemp := cdsPagarItemPREFIXO.AsString;
+      end;
+      moeda := prefixoTemp;
+    end;
+  End;
+end;
+
+procedure TfrmCompraFinalizacao.GravaCntPagar(valorTotal: Double;
+  parcelasTotal: string; idFormaPag: integer);
+var
+  utils: TUtils;
+begin
+  fdsCntPagar.Open;
+  fdsCntPagar.Append;
+  idPagar := fdsCntPagarID.AsInteger;
+  fdsCntPagarIDFILIAL.AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+  fdsCntPagarDT_INC.AsDateTime := Now;
+  fdsCntPagarPREFIXO.AsString := 'CP';
+  fdsCntPagarPOSICAO.AsString := 'AB';
+  fdsCntPagarIDFORNECEDOR.AsInteger := idFornecedor;
+  fdsCntPagarDINHEIRO.AsFloat := valorDinheiro;
+  fdsCntPagarVALOR.AsFloat := valorTotal;
+  fdsCntPagarIDPORTADOR.AsInteger := DM.fdsConfigIDPORTADOR_PADRAO.AsInteger;
+  fdsCntPagarIDFORMA_PAG.AsInteger := idFormaPag;
+  fdsCntPagarIDCOMPRA.AsInteger := idCompra;
+  fdsCntPagarTOT_PARCELA.AsString := utils.FormataParcelas(parcelasTotal);
+  fdsCntPagarHISTORICO.AsString := edtDescricao.Text;
+
+  fdsCntPagar.Post;
+  DM.conexao.CommitRetaining;
+end;
+
+procedure TfrmCompraFinalizacao.GravaCntPagarItem(prefixo, parcela: string;
+  dtVenc: TDate; valor: Double);
+begin
+  qryInsertCntPagar_Item.Close;
+
+  qryInsertCntPagar_Item.ParamByName('POSICAO').AsString := 'AB';
+  qryInsertCntPagar_Item.ParamByName('PREFIXO').AsString := prefixo;
+  qryInsertCntPagar_Item.ParamByName('DT_VENC').AsDateTime := dtVenc;
+  qryInsertCntPagar_Item.ParamByName('VALOR').AsFloat := valor;
+  qryInsertCntPagar_Item.ParamByName('PARCELA').AsString := parcela;
+  qryInsertCntPagar_Item.ParamByName('IDPAGAR').AsInteger := idPagar;
+  qryInsertCntPagar_Item.ParamByName('IDFILIAL').AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+
+  qryInsertCntPagar_Item.Prepare;
+  qryInsertCntPagar_Item.ExecQuery;
+
+  DM.conexao.CommitRetaining;
+end;
+
+procedure TfrmCompraFinalizacao.PagamentoAVista;
+begin
+  fdsCntPagar.Open;
+  fdsCntPagar.Append;
+  idPagar := fdsCntPagarID.AsInteger;
+  fdsCntPagarIDFILIAL.AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+  fdsCntPagarDT_INC.AsDateTime := Now;
+  fdsCntPagarPREFIXO.Text := 'CP';
+  fdsCntPagarPOSICAO.AsString := 'PG';
+  fdsCntPagarIDFORNECEDOR.AsInteger := idFornecedor;
+  fdsCntPagarDINHEIRO.AsFloat := valorDinheiro;
+  fdsCntPagarVALOR.AsFloat := valorDinheiro;
+  fdsCntPagarVALOR_PAGO.AsFloat := valorDinheiro;
+  fdsCntPagarIDPORTADOR.AsInteger := DM.fdsConfigIDPORTADOR_PADRAO.AsInteger;
+  fdsCntPagarIDFORMA_PAG.AsInteger := 1;
+  fdsCntPagarIDCOMPRA.AsInteger := idCompra;
+  fdsCntPagarTOT_PARCELA.AsString := '001';
+  fdsCntPagarHISTORICO.AsString := edtDescricao.Text;
+
+  fdsCntPagar.Post;
+  DM.conexao.CommitRetaining;
+
+  qryInsertCntPagar_Item.Close;
+
+  qryInsertCntPagar_Item.ParamByName('POSICAO').AsString := 'PG';
+  qryInsertCntPagar_Item.ParamByName('PREFIXO').AsString := 'CP';
+  qryInsertCntPagar_Item.ParamByName('DT_VENC').AsDateTime := Now;
+  qryInsertCntPagar_Item.ParamByName('VALOR').AsFloat := valorDinheiro;
+  qryInsertCntPagar_Item.ParamByName('PARCELA').AsString := '001001';
+  qryInsertCntPagar_Item.ParamByName('IDPAGAR').AsInteger := idPagar;
+  qryInsertCntPagar_Item.ParamByName('IDFILIAL').AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+
+  qryInsertCntPagar_Item.Prepare;
+  qryInsertCntPagar_Item.ExecQuery;
+
+  with fdsPagarItem do
+  begin
+    Close;
+    Conditions.Clear;
+    Conditions.AddCondition('IDRECEBER','', True);
+    Conditions.Apply;
+    Prepare;
+    Open;
+  end;
+
+  fdsPagarItem.Edit;
+  fdsPagarItemDT_PAG.AsDateTime := Now;
+  fdsPagarItemVALOR_PAGO.AsFloat := valorDinheiro;
+  fdsPagarItem.Post;
+
+  DM.conexao.CommitRetaining;
+
+end;
+
+function TfrmCompraFinalizacao.RetornaCntPagarItemID(idFilial: Integer;
+  valor: Double; dt_venc: TDate): Integer;
+begin
+  qryRetornaIDCntPagar_Item.Close;
+  qryRetornaIDCntPagar_Item.ParamByName('IDPAGAR').AsInteger := idPagar;
+  qryRetornaIDCntPagar_Item.ParamByName('IDFILIAL').AsInteger := idFilial;
+  qryRetornaIDCntPagar_Item.ParamByName('VALOR').AsFloat := valor;
+  qryRetornaIDCntPagar_Item.ParamByName('DT_VENC').AsDateTime := dt_venc;
+  qryRetornaIDCntPagar_Item.Prepare;
+  qryRetornaIDCntPagar_Item.ExecQuery;
+  Result := qryRetornaIDCntPagar_Item.FieldByName('ID').AsInteger;
+end;
+
+procedure TfrmCompraFinalizacao.VerificaFormaPagamento;
+var
+  i : SmallInt;
+begin
+
+  i := 0;
+
+  if valorDinheiro > 0 then
+  begin
+    Inc(i);
+    idFormaPag := 1;
+  end;
+
+  if valorCheque > 0 then
+  begin
+    Inc(i);
+    idFormaPag := 4;
+  end;
+
+  if valorCartao > 0 then
+  begin
+    Inc(i);
+    idFormaPag := 2;
+  end;
+
+  if valorParcelar > 0 then
+  begin
+    Inc(i);
+    idFormaPag := 6;
+  end;
+
+  if i > 1 then
+  begin
+    idFormaPag := 0;
+  end;
+
+end;
+
+end.

@@ -1,0 +1,43 @@
+unit untInfoAdicionalProduto;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, RzLabel, RzButton, RzEdit,
+  RzBckgnd;
+
+type
+  TfrmInfoAdicionalProduto = class(TForm)
+    RzBackground1: TRzBackground;
+    mmoInfo: TRzMemo;
+    RzBitBtn1: TRzBitBtn;
+    btnOK: TRzBitBtn;
+    RzLabel22: TRzLabel;
+    procedure RzBitBtn1Click(Sender: TObject);
+    procedure btnOKClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmInfoAdicionalProduto: TfrmInfoAdicionalProduto;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmInfoAdicionalProduto.btnOKClick(Sender: TObject);
+begin
+  ModalResult := mrOk;
+end;
+
+procedure TfrmInfoAdicionalProduto.RzBitBtn1Click(Sender: TObject);
+begin
+  ModalResult := mrCancel;
+end;
+
+end.

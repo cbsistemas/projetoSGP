@@ -1,0 +1,493 @@
+{$A8,B-,C+,D+,E-,F-,G+,H+,I+,J-,K-,L+,M-,N-,O+,P+,Q-,R-,S-,T-,U-,V+,W-,X+,Y+,Z1}
+{$MINSTACKSIZE $00004000}
+{$MAXSTACKSIZE $00100000}
+{$IMAGEBASE $00400000}
+{$APPTYPE GUI}
+{$WARN SYMBOL_DEPRECATED ON}
+{$WARN SYMBOL_LIBRARY ON}
+{$WARN SYMBOL_PLATFORM ON}
+{$WARN SYMBOL_EXPERIMENTAL ON}
+{$WARN UNIT_LIBRARY ON}
+{$WARN UNIT_PLATFORM ON}
+{$WARN UNIT_DEPRECATED ON}
+{$WARN UNIT_EXPERIMENTAL ON}
+{$WARN HRESULT_COMPAT ON}
+{$WARN HIDING_MEMBER ON}
+{$WARN HIDDEN_VIRTUAL ON}
+{$WARN GARBAGE ON}
+{$WARN BOUNDS_ERROR ON}
+{$WARN ZERO_NIL_COMPAT ON}
+{$WARN STRING_CONST_TRUNCED ON}
+{$WARN FOR_LOOP_VAR_VARPAR ON}
+{$WARN TYPED_CONST_VARPAR ON}
+{$WARN ASG_TO_TYPED_CONST ON}
+{$WARN CASE_LABEL_RANGE ON}
+{$WARN FOR_VARIABLE ON}
+{$WARN CONSTRUCTING_ABSTRACT ON}
+{$WARN COMPARISON_FALSE ON}
+{$WARN COMPARISON_TRUE ON}
+{$WARN COMPARING_SIGNED_UNSIGNED ON}
+{$WARN COMBINING_SIGNED_UNSIGNED ON}
+{$WARN UNSUPPORTED_CONSTRUCT ON}
+{$WARN FILE_OPEN ON}
+{$WARN FILE_OPEN_UNITSRC ON}
+{$WARN BAD_GLOBAL_SYMBOL ON}
+{$WARN DUPLICATE_CTOR_DTOR ON}
+{$WARN INVALID_DIRECTIVE ON}
+{$WARN PACKAGE_NO_LINK ON}
+{$WARN PACKAGED_THREADVAR ON}
+{$WARN IMPLICIT_IMPORT ON}
+{$WARN HPPEMIT_IGNORED ON}
+{$WARN NO_RETVAL ON}
+{$WARN USE_BEFORE_DEF ON}
+{$WARN FOR_LOOP_VAR_UNDEF ON}
+{$WARN UNIT_NAME_MISMATCH ON}
+{$WARN NO_CFG_FILE_FOUND ON}
+{$WARN IMPLICIT_VARIANTS ON}
+{$WARN UNICODE_TO_LOCALE ON}
+{$WARN LOCALE_TO_UNICODE ON}
+{$WARN IMAGEBASE_MULTIPLE ON}
+{$WARN SUSPICIOUS_TYPECAST ON}
+{$WARN PRIVATE_PROPACCESSOR ON}
+{$WARN UNSAFE_TYPE OFF}
+{$WARN UNSAFE_CODE OFF}
+{$WARN UNSAFE_CAST OFF}
+{$WARN OPTION_TRUNCATED ON}
+{$WARN WIDECHAR_REDUCED ON}
+{$WARN DUPLICATES_IGNORED ON}
+{$WARN UNIT_INIT_SEQ ON}
+{$WARN LOCAL_PINVOKE ON}
+{$WARN MESSAGE_DIRECTIVE ON}
+{$WARN TYPEINFO_IMPLICITLY_ADDED ON}
+{$WARN RLINK_WARNING ON}
+{$WARN IMPLICIT_STRING_CAST ON}
+{$WARN IMPLICIT_STRING_CAST_LOSS ON}
+{$WARN EXPLICIT_STRING_CAST OFF}
+{$WARN EXPLICIT_STRING_CAST_LOSS OFF}
+{$WARN CVT_WCHAR_TO_ACHAR ON}
+{$WARN CVT_NARROWING_STRING_LOST ON}
+{$WARN CVT_ACHAR_TO_WCHAR ON}
+{$WARN CVT_WIDENING_STRING_LOST ON}
+{$WARN NON_PORTABLE_TYPECAST ON}
+{$WARN XML_WHITESPACE_NOT_ALLOWED ON}
+{$WARN XML_UNKNOWN_ENTITY ON}
+{$WARN XML_INVALID_NAME_START ON}
+{$WARN XML_INVALID_NAME ON}
+{$WARN XML_EXPECTED_CHARACTER ON}
+{$WARN XML_CREF_NO_RESOLVE ON}
+{$WARN XML_NO_PARM ON}
+{$WARN XML_NO_MATCHING_PARM ON}
+{$WARN IMMUTABLE_STRINGS OFF}
+unit untConfig;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzCmboBx, Data.DB, FIBDataSet,
+  pFIBDataSet, RzRadChk, RzDBChk, RzPanel, Vcl.ComCtrls, RzDTP, RzDBDTP,
+  Vcl.ExtCtrls, RzButton, Vcl.StdCtrls, RzDBCmbo, Vcl.DBCtrls, Vcl.Mask, RzEdit,
+  RzDBEdit, RzTabs, RzLabel, Vcl.Imaging.pngimage, JvExExtCtrls, JvImage,
+  RzBckgnd, System.IniFiles, RzRadGrp, RzDBRGrp, FIBQuery, pFIBQuery, ACBrBAL,ACBrDevice;
+
+type
+  TfrmConfig = class(TForm)
+    RzBackground1: TRzBackground;
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloCliente: TRzLabel;
+    pgcControl: TRzPageControl;
+    tbsGeral: TRzTabSheet;
+    lblNome: TRzLabel;
+    RzLabel2: TRzLabel;
+    lblRG: TRzLabel;
+    lblCPF: TRzLabel;
+    RzLabel11: TRzLabel;
+    edtNome: TRzDBEdit;
+    edtRazao: TRzDBEdit;
+    edtCNPJ: TRzDBEdit;
+    edtIE: TRzDBEdit;
+    lcbFilial: TRzDBLookupComboBox;
+    TabSheet1: TRzTabSheet;
+    fdsFilial: TpFIBDataSet;
+    fdsFilialID: TFIBBCDField;
+    fdsFilialNOME: TFIBStringField;
+    dsFilial: TDataSource;
+    RzGroupBox3: TRzGroupBox;
+    RzGroupBox2: TRzGroupBox;
+    RzDBCheckBox1: TRzDBCheckBox;
+    RzDBCheckBox2: TRzDBCheckBox;
+    RzDBCheckBox3: TRzDBCheckBox;
+    RzLabel14: TRzLabel;
+    btnCertNumSerie: TRzBitBtn;
+    RzLabel15: TRzLabel;
+    RzDBEdit2: TRzDBEdit;
+    RzLabel16: TRzLabel;
+    RzDBEdit5: TRzDBEdit;
+    RzLabel17: TRzLabel;
+    RzDBEdit6: TRzDBEdit;
+    RzLabel18: TRzLabel;
+    edtCidade: TRzDBEdit;
+    RzLabel19: TRzLabel;
+    btnPesqCidade: TRzBitBtn;
+    edtCep: TRzDBEdit;
+    RzLabel20: TRzLabel;
+    RzLabel12: TRzLabel;
+    RzLabel21: TRzLabel;
+    RzDBEdit9: TRzDBEdit;
+    RzLabel22: TRzLabel;
+    btnPesqLogo: TRzBitBtn;
+    RzDBEdit3: TRzDBEdit;
+    RzDBEdit4: TRzDBEdit;
+    RzDBEdit10: TRzDBEdit;
+    RzDBEdit11: TRzDBEdit;
+    OpenDialog1: TOpenDialog;
+    RzDBRadioGroup1: TRzDBRadioGroup;
+    RzLabel1: TRzLabel;
+    btnSelImpressora: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    btnGravar: TRzBitBtn;
+    RzDBCheckBox4: TRzDBCheckBox;
+    RzLabel3: TRzLabel;
+    RzGroupBox1: TRzGroupBox;
+    RzLabel4: TRzLabel;
+    RzLabel5: TRzLabel;
+    edtUltimaNFe: TEdit;
+    edtUltimaNFCe: TEdit;
+    RzDBEdit7: TRzDBEdit;
+    RzDBEdit8: TRzDBEdit;
+    qrySQL: TpFIBQuery;
+    RzLabel6: TRzLabel;
+    cbxModeloImpressora: TRzComboBox;
+    tbsBalanca: TRzTabSheet;
+    RzGroupBox4: TRzGroupBox;
+    cbxModeloBalanca: TRzComboBox;
+    cbxPortaSerial: TRzComboBox;
+    cbxBaud: TRzComboBox;
+    cbxParity: TRzComboBox;
+    cbxStop: TRzComboBox;
+    cbxHandshaking: TRzComboBox;
+    cbxDatabts: TRzComboBox;
+    edtTimeOut: TRzDBEdit;
+    RzDBEdit1: TRzDBEdit;
+    RzLabel7: TRzLabel;
+    RzDBCheckBox5: TRzDBCheckBox;
+    procedure btnGravarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnPesqCidadeClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure btnCertNumSerieClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnCertCaminhoClick(Sender: TObject);
+    procedure btnPesqLogoClick(Sender: TObject);
+    procedure btnSelImpressoraClick(Sender: TObject);
+    procedure cbxModeloImpressoraChange(Sender: TObject);
+    procedure cbxModeloBalancaClick(Sender: TObject);
+    procedure cbxModeloBalancaChange(Sender: TObject);
+    procedure cbxPortaSerialChange(Sender: TObject);
+    procedure cbxBaudChange(Sender: TObject);
+    procedure cbxParityChange(Sender: TObject);
+    procedure cbxStopChange(Sender: TObject);
+    procedure cbxHandshakingChange(Sender: TObject);
+    procedure cbxDatabtsChange(Sender: TObject);
+  private
+    { Private declarations }
+    ultimaNFCe, ultimaNFe : integer;
+  public
+    { Public declarations }
+  end;
+
+var
+  frmConfig: TfrmConfig;
+
+implementation
+
+{$R *.dfm}
+
+uses untData, untPesqCidade, untPrincipal, untSelImpressora;
+
+procedure TfrmConfig.btnCancelarClick(Sender: TObject);
+begin
+  frmConfig.Close;
+end;
+
+procedure TfrmConfig.btnCertCaminhoClick(Sender: TObject);
+begin
+  OpenDialog1.Title := 'Selecione o Certificado';
+  OpenDialog1.DefaultExt := '*.pfx';
+  OpenDialog1.Filter := 'Arquivos PFX (*.pfx)|*.pfx|Todos os Arquivos (*.*)|*.*';
+  OpenDialog1.InitialDir := ExtractFileDir(application.ExeName);
+end;
+
+procedure TfrmConfig.btnCertNumSerieClick(Sender: TObject);
+var
+ mensagem:String;
+begin
+ try
+  DM.fdsCaixaCERT_NUM_SERIE.AsString := frmPrincipal.ACBrNFe1.SSL.SelecionarCertificado;
+ Except
+  on E: Exception do
+  begin
+  mensagem:= 'Nenhum certificado selecionado:'+ e.Message;
+  Application.MessageBox(pChar(mensagem), 'Atenção', MB_OK+MB_ICONQUESTION);
+  end;
+  End;
+end;
+
+procedure TfrmConfig.btnGravarClick(Sender: TObject);
+var
+INI : TIniFile;
+modeloBalanca,portaBalanca : string;
+begin
+
+  case MessageBox(Application.Handle, Pchar('Deseja realmente salvar as alterações?'), 'Atenção', MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) of
+    IDYES : begin
+//              if ultimaNFe = 0 then
+//              begin
+//               with qrySQL do
+//               begin
+//                 close;
+//                 SQL.Clear;
+//                 SQL.Add('ALTER SEQUENCE GEN_CODIGO_NFE_PEDIDO RESTART WITH ' + edtUltimaNFe.Text);
+//                 prepare;
+//                 ExecQuery;
+//               end;
+//              end;
+//
+//              if ultimaNFCe = 0 then
+//              begin
+//               with qrySQL do
+//               begin
+//                 close;
+//                 SQL.Clear;
+//                 SQL.Add('ALTER SEQUENCE GEN_CODIGO_NFCE_VENDA RESTART WITH ' + edtUltimaNFCe.Text);
+//                 prepare;
+//                 ExecQuery;
+//               end;
+//              end;
+              frmPrincipal.ACBrNFe1.Configuracoes.Certificados.Senha       := DM.fdsCaixaCERT_SENHA.AsString;
+              frmPrincipal.ACBrNFe1.Configuracoes.Certificados.NumeroSerie := DM.fdsCaixaCERT_NUM_SERIE.AsString;
+
+              if cbxModeloBalanca.value >= '0' then
+              begin
+//                INI := TIniFile.Create(ExtractFilePath(Application.ExeName) + '\PATH.INI');
+//
+//                try
+//                  INI.WriteString('CONFIG', 'MODELOBALANCA',cbxModeloBalanca.value);
+//                  modeloBalanca := INI.ReadString('CONFIG', 'MODELOBALANCA','');
+//                  INI.WriteString('CONFIG', 'PORTABALANCA',cbxPortaSerial.value);
+//                  portaBalanca:= INI.ReadString('CONFIG', 'PORTABALANCA','');
+
+                 //configurando Balanca
+                  if DM.fdsCaixaMODELO_BALANCA.AsString = EmptyStr then
+                      DM.fdsCaixaMODELO_BALANCA.AsString := '0';
+
+                  if DM.fdsCaixaMODELO_BALANCA.AsString > '0' then
+                  begin
+                  if frmPrincipal.acbrBal1.Ativo then
+                    frmPrincipal.ACBrBAL1.Desativar;
+
+                    frmPrincipal.ACBrBAL1.Modelo := TACBrBALModelo(StrToInt(DM.fdsCaixaMODELO_BALANCA.AsString));
+                    frmPrincipal.ACBrBAL1.Device.HandShake := TACBrHandShake(DM.fdsCaixaHANDSHAKING_BAL.AsInteger);
+                    frmPrincipal.ACBrBAL1.Device.Parity    := TACBrSerialParity(DM.fdsCaixaPARITY_BAL.AsInteger);
+                    frmPrincipal.ACBrBAL1.Device.Stop      :=TACBrSerialStop( DM.fdsCaixaSTOP_BITS_BAL.AsInteger);
+                    frmPrincipal.ACBrBAL1.Porta := DM.fdsCaixaPORTA_BALANCA.AsString;
+                    frmPrincipal.ACBrBAL1.Device.Baud:= DM.fdsCaixaBAUD_RATE.AsInteger;
+                    frmPrincipal.ACBrBAL1.Ativar;
+                  end;
+
+              end;
+
+              DM.fdsCaixa.Post;
+              DM.fdsConfig.Post;
+              DM.fdsConfigNFe.Post;
+              dm.conexao.CommitRetaining;
+              ModalResult := mrOk;
+            end;
+end;
+end;
+procedure TfrmConfig.btnPesqCidadeClick(Sender: TObject);
+begin
+  Try
+    frmPesqCidade := TfrmPesqCidade.Create(nil);
+    frmPesqCidade.ShowModal;
+  Finally
+    if frmPesqCidade.ModalResult = mrOk then
+    begin
+      DM.fdsConfigIDCIDADE.AsInteger := frmPesqCidade.fdsCidadesID.AsInteger;
+      edtCidade.Text := frmPesqCidade.fdsCidadesNOME.AsString + ' - ' + frmPesqCidade.fdsCidadesUF.AsString;
+    end;
+    frmPesqCidade.Free;
+  End;
+  edtCEP.SetFocus;
+end;
+
+procedure TfrmConfig.btnPesqLogoClick(Sender: TObject);
+begin
+  OpenDialog1.Title := 'Selecione a Logo Marca';
+  OpenDialog1.DefaultExt := '*.bmp';
+  OpenDialog1.Filter := 'Arquivos BMP (*.bmp)|*.bmp|Arquivos JPG (*.jpg)|*.jpg|Todos os Arquivos (*.*)|*.*';
+  OpenDialog1.InitialDir := ExtractFileDir(application.ExeName);
+  if OpenDialog1.Execute then
+  begin
+    DM.fdsConfigLOGO_IMG_CAMINHO.AsString := OpenDialog1.FileName;
+  end;
+end;
+
+procedure TfrmConfig.btnSelImpressoraClick(Sender: TObject);
+begin
+  try
+    frmSelImpressora := TfrmSelImpressora.Create(nil);
+    frmSelImpressora.ShowModal;
+  finally
+    if frmSelImpressora.ModalResult = mrOk then
+     // edtImpressoraCupom.Text := frmSelImpressora.cbxImpressoras.Value;
+      DM.fdsCaixaIMP_CUPOM.AsString := frmSelImpressora.cbxImpressoras.Value;
+
+  end;
+end;
+
+procedure TfrmConfig.cbxBaudChange(Sender: TObject);
+begin
+ DM.fdsCaixaBAUD_RATE.AsString := cbxBaud.Value;
+end;
+
+procedure TfrmConfig.cbxDatabtsChange(Sender: TObject);
+begin
+  DM.fdsCaixaDATA_BITS_BAL.AsString:= cbxDatabts.Value;
+end;
+
+procedure TfrmConfig.cbxHandshakingChange(Sender: TObject);
+begin
+ DM.fdsCaixaHANDSHAKING_BAL.AsString:= cbxHandshaking.Value;
+end;
+
+procedure TfrmConfig.cbxModeloBalancaChange(Sender: TObject);
+begin
+ DM.fdsCaixaMODELO_BALANCA.AsString  := cbxModeloBalanca.value;
+end;
+
+procedure TfrmConfig.cbxModeloBalancaClick(Sender: TObject);
+begin
+  if cbxModeloBalanca.Value > '0'then
+  begin
+    cbxPortaSerial.Enabled:= True;
+    cbxBaud.Enabled := True;
+    edtTimeOut.Enabled := True;
+  end
+  else
+  begin
+    cbxPortaSerial.Value := '0';
+    cbxPortaSerial.Text :='Nenhum';
+    DM.fdsCaixaPORTA_BALANCA.AsString :=  cbxPortaSerial.Value;
+    cbxPortaSerial.Enabled:= false;
+    cbxBaud.Enabled := false;
+    edtTimeOut.Enabled := False;
+  end;
+  end;
+
+procedure TfrmConfig.cbxModeloImpressoraChange(Sender: TObject);
+begin
+  DM.fdsCaixaMODELO_IMPRESSORA.AsString := cbxModeloImpressora.Value;
+end;
+
+procedure TfrmConfig.cbxParityChange(Sender: TObject);
+begin
+ DM.fdsCaixaPARITY_BAL.AsString  := cbxParity.value;
+end;
+
+procedure TfrmConfig.cbxPortaSerialChange(Sender: TObject);
+begin
+  DM.fdsCaixaPORTA_BALANCA.AsString :=  cbxPortaSerial.Value;
+end;
+
+procedure TfrmConfig.cbxStopChange(Sender: TObject);
+begin
+ DM.fdsCaixaSTOP_BITS_BAL.AsString  := cbxStop.value;
+end;
+
+procedure TfrmConfig.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  if ModalResult <> mrOk then
+  begin
+    case MessageBox(Application.Handle, Pchar('Deseja realmente sair sem salvar as alterações?'), 'Atenção', MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) of
+      IDYES : begin
+                DM.fdsConfig.Cancel;
+                DM.fdsConfigNFe.Cancel;
+                dm.conexao.RollbackRetaining;
+                ModalResult := mrCancel;
+              end;
+
+      IDNO : begin
+               Abort;
+             end;
+    end;
+  end;
+end;
+
+procedure TfrmConfig.FormCreate(Sender: TObject);
+begin
+//  with DM.fdsCaixa do
+//  begin
+//    Close;
+//    ParamByName('NUM_CAIXA').AsInteger := DM.numCaixa;
+//    ParamByName('IDFILIAL').AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+//    Prepare;
+//    Open;
+//  end;
+
+  if DM.fdsConfig.RecordCount > 0 then
+  begin
+    DM.fdsConfig.Edit;
+  end
+  else
+  begin
+    DM.fdsConfig.Append;
+    DM.fdsConfigID.AsInteger := 1;
+  end;
+
+  if DM.fdsCaixa.RecordCount > 0 then
+  begin
+  frmPrincipal.PescCaixa;
+  DM.fdsCaixa.Edit;
+  end
+  else
+  begin
+    DM.fdsCaixa.Append;
+  end;
+
+  if DM.fdsConfigNFe.RecordCount > 0 then
+  begin
+    DM.fdsConfigNFe.Edit;
+  end
+  else
+  begin
+    DM.fdsConfigNFe.Append;
+    DM.fdsConfigNFeID.AsInteger := 1;
+  end;
+
+//  with qrySQL do
+//  begin
+//   Close;
+//   SQL.Add('SELECT GEN_ID(GEN_CODIGO_NFE_PEDIDO,0) AS NFE, GEN_ID(gen_codigo_nfce_venda,0) AS NFCe FROM RDB$DATABASE');
+//   Prepare;
+//   ExecQuery;
+//
+//   edtUltimaNFe.Text := FieldByName('NFE').AsString;
+//   edtUltimaNFCe.Text := FieldByName('NFCe').AsString;
+//
+//   ultimaNFe := StrToInt(edtUltimaNFe.Text);
+//   ultimaNFCe :=StrToInt(edtUltimaNFCe.Text);
+//  end;
+
+  cbxModeloImpressora.Value := DM.fdsCaixaMODELO_IMPRESSORA.AsString;
+  cbxModeloBalanca.Value := DM.fdsCaixaMODELO_BALANCA.AsString;
+  cbxPortaSerial.Value := DM.fdsCaixaPORTA_BALANCA.AsString;
+  cbxBaud.Value:=DM.fdsCaixaBAUD_RATE.AsString;
+  edtTimeOut.Text:= DM.fdsCaixaTIME_OUT.AsString;
+  cbxParity.value := DM.fdsCaixaPARITY_BAL.AsString;
+  cbxStop.value:= DM.fdsCaixaSTOP_BITS_BAL.AsString;
+  cbxHandshaking.Value := DM.fdsCaixaHANDSHAKING_BAL.AsString;
+  cbxDatabts.Value:= DM.fdsCaixaDATA_BITS_BAL.AsString;
+end;
+end.

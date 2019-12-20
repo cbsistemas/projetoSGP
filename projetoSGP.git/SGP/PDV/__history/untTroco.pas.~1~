@@ -1,0 +1,35 @@
+unit untTroco;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, RzPanel, StdCtrls, Mask, RzEdit, RzLabel, RzButton,
+  RzBckgnd;
+
+type
+  TfrmTroco = class(TForm)
+    RzBackground1: TRzBackground;
+    btnSair: TRzBitBtn;
+    RzLabel1: TRzLabel;
+    RzLabel2: TRzLabel;
+    RzLabel3: TRzLabel;
+    RzEdit1: TRzEdit;
+    RzEdit2: TRzEdit;
+    RzEdit3: TRzEdit;
+    RzPanel1: TRzPanel;
+    RzLabel4: TRzLabel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmTroco: TfrmTroco;
+
+implementation
+
+{$R *.dfm}
+
+end.

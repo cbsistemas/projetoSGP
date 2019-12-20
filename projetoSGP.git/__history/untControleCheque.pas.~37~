@@ -1,0 +1,936 @@
+unit untControleCheque;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.DBGrids, RzDBGrid,
+  dxGDIPlusClasses, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Imaging.jpeg, RzButton,
+  RzPanel, RzRadGrp, RzLabel, Data.DB, Datasnap.DBClient, Datasnap.Provider,
+  FIBDataSet, pFIBDataSet, Vcl.Mask, RzEdit, RzCmboBx, Vcl.ImgList,uUtils,
+  Vcl.Menus,System.Math,System.DateUtils, FIBDatabase, pFIBDatabase,
+  pFIBClientDataSet, FIBQuery, pFIBQuery, RzTabs, frxClass, frxDBSet,
+  System.Actions, Vcl.ActnList, JvExDBGrids, JvDBGrid;
+
+type
+  TfrmControleCheque = class(TForm)
+    Panel1: TPanel;
+    Image1: TImage;
+    Panel2: TPanel;
+    Image2: TImage;
+    Image3: TImage;
+    Image4: TImage;
+    Image5: TImage;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Image6: TImage;
+    Label5: TLabel;
+    RzLabel1: TRzLabel;
+    rgbStatus: TRzRadioGroup;
+    rgbCliente: TRzGroupBox;
+    imgPesqCheques: TImage;
+    EdtCliente: TEdit;
+    btnPesqCli: TRzBitBtn;
+    edtCodCliente: TEdit;
+    Label6: TLabel;
+    Label7: TLabel;
+    fdsCntCheque: TpFIBDataSet;
+    cdsCntCheque: TClientDataSet;
+    dsCntCheque: TDataSource;
+    Image8: TImage;
+    Label9: TLabel;
+    fdsFilial: TpFIBDataSet;
+    fdsFilialID: TFIBBCDField;
+    fdsFilialDT_INC: TFIBDateField;
+    fdsFilialDT_ALT: TFIBDateField;
+    fdsFilialSTATUS: TFIBStringField;
+    fdsFilialNOME: TFIBStringField;
+    fdsFilialENDERECO: TFIBStringField;
+    fdsFilialBAIRRO: TFIBStringField;
+    fdsFilialIDCIDADE: TFIBBCDField;
+    fdsFilialCEP: TFIBStringField;
+    fdsFilialTELEFONE1: TFIBStringField;
+    fdsFilialTELEFONE2: TFIBStringField;
+    fdsFilialEMAIL: TFIBStringField;
+    fdsFilialIDROTA: TFIBBCDField;
+    fdsFilialENVIADO_WEB: TFIBStringField;
+    fdsCntChequeID: TFIBBCDField;
+    fdsCntChequeIDFILIAL: TFIBBCDField;
+    fdsCntChequeIDRECEBER_ITEM: TFIBBCDField;
+    fdsCntChequeIDBANCO: TFIBBCDField;
+    fdsCntChequeAGENCIA: TFIBStringField;
+    fdsCntChequeCONTA: TFIBStringField;
+    fdsCntChequeNUM_CHEQUE: TFIBStringField;
+    fdsCntChequeDT_EMISSAO: TFIBDateField;
+    fdsCntChequeEMITENTE: TFIBStringField;
+    fdsCntChequeVALOR: TFIBBCDField;
+    fdsCntChequeDT_VENCIMENTO: TFIBDateField;
+    fdsCntChequeENVIADO_WEB: TFIBStringField;
+    fdsCntChequeIDCLIENTE: TFIBBCDField;
+    fdsCntChequeSTATUS_RECEBER: TFIBStringField;
+    fdsCntChequeSTATUS_RECEBER_ITEM: TFIBStringField;
+    fdsCntChequeREFERENCIA: TFIBStringField;
+    fdsCntChequeBANCO: TFIBStringField;
+    fdsCntChequeNOME: TFIBStringField;
+    cdsCntChequeID: TBCDField;
+    cdsCntChequeIDFILIAL: TBCDField;
+    cdsCntChequeIDRECEBER_ITEM: TBCDField;
+    cdsCntChequeIDBANCO: TBCDField;
+    cdsCntChequeAGENCIA: TStringField;
+    cdsCntChequeCONTA: TStringField;
+    cdsCntChequeNUM_CHEQUE: TStringField;
+    cdsCntChequeDT_EMISSAO: TDateField;
+    cdsCntChequeEMITENTE: TStringField;
+    cdsCntChequeVALOR: TBCDField;
+    cdsCntChequeDT_VENCIMENTO: TDateField;
+    cdsCntChequeENVIADO_WEB: TStringField;
+    cdsCntChequeIDCLIENTE: TBCDField;
+    cdsCntChequeSTATUS_RECEBER: TStringField;
+    cdsCntChequeSTATUS_RECEBER_ITEM: TStringField;
+    cdsCntChequeREFERENCIA: TStringField;
+    cdsCntChequeBANCO: TStringField;
+    cdsCntChequeNOME: TStringField;
+    rgbFilial: TRzGroupBox;
+    rgbPeriodo: TRzGroupBox;
+    rgbBanco: TRzGroupBox;
+    edtBanco: TEdit;
+    btnPesqBanco: TRzBitBtn;
+    edtCodBanco: TEdit;
+    cbxFilial: TRzComboBox;
+    Label10: TLabel;
+    dtpInicio: TRzDateTimeEdit;
+    Label11: TLabel;
+    dtpFim: TRzDateTimeEdit;
+    rgbNumCheque: TRzGroupBox;
+    Label8: TLabel;
+    edtNumCheque: TEdit;
+    imgAberto: TImage;
+    imgPago: TImage;
+    imgCompensado: TImage;
+    imgBanco: TImage;
+    ImgCliente: TImage;
+    Image14: TImage;
+    ppmImprimir: TPopupMenu;
+    dspCntCheque: TpFIBDataSetProvider;
+    qryUpdate: TpFIBQuery;
+    RelSintetico: TMenuItem;
+    rgbTipoPeriodo: TRzRadioGroup;
+    frxCntCheque: TfrxDBDataset;
+    RzPageControl1: TRzPageControl;
+    TabSheet1: TRzTabSheet;
+    gdrCheque: TDBGrid;
+    TabSheet2: TRzTabSheet;
+    AgrupadoporPerodo2: TMenuItem;
+    AgrupadoporCliente2: TMenuItem;
+    AgrupadoporBanco2: TMenuItem;
+    AgrupadoporFilial2: TMenuItem;
+    AgrupadoporStatus2: TMenuItem;
+    RelatriodeMovimentos1: TMenuItem;
+    ActionList1: TActionList;
+    ImpAnaliticoPeriodo: TAction;
+    ImpSinteticoCliente: TAction;
+    ImpSinteticoBanco: TAction;
+    ImpSinteticoFilial: TAction;
+    ImpSinteticoStatus: TAction;
+    JvDBGrid1: TJvDBGrid;
+    fdsMov: TpFIBDataSet;
+    dsMov: TDataSource;
+    frxMov: TfrxDBDataset;
+    fdsMovID: TFIBBCDField;
+    fdsMovIDRECEBER_ITEM: TFIBBCDField;
+    fdsMovIDRECEBER_CHEQUE: TFIBBCDField;
+    fdsMovIDUSUARIO: TFIBBCDField;
+    fdsMovIDCLIENTE: TFIBBCDField;
+    fdsMovIDFILIAL: TFIBBCDField;
+    fdsMovDT_MOV: TFIBDateField;
+    fdsMovHR_MOV: TFIBTimeField;
+    fdsMovSTATUS: TFIBStringField;
+    fdsMovREFERENCIA: TFIBStringField;
+    fdsMovPREFIXO: TFIBStringField;
+    fdsMovMOVIMENTO: TFIBStringField;
+    fdsMovCLIENTE: TFIBStringField;
+    fdsMovUSUARIO: TFIBStringField;
+    fdsMovFILIAL: TFIBStringField;
+    fdsCntChequeFILIAL: TFIBStringField;
+    cdsCntChequeFILIAL: TStringField;
+    fdsCntChequeMOVIMENTO: TFIBStringField;
+    cdsCntChequeMOVIMENTO: TStringField;
+    cdsCntChequeVLR_TOTAL: TAggregateField;
+    fdsMovBAIXA_AUTOMATICA: TFIBStringField;
+    fdsMovTIPO_BAIXA: TFIBStringField;
+    procedure FormCreate(Sender: TObject);
+    procedure fdsFilialAfterOpen(DataSet: TDataSet);
+    procedure gdrChequeDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure Image6Click(Sender: TObject);
+    procedure Image2Click(Sender: TObject);
+    procedure Image3Click(Sender: TObject);
+    procedure Image4Click(Sender: TObject);
+    procedure Image5Click(Sender: TObject);
+    procedure Image6MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure Image6MouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure Image2MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure Image3MouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure Image4MouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure Image5MouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure Image3MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure Image4MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure Image5MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure Image8MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure Image8MouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure imgPesqChequesMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure imgPesqChequesMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure Image2MouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure imgPesqChequesClick(Sender: TObject);
+    procedure rgbStatusChanging(Sender: TObject; NewIndex: Integer;
+      var AllowChange: Boolean);
+    procedure FormShow(Sender: TObject);
+    procedure btnPesqCliClick(Sender: TObject);
+    procedure btnPesqBancoClick(Sender: TObject);
+    procedure rgbClienteCheckBoxClick(Sender: TObject);
+    procedure edtCodClienteEnter(Sender: TObject);
+    procedure edtCodClienteExit(Sender: TObject);
+    procedure EdtClienteEnter(Sender: TObject);
+    procedure EdtClienteExit(Sender: TObject);
+    procedure edtNumChequeEnter(Sender: TObject);
+    procedure edtNumChequeExit(Sender: TObject);
+    procedure Image8Click(Sender: TObject);
+    procedure cdsCntChequeAfterScroll(DataSet: TDataSet);
+    procedure ImpAnaliticoPeriodoExecute(Sender: TObject);
+    procedure ImpSinteticoClienteExecute(Sender: TObject);
+    procedure ImpSinteticoBancoExecute(Sender: TObject);
+    procedure ImpSinteticoFilialExecute(Sender: TObject);
+    procedure ImpSinteticoStatusExecute(Sender: TObject);
+    procedure rgbNumChequeCheckBoxClick(Sender: TObject);
+    procedure rgbBancoCheckBoxClick(Sender: TObject);
+  private
+  procedure PesqCntCheque(index:integer);
+  procedure GeraMovimento(Status:String;Referencia:String;IDCliente:Integer;IDReceberItem:Integer;
+    IDReceberCheq:Integer);
+  Procedure ImpRelSintetico(Tipo:String;Descricao:String);
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmControleCheque: TfrmControleCheque;
+  Utils : TUtils;
+  idBanco : String;
+  vlrTot :Double;
+
+implementation
+
+{$R *.dfm}
+
+uses untData, untPesqCliente, untPesqBanco;
+
+procedure TfrmControleCheque.gdrChequeDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+var
+  posicao: string[2];
+  Bitmap: TBitmap;
+  R: TRect;
+begin
+  if not odd(cdsCntCheque.RecNo) then
+  begin
+    gdrCheque.Canvas.Brush.Color := DM.gridOddColor;
+    if gdSelected in State then
+      gdrCheque.Brush.Color :=clHighlight;
+    gdrCheque.Canvas.FillRect(Rect);
+    gdrCheque.DefaultDrawDataCell(Rect, Column.Field, State);
+
+    if (Column.index = 1) and not(cdsCntCheque.IsEmpty) then
+    begin
+      posicao := cdsCntChequeSTATUS_RECEBER_ITEM.AsString;
+      if posicao = 'AB' then
+      begin
+       Bitmap := imgAberto.Picture.Bitmap;
+      end;
+      if posicao = 'PG' then
+      begin
+       Bitmap := imgPago.Picture.Bitmap;
+      end;
+      if posicao = 'CP' then
+      begin
+       Bitmap := imgCompensado.Picture.Bitmap;
+      end;
+      if posicao = 'DB' then
+      begin
+       Bitmap := imgBanco.Picture.Bitmap;
+      end;
+      if posicao = 'DC' then
+      begin
+        Bitmap := ImgCliente.Picture.Bitmap;
+      end;
+      with TDBGrid(Sender) do
+      begin
+        gdrCheque.Canvas.Draw((Rect.Right - Rect.Left - Bitmap.Width+1) div 2 + Rect.Left,
+          (Rect.Bottom - Rect.Top - Bitmap.Height+1) div 2 + Rect.Top, Bitmap);
+        // ou: Canvas.Draw(Rect.Left, Rect.Top, Bitmap);
+
+      end;
+    end
+  end
+  else
+  begin
+    if (Column.index = 1) then
+    begin
+      posicao := cdsCntChequeSTATUS_RECEBER_ITEM.AsString;
+      if posicao = 'AB' then
+      begin
+       Bitmap := imgAberto.Picture.Bitmap;
+      end;
+      if posicao = 'PG' then
+      begin
+       Bitmap := imgPago.Picture.Bitmap;
+      end;
+      if posicao = 'CP' then
+      begin
+       Bitmap := imgCompensado.Picture.Bitmap;
+      end;
+      if posicao = 'DB' then
+      begin
+       Bitmap := imgBanco.Picture.Bitmap;
+      end;
+      if posicao = 'DC' then
+      begin
+        Bitmap := ImgCliente.Picture.Bitmap;
+      end;
+       with TDBGrid(Sender) do
+      begin
+        gdrCheque.Canvas.Draw((Rect.Right - Rect.Left - Bitmap.Width+1) div 2 + Rect.Left,
+          (Rect.Bottom - Rect.Top - Bitmap.Height+1) div 2 + Rect.Top, Bitmap);
+        // ou: Canvas.Draw(Rect.Left, Rect.Top, Bitmap);
+
+      end;
+    end;
+  end;
+end;
+
+procedure TfrmControleCheque.GeraMovimento(Status: String;Referencia:String; IDCliente,
+  IDReceberItem, IDReceberCheq: Integer);
+begin
+  with fdsMov do
+  begin
+    append;
+    fdsMovIDRECEBER_ITEM.AsInteger := IDReceberItem;
+    fdsMovIDRECEBER_CHEQUE.AsInteger := IDReceberCheq;
+    fdsMovIDUSUARIO.AsInteger := Dm.fdsUsuarioPermicIDUSUARIO.AsInteger;
+    fdsMovIDCLIENTE.AsInteger := IDCliente;
+    fdsMovIDFILIAL.AsInteger := Dm.fdsConfigIDFILIAL.AsInteger;
+    fdsMovDT_MOV.AsDateTime := Date;
+    fdsMovHR_MOV.AsDateTime := time;
+    fdsMovSTATUS.AsString := Status;
+    fdsMovREFERENCIA.AsString := Referencia;
+    fdsMovPREFIXO.AsString := 'CH';
+    fdsMovBAIXA_AUTOMATICA.AsString := 'N';
+    post;
+  end;
+end;
+
+procedure TfrmControleCheque.Image2Click(Sender: TObject);
+begin
+  if cdsCntCheque.RecordCount >0 then
+  begin
+    if cdsCntChequeSTATUS_RECEBER_ITEM.AsString <>'PG' then
+    begin
+      with qryUpdate do
+      begin
+        close;
+        SQL.Clear;
+        SQL.Add('UPDATE CNT_RECEBER_ITEM SET POSICAO = :POSICAO WHERE ID = :IDRECEBERITEM');
+        ParamByName('IDRECEBERITEM').AsInteger := cdsCntChequeIDRECEBER_ITEM.AsInteger;
+        ParamByName('POSICAO').AsString := 'PG';
+        ExecQuery;
+      end;
+
+      GeraMovimento('PG',cdsCntChequeREFERENCIA.AsString,cdsCntChequeIDCLIENTE.AsInteger,
+        cdsCntChequeIDRECEBER_ITEM.AsInteger,cdsCntChequeID.AsInteger);
+
+      DM.Conexao.CommitRetaining;
+      imgPesqCheques.OnClick(imgPesqCheques);
+      Application.MessageBox('Operação realizada com Sucesso!',
+        'Sucesso',MB_OK+MB_ICONASTERISK);
+    end;
+  end;
+end;
+
+procedure TfrmControleCheque.Image2MouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  Utils.EfeitoAumenta(Sender);
+end;
+
+procedure TfrmControleCheque.Image2MouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  Utils.EfeitoDiminui(Sender);
+end;
+
+procedure TfrmControleCheque.Image3Click(Sender: TObject);
+begin
+  if cdsCntCheque.RecordCount >0 then
+  begin
+    if cdsCntChequeSTATUS_RECEBER_ITEM.AsString <>'CP' then
+    begin
+      with qryUpdate do
+      begin
+        close;
+        SQL.Clear;
+        SQL.Add('UPDATE CNT_RECEBER_ITEM SET POSICAO = :POSICAO WHERE ID = :IDRECEBERITEM');
+        ParamByName('IDRECEBERITEM').AsInteger := cdsCntChequeIDRECEBER_ITEM.AsInteger;
+        ParamByName('POSICAO').AsString := 'CP';
+        ExecQuery;
+      end;
+      GeraMovimento('CP',cdsCntChequeREFERENCIA.AsString,cdsCntChequeIDCLIENTE.AsInteger,
+        cdsCntChequeIDRECEBER_ITEM.AsInteger,cdsCntChequeID.AsInteger);
+      DM.Conexao.CommitRetaining;
+      imgPesqCheques.OnClick(imgPesqCheques);
+      Application.MessageBox('Operação realizada com Sucesso!',
+        'Sucesso',MB_OK+MB_ICONASTERISK);
+    end;
+  end;
+end;
+
+procedure TfrmControleCheque.Image3MouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  Utils.EfeitoAumenta(Sender);
+end;
+
+procedure TfrmControleCheque.Image3MouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  Utils.EfeitoDiminui(Sender);
+end;
+
+procedure TfrmControleCheque.Image4Click(Sender: TObject);
+begin
+  if cdsCntCheque.RecordCount >0 then
+  begin
+    if cdsCntChequeSTATUS_RECEBER_ITEM.AsString <>'DB' then
+    begin
+      with qryUpdate do
+      begin
+        close;
+        SQL.Clear;
+        SQL.Add('UPDATE CNT_RECEBER_ITEM SET POSICAO = :POSICAO WHERE ID = :IDRECEBERITEM');
+        ParamByName('IDRECEBERITEM').AsInteger := cdsCntChequeIDRECEBER_ITEM.AsInteger;
+        ParamByName('POSICAO').AsString := 'DB';
+        ExecQuery;
+      end;
+      GeraMovimento('DB',cdsCntChequeREFERENCIA.AsString,cdsCntChequeIDCLIENTE.AsInteger,
+        cdsCntChequeIDRECEBER_ITEM.AsInteger,cdsCntChequeID.AsInteger);
+      DM.Conexao.CommitRetaining;
+      imgPesqCheques.OnClick(imgPesqCheques);
+      Application.MessageBox('Operação realizada com Sucesso!',
+        'Sucesso',MB_OK+MB_ICONASTERISK);
+    end;
+  end;
+end;
+
+procedure TfrmControleCheque.Image4MouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  Utils.EfeitoAumenta(Sender);
+end;
+
+procedure TfrmControleCheque.Image4MouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  Utils.EfeitoDiminui(Sender);
+end;
+
+procedure TfrmControleCheque.Image5Click(Sender: TObject);
+begin
+  if cdsCntCheque.RecordCount >0 then
+  begin
+    if cdsCntChequeSTATUS_RECEBER_ITEM.AsString <>'DC' then
+    begin
+      with qryUpdate do
+      begin
+        close;
+        SQL.Clear;
+        SQL.Add('UPDATE CNT_RECEBER_ITEM SET POSICAO = :POSICAO WHERE ID = :IDRECEBERITEM');
+        ParamByName('IDRECEBERITEM').AsInteger := cdsCntChequeIDRECEBER_ITEM.AsInteger;
+        ParamByName('POSICAO').AsString := 'DC';
+        ExecQuery;
+      end;
+      GeraMovimento('DC',cdsCntChequeREFERENCIA.AsString,cdsCntChequeIDCLIENTE.AsInteger,
+        cdsCntChequeIDRECEBER_ITEM.AsInteger,cdsCntChequeID.AsInteger);
+      DM.Conexao.CommitRetaining;
+      imgPesqCheques.OnClick(imgPesqCheques);
+      Application.MessageBox('Operação realizada com Sucesso!',
+        'Sucesso',MB_OK+MB_ICONASTERISK);
+    end;
+  end;
+
+end;
+
+procedure TfrmControleCheque.Image5MouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  Utils.EfeitoAumenta(Sender);
+end;
+
+procedure TfrmControleCheque.Image5MouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  Utils.EfeitoDiminui(Sender);
+end;
+
+procedure TfrmControleCheque.Image6Click(Sender: TObject);
+begin
+  if cdsCntCheque.RecordCount >0 then
+  begin
+    if cdsCntChequeSTATUS_RECEBER_ITEM.AsString <>'AB' then
+    begin
+      with qryUpdate do
+      begin
+        close;
+        SQL.Clear;
+        SQL.Add('UPDATE CNT_RECEBER_ITEM SET POSICAO = :POSICAO WHERE ID = :IDRECEBERITEM');
+        ParamByName('IDRECEBERITEM').AsInteger := cdsCntChequeIDRECEBER_ITEM.AsInteger;
+        ParamByName('POSICAO').AsString := 'AB';
+        ExecQuery;
+      end;
+
+      GeraMovimento('AB',cdsCntChequeREFERENCIA.AsString,cdsCntChequeIDCLIENTE.AsInteger,
+        cdsCntChequeIDRECEBER_ITEM.AsInteger,cdsCntChequeID.AsInteger);
+
+      DM.Conexao.CommitRetaining;
+      imgPesqCheques.OnClick(imgPesqCheques);
+      Application.MessageBox('Operação realizada com Sucesso!',
+        'Sucesso',MB_OK+MB_ICONASTERISK);
+    end;
+  end;
+end;
+
+procedure TfrmControleCheque.Image6MouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  Utils.EfeitoAumenta(Sender);
+end;
+
+procedure TfrmControleCheque.Image6MouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  Utils.EfeitoDiminui(Sender);
+end;
+
+procedure TfrmControleCheque.imgPesqChequesClick(Sender: TObject);
+begin
+ PesqCntCheque(rgbStatus.ItemIndex);
+end;
+
+procedure TfrmControleCheque.imgPesqChequesMouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  Utils.EfeitoAumenta(Sender);
+end;
+
+procedure TfrmControleCheque.imgPesqChequesMouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  Utils.EfeitoDiminui(Sender);
+end;
+
+procedure TfrmControleCheque.ImpAnaliticoPeriodoExecute(Sender: TObject);
+begin
+ if rgbTipoPeriodo.ItemIndex = 0 then
+ begin
+  with fdsCntCheque do
+  begin
+    cdsCntCheque.Close;
+    close;
+    OrderClause :='CC.DT_EMISSAO';
+    Prepare;
+    Open;
+    cdsCntCheque.Open;
+  end;
+  ImpRelSintetico('E','Agrupado por data de Emissão');
+ end;
+
+ if rgbTipoPeriodo.ItemIndex = 1 then
+ begin
+  with fdsCntCheque do
+  begin
+    cdsCntCheque.Close;
+    close;
+    OrderClause :='CC.DT_VENCIMENTO';
+    Prepare;
+    Open;
+    cdsCntCheque.Open;
+  end;
+  ImpRelSintetico('V','Agrupado por data de Vencimento');
+ end;
+
+end;
+
+procedure TfrmControleCheque.ImpRelSintetico(Tipo: String;Descricao:String);
+begin
+  DM.dtInicio := dtpInicio.Date;
+  DM.dtFim := dtpFim.Date;
+  DM.tipo:= Tipo;
+  DM.obs:= Descricao;
+  DM.frxReport1.Clear;
+  DM.frxReport1.LoadFromFile(ExtractFilePath(Application.ExeName) +
+    '/Relatorios/frxRelControleChequeSintetico.fr3');
+  DM.frxReport1.PrepareReport(True);
+  DM.frxReport1.ShowReport(True);
+end;
+
+procedure TfrmControleCheque.ImpSinteticoBancoExecute(Sender: TObject);
+begin
+  with fdsCntCheque do
+  begin
+    cdsCntCheque.Close;
+    close;
+    OrderClause :='CC.IDBANCO';
+    Prepare;
+    Open;
+    cdsCntCheque.Open;
+  end;
+  ImpRelSintetico('B','Agrupado por Banco');
+end;
+
+procedure TfrmControleCheque.ImpSinteticoClienteExecute(Sender: TObject);
+begin
+  with fdsCntCheque do
+  begin
+    cdsCntCheque.Close;
+    close;
+    OrderClause :='NOME';
+    Prepare;
+    Open;
+    cdsCntCheque.Open;
+  end;
+  ImpRelSintetico('C','Agrupado por Emitente');
+end;
+
+procedure TfrmControleCheque.ImpSinteticoFilialExecute(Sender: TObject);
+begin
+  with fdsCntCheque do
+  begin
+    cdsCntCheque.Close;
+    close;
+    OrderClause :='CC.IDFILIAL';
+    Prepare;
+    Open;
+    cdsCntCheque.Open;
+  end;
+  ImpRelSintetico('F','Agrupado por Filial');
+end;
+
+procedure TfrmControleCheque.ImpSinteticoStatusExecute(Sender: TObject);
+begin
+  with fdsCntCheque do
+  begin
+    cdsCntCheque.Close;
+    close;
+    OrderClause :='MOVIMENTO';
+    Prepare;
+    Open;
+    cdsCntCheque.Open;
+  end;
+  ImpRelSintetico('M','Agrupado por Status');
+end;
+
+procedure TfrmControleCheque.Image8Click(Sender: TObject);
+begin
+  ppmImprimir.Popup(frmControleCheque.Left + 30, frmControleCheque.top + 580);
+end;
+
+procedure TfrmControleCheque.Image8MouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  Utils.EfeitoAumenta(Sender);
+end;
+
+procedure TfrmControleCheque.Image8MouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  Utils.EfeitoDiminui(Sender);
+end;
+
+procedure TfrmControleCheque.PesqCntCheque(index:Integer);
+begin
+  with fdsCntCheque do
+  begin
+    cdsCntCheque.Close;
+    Close;
+    Conditions.Clear;
+
+    if (rgbNumCheque.Checked = true) then
+    begin
+      if edtNumCheque.Text <> EmptyStr then
+        Conditions.AddCondition('NUM_CHEQUE',
+          ' CC.NUM_CHEQUE = ' + QuotedStr(edtNumCheque.Text), True);
+    end;
+    if (rgbBanco.Checked = true) then
+    begin
+      if edtNumCheque.Text <> EmptyStr then
+        Conditions.AddCondition('IDBANCO',
+          ' CC.IDBANCO = ' + QuotedStr(idBanco), True);
+    end;
+    if (rgbPeriodo.Checked = true) then
+    begin
+      if rgbTipoPeriodo.ItemIndex = 1 then
+      begin
+      Conditions.AddCondition('DTCHEQUE', 'CC.DT_VENCIMENTO BETWEEN ' +
+        QuotedStr(FormatDateTime('MM/DD/YYYY', dtpInicio.Date)) + ' AND ' +
+        QuotedStr(FormatDateTime('MM/DD/YYYY', dtpFim.Date)), True);
+      end
+      else
+      begin
+        Conditions.AddCondition('DTCHEQUE', 'CC.DT_EMISSAO BETWEEN ' +
+        QuotedStr(FormatDateTime('MM/DD/YYYY', dtpInicio.Date)) + ' AND ' +
+        QuotedStr(FormatDateTime('MM/DD/YYYY', dtpFim.Date)), True);
+      end;
+
+    end;
+
+    if (rgbFilial.Checked) and (cbxFilial.Value <> '0') then
+      Conditions.AddCondition('FILIAL', ' CC.IDFILIAL = ' +
+        QuotedStr(cbxFilial.Value), True);
+
+    if (rgbCliente.Checked) and not(Trim(edtCliente.Text) = 'TODOS') then
+    begin
+      Conditions.AddCondition('IDCLIENTE', 'CR.IDCLIENTE = ' +
+        edtCodCliente.Text, True)
+    end;
+
+    if Index= 0 then
+     Conditions.AddCondition('STATUS', 'CI.POSICAO = ' +
+        QuotedStr('AB'), True);
+
+    if Index = 1 then
+      Conditions.AddCondition('STATUS', 'CI.POSICAO = ' +
+        QuotedStr('PG'), True);
+
+    if Index = 2 then
+      Conditions.AddCondition('STATUS', 'CI.POSICAO = ' +
+        QuotedStr('CP'), True);
+    if Index = 3 then
+      Conditions.AddCondition('STATUS', 'CI.POSICAO = ' +
+        QuotedStr('DB'), True);
+    if Index = 4 then
+      Conditions.AddCondition('STATUS', 'CI.POSICAO = ' +
+        QuotedStr('DC'), True);
+
+
+    Conditions.Apply;
+    OrderClause := 'cc.DT_EMISSAO DESC, cc.ID DESC';
+    Prepare;
+    Open;
+    cdsCntCheque.Open;
+    // First;
+  end;
+end;
+
+procedure TfrmControleCheque.rgbBancoCheckBoxClick(Sender: TObject);
+begin
+  if not(rgbBanco.Checked) then
+  begin
+    edtBanco.Text := 'TODOS';
+    edtCodBanco.Text := 'CÓDIGO';
+    edtBanco.Font.Color := clGray;
+  end;
+end;
+
+procedure TfrmControleCheque.rgbClienteCheckBoxClick(Sender: TObject);
+begin
+  if not(rgbCliente.Checked) then
+  begin
+    edtCliente.Text := 'TODOS';
+    edtCodCliente.Text := 'CÓDIGO';
+   edtCliente.Font.Color := clGray;
+  end
+  else
+  begin
+    edtCliente.Font.Color := clBtnText;
+    edtCodCliente.SetFocus;
+  end;
+end;
+
+procedure TfrmControleCheque.rgbNumChequeCheckBoxClick(Sender: TObject);
+begin
+  if not(rgbNumCheque.Checked) then
+  begin
+    edtNumCheque.Text := 'TODOS';
+    edtNumCheque.Font.Color := clGray;
+  end;
+end;
+
+procedure TfrmControleCheque.rgbStatusChanging(Sender: TObject;
+  NewIndex: Integer; var AllowChange: Boolean);
+begin
+ PesqCntCheque(NewIndex);
+end;
+
+procedure TfrmControleCheque.btnPesqBancoClick(Sender: TObject);
+begin
+  try
+    frmPesqBanco := TfrmPesqBanco.Create(nil);
+    frmPesqBanco.ShowModal;
+  finally
+    if frmPesqBanco.ModalResult = mrOk then
+    begin
+      with frmPesqBanco do
+      begin
+        edtCodBanco.Text:= fdsBancosNUM_BANCO.AsString;
+        edtBanco.Text := fdsBancosDESCRICAO.AsString;
+        idBanco:= fdsBancosID.AsString
+      end;
+    end;
+    frmPesqBanco.Free;
+  end;
+end;
+
+procedure TfrmControleCheque.btnPesqCliClick(Sender: TObject);
+begin
+  Try
+    frmPesqCliente := TfrmPesqCliente.Create(nil);
+    frmPesqCliente.ShowModal;
+  Finally
+    if frmPesqCliente.ModalResult = mrOk then
+    begin
+      edtCodCliente.Text := frmPesqCliente.fdsClientesID.AsString;
+      EdtCliente.Text := frmPesqCliente.fdsClientesNOME.AsString;
+      imgPesqCheques.OnClick(imgPesqCheques);
+    end;
+    frmPesqCliente.Free;
+  End;
+end;
+
+procedure TfrmControleCheque.cdsCntChequeAfterScroll(DataSet: TDataSet);
+begin
+  if not(cdsCntCheque.State in [dsEdit,dsInsert]) then
+  begin
+    with fdsMov do
+    begin
+      close;
+      conditions.Clear;
+      Conditions.AddCondition('IDCHEQUE','M.IDRECEBER_CHEQUE ='+QuotedStr(cdsCntChequeID.AsString),true);
+      Conditions.AddCondition('IDFILIAL','M.IDFILIAL= '+QuotedStr(cdsCntChequeIDFILIAL.AsString),true);
+      Conditions.Apply;
+      prepare;
+      open;
+    end;
+  end;
+end;
+
+procedure TfrmControleCheque.EdtClienteEnter(Sender: TObject);
+begin
+  if Trim(edtCliente.Text) = 'TODOS' then
+  begin
+    edtCliente.Text := EmptyStr;
+    edtCliente.Font.Color := clBlack;
+  end;
+end;
+
+procedure TfrmControleCheque.EdtClienteExit(Sender: TObject);
+begin
+  if Trim(edtCliente.Text) = EmptyStr then
+  begin
+    edtCliente.Text := 'TODOS';
+    edtCliente.Font.Color := clGray;
+  end;
+end;
+
+procedure TfrmControleCheque.edtCodClienteEnter(Sender: TObject);
+begin
+   if Trim(edtCodCliente.Text) = 'CÓDIGO' then
+  begin
+    edtCodCliente.Text := EmptyStr;
+    edtCodCliente.Font.Color := clBlack;
+  end;
+end;
+
+procedure TfrmControleCheque.edtCodClienteExit(Sender: TObject);
+begin
+  if Trim(edtCodCliente.Text) = EmptyStr then
+  begin
+    edtCodCliente.Text := 'CÓDIGO';
+    edtCodCliente.Font.Color := clGray;
+  end
+  else
+  begin
+    {RetornaClienteId(edtCodCliente.Text);
+    if fdsCliente.RecordCount = 0 then
+      btnPesqCliente.Click
+    else
+    begin
+      edtPesqCliente.Text := fdsClienteNOME.AsString;
+      btnPesquisar.Click;
+    end;}
+  end;
+end;
+
+procedure TfrmControleCheque.edtNumChequeEnter(Sender: TObject);
+begin
+  if Trim(edtNumCheque.Text) = 'TODOS' then
+  begin
+    edtNumCheque.Text := EmptyStr;
+    edtNumCheque.Font.Color := clBlack;
+  end;
+end;
+
+procedure TfrmControleCheque.edtNumChequeExit(Sender: TObject);
+begin
+  if Trim(edtNumCheque.Text) = EmptyStr then
+  begin
+    edtNumCheque.Text := 'Todos';
+    edtNumCheque.Font.Color := clGray;
+  end;
+end;
+
+procedure TfrmControleCheque.fdsFilialAfterOpen(DataSet: TDataSet);
+begin
+  cbxFilial.AddItemValue('TODOS', '0');
+  fdsFilial.First;
+  while not(fdsFilial.EOF) do
+  begin
+    cbxFilial.AddItemValue(fdsFilialNOME.AsString, fdsFilialID.AsString);
+    fdsFilial.Next;
+  end;
+  cbxFilial.Value := DM.fdsConfigIDFILIAL.AsString;
+end;
+
+procedure TfrmControleCheque.FormCreate(Sender: TObject);
+var
+  region : hrgn;
+begin
+  {region:= CreateRoundRectRgn(0, 0, width, height, 20, 20);
+  setwindowrgn(handle, region, true);} //Arredonda canto do formulário
+  fdsFilial.Open;
+  fdsCntCheque.Open;
+  cdsCntCheque.Open;
+  dtpInicio.Date := StartOfTheMonth(Date);
+  dtpFim.Date := Now;
+end;
+
+procedure TfrmControleCheque.FormShow(Sender: TObject);
+begin
+  PesqCntCheque(rgbStatus.ItemIndex);
+  fdsMov.Open;
+end;
+
+end.

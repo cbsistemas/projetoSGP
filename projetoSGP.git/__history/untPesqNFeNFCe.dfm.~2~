@@ -1,0 +1,77 @@
+object frmPesqNFeNFCe: TfrmPesqNFeNFCe
+  Left = 0
+  Top = 0
+  BorderIcons = []
+  BorderStyle = bsToolWindow
+  Caption = 'Pesquisa NFe ou NFCe'
+  ClientHeight = 277
+  ClientWidth = 382
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label3: TLabel
+    Left = 8
+    Top = 63
+    Width = 77
+    Height = 13
+    Caption = 'Selecone a nota'
+  end
+  object Animate1: TAnimate
+    Left = 253
+    Top = -4
+    Width = 100
+    Height = 80
+  end
+  object rgbTipo: TRzRadioGroup
+    Left = 0
+    Top = 8
+    Width = 185
+    Height = 49
+    Caption = 'Tipo'
+    Columns = 2
+    ItemIndex = 1
+    Items.Strings = (
+      'NFCe'
+      'NFe')
+    TabOrder = 1
+    OnChanging = rgbTipoChanging
+  end
+  object DBGrid1: TDBGrid
+    Left = 0
+    Top = 82
+    Width = 382
+    Height = 151
+    Align = alCustom
+    TabOrder = 2
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 236
+    Width = 382
+    Height = 41
+    Align = alBottom
+    Color = 2497553
+    ParentBackground = False
+    TabOrder = 3
+    ExplicitTop = 239
+    ExplicitWidth = 374
+  end
+  object pFIBDataSet1: TpFIBDataSet
+    Left = 216
+  end
+  object pFIBDataSet2: TpFIBDataSet
+    Left = 288
+    Top = 8
+  end
+end

@@ -1,0 +1,30 @@
+unit untSelDtPrimeiroVencimento;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzButton, Vcl.StdCtrls, Vcl.Mask,
+  RzEdit, RzLabel, Vcl.ComCtrls, JvExComCtrls, JvDateTimePicker;
+
+type
+  TfrmSelDtPrimeiroVencimento = class(TForm)
+    JvDateTimePicker1: TJvDateTimePicker;
+    label1: TRzLabel;
+    RzLabel1: TRzLabel;
+    RzEdit1: TRzEdit;
+    btnConfirma: TRzBitBtn;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmSelDtPrimeiroVencimento: TfrmSelDtPrimeiroVencimento;
+
+implementation
+
+{$R *.dfm}
+
+end.

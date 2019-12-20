@@ -1,0 +1,33 @@
+unit untPesqClienteCodigo;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, RzEdit,
+  RzButton, RzLabel, Vcl.Imaging.pngimage, Vcl.ExtCtrls, JvExExtCtrls, JvImage,
+  RzPanel, RzBckgnd;
+
+type
+  TfrmPesqClienteCodigo = class(TForm)
+    frmPesqClienteCodigo: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloCliente: TRzLabel;
+    lblNome: TRzLabel;
+    btnPesquisar: TRzBitBtn;
+    edtCodigo: TRzEdit;
+    btnCancelar: TRzBitBtn;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPesqClienteCodigo: TfrmPesqClienteCodigo;
+
+implementation
+
+{$R *.dfm}
+
+end.

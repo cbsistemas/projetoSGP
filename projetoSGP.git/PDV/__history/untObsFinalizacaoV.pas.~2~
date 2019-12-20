@@ -1,0 +1,36 @@
+unit untObsFinalizacaoV;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, RzPanel,
+  RzButton;
+
+type
+  TfrmObsFinalizacaoV = class(TForm)
+    RzPanel1: TRzPanel;
+    Label1: TLabel;
+    mmoInfoAdicional: TMemo;
+    RzBitBtn1: TRzBitBtn;
+    RzBitBtn2: TRzBitBtn;
+    procedure RzBitBtn1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmObsFinalizacaoV: TfrmObsFinalizacaoV;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmObsFinalizacaoV.RzBitBtn1Click(Sender: TObject);
+begin
+ModalResult :=mrOK;
+end;
+
+end.

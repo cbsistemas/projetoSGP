@@ -1,0 +1,35 @@
+unit untParamDevTroca;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzRadChk, RzButton, Vcl.StdCtrls,
+  RzLabel, Vcl.ExtCtrls, RzPanel, FIBQuery, pFIBQuery;
+
+type
+  TfrmParamDevTroca = class(TForm)
+    RzPanel1: TRzPanel;
+    lblTituloCliente: TRzLabel;
+    btnConfirmar: TRzBitBtn;
+    RzRadioButton1: TRzRadioButton;
+    RzRadioButton2: TRzRadioButton;
+    RzRadioButton3: TRzRadioButton;
+    qryComando: TpFIBQuery;
+  private
+    { Private declarations }
+  public
+    vlrDevolucao : Double;
+    idCliente, idVenda : Integer;
+  end;
+
+var
+  frmParamDevTroca: TfrmParamDevTroca;
+
+implementation
+
+{$R *.dfm}
+
+uses untData;
+
+end.

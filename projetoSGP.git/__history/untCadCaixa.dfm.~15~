@@ -1,0 +1,963 @@
+object frmCadCaixa: TfrmCadCaixa
+  Left = 0
+  Top = 0
+  BorderIcons = []
+  BorderStyle = bsSingle
+  Caption = 'Caixa'
+  ClientHeight = 459
+  ClientWidth = 589
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  OnCreate = FormCreate
+  DesignSize = (
+    589
+    459)
+  PixelsPerInch = 96
+  TextHeight = 13
+  object RzLabel2: TRzLabel
+    Left = 210
+    Top = 5
+    Width = 50
+    Height = 13
+    Caption = 'N'#186' Caixa '
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    BlinkIntervalOff = 0
+    BlinkIntervalOn = 0
+  end
+  object RzLabel3: TRzLabel
+    Left = 272
+    Top = 5
+    Width = 58
+    Height = 13
+    Caption = 'Ultima NFCe'
+    BlinkIntervalOff = 0
+    BlinkIntervalOn = 0
+  end
+  object RzLabel4: TRzLabel
+    Left = 376
+    Top = 5
+    Width = 24
+    Height = 13
+    Caption = 'S'#233'rie'
+    BlinkIntervalOff = 0
+    BlinkIntervalOn = 0
+  end
+  object RzLabel5: TRzLabel
+    Left = 8
+    Top = 5
+    Width = 81
+    Height = 13
+    Caption = 'Data de Inclus'#227'o'
+    BlinkIntervalOff = 0
+    BlinkIntervalOn = 0
+  end
+  object RzLabel14: TRzLabel
+    Left = 8
+    Top = 51
+    Width = 79
+    Height = 13
+    Caption = 'N'#250'mero de S'#233'rie'
+    BlinkIntervalOff = 0
+    BlinkIntervalOn = 0
+  end
+  object RzLabel15: TRzLabel
+    Left = 330
+    Top = 51
+    Width = 30
+    Height = 13
+    Caption = 'Senha'
+    BlinkIntervalOff = 0
+    BlinkIntervalOn = 0
+  end
+  object RzLabel7: TRzLabel
+    Left = 114
+    Top = 5
+    Width = 20
+    Height = 13
+    Caption = 'Filial'
+    BlinkIntervalOff = 0
+    BlinkIntervalOn = 0
+  end
+  object RzDBEdit1: TRzDBEdit
+    Left = 210
+    Top = 24
+    Width = 56
+    Height = 21
+    DataSource = DM.dsCaixa
+    DataField = 'NUM_CAIXA'
+    Color = cl3DLight
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOnEnter = True
+    TabOrder = 1
+  end
+  object RzDBEdit3: TRzDBEdit
+    Left = 376
+    Top = 24
+    Width = 82
+    Height = 21
+    DataSource = DM.dsCaixa
+    DataField = 'SERIE_NFCE'
+    Color = clMoneyGreen
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOnEnter = True
+    TabOrder = 3
+  end
+  object RzDBEdit4: TRzDBEdit
+    Left = 272
+    Top = 24
+    Width = 98
+    Height = 21
+    DataSource = DM.dsCaixa
+    DataField = 'ULTIMA_NFCE'
+    Color = clMoneyGreen
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOnEnter = True
+    TabOrder = 2
+  end
+  object RzGroupBox4: TRzGroupBox
+    Left = 8
+    Top = 255
+    Width = 575
+    Height = 142
+    Caption = 'Configura'#231#227'o da Balan'#231'a'
+    CaptionFont.Charset = DEFAULT_CHARSET
+    CaptionFont.Color = clWindowText
+    CaptionFont.Height = -11
+    CaptionFont.Name = 'Tahoma'
+    CaptionFont.Style = [fsBold]
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 9
+    object TRzLabel
+      Left = 9
+      Top = 29
+      Width = 89
+      Height = 13
+      Caption = 'Modelo de Balan'#231'a'
+      BlinkIntervalOff = 0
+      BlinkIntervalOn = 0
+    end
+    object TRzLabel
+      Left = 160
+      Top = 29
+      Width = 55
+      Height = 13
+      Caption = 'Porta Serial'
+      BlinkIntervalOff = 0
+      BlinkIntervalOn = 0
+    end
+    object TRzLabel
+      Left = 295
+      Top = 29
+      Width = 78
+      Height = 13
+      Caption = ' Baud Rate(bps)'
+      BlinkIntervalOff = 0
+      BlinkIntervalOn = 0
+    end
+    object TRzLabel
+      Left = 9
+      Top = 77
+      Width = 28
+      Height = 13
+      Caption = 'Parity'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      BlinkIntervalOff = 0
+      BlinkIntervalOn = 0
+    end
+    object TRzLabel
+      Left = 160
+      Top = 77
+      Width = 42
+      Height = 13
+      Caption = 'Stop Bits'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      BlinkIntervalOff = 0
+      BlinkIntervalOn = 0
+    end
+    object TRzLabel
+      Left = 295
+      Top = 77
+      Width = 61
+      Height = 13
+      Caption = 'Handshaking'
+      BlinkIntervalOff = 0
+      BlinkIntervalOn = 0
+    end
+    object TRzLabel
+      Left = 430
+      Top = 29
+      Width = 43
+      Height = 13
+      Caption = 'Data Bits'
+      BlinkIntervalOff = 0
+      BlinkIntervalOn = 0
+    end
+    object TRzLabel
+      Left = 430
+      Top = 75
+      Width = 43
+      Height = 13
+      Caption = 'Time Out'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      BlinkIntervalOff = 0
+      BlinkIntervalOn = 0
+    end
+    object edtTimeOut: TRzDBEdit
+      Left = 430
+      Top = 96
+      Width = 99
+      Height = 21
+      DataSource = DM.dsCaixa
+      DataField = 'TIME_OUT'
+      Color = clMoneyGreen
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOnEnter = True
+      TabOrder = 7
+      TextHint = '200'
+    end
+    object cbxModeloBalanca: TRzDBComboBox
+      Left = 9
+      Top = 48
+      Width = 145
+      Height = 21
+      DataField = 'MODELO_BALANCA'
+      DataSource = DM.dsCaixa
+      Color = clMoneyGreen
+      TabOrder = 0
+      Items.Strings = (
+        'Nenhum'
+        'Filizola'
+        'Toledo'
+        'Toledo2090'
+        'Toledo2180'
+        'Urano'
+        'LucasTec'
+        'Magna'
+        'Digitron'
+        'Magellan'
+        'UranoPOP'
+        'Lider'
+        'Rinnert'
+        'Muller'
+        'Saturno'
+        'AFTS'
+        'Generica'
+        'Librateck'
+        'Micheletti'
+        'Alfa'
+        'Toledo9091_8530_8540')
+      Values.Strings = (
+        '0'
+        '1'
+        '2'
+        '3'
+        '4'
+        '5'
+        '6'
+        '7'
+        '8'
+        '9'
+        '10'
+        '11'
+        '12'
+        '13'
+        '14'
+        '15'
+        '16'
+        '17'
+        '18'
+        '19'
+        '20')
+    end
+    object cbxPortaSerial: TRzDBComboBox
+      Left = 160
+      Top = 48
+      Width = 129
+      Height = 21
+      DataField = 'PORTA_BALANCA'
+      DataSource = DM.dsCaixa
+      Color = clMoneyGreen
+      TabOrder = 1
+      Items.Strings = (
+        'Nenhum'
+        'COM1'
+        'COM2'
+        'COM3'
+        'COM4'
+        'COM5'
+        'COM6'
+        'COM7'
+        'COM8'
+        'LPT1'
+        'LPT2'
+        'LPT3'
+        'LPT4'
+        'LPT5')
+      Values.Strings = (
+        '0'
+        'COM1'
+        'COM2'
+        'COM3'
+        'COM4'
+        'COM5'
+        'COM6'
+        'COM7'
+        'COM8'
+        'LPT1'
+        'LPT2'
+        'LPT3'
+        'LPT4'
+        'LPT5')
+    end
+    object cbxBaud: TRzDBComboBox
+      Left = 295
+      Top = 48
+      Width = 129
+      Height = 21
+      DataField = 'BAUD_RATE'
+      DataSource = DM.dsCaixa
+      Color = clMoneyGreen
+      TabOrder = 2
+      Items.Strings = (
+        '2400'
+        '4800'
+        '9600'
+        '14400'
+        '19200'
+        '38400'
+        '56000'
+        '57600')
+      Values.Strings = (
+        '2400'
+        '4800'
+        '9600'
+        '14400'
+        '19200'
+        '38400'
+        '56000'
+        '57600')
+    end
+    object cbxDatabts: TRzDBComboBox
+      Left = 430
+      Top = 48
+      Width = 99
+      Height = 21
+      DataField = 'DATA_BITS_BAL'
+      DataSource = DM.dsCaixa
+      Color = clMoneyGreen
+      TabOrder = 3
+      Items.Strings = (
+        '5'
+        '6'
+        '7'
+        '8'
+        '')
+      Values.Strings = (
+        '5'
+        '6'
+        '7'
+        '8'
+        '')
+    end
+    object cbxParity: TRzDBComboBox
+      Left = 9
+      Top = 96
+      Width = 145
+      Height = 21
+      DataField = 'PARITY_BAL'
+      DataSource = DM.dsCaixa
+      Color = clMoneyGreen
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 4
+      Items.Strings = (
+        'none'
+        'odd'
+        'even'
+        'mark'
+        'space'
+        '')
+      Values.Strings = (
+        '0'
+        '1'
+        '2'
+        '3'
+        '4')
+    end
+    object cbxStop: TRzDBComboBox
+      Left = 160
+      Top = 96
+      Width = 129
+      Height = 21
+      DataField = 'STOP_BITS_BAL'
+      DataSource = DM.dsCaixa
+      Color = clMoneyGreen
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 5
+      Items.Strings = (
+        's1'
+        's1,5'
+        's2')
+      Values.Strings = (
+        '0'
+        '1'
+        '2')
+    end
+    object cbxHandshaking: TRzDBComboBox
+      Left = 295
+      Top = 96
+      Width = 129
+      Height = 21
+      DataField = 'HANDSHAKING_BAL'
+      DataSource = DM.dsCaixa
+      Color = clMoneyGreen
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 6
+      Items.Strings = (
+        'Nenhum'
+        'XON/XOFF'
+        'RTS/CTS'
+        'DTR/DSR'
+        '')
+      Values.Strings = (
+        '0'
+        '1'
+        '2'
+        '3')
+    end
+  end
+  object RzGroupBox2: TRzGroupBox
+    Left = 8
+    Top = 176
+    Width = 573
+    Height = 72
+    Anchors = [akTop]
+    Caption = 'Parametros de Configura'#231#227'o: '
+    CaptionFont.Charset = DEFAULT_CHARSET
+    CaptionFont.Color = clWindowText
+    CaptionFont.Height = -11
+    CaptionFont.Name = 'Tahoma'
+    CaptionFont.Style = [fsBold]
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 7
+    object RzDBCheckBox1: TRzDBCheckBox
+      Left = 15
+      Top = 22
+      Width = 138
+      Height = 15
+      DataField = 'ENTREGUE'
+      ValueChecked = 'True'
+      ValueUnchecked = 'False'
+      Caption = 'Receber Cliente Atacado'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+    end
+    object RzDBCheckBox2: TRzDBCheckBox
+      Left = 15
+      Top = 43
+      Width = 178
+      Height = 15
+      DataField = 'ENTREGUE'
+      ValueChecked = 'True'
+      ValueUnchecked = 'False'
+      Caption = 'Receber Pedidos de Outras Filiais'
+      TabOrder = 1
+    end
+    object RzDBCheckBox3: TRzDBCheckBox
+      Left = 198
+      Top = 22
+      Width = 180
+      Height = 15
+      DataField = 'ENTREGUE'
+      ValueChecked = 'True'
+      ValueUnchecked = 'False'
+      Caption = 'Receber Estoque de Outras Filiais'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
+    end
+    object RzDBCheckBox4: TRzDBCheckBox
+      Left = 199
+      Top = 48
+      Width = 89
+      Height = 15
+      DataField = 'PDV_UTILIZA_GAVETA'
+      DataSource = DM.dsCaixa
+      ValueChecked = 'S'
+      ValueUnchecked = 'N'
+      Caption = 'Utilizar Gaveta'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 3
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 418
+    Width = 589
+    Height = 41
+    Align = alBottom
+    Color = 2497553
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 10
+    object btnCancelar: TRzBitBtn
+      Left = 425
+      Top = 8
+      Caption = 'Cancelar'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+      OnClick = btnCancelarClick
+      Glyph.Data = {
+        36060000424D3606000000000000360400002800000020000000100000000100
+        08000000000000020000630B0000630B00000001000000000000000000003300
+        00006600000099000000CC000000FF0000000033000033330000663300009933
+        0000CC330000FF33000000660000336600006666000099660000CC660000FF66
+        000000990000339900006699000099990000CC990000FF99000000CC000033CC
+        000066CC000099CC0000CCCC0000FFCC000000FF000033FF000066FF000099FF
+        0000CCFF0000FFFF000000003300330033006600330099003300CC003300FF00
+        330000333300333333006633330099333300CC333300FF333300006633003366
+        33006666330099663300CC663300FF6633000099330033993300669933009999
+        3300CC993300FF99330000CC330033CC330066CC330099CC3300CCCC3300FFCC
+        330000FF330033FF330066FF330099FF3300CCFF3300FFFF3300000066003300
+        66006600660099006600CC006600FF0066000033660033336600663366009933
+        6600CC336600FF33660000666600336666006666660099666600CC666600FF66
+        660000996600339966006699660099996600CC996600FF99660000CC660033CC
+        660066CC660099CC6600CCCC6600FFCC660000FF660033FF660066FF660099FF
+        6600CCFF6600FFFF660000009900330099006600990099009900CC009900FF00
+        990000339900333399006633990099339900CC339900FF339900006699003366
+        99006666990099669900CC669900FF6699000099990033999900669999009999
+        9900CC999900FF99990000CC990033CC990066CC990099CC9900CCCC9900FFCC
+        990000FF990033FF990066FF990099FF9900CCFF9900FFFF99000000CC003300
+        CC006600CC009900CC00CC00CC00FF00CC000033CC003333CC006633CC009933
+        CC00CC33CC00FF33CC000066CC003366CC006666CC009966CC00CC66CC00FF66
+        CC000099CC003399CC006699CC009999CC00CC99CC00FF99CC0000CCCC0033CC
+        CC0066CCCC0099CCCC00CCCCCC00FFCCCC0000FFCC0033FFCC0066FFCC0099FF
+        CC00CCFFCC00FFFFCC000000FF003300FF006600FF009900FF00CC00FF00FF00
+        FF000033FF003333FF006633FF009933FF00CC33FF00FF33FF000066FF003366
+        FF006666FF009966FF00CC66FF00FF66FF000099FF003399FF006699FF009999
+        FF00CC99FF00FF99FF0000CCFF0033CCFF0066CCFF0099CCFF00CCCCFF00FFCC
+        FF0000FFFF0033FFFF0066FFFF0099FFFF00CCFFFF00FFFFFF00000080000080
+        000000808000800000008000800080800000C0C0C00080808000191919004C4C
+        4C00B2B2B200E5E5E500C8AC2800E0CC6600F2EABF00B59B2400D8E9EC009933
+        6600D075A300ECC6D900646F710099A8AC00E2EFF10000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8B46C6C6CE8
+        E8E8E8E8B46C6C6CE8E8E8E2DFDFDFE8E8E8E8E8E2DFDFDFE8E8E8B49090906C
+        E8E8E8B49090906CE8E8E8E2818181DFE8E8E8E2818181DFE8E8E8E8B4909090
+        6CE8B49090906CE8E8E8E8E8E2818181DFE8E2818181DFE8E8E8E8E8E8B49090
+        906C9090906CE8E8E8E8E8E8E8E2818181DF818181DFE8E8E8E8E8E8E8E8B490
+        909090906CE8E8E8E8E8E8E8E8E8E28181818181DFE8E8E8E8E8E8E8E8E8E8B4
+        9090906CE8E8E8E8E8E8E8E8E8E8E8E2818181DFE8E8E8E8E8E8E8E8E8E8B490
+        909090906CE8E8E8E8E8E8E8E8E8E28181818181DFE8E8E8E8E8E8E8E8B49090
+        906C9090906CE8E8E8E8E8E8E8E2818181DF818181DFE8E8E8E8E8E8B4909090
+        6CE8B49090906CE8E8E8E8E8E2818181DFE8E2818181DFE8E8E8E8B49090906C
+        E8E8E8B49090906CE8E8E8E2818181DFE8E8E8E2818181DFE8E8E8B4B4B4B4E8
+        E8E8E8E8B4B4B4B4E8E8E8E2E2E2E2E8E8E8E8E8E2E2E2E2E8E8E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8}
+      NumGlyphs = 2
+    end
+    object btnGravar: TRzBitBtn
+      Left = 506
+      Top = 8
+      Caption = 'Gravar'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      OnClick = btnGravarClick
+      Glyph.Data = {
+        36060000424D3606000000000000360400002800000020000000100000000100
+        08000000000000020000630B0000630B00000001000000000000000000003300
+        00006600000099000000CC000000FF0000000033000033330000663300009933
+        0000CC330000FF33000000660000336600006666000099660000CC660000FF66
+        000000990000339900006699000099990000CC990000FF99000000CC000033CC
+        000066CC000099CC0000CCCC0000FFCC000000FF000033FF000066FF000099FF
+        0000CCFF0000FFFF000000003300330033006600330099003300CC003300FF00
+        330000333300333333006633330099333300CC333300FF333300006633003366
+        33006666330099663300CC663300FF6633000099330033993300669933009999
+        3300CC993300FF99330000CC330033CC330066CC330099CC3300CCCC3300FFCC
+        330000FF330033FF330066FF330099FF3300CCFF3300FFFF3300000066003300
+        66006600660099006600CC006600FF0066000033660033336600663366009933
+        6600CC336600FF33660000666600336666006666660099666600CC666600FF66
+        660000996600339966006699660099996600CC996600FF99660000CC660033CC
+        660066CC660099CC6600CCCC6600FFCC660000FF660033FF660066FF660099FF
+        6600CCFF6600FFFF660000009900330099006600990099009900CC009900FF00
+        990000339900333399006633990099339900CC339900FF339900006699003366
+        99006666990099669900CC669900FF6699000099990033999900669999009999
+        9900CC999900FF99990000CC990033CC990066CC990099CC9900CCCC9900FFCC
+        990000FF990033FF990066FF990099FF9900CCFF9900FFFF99000000CC003300
+        CC006600CC009900CC00CC00CC00FF00CC000033CC003333CC006633CC009933
+        CC00CC33CC00FF33CC000066CC003366CC006666CC009966CC00CC66CC00FF66
+        CC000099CC003399CC006699CC009999CC00CC99CC00FF99CC0000CCCC0033CC
+        CC0066CCCC0099CCCC00CCCCCC00FFCCCC0000FFCC0033FFCC0066FFCC0099FF
+        CC00CCFFCC00FFFFCC000000FF003300FF006600FF009900FF00CC00FF00FF00
+        FF000033FF003333FF006633FF009933FF00CC33FF00FF33FF000066FF003366
+        FF006666FF009966FF00CC66FF00FF66FF000099FF003399FF006699FF009999
+        FF00CC99FF00FF99FF0000CCFF0033CCFF0066CCFF0099CCFF00CCCCFF00FFCC
+        FF0000FFFF0033FFFF0066FFFF0099FFFF00CCFFFF00FFFFFF00000080000080
+        000000808000800000008000800080800000C0C0C00080808000191919004C4C
+        4C00B2B2B200E5E5E500C8AC2800E0CC6600F2EABF00B59B2400D8E9EC009933
+        6600D075A300ECC6D900646F710099A8AC00E2EFF10000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8180C
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E2DFE8E8E8E8E8E8E8E8E8E8E8E8E8181212
+        0CE8E8E8E8E8E8E8E8E8E8E8E8E28181DFE8E8E8E8E8E8E8E8E8E8E818121212
+        120CE8E8E8E8E8E8E8E8E8E8E281818181DFE8E8E8E8E8E8E8E8E81812121212
+        12120CE8E8E8E8E8E8E8E8E2818181818181DFE8E8E8E8E8E8E8E81812120C18
+        1212120CE8E8E8E8E8E8E8E28181DFE2818181DFE8E8E8E8E8E8E818120CE8E8
+        181212120CE8E8E8E8E8E8E281DFE8E8E2818181DFE8E8E8E8E8E8180CE8E8E8
+        E8181212120CE8E8E8E8E8E2DFE8E8E8E8E2818181DFE8E8E8E8E8E8E8E8E8E8
+        E8E8181212120CE8E8E8E8E8E8E8E8E8E8E8E2818181DFE8E8E8E8E8E8E8E8E8
+        E8E8E8181212120CE8E8E8E8E8E8E8E8E8E8E8E2818181DFE8E8E8E8E8E8E8E8
+        E8E8E8E81812120CE8E8E8E8E8E8E8E8E8E8E8E8E28181DFE8E8E8E8E8E8E8E8
+        E8E8E8E8E818120CE8E8E8E8E8E8E8E8E8E8E8E8E8E281DFE8E8E8E8E8E8E8E8
+        E8E8E8E8E8E8180CE8E8E8E8E8E8E8E8E8E8E8E8E8E8E2DFE8E8E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8}
+      NumGlyphs = 2
+    end
+  end
+  object RzGroupBox1: TRzGroupBox
+    Left = 8
+    Top = 97
+    Width = 288
+    Height = 73
+    Caption = 'Configura'#231#227'o de Impressora'
+    CaptionFont.Charset = DEFAULT_CHARSET
+    CaptionFont.Color = clWindowText
+    CaptionFont.Height = -11
+    CaptionFont.Name = 'Tahoma'
+    CaptionFont.Style = [fsBold]
+    TabOrder = 6
+    object RzLabel1: TRzLabel
+      Left = 7
+      Top = 20
+      Width = 95
+      Height = 13
+      Caption = 'Tipo de Impressora '
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      BlinkIntervalOff = 0
+      BlinkIntervalOn = 0
+    end
+    object RzLabel6: TRzLabel
+      Left = 134
+      Top = 20
+      Width = 105
+      Height = 13
+      Caption = 'Impressora de Cupom'
+      BlinkIntervalOff = 0
+      BlinkIntervalOn = 0
+    end
+    object cbxModeloImpressora: TRzComboBox
+      Left = 7
+      Top = 39
+      Width = 121
+      Height = 21
+      Color = cl3DLight
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      Text = 'Texto'
+      OnChange = cbxModeloImpressoraChange
+      Items.Strings = (
+        'Texto'
+        'Epson'
+        'Bematech'
+        'Daruma'
+        'Vox'
+        'Diebold'
+        'EpsonP2')
+      ItemIndex = 0
+      Values.Strings = (
+        '0'
+        '1'
+        '2'
+        '3'
+        '4'
+        '5'
+        '6')
+    end
+    object cbxImpressoras: TRzDBComboBox
+      Left = 134
+      Top = 39
+      Width = 145
+      Height = 21
+      DataField = 'IMP_CUPOM'
+      DataSource = DM.dsCaixa
+      Color = clMoneyGreen
+      Ctl3D = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      FrameVisible = True
+      ParentCtl3D = False
+      ParentFont = False
+      TabOrder = 1
+      Values.Strings = (
+        '')
+    end
+  end
+  object rgbGen: TRzDBRadioGroup
+    Left = 302
+    Top = 97
+    Width = 279
+    Height = 74
+    DataField = 'GENERATION'
+    DataSource = DM.dsCaixa
+    Items.Strings = (
+      'Generation 1'
+      'Generation 2'
+      'Generation 3'
+      'Generation 4'
+      'Generation 5')
+    Values.Strings = (
+      'GEN1'
+      'GEN2'
+      'GEN3'
+      'GEN4'
+      'GEN5')
+    OnChange = rgbGenChange
+    Caption = 'Generation a Ser Usado'
+    CaptionFont.Charset = DEFAULT_CHARSET
+    CaptionFont.Color = clWindowText
+    CaptionFont.Height = -11
+    CaptionFont.Name = 'Tahoma'
+    CaptionFont.Style = [fsBold]
+    Columns = 3
+    TabOrder = 8
+  end
+  object RzDBDateTimePicker1: TRzDBDateTimePicker
+    Left = 8
+    Top = 24
+    Width = 100
+    Height = 21
+    Date = 43679.490398680560000000
+    Format = ''
+    Time = 43679.490398680560000000
+    Color = clCream
+    TabOrder = 11
+    DataField = 'DT_INC'
+    DataSource = DM.dsCaixa
+  end
+  object RzDBEdit2: TRzDBEdit
+    Left = 8
+    Top = 70
+    Width = 281
+    Height = 21
+    TabStop = False
+    DataSource = DM.dsCaixa
+    DataField = 'CERT_NUM_SERIE'
+    ReadOnly = True
+    CharCase = ecUpperCase
+    Color = clInfoBk
+    FocusColor = clMoneyGreen
+    TabOrder = 12
+  end
+  object btnCertNumSerie: TRzBitBtn
+    Left = 296
+    Top = 68
+    Width = 28
+    TabOrder = 4
+    OnClick = btnCertNumSerieClick
+    Glyph.Data = {
+      36060000424D3606000000000000360400002800000020000000100000000100
+      08000000000000020000330B0000330B00000001000000000000000000003300
+      00006600000099000000CC000000FF0000000033000033330000663300009933
+      0000CC330000FF33000000660000336600006666000099660000CC660000FF66
+      000000990000339900006699000099990000CC990000FF99000000CC000033CC
+      000066CC000099CC0000CCCC0000FFCC000000FF000033FF000066FF000099FF
+      0000CCFF0000FFFF000000003300330033006600330099003300CC003300FF00
+      330000333300333333006633330099333300CC333300FF333300006633003366
+      33006666330099663300CC663300FF6633000099330033993300669933009999
+      3300CC993300FF99330000CC330033CC330066CC330099CC3300CCCC3300FFCC
+      330000FF330033FF330066FF330099FF3300CCFF3300FFFF3300000066003300
+      66006600660099006600CC006600FF0066000033660033336600663366009933
+      6600CC336600FF33660000666600336666006666660099666600CC666600FF66
+      660000996600339966006699660099996600CC996600FF99660000CC660033CC
+      660066CC660099CC6600CCCC6600FFCC660000FF660033FF660066FF660099FF
+      6600CCFF6600FFFF660000009900330099006600990099009900CC009900FF00
+      990000339900333399006633990099339900CC339900FF339900006699003366
+      99006666990099669900CC669900FF6699000099990033999900669999009999
+      9900CC999900FF99990000CC990033CC990066CC990099CC9900CCCC9900FFCC
+      990000FF990033FF990066FF990099FF9900CCFF9900FFFF99000000CC003300
+      CC006600CC009900CC00CC00CC00FF00CC000033CC003333CC006633CC009933
+      CC00CC33CC00FF33CC000066CC003366CC006666CC009966CC00CC66CC00FF66
+      CC000099CC003399CC006699CC009999CC00CC99CC00FF99CC0000CCCC0033CC
+      CC0066CCCC0099CCCC00CCCCCC00FFCCCC0000FFCC0033FFCC0066FFCC0099FF
+      CC00CCFFCC00FFFFCC000000FF003300FF006600FF009900FF00CC00FF00FF00
+      FF000033FF003333FF006633FF009933FF00CC33FF00FF33FF000066FF003366
+      FF006666FF009966FF00CC66FF00FF66FF000099FF003399FF006699FF009999
+      FF00CC99FF00FF99FF0000CCFF0033CCFF0066CCFF0099CCFF00CCCCFF00FFCC
+      FF0000FFFF0033FFFF0066FFFF0099FFFF00CCFFFF00FFFFFF00000080000080
+      000000808000800000008000800080800000C0C0C00080808000191919004C4C
+      4C00B2B2B200E5E5E500C8AC2800E0CC6600F2EABF00B59B2400D8E9EC009933
+      6600D075A300ECC6D900646F710099A8AC00E2EFF10000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000E8E8E8E8E8E8
+      E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8
+      E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8A378787878
+      787878787878AAE8E8E8E88181818181818181818181ACE8E8E8A3A3D5CECECE
+      CECECECECEA378E8E8E88181E3ACACACACACACACAC8181E8E8E8A3A3CED5D5D5
+      D5D5D5D5D5CE78A3E8E88181ACE3E3E3E3E3E3E3E3AC8181E8E8A3A3CED5D5D5
+      D5D5D5D5D5CEAA78E8E88181ACE3E3E3E3E3E3E3E3ACAC81E8E8A3CEA3D5D5D5
+      D5D5D5D5D5CED578A3E881AC81E3E3E3E3E3E3E3E3ACE38181E8A3CEAAAAD5D5
+      D5D5D5D5D5CED5AA78E881ACACACE3E3E3E3E3E3E3ACE3AC81E8A3D5CEA3D6D6
+      D6D6D6D6D6D5D6D678E881E3AC81E3E3E3E3E3E3E3E3E3E381E8A3D5D5CEA3A3
+      A3A3A3A3A3A3A3A3CEE881E3E3AC81818181818181818181ACE8A3D6D5D5D5D5
+      D6D6D6D6D678E8E8E8E881E3E3E3E3E3E3E3E3E3E381E8E8E8E8E8A3D6D6D6D6
+      A3A3A3A3A3E8E8E8E8E8E881E3E3E3E38181818181E8E8E8E8E8E8E8A3A3A3A3
+      E8E8E8E8E8E8E8E8E8E8E8E881818181E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8
+      E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8
+      E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8
+      E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8}
+    NumGlyphs = 2
+  end
+  object RzDBEdit11: TRzDBEdit
+    Left = 330
+    Top = 70
+    Width = 119
+    Height = 21
+    DataSource = DM.dsCaixa
+    DataField = 'CERT_SENHA'
+    Color = clMoneyGreen
+    TabOnEnter = True
+    TabOrder = 5
+  end
+  object RzDBEdit5: TRzDBEdit
+    Left = 114
+    Top = 24
+    Width = 90
+    Height = 21
+    DataSource = DM.dsCaixa
+    DataField = 'IDFILIAL'
+    Color = clMoneyGreen
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOnEnter = True
+    TabOrder = 0
+  end
+  object qryGen: TpFIBQuery
+    Transaction = DM.transPricipal
+    Database = DM.Conexao
+    Left = 529
+    Top = 24
+  end
+end

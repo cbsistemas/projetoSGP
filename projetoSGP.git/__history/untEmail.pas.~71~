@@ -1,0 +1,183 @@
+unit untEmail;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, RzLabel,
+  Vcl.Imaging.pngimage, Vcl.ExtCtrls, JvExExtCtrls, JvImage, RzPanel, Vcl.Mask,
+  RzEdit, RzDBEdit, dxGDIPlusClasses, RzButton, RzLstBox, IdIOHandler,
+  IdIOHandlerSocket, IdIOHandlerStack, IdSSL, IdSSLOpenSSL, IdBaseComponent,
+  IdComponent, IdTCPConnection, IdTCPClient, IdExplicitTLSClientServerBase,
+  IdMessageClient, IdSMTPBase, IdSMTP, RzShellDialogs, IdMessage, RzStatus, IdAttachmentFile,
+  IdAntiFreezeBase, Vcl.IdAntiFreeze;
+
+type
+  TfrmEmail = class(TForm)
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloCliente: TRzLabel;
+    RzLabel1: TRzLabel;
+    RzLabel2: TRzLabel;
+    RzGroupBox1: TRzGroupBox;
+    lbxAnexos: TRzListBox;
+    btnAnexar: TRzBitBtn;
+    RzGroupBox2: TRzGroupBox;
+    mmoMensagem: TRzMemo;
+    btnEnviar: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    edtRemetente: TRzEdit;
+    edtDestinatario: TRzEdit;
+    edtAssunto: TRzEdit;
+    OpenDialog: TRzOpenDialog;
+    SSLSocket: TIdSSLIOHandlerSocketOpenSSL;
+    statusBar: TRzStatusBar;
+    statusBarPanel1: TRzStatusPane;
+    Mesage: TIdMessage;
+    SMTP: TIdSMTP;
+    procedure SSLSocketStatusInfo(const AMsg: string);
+    procedure SMTPStatus(ASender: TObject; const AStatus: TIdStatus;
+      const AStatusText: string);
+    procedure btnAnexarClick(Sender: TObject);
+    procedure btnEnviarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure SMTPConnected(Sender: TObject);
+    procedure SMTPDisconnected(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmEmail: TfrmEmail;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmEmail.btnAnexarClick(Sender: TObject);
+var
+  i: integer;
+begin
+  if OpenDialog.Execute then
+  begin
+    for i:= 0 to OpenDialog.Files.Count -1 do
+    if (lbxAnexos.Items.IndexOf(OpenDialog.Files[i]) = -1) then
+      lbxAnexos.Items.Add(OpenDialog.Files[i])
+  end;
+end;
+
+procedure TfrmEmail.btnCancelarClick(Sender: TObject);
+begin
+  ModalResult := mrCancel;
+end;
+
+procedure TfrmEmail.btnEnviarClick(Sender: TObject);
+var
+  i: integer;
+begin
+  btnEnviar.Enabled := False;
+  Screen.Cursor := crHourglass;
+  statusBarPanel1.Caption := 'Aguarde...';
+
+try
+
+        with SMTP do
+        begin
+            AuthType  := satDefault; //Login
+            Host      := 'smtp.gmail.com';
+            Password  := 'QuerosabedoriA21';
+            Port      := 465;
+            Username  := 'vitor.fr59@gmail.com';
+
+//            AuthType  := satNone; //Login
+//            Host      := 'enviobypass01.redehost.com.br';
+//            Port      := 2550;
+
+            IOHandler := SSLSocket;
+            UseTLS    := utUseImplicitTLS;
+            ConnectTimeout := 30000;
+            ReadTimeout    := 30000;
+        end;
+
+        SSLSocket.SSLOptions.Method := sslvSSLv23;
+        SSLSocket.SSLOptions.Mode := sslmClient;
+
+       // SSLSocket.PassThrough := true;
+
+        Mesage.Clear;
+        Mesage.MessageParts.Clear;
+        if lbxAnexos.Items.Count > 0 then
+        begin
+        for i:= 0 to lbxAnexos.Items.Count - 1 do
+            TIdAttachmentFile.Create(Mesage.MessageParts, lbxAnexos.Items[i]);
+        end;
+
+        Mesage.From.Address := edtRemetente.Text;
+        Mesage.From.Text    := 'Vitor Ferreira';
+        Mesage.Subject      := edtAssunto.Text;
+        Mesage.Encoding     := meMIME;
+        Mesage.ContentType := 'text/plain; charset=iso-8859-1';
+        Mesage.Body.Add(mmoMensagem.Text);
+        Mesage.Recipients.EMailAddresses := edtDestinatario.Text; //email destino
+//        Mesage.CCList.EMailAddresses     := EdtCC.Text;
+//        Mesage.BccList.EMailAddresses    := EdtCCO.Text;
+
+        if not SMTP.Connected then
+        begin
+            SMTP.Connect();
+           // SSLSocket.PassThrough := False;
+            SMTP.Authenticate();
+        end;//if
+
+        if SMTP.Connected then
+           SMTP.Send(Mesage);
+        Application.ProcessMessages;
+
+    except
+      on E: Exception do
+      begin
+        ShowMessage(e.Message);
+        mmoMensagem.Clear;
+        mmoMensagem.Text := e.Message;
+      end;
+    end;
+    SMTP.Disconnect;
+
+  statusBarPanel1.Caption := 'Email Enviado!';
+  Screen.Cursor := crDefault;
+  btnEnviar.Enabled := True;
+end;
+
+procedure TfrmEmail.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  SMTP.Disconnect();
+  //UnLoadOpenSSLLibrary; //Libera a DLL da memória, declarar Uses IdSSLOpenSSL
+end;
+
+procedure TfrmEmail.SMTPConnected(Sender: TObject);
+begin
+  statusBarPanel1.Caption := 'Conectado';
+end;
+
+procedure TfrmEmail.SMTPDisconnected(Sender: TObject);
+begin
+  statusBarPanel1.Caption := 'Desconectado';
+end;
+
+procedure TfrmEmail.SMTPStatus(ASender: TObject; const AStatus: TIdStatus;
+  const AStatusText: string);
+begin
+  Application.ProcessMessages;
+  statusBarPanel1.Caption := 'idSMTP: ' + AStatusText;
+end;
+
+procedure TfrmEmail.SSLSocketStatusInfo(const AMsg: string);
+begin
+  Application.ProcessMessages;
+  statusBarPanel1.Caption := 'idSSL: ' + AMsg;
+end;
+
+end.

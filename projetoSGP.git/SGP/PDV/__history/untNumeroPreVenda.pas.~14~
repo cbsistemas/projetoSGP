@@ -1,0 +1,77 @@
+unit untNumeroPreVenda;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, RzEdit,
+  RzButton, RzLabel, Vcl.ExtCtrls, RzPanel;
+
+type
+  TfrmNumeroPreVenda = class(TForm)
+    RzPanel1: TRzPanel;
+    lblTituloCliente: TRzLabel;
+    btnConfirmar: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    btnConsultar: TRzBitBtn;
+    edtNumPreVenda: TRzEdit;
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure btnConfirmarClick(Sender: TObject);
+    procedure edtNumPreVendaExit(Sender: TObject);
+    procedure btnConsultarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmNumeroPreVenda: TfrmNumeroPreVenda;
+
+implementation
+
+{$R *.dfm}
+
+uses uUtils;
+
+procedure TfrmNumeroPreVenda.btnCancelarClick(Sender: TObject);
+begin
+  ModalResult := mrCancel;
+end;
+
+procedure TfrmNumeroPreVenda.btnConfirmarClick(Sender: TObject);
+var
+  utils : TUtils;
+begin
+    edtNumPreVenda.Text := FloatToStr(utils.ValidaInteiroFloat(edtNumPreVenda.Text, 'I'))
+  ModalResult := mrOk;
+end;
+
+procedure TfrmNumeroPreVenda.btnConsultarClick(Sender: TObject);
+begin
+  ModalResult := mrOk;
+end;
+
+procedure TfrmNumeroPreVenda.edtNumPreVendaExit(Sender: TObject);
+var
+  utils : TUtils;
+begin
+    edtNumPreVenda.Text := FloatToStr(utils.ValidaInteiroFloat(edtNumPreVenda.Text, 'I'))
+end;
+
+procedure TfrmNumeroPreVenda.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = 13 then
+  begin
+    btnConfirmar.Click;
+  end;
+
+  if Key = VK_ESCAPE then
+  begin
+    btnCancelar.Click;
+  end;
+end;
+
+end.

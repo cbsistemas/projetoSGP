@@ -1,0 +1,214 @@
+unit untFechamentoCaixa;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzButton, Vcl.StdCtrls, Vcl.Mask,
+  RzEdit, RzDBEdit, RzLabel, Vcl.Imaging.pngimage, Vcl.ExtCtrls, JvExExtCtrls,
+  JvImage, RzPanel, RzBckgnd, Data.DB, FIBDataSet, pFIBDataSet, FIBQuery, Math,
+  pFIBQuery, Vcl.ComCtrls;
+
+type
+  TfrmFechamentoCaixa = class(TForm)
+    RzBackground1: TRzBackground;
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    RzLabel4: TRzLabel;
+    RzLabel6: TRzLabel;
+    RzDBEdit1: TRzDBEdit;
+    RzLabel1: TRzLabel;
+    RzLabel2: TRzLabel;
+    RzDBEdit2: TRzDBEdit;
+    RzDBEdit3: TRzDBEdit;
+    RzLabel3: TRzLabel;
+    RzDBEdit4: TRzDBEdit;
+    RzLabel5: TRzLabel;
+    RzDBEdit6: TRzDBEdit;
+    RzLabel7: TRzLabel;
+    btnCancelar: TRzBitBtn;
+    btnOK: TRzBitBtn;
+    fdsCaixaFechamento: TpFIBDataSet;
+    fdsCaixaFechamentoID: TFIBBCDField;
+    fdsCaixaFechamentoDT_INC: TFIBDateField;
+    fdsCaixaFechamentoHR_INC: TFIBTimeField;
+    fdsCaixaFechamentoIDUSUARIO: TFIBBCDField;
+    fdsCaixaFechamentoIDFILIAL: TFIBBCDField;
+    fdsCaixaFechamentoIDCAIXA: TFIBBCDField;
+    fdsCaixaFechamentoCONTROLE: TFIBBCDField;
+    fdsCaixaFechamentoVLR_DINHEIRO: TFIBBCDField;
+    fdsCaixaFechamentoVLR_CHEQUE: TFIBBCDField;
+    edtOperador: TRzEdit;
+    dsCaixaFechamento: TDataSource;
+    fdsMovimentoCaixa: TpFIBDataSet;
+    qrySomatorio: TpFIBQuery;
+    fdsMovimentoCaixaID: TFIBBCDField;
+    fdsMovimentoCaixaIDCAIXA: TFIBBCDField;
+    fdsMovimentoCaixaIDFILIAL: TFIBBCDField;
+    fdsMovimentoCaixaDT_INC: TFIBDateField;
+    fdsMovimentoCaixaHR_INC: TFIBTimeField;
+    fdsMovimentoCaixaIDUSUARIO: TFIBBCDField;
+    fdsMovimentoCaixaCONTROLE: TFIBBCDField;
+    fdsMovimentoCaixaTIPO: TFIBStringField;
+    fdsMovimentoCaixaMOEDA: TFIBStringField;
+    fdsMovimentoCaixaVLR_ENTRADA: TFIBBCDField;
+    fdsMovimentoCaixaVLR_CHEQUE: TFIBBCDField;
+    fdsMovimentoCaixaVLR_CARTAO: TFIBBCDField;
+    fdsMovimentoCaixaVLR_NOTA: TFIBBCDField;
+    fdsMovimentoCaixaVLR_FINANCEIRA: TFIBBCDField;
+    fdsMovimentoCaixaVLR_VALEDESCONTO: TFIBBCDField;
+    fdsMovimentoCaixaVLR_TICKET: TFIBBCDField;
+    fdsMovimentoCaixaVLR_VENDA: TFIBBCDField;
+    fdsMovimentoCaixaVLR_TOTAL: TFIBBCDField;
+    fdsMovimentoCaixaVLR_DESCONTO: TFIBBCDField;
+    fdsMovimentoCaixaTROCO: TFIBBCDField;
+    fdsMovimentoCaixaENVIADO_WEB: TFIBStringField;
+    fdsMovimentoCaixaIDMOVIMENTO: TFIBBCDField;
+    fdsMovimentoCaixaHISTORICO: TFIBStringField;
+    redImprimir: TRzRichEdit;
+    RzLabel8: TRzLabel;
+    RzDBEdit5: TRzDBEdit;
+    RzDBEdit7: TRzDBEdit;
+    RzLabel9: TRzLabel;
+    procedure FormActivate(Sender: TObject);
+    procedure btnOKClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure ImprimirFechamento;
+    procedure CalculaFechamento;
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+  private
+    { Private declarations }
+  public
+  end;
+
+var
+  frmFechamentoCaixa: TfrmFechamentoCaixa;
+
+implementation
+
+{$R *.dfm}
+
+uses untData, untPrincipal, uUtils, untTotalizadores;
+
+procedure TfrmFechamentoCaixa.btnCancelarClick(Sender: TObject);
+begin
+  ModalResult := mrCancel;
+end;
+
+procedure TfrmFechamentoCaixa.btnOKClick(Sender: TObject);
+begin
+  fdsCaixaFechamento.Post;
+  DM.conexao.CommitRetaining;
+  CalculaFechamento;
+
+  Case MessageBox(Application.Handle, Pchar('Imprimir Fechamento?'), 'Atenção', MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) of
+          idYes: begin
+                    ImprimirFechamento;
+                 end;
+  End;
+
+  ModalResult := mrOk;
+end;
+
+procedure TfrmFechamentoCaixa.CalculaFechamento;
+begin
+
+Try
+      frmTotalizadores := TfrmTotalizadores.Create(nil);
+      frmTotalizadores.ShowModal;
+   Finally
+      if frmTotalizadores.ModalResult = mrOk then
+      begin
+        fdsMovimentoCaixa.Open;
+        fdsMovimentoCaixa.Append;
+        fdsMovimentoCaixaCONTROLE.AsInteger := DM.controle;
+        fdsMovimentoCaixaIDCAIXA.AsInteger := DM.numCaixa;
+        fdsMovimentoCaixaIDFILIAL.AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+        fdsMovimentoCaixaIDUSUARIO.AsInteger := DM.idUsuario;
+        fdsMovimentoCaixaTIPO.AsString := 'FE';
+        fdsMovimentoCaixaMOEDA.AsString := 'DN';
+        fdsMovimentoCaixaVLR_CHEQUE.AsFloat := frmTotalizadores.CHVenda;
+        fdsMovimentoCaixaVLR_CARTAO.AsFloat := frmTotalizadores.CTVenda;
+        fdsMovimentoCaixaVLR_NOTA.AsFloat := frmTotalizadores.NTVenda;
+        fdsMovimentoCaixaVLR_FINANCEIRA.AsFloat := frmTotalizadores.FNVenda;
+        fdsMovimentoCaixaVLR_TICKET.AsFloat := frmTotalizadores.TKVenda;
+        fdsMovimentoCaixaVLR_VALEDESCONTO.AsFloat := frmTotalizadores.VDVenda;
+        fdsMovimentoCaixaVLR_VENDA.AsFloat := frmTotalizadores.TotalEN;
+        fdsMovimentoCaixaVLR_ENTRADA.AsFloat := frmTotalizadores.TotalFechamento; // Total em dinheiro
+        fdsMovimentoCaixaVLR_TOTAL.AsFloat := frmTotalizadores.TotalEN;
+        fdsMovimentoCaixa.Post;
+        DM.conexao.CommitRetaining;
+     end;
+  End;
+end;
+
+procedure TfrmFechamentoCaixa.FormActivate(Sender: TObject);
+begin
+  edtOperador.Text := DM.operador;
+  with fdsCaixaFechamento do
+  begin
+    Open;
+    Insert;
+    fdsCaixaFechamentoDT_INC.AsDateTime := Now;
+    fdsCaixaFechamentoHR_INC.AsDateTime := Now;
+    fdsCaixaFechamentoIDUSUARIO.AsInteger := DM.idUsuario;
+    fdsCaixaFechamentoIDFILIAL.AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+    fdsCaixaFechamentoIDCAIXA.AsInteger := DM.numCaixa;
+    fdsCaixaFechamentoCONTROLE.AsInteger := DM.controle;
+  end;
+end;
+
+procedure TfrmFechamentoCaixa.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = VK_ESCAPE then
+  begin
+    btnCancelar.Click;
+  end
+end;
+
+procedure TfrmFechamentoCaixa.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+    SelectNext(ActiveControl, True, True);
+  end;
+end;
+
+procedure TfrmFechamentoCaixa.ImprimirFechamento;
+var
+  cArquivo: TextFile;
+begin
+    redImprimir.Clear;
+    redImprimir.Lines.Add('     FECHAMENTO DE CAIXA');
+    redImprimir.Lines.Add('');
+    redImprimir.Lines.Add(' Data: ' + DateToStr(Now) + ' Hora: ' + TimeToStr(Now) + ' Caixa: ' + IntToStr(DM.numCaixa) + ' Controle: ' + IntToStr(DM.controle));
+    redImprimir.Lines.Add(' Operador: ' + edtOperador.Text);
+    redImprimir.Lines.Add('');
+    redImprimir.Lines.Add(' DINHEIRO: ' + FormatCurr('R$ #,##0.00', fdsCaixaFechamentoVLR_DINHEIRO.AsFloat));
+    redImprimir.Lines.Add('');
+    redImprimir.Lines.Add(' CHEQUE: ' + FormatCurr('R$ #,##0.00', fdsCaixaFechamentoVLR_CHEQUE.AsFloat));
+    redImprimir.Lines.Add('');
+    redImprimir.Lines.Add('------------------------------------------');
+    redImprimir.Lines.Add('');
+    redImprimir.Lines.Add('');
+
+    try
+     // AssignFile(cArquivo, 'COM3');
+      AssignFile(cArquivo, impcupom);
+      Rewrite(cArquivo);
+      Writeln(cArquivo, redImprimir.Text);
+      Writeln(cArquivo);
+      CloseFile(cArquivo);
+
+    except on e: Exception do
+    begin
+      ShowMessage(e.Message);
+    end;
+//
+  end;
+end;
+
+end.

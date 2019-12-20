@@ -1,0 +1,37 @@
+object frmControleMesas: TfrmControleMesas
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Controle de Mesas'
+  ClientHeight = 458
+  ClientWidth = 1022
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object d: TRzBackground
+    Left = 0
+    Top = 0
+    Width = 1022
+    Height = 458
+    Active = True
+    Align = alClient
+    GradientColorStart = 4271645
+    GradientColorStop = -1
+    GradientDirection = gdDiagonalDown
+    ImageStyle = isCenter
+    ShowGradient = True
+    ShowImage = False
+    ShowTexture = False
+    ExplicitLeft = 160
+    ExplicitTop = -83
+    ExplicitWidth = 838
+    ExplicitHeight = 531
+  end
+end

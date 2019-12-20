@@ -1,0 +1,42 @@
+unit untPesqTransportadora;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, FIBDataSet, pFIBDataSet,
+  Vcl.Grids, Vcl.DBGrids, JvExDBGrids, JvDBGrid, Vcl.StdCtrls, Vcl.Mask, RzEdit,
+  RzButton, RzLabel, Vcl.Imaging.pngimage, Vcl.ExtCtrls, JvExExtCtrls, JvImage,
+  RzPanel, RzBckgnd;
+
+type
+  TfrmPesqTransportadora = class(TForm)
+    RzBackground1: TRzBackground;
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloCliente: TRzLabel;
+    lblNome: TRzLabel;
+    btnTodos: TRzBitBtn;
+    btnPesquisar: TRzBitBtn;
+    edtNome: TRzEdit;
+    JvDBGrid1: TJvDBGrid;
+    dsTransportadora: TDataSource;
+    fdsTransportadora: TpFIBDataSet;
+    btnCancelar: TRzBitBtn;
+    btnSelecionar: TRzBitBtn;
+    fdsTransportadoraID: TFIBBCDField;
+    fdsTransportadoraRAZAO_SOCIAL: TFIBStringField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPesqTransportadora: TfrmPesqTransportadora;
+
+implementation
+
+{$R *.dfm}
+
+end.

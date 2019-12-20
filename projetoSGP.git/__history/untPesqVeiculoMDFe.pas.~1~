@@ -1,0 +1,69 @@
+unit untPesqVeiculoMDFe;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, FIBDataSet, pFIBDataSet,
+  Vcl.Imaging.pngimage, Vcl.ExtCtrls, JvExExtCtrls, JvImage, Vcl.StdCtrls,
+  RzCmboBx, RzDBCmbo, RzDBEdit, Vcl.Grids, Vcl.DBGrids, JvExDBGrids, JvDBGrid,
+  RzTabs, RzBckgnd, Vcl.Mask, RzEdit, RzButton, RzLabel, RzPanel;
+
+type
+  TfrmPesqVeiculoMDFe = class(TForm)
+    RzPanel1: TRzPanel;
+    lblTituloCliente: TRzLabel;
+    lblNome: TRzLabel;
+    btnTodos: TRzBitBtn;
+    btnPesquisar: TRzBitBtn;
+    edtNome: TRzEdit;
+    RzBackground1: TRzBackground;
+    btnCancelar: TRzBitBtn;
+    btnSelecionar: TRzBitBtn;
+    RzBitBtn1: TRzBitBtn;
+    RzPageControl1: TRzPageControl;
+    tbsTabela: TRzTabSheet;
+    gdrVeiculos: TJvDBGrid;
+    tbsFormulario: TRzTabSheet;
+    lblCodigo: TRzLabel;
+    edtID: TRzDBEdit;
+    lblDtInc: TRzLabel;
+    edtDt_Inc: TRzDBEdit;
+    lblDtAlt: TRzLabel;
+    edtDt_Alt: TRzDBEdit;
+    lblStatus: TRzLabel;
+    cbxStatus: TRzDBComboBox;
+    RzLabel1: TRzLabel;
+    RzDBEdit1: TRzDBEdit;
+    lblRG: TRzLabel;
+    edtReferencia: TRzDBEdit;
+    RzLabel2: TRzLabel;
+    RzDBEdit2: TRzDBEdit;
+    RzLabel3: TRzLabel;
+    RzDBEdit3: TRzDBEdit;
+    RzLabel4: TRzLabel;
+    RzDBEdit4: TRzDBEdit;
+    RzLabel5: TRzLabel;
+    RzDBEdit5: TRzDBEdit;
+    RzLabel6: TRzLabel;
+    RzDBComboBox1: TRzDBComboBox;
+    JvImage1: TJvImage;
+    fdsVeiculosMDFe: TpFIBDataSet;
+    RzLabel7: TRzLabel;
+    RzDBEdit6: TRzDBEdit;
+    RzLabel8: TRzLabel;
+    RzDBEdit7: TRzDBEdit;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPesqVeiculoMDFe: TfrmPesqVeiculoMDFe;
+
+implementation
+
+{$R *.dfm}
+
+end.

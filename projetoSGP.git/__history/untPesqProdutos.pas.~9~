@@ -1,0 +1,131 @@
+unit untPesqProdutos;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, FIBDataSet, pFIBDataSet, Grids, DBGrids, JvExDBGrids, JvDBGrid,
+  StdCtrls, Mask, RzEdit, RzButton, RzLabel, dxGDIPlusClasses, ExtCtrls,
+  JvExExtCtrls, JvImage, RzPanel, RzBckgnd, Vcl.Imaging.pngimage;
+
+type
+  TfrmPesqProdutos = class(TForm)
+    RzBackground1: TRzBackground;
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloCliente: TRzLabel;
+    lblNome: TRzLabel;
+    btnTodos: TRzBitBtn;
+    btnPesquisar: TRzBitBtn;
+    edtNome: TRzEdit;
+    JvDBGrid1: TJvDBGrid;
+    RzPanel2: TRzPanel;
+    btnSelecionar: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    fdsProdutos: TpFIBDataSet;
+    dsProdutos: TDataSource;
+    fdsProdutosID: TFIBBCDField;
+    fdsProdutosNOME: TFIBStringField;
+    fdsProdutosGRUPO: TFIBStringField;
+    procedure FormActivate(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure Pesquisar;
+    procedure edtNomeKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure btnTodosClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnSelecionarClick(Sender: TObject);
+    procedure JvDBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure btnPesquisarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPesqProdutos: TfrmPesqProdutos;
+
+implementation
+
+uses untData;
+
+{$R *.dfm}
+
+procedure TfrmPesqProdutos.btnCancelarClick(Sender: TObject);
+begin
+  ModalResult := mrCancel;
+end;
+
+procedure TfrmPesqProdutos.btnPesquisarClick(Sender: TObject);
+begin
+  Pesquisar;
+end;
+
+procedure TfrmPesqProdutos.btnSelecionarClick(Sender: TObject);
+begin
+  ModalResult := mrOk;
+end;
+
+procedure TfrmPesqProdutos.btnTodosClick(Sender: TObject);
+var
+  sql : string;
+begin
+  with fdsProdutos do
+  begin
+    Close;
+    Conditions.Clear;
+    Conditions.Apply;
+    Prepare;
+    Open;
+  end;
+end;
+
+procedure TfrmPesqProdutos.edtNomeKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  Pesquisar;
+end;
+
+procedure TfrmPesqProdutos.FormActivate(Sender: TObject);
+begin
+  edtNome.SetFocus;
+end;
+
+procedure TfrmPesqProdutos.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = VK_F5 then
+  begin
+    btnSelecionar.Click;
+  end;
+end;
+
+procedure TfrmPesqProdutos.JvDBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  if not odd(fdsProdutos.RecNo) then
+  begin
+    JvDBGrid1.Canvas.Brush.Color := DM.gridOddColor;
+    JvDBGrid1.Canvas.FillRect(Rect);
+    JvDBGrid1.DefaultDrawDataCell(rect,Column.Field,state);
+  end;
+end;
+
+procedure TfrmPesqProdutos.Pesquisar;
+var
+  sql : string;
+begin
+  with fdsProdutos do
+  begin
+    Close;
+    Conditions.Clear;
+    Conditions.AddCondition('NOME', 'NOME LIKE ' + QuotedStr('%' + Trim(edtNome.Text) + '%'), True);
+    Conditions.Apply;
+    Prepare;
+    Open;
+  end;
+end;
+
+end.

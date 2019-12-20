@@ -1,0 +1,67 @@
+unit untCadRotas;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, FIBDataSet, pFIBDataSet, dxGDIPlusClasses, ExtCtrls,
+  JvExExtCtrls, JvImage, StdCtrls, RzCmboBx, RzDBCmbo, Mask, RzEdit, RzDBEdit,
+  RzLabel, Grids, DBGrids, JvExDBGrids, JvDBGrid, RzTabs, RzButton, RzPanel,
+  RzBckgnd;
+
+type
+  TfrmCadRota = class(TForm)
+    RzBackground1: TRzBackground;
+    RzPanel2: TRzPanel;
+    btnIncluir: TRzBitBtn;
+    btnGravar: TRzBitBtn;
+    btnAlterar: TRzBitBtn;
+    btnDelete: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    pgcControl: TRzPageControl;
+    tbsTabela: TRzTabSheet;
+    JvDBGrid1: TJvDBGrid;
+    tbsForm: TRzTabSheet;
+    lblCodigo: TRzLabel;
+    lblDtAlt: TRzLabel;
+    lblDtInc: TRzLabel;
+    lblNome: TRzLabel;
+    lblStatus: TRzLabel;
+    edtID: TRzDBEdit;
+    edtDt_Inc: TRzDBEdit;
+    edtDt_Alt: TRzDBEdit;
+    edtNome: TRzDBEdit;
+    cbxStatus: TRzDBComboBox;
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloCliente: TRzLabel;
+    lblTituloTotal: TRzLabel;
+    lblTotal: TRzLabel;
+    btnPrior: TRzBitBtn;
+    btnFirst: TRzBitBtn;
+    btnNext: TRzBitBtn;
+    btnLast: TRzBitBtn;
+    btnTodos: TRzBitBtn;
+    fdsRota: TpFIBDataSet;
+    fdsRotaID: TFIBBCDField;
+    fdsRotaDT_INC: TFIBDateField;
+    fdsRotaDT_ALT: TFIBDateField;
+    fdsRotaSTATUS: TFIBStringField;
+    fdsRotaNOME: TFIBStringField;
+    dsRota: TDataSource;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadRota: TfrmCadRota;
+
+implementation
+
+uses uUtils, untData;
+
+{$R *.dfm}
+
+end.

@@ -1,0 +1,12 @@
+update venda_item VI set VI.IDGRUPO =(SELECT PO.IDGRUPO FROM PRODUTO_ITEM P, PRODUTO PO WHERE PO.id=P.idproduto and P.id = VI.idprod_item) where vi.idvenda is not null and vi.IDGRUPO is null;
+update NFE_ITEM NI set NI.IDGRUPO =(SELECT PO.IDGRUPO FROM PRODUTO_ITEM P, PRODUTO PO WHERE PO.id=P.idproduto and P.id = NI.idprod_item) where ni.id is not null and ni.IDGRUPO IS NULL;
+
+update venda_item vi set vi.prec_custo_medio= (select pi.prec_custo_medio from produto_item pi where pi.id = vi.idprod_item) WHERE VI.idvenda IS not NULL AND (vi.prec_custo_medio IS NULL OR vi.prec_custo_medio = 0);
+update venda_item vi set vi.prec_custo_medio = 0 where VI.idvenda IS not NULL AND vi.prec_custo_medio is null;
+update NFE_ITEM Ni set Ni.prec_custo_medio= (select pi.prec_custo_medio from produto_item pi where pi.id = Ni.idprod_item) WHERE NI.ID IS NOT NULL AND (Ni.prec_custo_medio IS NULL OR Ni.prec_custo_medio = 0);;
+update NFE_ITEM Ni set Ni.prec_custo_medio=0 where NI.ID IS NOT NULL AND  Ni.prec_custo_medio is null;
+
+UPDATE CONFIG SET MODELO_IMP_ETIQ = '0', DPI_IMP_ETIQ = '1', PORTA_IMP_ETIQ ='' WHERE PORTA_IMP_ETIQ like 'COM%' or MODELO_IMP_ETIQ IS NULL ;
+update movimento_cnt_receber MR set MR.IDCLIENTE = (SELECT mAX(R.idcliente) FROM movimento_cnt_receber_item MI, cnt_receber_item RI,cnt_receber R WHERE R.ID= RI.IDRECEBER and RI.ID = MI.IDDOC and  MI.idmovimento = MR.ID) WHERE MR.ID IS NOT NULL AND MR.IDCLIENTE IS NULL;
+
+COMMIT WORK;

@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{11dfb542-9e0c-498d-9e38-5470c61db0c1}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+    <DCC_DependencyCheckOutputName>PDV.exe</DCC_DependencyCheckOutputName>
+    <MainSource>PDV.dpr</MainSource>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Version>7.0</Version>
+    <DCC_DebugInformation>False</DCC_DebugInformation>
+    <DCC_LocalDebugSymbols>False</DCC_LocalDebugSymbols>
+    <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+    <DCC_Define>RELEASE</DCC_Define>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <Version>7.0</Version>
+    <DCC_Define>DEBUG</DCC_Define>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <Borland.Personality>Delphi.Personality</Borland.Personality>
+    <Borland.ProjectType />
+    <BorlandProject>
+<BorlandProject><Delphi.Personality><Parameters><Parameters Name="UseLauncher">False</Parameters><Parameters Name="LoadAllSymbols">True</Parameters><Parameters Name="LoadUnspecifiedSymbols">False</Parameters></Parameters><VersionInfo><VersionInfo Name="IncludeVerInfo">False</VersionInfo><VersionInfo Name="AutoIncBuild">False</VersionInfo><VersionInfo Name="MajorVer">1</VersionInfo><VersionInfo Name="MinorVer">0</VersionInfo><VersionInfo Name="Release">0</VersionInfo><VersionInfo Name="Build">0</VersionInfo><VersionInfo Name="Debug">False</VersionInfo><VersionInfo Name="PreRelease">False</VersionInfo><VersionInfo Name="Special">False</VersionInfo><VersionInfo Name="Private">False</VersionInfo><VersionInfo Name="DLL">False</VersionInfo><VersionInfo Name="Locale">1046</VersionInfo><VersionInfo Name="CodePage">1252</VersionInfo></VersionInfo><VersionInfoKeys><VersionInfoKeys Name="CompanyName"></VersionInfoKeys><VersionInfoKeys Name="FileDescription"></VersionInfoKeys><VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys><VersionInfoKeys Name="InternalName"></VersionInfoKeys><VersionInfoKeys Name="LegalCopyright"></VersionInfoKeys><VersionInfoKeys Name="LegalTrademarks"></VersionInfoKeys><VersionInfoKeys Name="OriginalFilename"></VersionInfoKeys><VersionInfoKeys Name="ProductName"></VersionInfoKeys><VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys><VersionInfoKeys Name="Comments"></VersionInfoKeys></VersionInfoKeys><Excluded_Packages>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <Excluded_Packages Name="$(BDS)\bin\dcloffice2k100.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+      <Excluded_Packages Name="$(BDS)\bin\dclofficexp100.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+      <Excluded_Packages Name="C:\Users\Public\Documents\RAD Studio\5.0\Bpl\FIBPlus7.bpl">FIBPlus</Excluded_Packages>
+      <Excluded_Packages Name="C:\Program Files (x86)\Developer Express Inc\Library\Delphi11\dxPScxCommonD11.bpl">ExpressPrinting System Cross Platform Library by Developer Express Inc.</Excluded_Packages>
+      <Excluded_Packages Name="C:\Program Files (x86)\Developer Express Inc\Library\Delphi11\dxPScxExtCommonD11.bpl">ExpressPrinting System Extended Cross Platform Library by Developer Express Inc.</Excluded_Packages>
+      <Excluded_Packages Name="C:\Program Files (x86)\Developer Express Inc\Library\Delphi11\dxPscxTLLnkD11.bpl">ExpressPrinting System ReportLink for ExpressQuantumTreeList 4 by Developer Express Inc.</Excluded_Packages>
+      <Excluded_Packages Name="C:\Program Files (x86)\Developer Express Inc\Library\Delphi11\dxPScxVGridLnkD11.bpl">ExpressPrinting System ReportLink for ExpressVerticalGrid by Developer Express Inc.</Excluded_Packages>
+      <Excluded_Packages Name="C:\Program Files (x86)\Developer Express Inc\Library\Delphi11\dxPSTeeChartD11.bpl">File C:\Program Files (x86)\Developer Express Inc\Library\Delphi11\dxPSTeeChartD11.bpl not found</Excluded_Packages>
+      <Excluded_Packages Name="C:\Program Files (x86)\Developer Express Inc\Library\Delphi11\dxPSDBTeeChartD11.bpl">File C:\Program Files (x86)\Developer Express Inc\Library\Delphi11\dxPSDBTeeChartD11.bpl not found</Excluded_Packages>
+      <Excluded_Packages Name="C:\Program Files (x86)\Developer Express Inc\Library\Delphi11\dxPScxGrid6LnkD11.bpl">ExpressPrinting System ReportLink for ExpressQuantumGrid 6 by Developer Express Inc.</Excluded_Packages>
+    </Excluded_Packages><Source><Source Name="MainSource">PDV.dpr</Source></Source></Delphi.Personality></BorlandProject></BorlandProject>
+  </ProjectExtensions>
+  <Import Project="$(MSBuildBinPath)\Borland.Delphi.Targets" />
+  <ItemGroup>
+    <DelphiCompile Include="PDV.dpr">
+      <MainSource>MainSource</MainSource>
+    </DelphiCompile>
+    <DCCReference Include="..\untPesqCidade.pas">
+      <Form>frmPesqCidade</Form>
+    </DCCReference>
+    <DCCReference Include="untAberturaCaixa.pas">
+      <Form>frmAberturaCaixa</Form>
+    </DCCReference>
+    <DCCReference Include="untCadClientes.pas">
+      <Form>frmCadClientes</Form>
+    </DCCReference>
+    <DCCReference Include="untCancelarItem.pas">
+      <Form>frmCancelarItem</Form>
+    </DCCReference>
+    <DCCReference Include="untData.pas">
+      <Form>DM</Form>
+      <DesignClass>TDataModule</DesignClass>
+    </DCCReference>
+    <DCCReference Include="untDescAcresc.pas">
+      <Form>frmDescAcresc</Form>
+    </DCCReference>
+    <DCCReference Include="untItensEntregar.pas">
+      <Form>frmItensEntregar</Form>
+    </DCCReference>
+    <DCCReference Include="untLancDadosBasicCheque.pas">
+      <Form>frmLancDadosBasicCheque</Form>
+    </DCCReference>
+    <DCCReference Include="untLogin.pas">
+      <Form>frmLogin</Form>
+    </DCCReference>
+    <DCCReference Include="untMovimentacaoCaixa.pas">
+      <Form>frmMovimentacaoCaixa</Form>
+    </DCCReference>
+    <DCCReference Include="untOpcoes.pas">
+      <Form>frmOpcoes</Form>
+    </DCCReference>
+    <DCCReference Include="untPesqBanco.pas">
+      <Form>frmPesqBanco</Form>
+    </DCCReference>
+    <DCCReference Include="untPesqCliente.pas">
+      <Form>frmPesqCliente</Form>
+    </DCCReference>
+    <DCCReference Include="untPesqProdutoItens.pas">
+      <Form>frmPesqProdutoItens</Form>
+    </DCCReference>
+    <DCCReference Include="untPesqVendedor.pas">
+      <Form>frmPesqVendedor</Form>
+    </DCCReference>
+    <DCCReference Include="untPrincipal.pas">
+      <Form>frmPrincipal</Form>
+    </DCCReference>
+    <DCCReference Include="untSangria.pas">
+      <Form>frmSangria</Form>
+    </DCCReference>
+    <DCCReference Include="untSuprimento.pas">
+      <Form>frmSuprimento</Form>
+    </DCCReference>
+    <DCCReference Include="untTabelaPrecos.pas">
+      <Form>frmTabelaPrecos</Form>
+    </DCCReference>
+    <DCCReference Include="untTroco.pas">
+      <Form>frmTroco</Form>
+    </DCCReference>
+    <DCCReference Include="untVendaFinalizacao.pas">
+      <Form>frmVendaFinalizacao</Form>
+    </DCCReference>
+    <DCCReference Include="untVendaInfoGeral.pas">
+      <Form>frmVendaInfoGeral</Form>
+    </DCCReference>
+    <DCCReference Include="uUtils.pas" />
+  </ItemGroup>
+</Project>

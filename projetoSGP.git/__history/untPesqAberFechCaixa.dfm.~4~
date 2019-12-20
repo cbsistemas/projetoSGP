@@ -1,0 +1,324 @@
+object frmPesqAberFechCaixa: TfrmPesqAberFechCaixa
+  Left = 0
+  Top = 0
+  BorderStyle = bsNone
+  Caption = 'frmMovimento'
+  ClientHeight = 240
+  ClientWidth = 461
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object RzDBGrid1: TRzDBGrid
+    Left = 8
+    Top = 40
+    Width = 445
+    Height = 177
+    DataSource = dsMovCaixa
+    TabOrder = 0
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'HISTORICO'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        Title.Caption = 'Data de Fechamento'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = []
+        Width = 113
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'IDUSUARIO'
+        Title.Caption = 'Usu'#225'rio'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = []
+        Width = 122
+        Visible = True
+      end>
+  end
+  object fdsMovCaixa: TpFIBDataSet
+    UpdateSQL.Strings = (
+      'UPDATE MOVIMENTO_CAIXA'
+      'SET '
+      '    IDCAIXA = :IDCAIXA,'
+      '    DT_INC = :DT_INC,'
+      '    HR_INC = :HR_INC,'
+      '    IDUSUARIO = :IDUSUARIO,'
+      '    CONTROLE = :CONTROLE,'
+      '    TIPO = :TIPO,'
+      '    MOEDA = :MOEDA,'
+      '    VLR_ENTRADA = :VLR_ENTRADA,'
+      '    VLR_CHEQUE = :VLR_CHEQUE,'
+      '    VLR_CARTAO = :VLR_CARTAO,'
+      '    VLR_NOTA = :VLR_NOTA,'
+      '    VLR_FINANCEIRA = :VLR_FINANCEIRA,'
+      '    VLR_VALEDESCONTO = :VLR_VALEDESCONTO,'
+      '    VLR_TICKET = :VLR_TICKET,'
+      '    VLR_VENDA = :VLR_VENDA,'
+      '    VLR_TOTAL = :VLR_TOTAL,'
+      '    VLR_DESCONTO = :VLR_DESCONTO,'
+      '    TROCO = :TROCO,'
+      '    ENVIADO_WEB = :ENVIADO_WEB,'
+      '    IDMOVIMENTO = :IDMOVIMENTO,'
+      '    HISTORICO = :HISTORICO'
+      'WHERE'
+      '    ID = :OLD_ID'
+      '    and IDFILIAL = :OLD_IDFILIAL'
+      '    ')
+    DeleteSQL.Strings = (
+      'DELETE FROM'
+      '    MOVIMENTO_CAIXA'
+      'WHERE'
+      '        ID = :OLD_ID'
+      '    and IDFILIAL = :OLD_IDFILIAL'
+      '    ')
+    InsertSQL.Strings = (
+      'INSERT INTO MOVIMENTO_CAIXA('
+      '    ID,'
+      '    IDCAIXA,'
+      '    IDFILIAL,'
+      '    DT_INC,'
+      '    HR_INC,'
+      '    IDUSUARIO,'
+      '    CONTROLE,'
+      '    TIPO,'
+      '    MOEDA,'
+      '    VLR_ENTRADA,'
+      '    VLR_CHEQUE,'
+      '    VLR_CARTAO,'
+      '    VLR_NOTA,'
+      '    VLR_FINANCEIRA,'
+      '    VLR_VALEDESCONTO,'
+      '    VLR_TICKET,'
+      '    VLR_VENDA,'
+      '    VLR_TOTAL,'
+      '    VLR_DESCONTO,'
+      '    TROCO,'
+      '    ENVIADO_WEB,'
+      '    IDMOVIMENTO,'
+      '    HISTORICO'
+      ')'
+      'VALUES('
+      '    :ID,'
+      '    :IDCAIXA,'
+      '    :IDFILIAL,'
+      '    :DT_INC,'
+      '    :HR_INC,'
+      '    :IDUSUARIO,'
+      '    :CONTROLE,'
+      '    :TIPO,'
+      '    :MOEDA,'
+      '    :VLR_ENTRADA,'
+      '    :VLR_CHEQUE,'
+      '    :VLR_CARTAO,'
+      '    :VLR_NOTA,'
+      '    :VLR_FINANCEIRA,'
+      '    :VLR_VALEDESCONTO,'
+      '    :VLR_TICKET,'
+      '    :VLR_VENDA,'
+      '    :VLR_TOTAL,'
+      '    :VLR_DESCONTO,'
+      '    :TROCO,'
+      '    :ENVIADO_WEB,'
+      '    :IDMOVIMENTO,'
+      '    :HISTORICO'
+      ')')
+    RefreshSQL.Strings = (
+      'SELECT    '
+      '    MC.*,'
+      '    C.NUM_CAIXA,'
+      '    F.NOME FILIAL'
+      'FROM'
+      '    MOVIMENTO_CAIXA MC, CAIXA C, FILIAL F'
+      'WHERE( '
+      '   C.ID = MC.IDCAIXA'
+      'AND'
+      '   C.IDFILIAL = MC.IDFILIAL'
+      'AND'
+      '   MC.IDFILIAL = F.ID'
+      'AND'
+      '   MC.ID <> 0'
+      '     ) and (     MC.ID = :OLD_ID'
+      '    and MC.IDFILIAL = :OLD_IDFILIAL'
+      '     )'
+      '    ')
+    SelectSQL.Strings = (
+      'SELECT    '
+      '    MC.*,'
+      
+        '    case MC.tipo when '#39'AB'#39' then '#39'Abertura'#39' when '#39'VE'#39' then '#39'Venda' +
+        #39' when '#39'RC'#39' then '#39'Recebimento'#39' when '#39'SA'#39' then '#39'Sangria'#39' when '#39'SU' +
+        #39' then '#39'Suprimento'#39' when '#39'FE'#39' then '#39'Fechamento'#39' when '#39'DV'#39' then '#39 +
+        'Devolu'#231#227'o'#39' end AS DETALHE,'
+      '    C.NUM_CAIXA,'
+      '    F.NOME FILIAL'
+      'FROM'
+      '    MOVIMENTO_CAIXA MC, CAIXA C, FILIAL F'
+      'WHERE'
+      '   C.ID = MC.IDCAIXA'
+      'AND'
+      '   C.IDFILIAL = MC.IDFILIAL'
+      'AND'
+      '   MC.IDFILIAL = F.ID'
+      'AND'
+      '   MC.ID <> 0')
+    Transaction = DM.transPricipal
+    Database = DM.Conexao
+    DefaultFormats.DateTimeDisplayFormat = 'dd/mm/yyyy hh:mm:ss'
+    DefaultFormats.DisplayFormatDate = 'dd/mm/yyyy'
+    DefaultFormats.DisplayFormatTime = 'hh:mm:ss'
+    Left = 369
+    Top = 8
+    oFetchAll = True
+    object fdsMovCaixaID: TFIBBCDField
+      FieldName = 'ID'
+      Size = 0
+    end
+    object fdsMovCaixaIDCAIXA: TFIBBCDField
+      FieldName = 'IDCAIXA'
+      Size = 0
+    end
+    object fdsMovCaixaIDFILIAL: TFIBBCDField
+      FieldName = 'IDFILIAL'
+      Size = 0
+    end
+    object fdsMovCaixaDT_INC: TFIBDateField
+      DefaultExpression = 'CURRENT_DATE'
+      FieldName = 'DT_INC'
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object fdsMovCaixaHR_INC: TFIBTimeField
+      DefaultExpression = 'CURRENT_TIME'
+      FieldName = 'HR_INC'
+      DisplayFormat = 'hh:mm:ss'
+    end
+    object fdsMovCaixaIDUSUARIO: TFIBBCDField
+      FieldName = 'IDUSUARIO'
+      Size = 0
+    end
+    object fdsMovCaixaCONTROLE: TFIBBCDField
+      FieldName = 'CONTROLE'
+      Size = 0
+    end
+    object fdsMovCaixaTIPO: TFIBStringField
+      FieldName = 'TIPO'
+      Size = 2
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsMovCaixaMOEDA: TFIBStringField
+      FieldName = 'MOEDA'
+      Size = 2
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsMovCaixaVLR_ENTRADA: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'VLR_ENTRADA'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+    end
+    object fdsMovCaixaVLR_VENDA: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'VLR_VENDA'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+    end
+    object fdsMovCaixaVLR_TOTAL: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'VLR_TOTAL'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+    end
+    object fdsMovCaixaVLR_DESCONTO: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'VLR_DESCONTO'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+    end
+    object fdsMovCaixaTROCO: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'TROCO'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+    end
+    object fdsMovCaixaENVIADO_WEB: TFIBStringField
+      DefaultExpression = #39'N'#39
+      FieldName = 'ENVIADO_WEB'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsMovCaixaIDMOVIMENTO: TFIBBCDField
+      FieldName = 'IDMOVIMENTO'
+      Size = 0
+    end
+    object fdsMovCaixaHISTORICO: TFIBStringField
+      FieldName = 'HISTORICO'
+      Size = 250
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsMovCaixaFILIAL: TFIBStringField
+      FieldName = 'FILIAL'
+      Size = 250
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsMovCaixaNUM_CAIXA: TFIBIntegerField
+      FieldName = 'NUM_CAIXA'
+    end
+    object fdsMovCaixaVLR_CHEQUE: TFIBBCDField
+      FieldName = 'VLR_CHEQUE'
+    end
+    object fdsMovCaixaVLR_CARTAO: TFIBBCDField
+      FieldName = 'VLR_CARTAO'
+    end
+    object fdsMovCaixaVLR_NOTA: TFIBBCDField
+      FieldName = 'VLR_NOTA'
+    end
+    object fdsMovCaixaVLR_FINANCEIRA: TFIBBCDField
+      FieldName = 'VLR_FINANCEIRA'
+    end
+    object fdsMovCaixaVLR_VALEDESCONTO: TFIBBCDField
+      FieldName = 'VLR_VALEDESCONTO'
+    end
+    object fdsMovCaixaVLR_TICKET: TFIBBCDField
+      FieldName = 'VLR_TICKET'
+    end
+    object fdsMovCaixaVLR_CREDITO: TFIBBCDField
+      FieldName = 'VLR_CREDITO'
+    end
+    object fdsMovCaixaDETALHE: TFIBStringField
+      FieldName = 'DETALHE'
+      Size = 11
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+  end
+  object dsMovCaixa: TDataSource
+    DataSet = fdsMovCaixa
+    Left = 305
+  end
+end

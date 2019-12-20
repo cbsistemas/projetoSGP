@@ -1,0 +1,53 @@
+unit untPesqClienteCodigo;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, RzEdit,
+  RzButton, RzLabel, Vcl.Imaging.pngimage, Vcl.ExtCtrls, JvExExtCtrls, JvImage,
+  RzPanel, RzBckgnd;
+
+type
+  TfrmPesqClienteCodigo = class(TForm)
+    frmPesqClienteCodigo: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloCliente: TRzLabel;
+    lblNome: TRzLabel;
+    btnPesquisar: TRzBitBtn;
+    edtCodigo: TRzEdit;
+    btnCancelar: TRzBitBtn;
+    procedure edtCodigoExit(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPesqClienteCodigo: TfrmPesqClienteCodigo;
+
+implementation
+
+{$R *.dfm}
+
+uses uUtils;
+
+procedure TfrmPesqClienteCodigo.edtCodigoExit(Sender: TObject);
+var
+  utils : TUtils;
+begin
+  edtCodigo.Text := FloatToStr(utils.ValidaInteiroFloat(edtCodigo.Text, 'I'));
+end;
+
+procedure TfrmPesqClienteCodigo.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+    SelectNext(ActiveControl, True, True);
+  end;
+end;
+
+end.

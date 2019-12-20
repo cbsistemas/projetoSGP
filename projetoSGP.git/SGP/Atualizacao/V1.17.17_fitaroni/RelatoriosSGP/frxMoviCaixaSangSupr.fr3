@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="5.2.3" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="4095" PreviewOptions.Zoom="1" PrintOptions.Printer="XPS" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="41879,500308125" ReportOptions.Description.Text="" ReportOptions.LastChange="43528,6779214931" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;&#13;&#10;procedure Picture1OnBeforePrint(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;      // Picture1.Picture.LoadFromFile(&#60;Dir&#62;);                         &#13;&#10;end;&#13;&#10;&#13;&#10;begin&#13;&#10;&#13;&#10;end." OnReportPrint="frxReportOnReportPrint">
+  <Datasets>
+    <item DataSet="frxConfig" DataSetName="frxConfig"/>
+    <item DataSet="frmMovCaixa.frxFechamento" DataSetName="frxFechamento"/>
+    <item DataSet="frmMovCaixa.frxMovCaixa" DataSetName="frxMovCaixa"/>
+  </Datasets>
+  <Variables>
+    <item Name=" New Category1"/>
+    <item Name="Dir"/>
+    <item Name="Tipo"/>
+    <item Name="totSupremento"/>
+    <item Name="totSangriaDN"/>
+    <item Name="totSangriaCH"/>
+  </Variables>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" Font.Charset="1" Font.Color="16711680" Font.Height="-13" Font.Name="Arial" Font.Style="0" PaperWidth="210" PaperHeight="297" PaperSize="256" LeftMargin="0" RightMargin="0" TopMargin="0" BottomMargin="0" ColumnWidth="0" ColumnPositions.Text="" Bin="257" BinOtherPages="257" HGuides.Text="49,13389" VGuides.Text="">
+    <TfrxPageHeader Name="PageHeader1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="178,29932" Left="0" Top="18,89765" Width="793,7013" OnBeforePrint="PageHeader1OnBeforePrint">
+      <TfrxShapeView Name="Shape3" Align="baCenter" Left="17,008130315" Top="19,55906" Width="759,68503937" Height="139,84261" Curve="2" Shape="skRoundRectangle"/>
+      <TfrxMemoView Name="Memo11" Left="18,89765" Top="75,57483" Width="755,906" Height="22,67718" Font.Charset="1" Font.Color="0" Font.Height="-19" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="Movimentação do Caixa"/>
+      <TfrxMemoView Name="Memo9" Left="18,89765" Top="103,81107" Width="755,906" Height="22,67718" Font.Charset="1" Font.Color="0" Font.Height="-19" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="Data: [frxFechamento.&#34;Data&#34;]    Controle: [frxFechamento.&#34;Controle&#34;]"/>
+      <TfrxMemoView Name="frxConfigNOME" Left="18,89765" Top="30,23624" Width="755,906" Height="18,89765" StretchMode="smMaxHeight" DataSet="frxConfig" DataSetName="frxConfig" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[frxConfig.&#34;NOME&#34;]   CNPJ:[frxConfig.&#34;CNPJ&#34;]  FILIAL:[frxConfig.&#34;FILIAL&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="frxConfigENDERECO" Left="18,89765" Top="49,13389" Width="755,906" Height="18,89765" StretchMode="smMaxHeight" DataSet="frxConfig" DataSetName="frxConfig" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[frxConfig.&#34;ENDERECO&#34;] [frxConfig.&#34;BAIRRO&#34;]-[frxConfig.&#34;CIDADE&#34;]-[frxConfig.&#34;UF&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxPageHeader>
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="105,82668622" Left="0" Top="257,00804" Width="793,7013" OnBeforePrint="MasterData1OnBeforePrint" ColumnWidth="0" ColumnGap="0" DataSet="frmMovCaixa.frxFechamento" DataSetName="frxFechamento" RowCount="1">
+      <TfrxShapeView Name="Shape1" Left="17,00813032" Top="3,77953" Width="759,68503937" Height="98,26762622" Curve="2" Shape="skRoundRectangle"/>
+      <TfrxMemoView Name="Memo2" Left="27,98423" Top="67,44898" Width="117,16543" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Suprimento (DN):"/>
+      <TfrxMemoView Name="Memo4" Left="477,7483" Top="67,66945" Width="98,26778" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Sangria (CH) :"/>
+      <TfrxMemoView Name="Memo5" Left="276,7718" Top="67,80334" Width="94,48825" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Sangria (DN):"/>
+      <TfrxMemoView Name="frxFechamentovlrSuprimento" Left="145,62214" Top="67,14966" Width="94,48825" Height="18,89765" DataField="vlrSuprimento" DataSet="frmMovCaixa.frxFechamento" DataSetName="frxFechamento" DisplayFormat.DecimalSeparator="," DisplayFormat.FormatStr="R$ #,##0.00" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="-1" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxFechamento.&#34;vlrSuprimento&#34;]"/>
+      <TfrxMemoView Name="frxFechamentovlrDinheiroSA" Left="370,83488" Top="67,03927" Width="94,48825" Height="18,89765" DataField="vlrDinheiroSA" DataSet="frmMovCaixa.frxFechamento" DataSetName="frxFechamento" DisplayFormat.DecimalSeparator="," DisplayFormat.FormatStr="R$ #,##0.00" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="-1" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxFechamento.&#34;vlrDinheiroSA&#34;]"/>
+      <TfrxMemoView Name="frxFechamentovlrChequeSA" Left="577,14997" Top="67,03927" Width="90,70872" Height="18,89765" DataField="vlrChequeSA" DataSet="frmMovCaixa.frxFechamento" DataSetName="frxFechamento" DisplayFormat.DecimalSeparator="," DisplayFormat.FormatStr="R$ #,##0.00" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="-1" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxFechamento.&#34;vlrChequeSA&#34;]"/>
+      <TfrxMemoView Name="Memo10" Left="18,89765" Top="11,33859" Width="752,12647" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-16" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="Resumo Geral    Caixa: [frxMovCaixa.&#34;IDCAIXA&#34;]"/>
+      <TfrxMemoView Name="Memo28" Left="28,346475" Top="37,81107" Width="102,04731" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Dt. Abertura:"/>
+      <TfrxMemoView Name="frxFechamentodtAbertura" Left="132,28355" Top="37,81107" Width="94,48825" Height="18,89765" DataSet="frmMovCaixa.frxFechamento" DataSetName="frxFechamento" DisplayFormat.FormatStr="dd/mm/yyyy" DisplayFormat.Kind="fkDateTime" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxFechamento.&#34;dtAbertura&#34;]"/>
+      <TfrxMemoView Name="Memo29" Left="553,59091" Top="37,81107" Width="105,82684" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Dt. Fechameto:"/>
+      <TfrxMemoView Name="frxFechamentodtFechamento" Left="662,307515" Top="37,81107" Width="109,60637" Height="18,89765" DataField="dtFechamento" DataSet="frmMovCaixa.frxFechamento" DataSetName="frxFechamento" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxFechamento.&#34;dtFechamento&#34;]"/>
+    </TfrxMasterData>
+    <TfrxMasterData Name="MasterData2" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="30,23624" Left="0" Top="468,66172" Width="793,7013" ColumnWidth="0" ColumnGap="0" DataSet="frmMovCaixa.frxMovCaixa" DataSetName="frxMovCaixa" RowCount="0">
+      <TfrxMemoView Name="frxMovCaixaTIPO" Left="30,23624" Top="3,77953" Width="30,23624" Height="18,89765" DataField="TIPO" DataSet="frmMovCaixa.frxMovCaixa" DataSetName="frxMovCaixa" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxMovCaixa.&#34;TIPO&#34;]"/>
+      <TfrxMemoView Name="frxMovCaixaVLR_VENDA" Left="166,29932" Top="3,77953" Width="79,37013" Height="18,89765" DataField="VLR_VENDA" DataSet="frmMovCaixa.frxMovCaixa" DataSetName="frxMovCaixa" DisplayFormat.DecimalSeparator="," DisplayFormat.FormatStr="R$ #,##0.00" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxMovCaixa.&#34;VLR_VENDA&#34;]"/>
+      <TfrxMemoView Name="frxMovCaixaVLR_DESCONTO" Left="264,5671" Top="3,77953" Width="502,67749" Height="18,89765" DataField="HISTORICO" DataSet="frmMovCaixa.frxMovCaixa" DataSetName="frxMovCaixa" DisplayFormat.DecimalSeparator="," DisplayFormat.FormatStr="R$ #,##0.00" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxMovCaixa.&#34;HISTORICO&#34;]"/>
+      <TfrxLineView Name="Line2" Align="baCenter" Left="32,12623689" Top="26,67718" Width="729,44882622" Height="0" Color="0" Frame.Style="fsDot" Frame.Typ="4"/>
+      <TfrxMemoView Name="frxMovCaixaIDMOVIMENTO" Left="86,92919" Top="3,77953" Width="56,69295" Height="18,89765" DataField="MOEDA" DataSet="frmMovCaixa.frxMovCaixa" DataSetName="frxMovCaixa" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxMovCaixa.&#34;MOEDA&#34;]"/>
+    </TfrxMasterData>
+    <TfrxHeader Name="Header1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="60,47248" Left="0" Top="385,51206" Width="793,7013">
+      <TfrxShapeView Name="Shape4" Align="baCenter" Left="17,008130315" Top="34,01577" Width="759,68503937" Height="22,67718" Curve="1" Fill.BackColor="-16777194" Shape="skRoundRectangle"/>
+      <TfrxMemoView Name="Memo14" Left="30,23624" Top="37,7953" Width="34,01577" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Tipo"/>
+      <TfrxMemoView Name="Memo17" Left="180,1812" Top="37,7953" Width="41,57483" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Valor"/>
+      <TfrxMemoView Name="Memo21" Left="260,1812" Top="37,7953" Width="71,81107" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Histórico"/>
+      <TfrxMemoView Name="Memo22" Left="317,48052" Top="0" Width="211,65368" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-16" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Sangrias e Suprimentos"/>
+      <TfrxMemoView Name="Memo15" Left="86,92919" Top="37,7953" Width="60,47248" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Moeda"/>
+    </TfrxHeader>
+    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="34,01577" Left="0" Top="559,37044" Width="793,7013">
+      <TfrxMemoView Name="Memo35" Left="639,18151" Top="7,55906" Width="94,48825" Height="18,89765" DisplayFormat.DecimalSeparator="," Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="Página: [Page]"/>
+      <TfrxLineView Name="Line3" Left="15,55906" Top="4" Width="755,906" Height="0" Color="0" Diagonal="True"/>
+      <TfrxMemoView Name="Memo36" Left="30,67718" Top="11,55906" Width="185,19697" Height="18,89765" Font.Charset="1" Font.Color="-16777198" Font.Height="-11" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="Relatório Fornecido por CBSistemas"/>
+      <TfrxMemoView Name="Memo37" Left="219,65368" Top="11,55906" Width="52,91342" Height="18,89765" Font.Charset="1" Font.Color="-16777198" Font.Height="-11" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="Emissão:"/>
+      <TfrxMemoView Name="Date" Left="272,5671" Top="11,55906" Width="64,25201" Height="18,89765" Font.Charset="1" Font.Color="-16777198" Font.Height="-11" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[Date]"/>
+      <TfrxMemoView Name="Time" Left="336,81911" Top="11,55906" Width="60,47248" Height="18,89765" Font.Charset="1" Font.Color="-16777198" Font.Height="-11" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[Time]"/>
+    </TfrxPageFooter>
+  </TfrxReportPage>
+</TfrxReport>

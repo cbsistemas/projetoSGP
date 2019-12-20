@@ -1,0 +1,8 @@
+﻿CREATE TABLE ROTA (
+    ID           INTEGER,
+    DT_INC       DATE,
+    DT_ALT       DATE,
+    STATUS       CHARACTER(1),
+    NOME         CHARACTER VARYING(250),
+    CONSTRAINT PK_ROTA PRIMARY KEY (ID) 
+);

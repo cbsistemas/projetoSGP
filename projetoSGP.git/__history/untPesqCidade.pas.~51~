@@ -1,0 +1,153 @@
+unit untPesqCidade;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, RzBckgnd, Grids, DBGrids, JvExDBGrids, JvDBGrid, StdCtrls, Mask,
+  RzEdit, RzDBEdit, RzLabel, dxGDIPlusClasses, ExtCtrls, JvExExtCtrls, JvImage,
+  RzButton, RzPanel, DB, FIBDataSet, pFIBDataSet, Vcl.Imaging.pngimage;
+
+type
+  TfrmPesqCidade = class(TForm)
+    RzBackground1: TRzBackground;
+    RzPanel2: TRzPanel;
+    btnSelecionar: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloCliente: TRzLabel;
+    btnTodos: TRzBitBtn;
+    lblNome: TRzLabel;
+    btnPesquisar: TRzBitBtn;
+    JvDBGrid1: TJvDBGrid;
+    fdsCidades: TpFIBDataSet;
+    dsCidade: TDataSource;
+    fdsCidadesID: TFIBBCDField;
+    fdsCidadesNOME: TFIBStringField;
+    fdsCidadesUF: TFIBStringField;
+    edtNome: TRzEdit;
+    fdsCidadesCODIGO: TFIBBCDField;
+    fdsCidadesCEP: TFIBStringField;
+    procedure FormActivate(Sender: TObject);
+    procedure btnSelecionarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnPesquisarClick(Sender: TObject);
+    procedure edtNomeChange(Sender: TObject);
+    procedure Pesquisar;
+    procedure btnTodosClick(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure JvDBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure JvDBGrid1DblClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPesqCidade: TfrmPesqCidade;
+
+implementation
+
+uses untData;
+
+{$R *.dfm}
+
+procedure TfrmPesqCidade.btnCancelarClick(Sender: TObject);
+begin
+  ModalResult := mrCancel;
+end;
+
+procedure TfrmPesqCidade.btnPesquisarClick(Sender: TObject);
+begin
+  Pesquisar;
+end;
+
+procedure TfrmPesqCidade.btnSelecionarClick(Sender: TObject);
+begin
+  ModalResult := mrOk;
+end;
+
+procedure TfrmPesqCidade.btnTodosClick(Sender: TObject);
+var
+  sql: string;
+begin
+  fdsCidades.Close;
+  fdsCidades.SelectSQL.Clear;
+  sql := 'SELECT ID, NOME, UF FROM CIDADE_IBGE';
+  fdsCidades.SelectSQL.Add(sql);
+  fdsCidades.OrderClause := 'NOME';
+  fdsCidades.Prepare;
+  fdsCidades.Open;
+end;
+
+procedure TfrmPesqCidade.edtNomeChange(Sender: TObject);
+begin
+  Pesquisar;
+end;
+
+procedure TfrmPesqCidade.FormActivate(Sender: TObject);
+begin
+  edtNome.SetFocus;
+end;
+
+procedure TfrmPesqCidade.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = VK_F5 then
+  begin
+    btnSelecionar.Click;
+  end
+  else if Key = VK_ESCAPE then
+  begin
+    btnCancelar.Click;
+  end;
+end;
+
+procedure TfrmPesqCidade.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if (ActiveControl = JvDBGrid1) or (fdsCidades.RecordCount = 1) then
+  begin
+    if Key = #13 then
+    begin
+      btnSelecionar.Click;
+    end;
+  end;
+end;
+
+procedure TfrmPesqCidade.JvDBGrid1DblClick(Sender: TObject);
+begin
+  if fdsCidades.RecordCount > 0 then
+    btnSelecionar.Click;
+
+end;
+
+procedure TfrmPesqCidade.JvDBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  if not odd(fdsCidades.RecNo) then
+  begin
+    JvDBGrid1.Canvas.Brush.Color := DM.gridOddColor;
+    JvDBGrid1.Canvas.FillRect(Rect);
+    JvDBGrid1.DefaultDrawDataCell(Rect, Column.Field, State);
+  end;
+end;
+
+procedure TfrmPesqCidade.Pesquisar;
+var
+  sql: string;
+begin
+  fdsCidades.Close;
+  fdsCidades.SelectSQL.Clear;
+  sql := 'SELECT ID, NOME, UF,CODIGO FROM CIDADE_IBGE WHERE UPPER(NOME) LIKE ' +
+    QuotedStr('%' + edtNome.Text + '%');
+  fdsCidades.SelectSQL.Add(sql);
+  fdsCidades.OrderClause := 'NOME';
+  fdsCidades.Prepare;
+  fdsCidades.Open;
+end;
+
+end.

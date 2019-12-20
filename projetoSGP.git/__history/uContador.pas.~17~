@@ -1,0 +1,65 @@
+unit uContador;
+
+interface
+
+uses System.Classes, System.SysUtils;
+
+type
+  TContador = class(TThread)
+  protected
+    procedure Execute; override;
+    procedure Contador;
+    procedure Contador2;
+end;
+
+
+implementation
+
+uses untVendas, untBalanco;
+
+procedure TContador.Execute;
+begin
+
+  Contador;
+
+  inherited;
+end;
+
+procedure TContador.Contador;
+begin
+  Priority := tpLower;
+  Inc(Tempo);
+  Inc(Tempo);
+  frmVendas.pgbProgresso.Percent := Tempo;
+  if (Tempo>=100) then
+  begin
+    Tempo:=0;
+  end;
+  Sleep (10);
+
+  if self.Terminated then
+    abort
+  else
+    Contador;
+end;
+
+procedure TContador.Contador2;
+begin
+  Priority := tpLower;
+  Inc(Tempo);
+  Inc(Tempo);
+  frmVendas.pgbProgresso.Percent := Tempo;
+  if (Tempo>=100) then
+  begin
+    Tempo:=0;
+  end;
+  Sleep (10);
+
+  if self.Terminated then
+    abort
+  else
+    Contador;
+end;
+
+
+end.

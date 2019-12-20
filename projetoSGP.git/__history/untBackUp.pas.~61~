@@ -1,0 +1,122 @@
+unit untBackUp;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, RzBckgnd, StdCtrls, RzLabel, ExtCtrls,
+  JvExExtCtrls, JvImage, RzPanel, IB_Services, RzStatus, Vcl.Imaging.pngimage;
+
+type
+  TfrmBackUp = class(TForm)
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    lblMsg: TRzLabel;
+    RzBackground1: TRzBackground;
+    bkpService: TpFIBBackupService;
+    pbsStatus: TRzProgressStatus;
+    Timer1: TTimer;
+    procedure BackUp;
+    procedure FormCreate(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+  private
+    { Private declarations }
+  public
+  var
+    caminhoBKP: string;
+  end;
+
+var
+  frmBackUp: TfrmBackUp;
+
+implementation
+
+uses untData, untPrincipal;
+
+{$R *.dfm}
+{ TfrmBackUp }
+
+procedure TfrmBackUp.BackUp;
+var
+  i: integer;
+begin
+  try
+    Application.ProcessMessages;
+    lblMsg.Caption := 'Iniciando BackUP';
+    i := 0;
+
+    with bkpService do
+    begin
+      DM.Conexao.Close;
+      DatabaseName := DM.Conexao.DBName;
+      BackupFile.Clear;
+      // ShowMessage(ExtractFilePath(Application.ExeName) + '\Banco\AutoBKP_' + DateToStr(Now));
+      BackupFile.Add(caminhoBKP + 'AutoBKP_' + FormatDateTime('dd_mm_hh', Now)
+        + 'h.fbk');
+      Params.Clear;
+      Params.Add('user_name=' + DM.Conexao.ConnectParams.UserName);
+      Params.Add('password=' + DM.Conexao.ConnectParams.Password);
+
+      Active := True;
+      lblMsg.Caption := 'Realizando BackUp. Aguarde ...';
+      Application.ProcessMessages;
+
+      try
+        ServiceStart;
+
+      finally
+
+      end;
+
+      while not(Eof) do
+      begin
+        Inc(i);
+        pbsStatus.Percent := i;
+
+        if i >= 100 then
+          i := 0;
+
+        GetNextLine;
+      end;
+
+      Active := False;
+      pbsStatus.Percent := 100;
+      lblMsg.Caption := 'BackUp realizado com sucesso';
+    end;
+  Except
+    on E: Exception do
+    begin
+      Application.MessageBox(Pchar('Erro ao realizar BackUp: ' + E.Message),
+        'Atenção', MB_OK + MB_ICONERROR);
+
+    end;
+  end;
+  Application.Terminate;
+
+end;
+
+procedure TfrmBackUp.FormCreate(Sender: TObject);
+begin
+  caminhoBKP := frmPrincipal.caminhoBKP;
+  Case MessageBox(Application.Handle, Pchar('Deseja executar o Backup agora?'),
+    'Atenção', MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) of
+    idYes:
+      begin
+        Timer1.Enabled := True;
+      end;
+
+    idNo:
+      begin
+        Application.Terminate;
+      end;
+
+  end;
+end;
+
+procedure TfrmBackUp.Timer1Timer(Sender: TObject);
+begin
+  Timer1.Enabled := False;
+  BackUp;
+end;
+
+end.

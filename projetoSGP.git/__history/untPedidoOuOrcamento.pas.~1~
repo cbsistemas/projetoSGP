@@ -1,0 +1,28 @@
+unit untPedidoOuOrcamento;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, JvExButtons,
+  JvBitBtn, RzLabel;
+
+type
+  TfrmPedoOuOrcamento = class(TForm)
+    RzLabel1: TRzLabel;
+    btnPedido: TJvBitBtn;
+    btnorcamento: TJvBitBtn;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPedoOuOrcamento: TfrmPedoOuOrcamento;
+
+implementation
+
+{$R *.dfm}
+
+end.

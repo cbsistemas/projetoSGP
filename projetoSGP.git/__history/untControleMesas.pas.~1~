@@ -1,0 +1,25 @@
+unit untControleMesas;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzBckgnd;
+
+type
+  TfrmControleMesas = class(TForm)
+    d: TRzBackground;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmControleMesas: TfrmControleMesas;
+
+implementation
+
+{$R *.dfm}
+
+end.

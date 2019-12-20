@@ -1,0 +1,26 @@
+program PreVenda;
+
+uses
+  Vcl.Forms,
+  untPrincipal in 'untPrincipal.pas' {frmPrincipal},
+  untData in 'untData.pas' {DM: TDataModule},
+  untPesqProdutoItens in 'untPesqProdutoItens.pas' {frmPesqProdutoItens},
+  uVerificaPermicao in 'uVerificaPermicao.pas',
+  untLogin in 'untLogin.pas' {frmLogin},
+  uUtils in 'uUtils.pas',
+  untVendaFinalizacao in 'untVendaFinalizacao.pas' {frmVendaFinalizacao},
+  untPesqCliente in 'untPesqCliente.pas' {frmPesqCliente},
+  untCadClientes in 'untCadClientes.pas' {frmCadClientes},
+  untPesqCidade in 'untPesqCidade.pas' {frmPesqCidade},
+  untPesqVendedor in 'untPesqVendedor.pas' {frmPesqVendedor},
+  untTabelaPrecos in 'untTabelaPrecos.pas' {frmTabelaPrecos};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TDM, DM);
+  Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.Run;
+end.

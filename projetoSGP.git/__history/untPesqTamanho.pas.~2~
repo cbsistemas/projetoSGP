@@ -1,0 +1,128 @@
+unit untPesqTamanho;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, FIBDataSet, pFIBDataSet, Grids, DBGrids, JvExDBGrids, JvDBGrid,
+  StdCtrls, Mask, RzEdit, RzLabel, dxGDIPlusClasses, ExtCtrls, JvExExtCtrls,
+  JvImage, RzButton, RzPanel, RzBckgnd, Vcl.Imaging.pngimage;
+
+type
+  TfrmPesqCor = class(TForm)
+    RzBackground1: TRzBackground;
+    RzPanel2: TRzPanel;
+    btnSelecionar: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloCliente: TRzLabel;
+    lblNome: TRzLabel;
+    btnPrior: TRzBitBtn;
+    btnFirst: TRzBitBtn;
+    btnNext: TRzBitBtn;
+    btnLast: TRzBitBtn;
+    btnTodos: TRzBitBtn;
+    btnPesquisar: TRzBitBtn;
+    edtNome: TRzEdit;
+    JvDBGrid1: TJvDBGrid;
+    fdsCor: TpFIBDataSet;
+    dsCor: TDataSource;
+    fdsCorID: TFIBBCDField;
+    fdsCorDT_INC: TFIBDateField;
+    fdsCorDT_ALT: TFIBDateField;
+    fdsCorSTATUS: TFIBStringField;
+    fdsCorNOME: TFIBStringField;
+    fdsCorREFERENCIA: TFIBStringField;
+    fdsCorENVIADO_WEB: TFIBStringField;
+    procedure FormActivate(Sender: TObject);
+    procedure Pesquisar;
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnSelecionarClick(Sender: TObject);
+    procedure edtNomeChange(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure JvDBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure btnTodosClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPesqCor: TfrmPesqCor;
+
+implementation
+
+uses untData;
+
+{$R *.dfm}
+
+procedure TfrmPesqCor.btnCancelarClick(Sender: TObject);
+begin
+  ModalResult := mrCancel;
+end;
+
+procedure TfrmPesqCor.btnSelecionarClick(Sender: TObject);
+begin
+  ModalResult := mrOk;
+end;
+
+procedure TfrmPesqCor.btnTodosClick(Sender: TObject);
+var
+  sql: string;
+begin
+  fdsCor.Close;
+  fdsCor.SelectSQL.Clear;
+  sql := 'SELECT * FROM COR WHERE STATUS <> ' + QuotedStr('I');
+  fdsCor.SelectSQL.Add(sql);
+  fdsCor.OrderClause := 'NOME';
+  fdsCor.Prepare;
+  fdsCor.Open;
+end;
+
+procedure TfrmPesqCor.edtNomeChange(Sender: TObject);
+begin
+  Pesquisar;
+end;
+
+procedure TfrmPesqCor.FormActivate(Sender: TObject);
+begin
+  edtNome.SetFocus;
+end;
+
+procedure TfrmPesqCor.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = VK_F5 then
+  begin
+    btnSelecionar.Click;
+  end;
+end;
+
+procedure TfrmPesqCor.JvDBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  if not odd(fdsCor.RecNo) then
+  begin
+    JvDBGrid1.Canvas.Brush.Color := DM.gridOddColor;
+    JvDBGrid1.Canvas.FillRect(Rect);
+    JvDBGrid1.DefaultDrawDataCell(rect,Column.Field,state);
+  end;
+end;
+
+procedure TfrmPesqCor.Pesquisar;
+var
+  sql : string;
+begin
+  fdsCor.Close;
+  fdsCor.SelectSQL.Clear;
+  sql := 'SELECT * FROM COR WHERE UPPER(NOME) LIKE '+ QuotedStr(edtNome.Text + '%') + ' AND STATUS <> ' + QuotedStr('I');
+  fdsCor.SelectSQL.Add(sql);
+  fdsCor.OrderClause := 'NOME';
+  fdsCor.Prepare;
+  fdsCor.Open;
+end;
+
+end.

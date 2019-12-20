@@ -1,0 +1,85 @@
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('AC','Avenida Ceará- nº 823 - Cadeia Velha
+69905-066 - Rio Branco/AC                       ','3223-3261/7232','Procon Estadual do Acre','procon.acre@ac.gov.br',68,'www.procon.ac.gov.br');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('AL','Av. Cel. Clodoaldo da Fonseca, 95 - (antiga Ladeira do Brito) - Farol
+57051-315 - Maceió - AL','3315-7237/3797','Procon Estadual de Alagoas','info@procon.al.gov.br',82,'www.procon.al.gov.br');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('AM','Av. André Araújo- nº 1500 - Aleixo                  
+69060-000 - Manaus / AM',' 3215-4002 /4010
+','Procon Estadual de Amazonas','dirprocon@sejus.am.gov.br',92,'www.sejus.am.gov.br');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('AP','Av. Padre Júlio Maria Lombard-1614- Bairro Santa Rita          
+68900-030 - Macapá/ AP','3312-1000 / 1010','Instituto de Defesa do Consumidor do Estado do Amapá','gab@procon.ap.gov.br',96,'www.procon.ap.gov.br');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('BA','Rua Carlos Gomes- nº 746 - Centro                             
+40.060-330 - Salvador / BA','3116-8521 / 8522','Procon Estadual da Bahia','procon@sjcdh.ba.gov.br',71,'www.sjcdh.ba.gov.br');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('CE','Rua Barão de Aratanha- nº 100 - Centro                                 
+60050-070 - Fortaleza/ CE','3452-4516','Procon Estadual do Ceará','procon-ce@mpce.mp.br',85,'www.decon.ce.gov.br');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('DF','SCS- Q.08 - Bl. B - 60- Sala 240- Ed Venâncio 2000  
+70333-900- Brasília/ DF','2104-4344/4337','Instituto de Defesa do Consumidor do Distrito Federal','procon.assessoria@gmail.com',61,'www.procon.df.gov.br');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('ES','Av.Princesa Isabel nº 599 Sala 701 Ed.Março- 7º andar - Centro  
+29010-361 - Vitória/ES','3381-6230','Procon Estadual do Espírito Santo ','presidencia@procon.es.gov.br
+',27,'www.procon.es.gov.br');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('GO','Rua 08- Ed Torres nº242 Q.05 Lote 36 - Setor Central     
+74013-030- Goiânia/ GO','3201-2890 / 2895','Procon Estadual do Goiás','assessoriageral@procon.go.gov.br',62,'www.procon.go.gov.br');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('MA','Rua do Egito- 207- Centro                                                 
+65010-190 - São Luís/MA','3261-5116 / 5115','Procon Estadual do Maranhão','atendimento.procon@procon.ma.gov.br',98,'www.procon.ma.gov.br');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('MP','Rua dos Goytacazes nº 1202 – Barro Preto
+30190-051 - Belo Horizonte/ MG','3250-6065/2294','Procon Estadual de Minas Gerais','proconcoorden@mpmg.mp.br',31,'www.procon.mpmg.mp.br');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('MS','Rua 13 de Junho- 930 - Centro                                              
+79116-420 - Campo Grande/ MS','3316-9804/9875 ','Procon Estadual de Mato Grosso do Sul','atendimento@procon.ms.gov.br',67,'www.procon.ms.gov.br');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('MT','Av.Historiador Rubens de Mendonça nº917 - Ed. Eldorado Executive Center- Araés   
+78008-000 - Cuiabá/ MT','3613-8514 / 8500','Procon Estadual de Mato Grosso','procon@justica.mt.gov.brv.br',65,'www.procon.mt.gov.br');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('PA','Rua Travessa Castelo Branco nº 1029 - São Brás                 
+66063-000 - Belém/ PA','3073-2805 / 2809','Procon Estadual do Pará','proconatend@procon.pa.gov.br',91,'www.procon.pa.gov.br');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('PB','Av. Monsenhor Walfredo Leal- n°353 - 1° Andar - Tambiá (esquina com a Av. Eurípedes Tavares)
+58020-540 - João Pessoa/PB','3222-5743','MPPROCON','mpprocon@mppb.mp.br',83,'sem site');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('PB','Parque Sólon de Lucena- 234 - Centro                                      
+58013-520 - João Pessoa/ PB','3218-6960','Procon Estadual da Paraíba','sem E-mail',83,'www.procon.pb.gov.br');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('PE','Rua Floriano Peixoto- 141 - São José                                  
+50020-060 - Recife/ PE','3181-7004 / 7003','Procon Estadual de Pernambuco','atendimento@procon.pe.gov.br',81,'www.procon.pe.gov.br');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('PI','Rua Álvaro Mendes- nº 2294 - Centro                            
+64000-060 - Teresina/ PI','3221-5848/3308','Procon Estadual do Piauí','procon@mppi.mp.br',86,'www.mp.pi.gov.br');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('PR','Rua Presidente Faria 431 - Edifício Francisco Braz - Centro                                
+80020-290 - Curitiba/ PR','3219-7409/7400/7435','Procon Estadual do Paraná','claudia@procon.pr.gov.br
+deprocon@procon.pr.gov.br',41,'www.procon.pr.gov.br');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('RJ','Av. Rio Branco- 25  - 4º andar - Centro                            
+20040-003 - Rio de Janeiro/ RJ','2216-8657','Autarquia de Proteção e Defesa do Consumidor - Procon/RJ','presidente@procon.rj.gov.br',21,'www.procon.rj.gov.br');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('RN','Av. Senador Salgado Filho- 2233 - Shopping Via Direta - Lagoa Nova       
+59.078-000 - Natal/ RN','3234-7800','Procon Estadual do Rio Grande do Norte','proconrgn@gmail.com',84,'www.procon.rn.gov.br');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('RO','Av. Lauro Sondré- 1260 - Olaria
+76.801-284 - Porto Velho/ RO','3216-5930 / 1026','Procon Estadual de Rondônia','procon-ro@bol.com.br',69,'sem site');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('RR','Av. Getúlio Vargas- 8120 - São Vicente                                   
+69303-472 - Boa Vista / RR','2121-8440/8947','Departamento Estadual de Defesa do Consumidor - DECON/RR','proconroraima@sejuc.gov.br',95,'sem site');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('RS','Rua Sete de Setembro nº 723 - Centro
+90010-190 - Porto Alegre/ RS','3287-6200','Procon Estadual do Rio Grande do Sul','procon@sjdh.rs.gov.br',51,'www.procon.rs.gov.br');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('SC','Rua Victor Meireles-  nº 35 e 53 - Centro                      
+88010-440 - Florianópolis/SC','2107-2909 / 2905','Procon Estadual de Santa Catarina','diretora@procon.sc.gov.br ',48,'www.procon.sc.gov.br');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('SE','Rua Santa Luzia- 602 - São José                                               
+49015-190 - Aracajú/SE','3211-5216','Procon Estadual de Sergipe','procon@sejuc.se.gov.br',79,'www.procon.se.gov.br');
+INSERT INTO PROCON(UF,ENDERECO,TELEFONE,DESCRICAO,EMAIL,DDD,SITE)
+VALUES('SP','Rua Barra Funda- nº 930 4º andar- sala 432 - Barra Funda
+01152-000 - São Paulo/SP','3824-7184 / 7185','Fundação Procon São Paulo','dex@procon.sp.gov.br',11,'www.procon.sp.gov.br');
+COMMIT WORK;

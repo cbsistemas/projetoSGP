@@ -1,0 +1,627 @@
+unit untDevTroca;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.DBGrids, JvExDBGrids,
+  JvDBGrid, RzPanel, RzBckgnd, Vcl.StdCtrls, RzLabel, Vcl.Imaging.pngimage,
+  Vcl.ExtCtrls, JvExExtCtrls, JvImage, RzButton, dxGDIPlusClasses, JvExMask,
+  JvToolEdit, JvMaskEdit, JvCheckedMaskEdit, JvDatePickerEdit, JvExStdCtrls,
+  JvCheckBox, Vcl.Mask, RzEdit, Vcl.ImgList, PngImageList, JvButton, JvCtrls,
+  Data.DB, FIBDataSet, pFIBDataSet, RzCmboBx, RzDBCmbo, FIBQuery, pFIBQuery,
+  RzDBGrid, Math, Datasnap.DBClient, pFIBClientDataSet;
+
+type
+  TfrmDevTroca = class(TForm)
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloCliente: TRzLabel;
+    gbxVendas: TRzGroupBox;
+    RzGroupBox1: TRzGroupBox;
+    btnSair: TRzBitBtn;
+    gdrVendas: TJvDBGrid;
+    gdrItens: TJvDBGrid;
+    pnlNumVenda: TRzGroupBox;
+    edtPesqNumVenda: TRzEdit;
+    pnlVendedor: TRzGroupBox;
+    chkNumVenda: TJvCheckBox;
+    chkVendedor: TJvCheckBox;
+    pnlPeriodo: TRzGroupBox;
+    RzLabel11: TRzLabel;
+    RzLabel12: TRzLabel;
+    dtpInicio: TJvDatePickerEdit;
+    dtpFim: TJvDatePickerEdit;
+    chkPeriodo: TJvCheckBox;
+    pnlCliente: TRzGroupBox;
+    edtPesqCliente: TRzEdit;
+    chkCliente: TJvCheckBox;
+    btnPesquisar: TJvImgBtn;
+    PngImageList1: TPngImageList;
+    RzBackground1: TRzBackground;
+    RzBitBtn1: TRzBitBtn;
+    btnTrocarItem: TRzBitBtn;
+    fdsVendas: TpFIBDataSet;
+    fdsVendaItens: TpFIBDataSet;
+    dsVendas: TDataSource;
+    dsVendaItens: TDataSource;
+    fdsVendasID: TFIBBCDField;
+    fdsVendasIDFILIAL: TFIBBCDField;
+    fdsVendasIDCAIXA: TFIBBCDField;
+    fdsVendasDT_INC: TFIBDateField;
+    fdsVendasSTATUS: TFIBStringField;
+    fdsVendasIDCLIENTE: TFIBBCDField;
+    fdsVendasIDVENDEDOR: TFIBBCDField;
+    fdsVendasIDFORMA_PAG: TFIBBCDField;
+    fdsVendasVLR_TOTITEM: TFIBBCDField;
+    fdsVendasVLR_DESCONTO: TFIBBCDField;
+    fdsVendasVLR_ENTRADA: TFIBBCDField;
+    fdsVendasVLR_FRETE: TFIBBCDField;
+    fdsVendasVLR_TOTAL: TFIBBCDField;
+    fdsVendasVLR_VENDA: TFIBBCDField;
+    fdsVendasPESO: TFIBBCDField;
+    fdsVendasPREFIXO: TFIBStringField;
+    fdsVendasDT_FECHAMENTO: TFIBDateField;
+    fdsVendasSUBTRIBUTARIA: TFIBBCDField;
+    fdsVendasENVIADO_WEB: TFIBStringField;
+    fdsVendasENTREGAR: TFIBStringField;
+    fdsVendasTOT_PARCELA: TFIBSmallIntField;
+    fdsVendasCLIENTE: TFIBStringField;
+    fdsVendaItensIDVENDA: TFIBBCDField;
+    fdsVendaItensITEM: TFIBSmallIntField;
+    fdsVendaItensIDPROD_ITEM: TFIBBCDField;
+    fdsVendaItensDT_INC: TFIBDateField;
+    fdsVendaItensQTN: TFIBBCDField;
+    fdsVendaItensVLR_UNITARIO: TFIBBCDField;
+    fdsVendaItensVLR_DESC_ACRE: TFIBBCDField;
+    fdsVendaItensVLR_TOTAL: TFIBBCDField;
+    fdsVendaItensPESO: TFIBBCDField;
+    fdsVendaItensMOTIVO_RETORNO: TFIBStringField;
+    fdsVendaItensENVIADO_WEB: TFIBStringField;
+    fdsVendaItensIDFILIAL: TFIBBCDField;
+    fdsVendaItensENTREGAR: TFIBStringField;
+    fdsVendaItensTIPO_DESC_ACRE: TFIBStringField;
+    fdsVendasFORMA_PAG: TFIBStringField;
+    fdsVendasVENDEDOR: TFIBStringField;
+    fdsVendedor: TpFIBDataSet;
+    fdsVendedorID: TFIBBCDField;
+    fdsVendedorDT_INC: TFIBDateField;
+    fdsVendedorDT_ALT: TFIBDateField;
+    fdsVendedorSTATUS: TFIBStringField;
+    fdsVendedorNOME: TFIBStringField;
+    fdsVendedorDT_NASC: TFIBDateField;
+    fdsVendedorTELEFONE: TFIBStringField;
+    fdsVendedorENDERECO: TFIBStringField;
+    fdsVendedorBAIRRO: TFIBStringField;
+    fdsVendedorIDCIDADE: TFIBBCDField;
+    fdsVendedorCEP: TFIBStringField;
+    fdsVendedorRG: TFIBStringField;
+    fdsVendedorCPF: TFIBStringField;
+    fdsVendedorSEXO: TFIBStringField;
+    fdsVendedorEMAIL: TFIBStringField;
+    fdsVendedorCELULAR: TFIBStringField;
+    fdsVendedorENVIADO_WEB: TFIBStringField;
+    fdsVendedorIDFILIAL: TFIBBCDField;
+    dsVendedor: TDataSource;
+    cbxVendedor: TRzComboBox;
+    fdsCliente: TpFIBDataSet;
+    fdsClienteID: TFIBBCDField;
+    fdsClienteNOME: TFIBStringField;
+    qryMovimento: TpFIBQuery;
+    fdsVendaItensPRODUTO: TFIBStringField;
+    fdsVendaItensTIPO_RETORNO: TFIBStringField;
+    pnlEAN: TRzGroupBox;
+    edtPesqEan: TRzEdit;
+    chkEAN: TJvCheckBox;
+    btnFinalização: TRzBitBtn;
+    cdsItensBloqueados: TpFIBClientDataSet;
+    cdsItensBloqueadosItem: TIntegerField;
+    fdsVendaItensQTN_RETORNO: TFIBBCDField;
+    fdsVendaItensCFOP: TFIBStringField;
+    fdsVendaItensCST_CSOSN: TFIBStringField;
+    fdsVendasVLR_RETORNADO: TFIBBCDField;
+    fdsVendaItensQTN_DEVOLVER: TFIBBCDField;
+    fdsVendaItensQTN_RESTANTE: TFIBBCDField;
+    fdsVendasOBS: TFIBStringField;
+    procedure FormCreate(Sender: TObject);
+    procedure fdsVendasAfterScroll(DataSet: TDataSet);
+    procedure fdsVendasBeforeOpen(DataSet: TDataSet);
+    procedure chkClienteClick(Sender: TObject);
+    procedure edtPesqClienteEnter(Sender: TObject);
+    procedure edtPesqClienteExit(Sender: TObject);
+    procedure chkPeriodoClick(Sender: TObject);
+    procedure chkVendedorClick(Sender: TObject);
+    procedure edtPesqNumVendaExit(Sender: TObject);
+    procedure edtPesqNumVendaEnter(Sender: TObject);
+    procedure chkNumVendaClick(Sender: TObject);
+    procedure btnPesquisarClick(Sender: TObject);
+    procedure Pesquisar;
+    procedure RetornaIDCliente(cliente: string);
+    procedure fdsVendedorBeforeOpen(DataSet: TDataSet);
+    procedure fdsVendedorAfterOpen(DataSet: TDataSet);
+    procedure Troca;
+    procedure RetornarItemEstoque; //
+    procedure gdrItensDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure fdsVendaItensBeforePost(DataSet: TDataSet);
+    procedure btnSairClick(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure fdsVendasBeforeScroll(DataSet: TDataSet);
+    procedure RzBitBtn1Click(Sender: TObject);
+    procedure chkEANClick(Sender: TObject);
+    procedure edtPesqEanEnter(Sender: TObject);
+    procedure edtPesqEanExit(Sender: TObject);
+    procedure btnFinalizaçãoClick(Sender: TObject);
+    procedure btnTrocarItemClick(Sender: TObject);
+    procedure fdsVendaItensBeforeEdit(DataSet: TDataSet);
+  private
+    { Private declarations }
+  public
+    vlrDevolucao, vlrEntrada : Double;
+    iDFormaPag: Integer;
+    devolucaoTotal : Boolean;
+  end;
+
+var
+  frmDevTroca: TfrmDevTroca;
+  alterouItem: Boolean;
+  qtnRetornoOld: Double;
+
+implementation
+
+{$R *.dfm}
+
+uses untData, uUtils, untTroca, untParamDevTroca;
+
+procedure TfrmDevTroca.btnFinalizaçãoClick(Sender: TObject);
+begin
+  Case MessageBox(Application.Handle, Pchar('Confirma a troca/devolução dos itens informados?'), 'Atenção', MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) of
+            IDYES: begin
+              vlrEntrada := fdsVendasVLR_ENTRADA.AsFloat;
+              RetornarItemEstoque;
+              ModalResult := mrOk;
+            end;
+    End;
+end;
+
+procedure TfrmDevTroca.btnPesquisarClick(Sender: TObject);
+begin
+  Pesquisar;
+end;
+
+procedure TfrmDevTroca.btnSairClick(Sender: TObject);
+begin
+  if alterouItem then
+  begin
+      Case MessageBox(Application.Handle, Pchar('Você informou um retorno para a venda atual, deseja abandonar esse retorno?'), 'Atenção', MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) of
+            IDNO: begin
+              Abort;
+            end;
+
+            IDYES: begin
+              DM.conexao.RollbackRetaining;
+              alterouItem := False;
+              ModalResult := mrCancel;
+            end;
+    End;
+  end
+  else
+    ModalResult := mrCancel;
+end;
+
+procedure TfrmDevTroca.btnTrocarItemClick(Sender: TObject);
+begin
+  fdsVendaItens.Edit;
+  //fdsVendaItensQTN_RETORNO.AsFloat := fdsVendaItensQTN.AsFloat;
+  fdsVendaItensQTN_DEVOLVER.AsFloat := fdsVendaItensQTN_RESTANTE.AsFloat;
+  fdsVendaItens.Post;
+end;
+
+procedure TfrmDevTroca.chkClienteClick(Sender: TObject);
+begin
+  pnlCliente.Enabled := chkCliente.Checked;
+  if not(chkCliente.Checked) then
+  begin
+    edtPesqCliente.Text := 'TODOS';
+    edtPesqCliente.Font.Color := clGray;
+  end;
+end;
+
+procedure TfrmDevTroca.chkEANClick(Sender: TObject);
+begin
+  pnlEan.Enabled := chkEan.Checked;
+  if not(chkEan.Checked) then
+  begin
+    edtPesqEan.Text := 'TODOS';
+    edtPesqEan.Font.Color := clGray;
+  end;
+end;
+
+procedure TfrmDevTroca.chkNumVendaClick(Sender: TObject);
+begin
+  pnlNumVenda.Enabled := chkNumVenda.Checked;
+  if not(chkNumVenda.Checked) then
+  begin
+    edtPesqNumVenda.Text := 'TODOS';
+    edtPesqNumVenda.Font.Color := clGray;
+  end;
+end;
+
+procedure TfrmDevTroca.chkPeriodoClick(Sender: TObject);
+begin
+  pnlPeriodo.Enabled := chkPeriodo.Checked;
+end;
+
+procedure TfrmDevTroca.chkVendedorClick(Sender: TObject);
+begin
+  pnlVendedor.Enabled := chkVendedor.Checked;
+  if not(chkVendedor.Checked) then
+  begin
+    cbxVendedor.ItemIndex := 0;
+  end;
+end;
+
+procedure TfrmDevTroca.edtPesqClienteEnter(Sender: TObject);
+begin
+  if Trim(edtPesqCliente.Text) = 'TODOS' then
+  begin
+    edtPesqCliente.Text := EmptyStr;
+    edtPesqCliente.Font.Color := clBlack;
+  end;
+end;
+
+procedure TfrmDevTroca.edtPesqClienteExit(Sender: TObject);
+begin
+  if Trim(edtPesqCliente.Text) = EmptyStr then
+  begin
+    edtPesqCliente.Text := 'TODOS';
+    edtPesqCliente.Font.Color := clGray;
+  end;
+end;
+
+procedure TfrmDevTroca.edtPesqEanEnter(Sender: TObject);
+begin
+  if Trim(edtPesqEan.Text) = 'TODOS' then
+  begin
+    edtPesqEan.Text := EmptyStr;
+    edtPesqEan.Font.Color := clBlack;
+  end;
+end;
+
+procedure TfrmDevTroca.edtPesqEanExit(Sender: TObject);
+begin
+  if Trim(edtPesqEan.Text) = EmptyStr then
+  begin
+    edtPesqEan.Text := 'TODOS';
+    edtPesqEan.Font.Color := clGray;
+  end;
+end;
+
+procedure TfrmDevTroca.edtPesqNumVendaEnter(Sender: TObject);
+begin
+  if Trim(edtPesqNumVenda.Text) = 'TODOS' then
+  begin
+    edtPesqNumVenda.Text := EmptyStr;
+    edtPesqNumVenda.Font.Color := clBlack;
+  end;
+end;
+
+procedure TfrmDevTroca.edtPesqNumVendaExit(Sender: TObject);
+begin
+  if Trim(edtPesqNumVenda.Text) = EmptyStr then
+  begin
+    edtPesqNumVenda.Text := 'TODOS';
+    edtPesqNumVenda.Font.Color := clGray;
+  end;
+end;
+
+procedure TfrmDevTroca.fdsVendaItensBeforeEdit(DataSet: TDataSet);
+begin
+
+  //Estava ak a verificação do itemBloqueado
+end;
+
+procedure TfrmDevTroca.fdsVendaItensBeforePost(DataSet: TDataSet);
+begin
+//  if fdsVendaItensQTN_RETORNO.AsFloat > fdsVendaItensQTN.AsFloat then
+//  begin
+  if ((cdsItensBloqueados.Locate('ITEM', fdsVendaItensITEM.AsString, [])) and (fdsVendaItensQTN_DEVOLVER.AsFloat > 0)) then
+  begin
+    Application.MessageBox('Este Item já foi completamente devolvido antes.', 'Operação não permitida', MB_ICONERROR+MB_OK);
+    fdsVendaItensQTN_DEVOLVER.AsFloat:=0;
+    Abort;
+  end;
+
+  if (fdsVendaItensQTN_DEVOLVER.AsFloat + fdsVendaItensQTN_RETORNO.AsFloat) > fdsVendaItensQTN.AsFloat then
+  begin
+    Application.MessageBox('A quantidade de retorno não pode ser maior que a quantidade comprada.', 'Atenção', MB_OK+MB_ICONWARNING);
+    //fdsVendaItensQTN_RETORNO.AsFloat:= 0;
+     fdsVendaItensQTN_DEVOLVER.AsFloat:= 0;
+    Abort;
+  end;
+
+  //if fdsVendaItensQTN_RETORNO.AsFloat > 0 then
+    if fdsVendaItensQTN_DEVOLVER.AsFloat > 0 then
+    alterouItem := True;
+
+end;
+
+procedure TfrmDevTroca.fdsVendasAfterScroll(DataSet: TDataSet);
+begin
+  with fdsVendaItens do
+  begin
+    Close;
+    ParamByName('IDVENDA').AsInteger := fdsVendasID.AsInteger;
+    ParamByName('IDFILIAL').AsInteger := fdsVendasIDFILIAL.AsInteger;
+    Prepare;
+    Open;
+
+    cdsItensBloqueados.Open;
+    cdsItensBloqueados.EmptyDataSet;
+    fdsVendaItens.First;
+
+    while not(fdsVendaItens.Eof) do
+    begin
+      if fdsVendaItensQTN_RETORNO.AsFloat = fdsVendaItensQTN.AsFloat then
+      begin
+        cdsItensBloqueados.Append;
+        cdsItensBloqueadosItem.AsInteger := fdsVendaItensITEM.AsInteger;
+        cdsItensBloqueados.Post;
+      end;
+      fdsVendaItens.Next;
+    end;
+  end;
+  devolucaoTotal := True;
+end;
+
+procedure TfrmDevTroca.fdsVendasBeforeOpen(DataSet: TDataSet);
+begin
+  fdsVendas.ParamByName('IDFILIAL').AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+end;
+
+procedure TfrmDevTroca.fdsVendasBeforeScroll(DataSet: TDataSet);
+begin
+  if alterouItem then
+  begin
+      Case MessageBox(Application.Handle, Pchar('Você informou um retorno para a venda atual, deseja abandonar esse retorno?'), 'Atenção', MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) of
+            IDNO: begin
+              Abort;
+            end;
+
+            IDYES: begin
+              DM.conexao.RollbackRetaining;
+              alterouItem := False;
+            end;
+    End;
+  end;
+end;
+
+procedure TfrmDevTroca.fdsVendedorAfterOpen(DataSet: TDataSet);
+begin
+  fdsVendedor.First;
+  cbxVendedor.AddItemValue('TODOS', '0');
+  while not(fdsVendedor.Eof) do
+  begin
+    cbxVendedor.AddItemValue(fdsVendedorNOME.AsString, fdsVendedorID.AsString);
+    fdsVendedor.Next;
+  end;
+end;
+
+procedure TfrmDevTroca.fdsVendedorBeforeOpen(DataSet: TDataSet);
+begin
+  //fdsVendedor.ParamByName('IDFILIAL').AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+end;
+
+procedure TfrmDevTroca.FormCreate(Sender: TObject);
+begin
+  cdsItensBloqueados.CreateDataSet;
+  fdsVendas.Open;
+  fdsVendedor.Open;
+  cbxVendedor.ItemIndex := 0;
+  iDFormaPag := 0;
+  alterouItem := False;
+  devolucaoTotal := True;
+  vlrDevolucao := 0;
+end;
+
+procedure TfrmDevTroca.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = VK_ESCAPE then
+  begin
+      btnSair.Click;
+  end;
+end;
+
+procedure TfrmDevTroca.gdrItensDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  if not odd(fdsVendaItens.RecNo) then
+  begin
+    gdrItens.Canvas.Brush.Color := DM.gridOddColor;
+    gdrItens.Canvas.FillRect(Rect);
+    gdrItens.DefaultDrawDataCell(rect,Column.Field,state);
+  end;
+
+end;
+
+procedure TfrmDevTroca.Pesquisar;
+var
+  utils : TUtils;
+  numVenda : Double;
+begin
+  fdsVendaItens.Close;
+
+  with fdsVendas do
+  begin
+    Close;
+    Conditions.Clear;
+
+    if (chkNumVenda.Checked) then
+    begin
+      numVenda :=  utils.ValidaInteiroFloat(edtPesqNumVenda.Text, 'I');
+
+      if numVenda > 0 then
+        Conditions.AddCondition('ID', ' V.ID = ' + QuotedStr(FloatToStr(numVenda)), True);
+    end;
+
+    if (chkPeriodo.Checked) then
+      Conditions.AddCondition('DTVENDA', 'V.DT_INC BETWEEN ' + QuotedStr(FormatDateTime('MM/DD/YYYY', dtpInicio.Date)) + ' AND ' + QuotedStr(FormatDateTime('MM/DD/YYYY', dtpFim.Date)), True);
+
+    if (chkCliente.Checked) and not(Trim(edtPesqCliente.Text) = 'TODOS')  then
+    begin
+      RetornaIDCliente(Trim(edtPesqCliente.Text));
+      if fdsCliente.RecordCount > 0 then
+        Conditions.AddCondition('IDCLIENTE', 'V.IDCLIENTE = ' + fdsClienteID.AsString, True)
+      else
+        Conditions.AddCondition('IDCLIENTE', 'V.IDCLIENTE = 0', True);
+    end;
+
+    if (chkVendedor.Checked) and not(cbxVendedor.ItemIndex = 0)  then
+    begin
+      if fdsVendedor.RecordCount > 0 then
+        Conditions.AddCondition('IDVENDEDOR', 'V.IDVENDEDOR = ' + cbxVendedor.Value, True)
+    end;
+
+    if (chkEan.Checked) and not(Trim(edtPesqEan.Text) = 'TODOS')  then
+    begin
+        Conditions.AddCondition('EAN', 'V.ID IN (SELECT VI.IDVENDA FROM VENDA_ITEM VI, PRODUTO_ITEM PI WHERE VI.IDPROD_ITEM = PI.ID AND ( PI.COD_FABRICA = ' + QuotedStr(edtPesqEan.Text)+'OR (PI.NOME LIKE ('+QuotedStr('%'+edtPesqEan.Text+'%')+ ')))' + ')', True);
+    end;
+
+    Conditions.Apply;
+    Prepare;
+    Open;
+  end;
+end;
+
+procedure TfrmDevTroca.RetornaIDCliente(cliente: string);
+begin
+  with fdsCliente do
+  begin
+    Close;
+    Conditions.Clear;
+    Conditions.AddCondition('NOMECLIENTE', 'NOME like UPPER(' + QuotedStr(cliente + '%') + ')', True);
+    Conditions.Apply;
+    Prepare;
+    Open;
+  end;
+end;
+
+procedure TfrmDevTroca.RetornarItemEstoque;
+begin
+  devolucaoTotal := True;
+  vlrDevolucao:=0;
+  fdsVendaItens.First;
+  while not(fdsVendaItens.Eof) do
+  begin
+
+   // if fdsVendaItensQTN_RETORNO.AsFloat < fdsVendaItensQTN.AsFloat  then
+   if (fdsVendaItensQTN_DEVOLVER.AsFloat + fdsVendaItensQTN_RETORNO.AsFloat) < fdsVendaItensQTN.AsFloat  then
+      devolucaoTotal := False;
+
+//    if fdsVendaItensQTN_RETORNO.AsFloat > 0 then
+//    begin
+    if fdsVendaItensQTN_DEVOLVER.AsFloat > 0 then
+    begin
+      with qryMovimento do
+      begin
+        ParamByName('IDITEM').AsInteger := fdsVendaItensIDPROD_ITEM.AsInteger;
+        ParamByName('IDFILIAL').AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+        ParamByName('DT_INC').AsDateTime := Now;
+        ParamByName('DESCRICAO').AsString := 'DEVOLUÇÃO / TROCA';
+        ParamByName('IDVENDA').AsInteger := fdsVendaItensIDVENDA.AsInteger;
+        ParamByName('TIPO').AsString := 'E';
+       // ParamByName('QTN').AsFloat := (fdsVendaItensQTN_RETORNO.AsFloat);
+        ParamByName('QTN').AsFloat := (fdsVendaItensQTN_DEVOLVER.AsFloat);
+        ParamByName('IDFILIAL').AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+        Prepare;
+        ExecProc;
+
+        //vlrDevolucao := RoundTo((vlrDevolucao + (fdsVendaItensQTN_RETORNO.AsFloat * fdsVendaItensVLR_UNITARIO.AsFloat)), -2);
+        vlrDevolucao := RoundTo((vlrDevolucao + (fdsVendaItensQTN_DEVOLVER.AsFloat * fdsVendaItensVLR_UNITARIO.AsFloat)), -2);
+      end;
+      DM.conexao.CommitRetaining;
+    end;
+    fdsVendaItens.Edit;
+    fdsVendaItensQTN_RETORNO.AsFloat:= fdsVendaItensQTN_RETORNO.AsFloat + fdsVendaItensQTN_DEVOLVER.AsFloat;
+    fdsVendaItensQTN_RESTANTE.AsFloat := fdsVendaItensQTN.AsFloat - fdsVendaItensQTN_RETORNO.AsFloat;
+    fdsVendaItensQTN_DEVOLVER.AsFloat:= 0;
+    fdsVendaItens.Post;
+    DM.conexao.CommitRetaining;
+    fdsVendaItens.Next;
+  end;
+   //vlrDevolucao:= vlrDevolucao - fdsVendasVLR_RETORNADO.AsFloat;
+//   if vlrDevolucao<0 then
+//   vlrDevolucao:=( - 1* vlrDevolucao);
+
+  iDFormaPag := fdsVendasIDFORMA_PAG.AsInteger;
+
+  if devolucaoTotal then
+  begin
+    fdsVendas.Edit;
+    fdsVendasSTATUS.AsString := 'DV';
+    fdsVendas.Post;
+    DM.conexao.CommitRetaining;
+  end;
+
+end;
+
+procedure TfrmDevTroca.RzBitBtn1Click(Sender: TObject);
+begin
+  fdsVendaItens.First;
+  while not(fdsVendaItens.Eof) do
+  begin
+      fdsVendaItens.Edit;
+      //fdsVendaItensQTN_RETORNO.AsFloat := fdsVendaItensQTN.AsFloat;
+      fdsVendaItensQTN_DEVOLVER.AsFloat := fdsVendaItensQTN.AsFloat - fdsVendaItensQTN_RETORNO.AsFloat;
+      fdsVendaItens.Post;
+      fdsVendaItens.Next;
+
+  end;
+end;
+
+procedure TfrmDevTroca.Troca;
+begin
+  with qryMovimento do
+  begin
+    ParamByName('IDITEM').AsInteger := fdsVendaItensIDPROD_ITEM.AsInteger;
+    ParamByName('IDFILIAL').AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+    ParamByName('DT_INC').AsDateTime := Now;
+    ParamByName('DESCRICAO').AsString := 'TROCA';
+    ParamByName('IDVENDA').AsInteger := fdsVendaItensIDVENDA.AsInteger;
+    ParamByName('TIPO').AsString := 'E';
+    ParamByName('QTN').AsFloat := fdsVendaItensQTN.AsFloat;
+    ParamByName('IDFILIAL').AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+    Prepare;
+    ExecProc;
+  end;
+
+  fdsVendaItens.Edit;
+  fdsVendaItensDT_INC.AsDateTime := Now;
+  fdsVendaItensIDPROD_ITEM.AsInteger := frmTroca.idItem;
+  fdsVendaItensQTN.AsFloat := frmTroca.Qtn;
+  fdsVendaItensVLR_UNITARIO.AsFloat := frmTroca.vlrUnitario;
+  fdsVendaItensVLR_DESC_ACRE.AsFloat := frmTroca.vlrDesconto;
+  fdsVendaItensVLR_TOTAL.AsFloat := frmTroca.vlrTotal;
+  fdsVendaItensTIPO_DESC_ACRE.AsString := 'D';
+  fdsVendaItens.Post;
+
+  with qryMovimento do
+  begin
+    ParamByName('IDITEM').AsInteger := fdsVendaItensIDPROD_ITEM.AsInteger;
+    ParamByName('IDFILIAL').AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+    ParamByName('DT_INC').AsDateTime := Now;
+    ParamByName('DESCRICAO').AsString := 'VENDA / TROCA';
+    ParamByName('IDVENDA').AsInteger := fdsVendaItensIDVENDA.AsInteger;
+    ParamByName('TIPO').AsString := 'S';
+    ParamByName('QTN').AsFloat := fdsVendaItensQTN.AsFloat;
+    ParamByName('IDFILIAL').AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+    Prepare;
+    ExecProc;
+  end;
+
+  DM.conexao.CommitRetaining;
+
+end;
+
+end.

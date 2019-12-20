@@ -1,0 +1,94 @@
+unit untCadRotas;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, FIBDataSet, pFIBDataSet, dxGDIPlusClasses, ExtCtrls,
+  JvExExtCtrls, JvImage, StdCtrls, RzCmboBx, RzDBCmbo, Mask, RzEdit, RzDBEdit,
+  RzLabel, Grids, DBGrids, JvExDBGrids, JvDBGrid, RzTabs, RzButton, RzPanel,
+  RzBckgnd;
+
+type
+  TfrmCadRotas = class(TForm)
+    RzBackground1: TRzBackground;
+    RzPanel2: TRzPanel;
+    btnIncluir: TRzBitBtn;
+    btnGravar: TRzBitBtn;
+    btnAlterar: TRzBitBtn;
+    btnDelete: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    pgcControl: TRzPageControl;
+    tbsTabela: TRzTabSheet;
+    JvDBGrid1: TJvDBGrid;
+    tbsForm: TRzTabSheet;
+    lblCodigo: TRzLabel;
+    lblDtAlt: TRzLabel;
+    lblDtInc: TRzLabel;
+    lblNome: TRzLabel;
+    lblStatus: TRzLabel;
+    edtID: TRzDBEdit;
+    edtDt_Inc: TRzDBEdit;
+    edtDt_Alt: TRzDBEdit;
+    edtNome: TRzDBEdit;
+    cbxStatus: TRzDBComboBox;
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloCliente: TRzLabel;
+    lblTituloTotal: TRzLabel;
+    lblTotal: TRzLabel;
+    btnPrior: TRzBitBtn;
+    btnFirst: TRzBitBtn;
+    btnNext: TRzBitBtn;
+    btnLast: TRzBitBtn;
+    btnTodos: TRzBitBtn;
+    fdsRota: TpFIBDataSet;
+    fdsRotaID: TFIBBCDField;
+    fdsRotaDT_INC: TFIBDateField;
+    fdsRotaDT_ALT: TFIBDateField;
+    fdsRotaSTATUS: TFIBStringField;
+    fdsRotaNOME: TFIBStringField;
+    dsRota: TDataSource;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadRotas: TfrmCadRotas;
+
+implementation
+
+uses uUtils, untData;
+
+{$R *.dfm}
+
+procedure TfrmCadRotas.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := caFree;
+  frmCadRotas := nil;
+end;
+
+procedure TfrmCadRotas.FormCreate(Sender: TObject);
+begin
+  tbsTabela.Show;
+  fdsRota.Open;
+  fdsRota.Last;
+  fdsRota.First;
+  lblTotal.Caption := IntToStr(fdsRota.RecordCount);
+end;
+
+procedure TfrmCadRotas.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+    SelectNext(ActiveControl, True, True);
+  end;
+end;
+
+end.

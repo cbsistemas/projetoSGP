@@ -1,0 +1,46 @@
+unit untSelGrupo;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzBckgnd, Vcl.StdCtrls, RzLabel,
+  Vcl.ExtCtrls, RzPanel, RzButton, Data.DB, FIBDataSet, pFIBDataSet, RzCmboBx,
+  RzDBCmbo;
+
+type
+  TfrmSelGrupo = class(TForm)
+    RzPanel1: TRzPanel;
+    lblTituloCliente: TRzLabel;
+    RzBackground1: TRzBackground;
+    fdsGrupo: TpFIBDataSet;
+    fdsGrupoID: TFIBBCDField;
+    fdsGrupoNOME: TFIBStringField;
+    fdsGrupoREFERENCIA: TFIBStringField;
+    dsGrupo: TDataSource;
+    btnCancelar: TRzBitBtn;
+    btnSelecionar: TRzBitBtn;
+    RzDBComboBox1: TRzDBComboBox;
+    procedure fdsGrupoAfterOpen(DataSet: TDataSet);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmSelGrupo: TfrmSelGrupo;
+
+implementation
+
+{$R *.dfm}
+
+uses untData;
+
+procedure TfrmSelGrupo.fdsGrupoAfterOpen(DataSet: TDataSet);
+begin
+  fdsGrupo.Last;
+  fdsGrupo.First;
+end;
+
+end.

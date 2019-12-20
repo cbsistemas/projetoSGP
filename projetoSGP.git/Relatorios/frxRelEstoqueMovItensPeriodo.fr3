@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="5.2.3" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="4095" PreviewOptions.Zoom="1" PrintOptions.Printer="Padrão   " PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="42054,6655382986" ReportOptions.Description.Text="" ReportOptions.LastChange="43808,7531378819" ScriptLanguage="PascalScript" ScriptText.Text="procedure MasterData1OnBeforePrint(Sender: TfrxComponent);&#13;&#10;begin   &#13;&#10;                                                                        &#13;&#10;end;&#13;&#10;&#13;&#10;procedure gpMovimentoOnBeforePrint(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;  &#13;&#10;end;&#13;&#10;&#13;&#10;procedure gpMovimentoOnAfterPrint(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;end;          &#13;&#10;  &#13;&#10;procedure Page1OnBeforePrint(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;    &#13;&#10;end;&#13;&#10;&#13;&#10;begin&#13;&#10;&#13;&#10;end." OnReportPrint="frxReportOnReportPrint">
+  <Datasets>
+    <item DataSet="frxConfig" DataSetName="frxConfig"/>
+    <item DataSet="frmEstoque.frxItensPeriodoMov" DataSetName="frxItensPeriodoMov"/>
+    <item DataSet="frmEstoque.frxTotItensPeriodoMov" DataSetName="frxTotItensPeriodoMov"/>
+  </Datasets>
+  <Variables>
+    <item Name=" Minhas"/>
+    <item Name="dtInicio"/>
+    <item Name="dtFim"/>
+    <item Name="totVendas"/>
+    <item Name="vlrTotal"/>
+    <item Name="Filial"/>
+    <item Name="subTotal"/>
+    <item Name="vlrTotDev"/>
+    <item Name="Tipo"/>
+    <item Name="obs"/>
+  </Variables>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="5" RightMargin="5" TopMargin="5" BottomMargin="5" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="" OnAfterPrint="Page1OnAfterPrint" OnBeforePrint="Page1OnBeforePrint">
+    <TfrxReportTitle Name="ReportTitle1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="187,00479434" Left="0" Top="18,89765" Width="755,906">
+      <TfrxShapeView Name="Shape1" Align="baCenter" Left="0,000244095000000027" Top="0,75589331" Width="755,90551181" Height="183,52200261" Curve="2" Shape="skRoundRectangle"/>
+      <TfrxMemoView Name="frxMovIntTP" Left="2,10526316" Top="96,11812" Width="757,5717221" Height="37,7953" DataSetName="frxMovInt" Font.Charset="1" Font.Color="0" Font.Height="-27" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="Relatório de Movimentações de Itens no Período"/>
+      <TfrxMemoView Name="Memo3" Left="11,33859" Top="130,13389" Width="45,35436" Height="18,89765" DisplayFormat.DecimalSeparator="," Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Filial:"/>
+      <TfrxMemoView Name="Memo2" Left="464,88219" Top="133,91342" Width="30,23624" Height="18,89765" DisplayFormat.DecimalSeparator="," Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Dê:"/>
+      <TfrxMemoView Name="Memo4" Left="589,60668" Top="133,91342" Width="34,01577" Height="18,89765" DisplayFormat.DecimalSeparator="," Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Até:"/>
+      <TfrxMemoView Name="dtInicio" Left="495,11843" Top="133,91342" Width="94,48825" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[dtInicio]"/>
+      <TfrxMemoView Name="dtFim" Left="623,62245" Top="133,91342" Width="90,70872" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[dtFim]"/>
+      <TfrxMemoView Name="Filial" Left="113,53505526" Top="131,18652158" Width="211,65368" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[Filial]"/>
+      <TfrxLineView Name="Line3" Align="baCenter" Left="43,464685315" Top="8,77953" Width="668,97662937" Height="0" Color="0" Frame.Style="fsDot" Diagonal="True"/>
+      <TfrxMemoView Name="Memo12" Align="baWidth" Left="0" Top="39,01577" Width="755,906" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[frxConfig.&#34;ENDERECO&#34;]"/>
+      <TfrxMemoView Name="Memo14" Align="baWidth" Left="0" Top="57,91342" Width="755,906" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[frxConfig.&#34;BAIRRO&#34;], [frxConfig.&#34;CIDADE&#34;] - [frxConfig.&#34;UF&#34;]"/>
+      <TfrxMemoView Name="Memo15" Align="baWidth" Left="0" Top="76,81107" Width="755,906" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[frxConfig.&#34;TELEFONE&#34;]"/>
+      <TfrxMemoView Name="frxConfigNOME" Align="baWidth" Left="0" Top="19,11812" Width="755,906" Height="18,89765" DataField="NOME" DataSet="frxConfig" DataSetName="frxConfig" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="[frxConfig.&#34;NOME&#34;]"/>
+      <TfrxMemoView Name="Memo7" Left="11,57894737" Top="151,62866579" Width="94,48825" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Custo Total :"/>
+      <TfrxMemoView Name="frxTotItensPeriodoMovVALOR_TOTAL" Left="113,68421052" Top="152,68129737" Width="79,37013" Height="18,89765" DataField="VALOR_TOTAL" DataSet="frmEstoque.frxTotItensPeriodoMov" DataSetName="frxTotItensPeriodoMov" Text="[frxTotItensPeriodoMov.&#34;VALOR_TOTAL&#34;]"/>
+    </TfrxReportTitle>
+    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="34,01577" Left="0" Top="495,11843" Width="755,906">
+      <TfrxMemoView Name="Memo13" Left="623,62245" Top="8,39122158" Width="94,48825" Height="18,89765" DisplayFormat.DecimalSeparator="," Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="Página: [Page]"/>
+      <TfrxLineView Name="Line1" Left="0" Top="3,77953" Width="755,906" Height="0" Color="0" Diagonal="True"/>
+      <TfrxMemoView Name="Memo11" Left="244,24428" Top="11,33859" Width="86,92919" Height="18,89765" DisplayFormat.DecimalSeparator="," Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[Date]"/>
+      <TfrxMemoView Name="Memo16" Left="11,33859" Top="11,33859" Width="232,31679895" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="Relatório fornecido por CBSistemas  Emissão:"/>
+      <TfrxMemoView Name="Time" Left="324,18924" Top="11,33859" Width="52,91342" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[Time]"/>
+    </TfrxPageFooter>
+    <TfrxGroupHeader Name="GroupHeader1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="59,51928526" Left="0" Top="268,34663" Width="755,906" Condition="frxItensPeriodoMov.&#34;MOVIMENTACAO&#34;">
+      <TfrxShapeView Name="Shape2" Align="baCenter" Left="6,10250000000201E-5" Top="25,80132105" Width="755,90587795" Height="29,18360842" Curve="1" Fill.BackColor="-16777194" Shape="skRoundRectangle"/>
+      <TfrxMemoView Name="Memo9" Left="5,76649008" Top="30,63348263" Width="56,69295" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Código"/>
+      <TfrxMemoView Name="Memo21" Left="439,42093058" Top="30,13117158" Width="115,5906" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Cod.Fabrica/EAN"/>
+      <TfrxMemoView Name="Memo22" Left="64,21046529" Top="30,11711052" Width="371,07352841" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Produto"/>
+      <TfrxMemoView Name="Memo1" Left="637,89467581" Top="30,58135579" Width="112,43270527" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" HAlign="haRight" ParentFont="False" Text="Custo Total"/>
+      <TfrxMemoView Name="Memo5" Left="556,84204424" Top="29,52872421" Width="80,8537579" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Quantidade"/>
+      <TfrxMemoView Name="frxItensPeriodoMovMOVIMENTACAO" Left="2,10526316" Top="3,18259895" Width="400,63018" Height="18,89765" DataField="MOVIMENTACAO" DataSet="frmEstoque.frxItensPeriodoMov" DataSetName="frxItensPeriodoMov" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial Rounded MT Bold" Font.Style="0" ParentFont="False" Text="[frxItensPeriodoMov.&#34;MOVIMENTACAO&#34;]"/>
+    </TfrxGroupHeader>
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="27,94033789" Left="0" Top="351,49629" Width="755,906" ColumnWidth="0" ColumnGap="0" DataSet="frmEstoque.frxItensPeriodoMov" DataSetName="frxItensPeriodoMov" RowCount="0" Stretched="True">
+      <TfrxMemoView Name="frxItensPeriodoMovIDPROD_ITEM" Left="2,10526316" Top="4,24346526" Width="66,73855105" Height="18,89765" DataField="IDPROD_ITEM" DataSet="frmEstoque.frxItensPeriodoMov" DataSetName="frxItensPeriodoMov" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxItensPeriodoMov.&#34;IDPROD_ITEM&#34;]"/>
+      <TfrxMemoView Name="frxItensPeriodoMovNOME" Left="69,47368421" Top="4,24346526" Width="400,63018" Height="18,89765" StretchMode="smMaxHeight" DataField="NOME" DataSet="frmEstoque.frxItensPeriodoMov" DataSetName="frxItensPeriodoMov" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxItensPeriodoMov.&#34;NOME&#34;]"/>
+      <TfrxMemoView Name="frxItensPeriodoMovCOD_FABRICA" Left="470,52631579" Top="4,24346526" Width="105,82684" Height="18,89765" DataField="COD_FABRICA" DataSet="frmEstoque.frxItensPeriodoMov" DataSetName="frxItensPeriodoMov" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxItensPeriodoMov.&#34;COD_FABRICA&#34;]"/>
+      <TfrxMemoView Name="frxItensPeriodoMovQUANTIDADE" Left="577,89473684" Top="4,24346526" Width="79,37013" Height="18,89765" DataField="QUANTIDADE" DataSet="frmEstoque.frxItensPeriodoMov" DataSetName="frxItensPeriodoMov" DisplayFormat.DecimalSeparator="," DisplayFormat.FormatStr="0.###" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxItensPeriodoMov.&#34;QUANTIDADE&#34;]"/>
+      <TfrxMemoView Name="frxItensPeriodoMovCUSTO_TOTAL" Left="657,89473684" Top="4,24346526" Width="97,26486684" Height="18,89765" DataField="CUSTO_TOTAL" DataSet="frmEstoque.frxItensPeriodoMov" DataSetName="frxItensPeriodoMov" DisplayFormat.DecimalSeparator="," DisplayFormat.FormatStr="%2.2m" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" HAlign="haRight" ParentFont="False" Text="[frxItensPeriodoMov.&#34;CUSTO_TOTAL&#34;]"/>
+    </TfrxMasterData>
+    <TfrxGroupFooter Name="GroupFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="35,30875895" Left="0" Top="400,63018" Width="755,906">
+      <TfrxMemoView Name="Memo6" Left="566,52631579" Top="6,42536474" Width="48,17246053" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Total :"/>
+      <TfrxSysMemoView Name="SysMemo1" Left="618,94736842" Top="6,68852263" Width="132,38298684" Height="18,89765" DisplayFormat.DecimalSeparator="," DisplayFormat.FormatStr="%2.2m" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;frxItensPeriodoMov.&#34;CUSTO_TOTAL&#34;&#62;,MasterData1)]"/>
+    </TfrxGroupFooter>
+  </TfrxReportPage>
+</TfrxReport>

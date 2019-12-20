@@ -1,0 +1,268 @@
+unit untValoresFormaPag;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, RzPanel,
+  Vcl.Grids, Vcl.DBGrids, RzDBGrid, RzTabs, Data.DB, FIBDataSet, pFIBDataSet,StrUtils,Math,
+  RzButton, Datasnap.DBClient;
+
+type
+  TfrmValoresFormaPag = class(TForm)
+    RzPanel1: TRzPanel;
+    edtValor: TEdit;
+    edtParcela: TEdit;
+    lblValor: TLabel;
+    Label2: TLabel;
+    pgcParcelas: TRzPageControl;
+    tbsNota: TRzTabSheet;
+    gdrNota: TRzDBGrid;
+    tbsCheque: TRzTabSheet;
+    gdrCheque: TRzDBGrid;
+    btnGerarParcelas: TRzBitBtn;
+    cdsCntReceber: TClientDataSet;
+    cdsChequeContReceber: TClientDataSet;
+    dsContReceber: TDataSource;
+    dsChequeContReceber: TDataSource;
+    cdsChequeContReceberEMITENTE: TStringField;
+    cdsChequeContReceberIDBANCO: TIntegerField;
+    cdsChequeContReceberAGENCIA: TIntegerField;
+    cdsChequeContReceberCONTA: TIntegerField;
+    cdsChequeContReceberNUM_BANCO: TIntegerField;
+    cdsChequeContReceberDT_VENCIMENTO: TDateField;
+    cdsChequeContReceberPARCELA: TStringField;
+    cdsChequeContReceberVALOR: TFloatField;
+    cdsChequeContReceberIDFILIAL: TIntegerField;
+    cdsCntReceberIDFILIAL: TIntegerField;
+    cdsCntReceberPOSICAO: TStringField;
+    cdsCntReceberPREFIXO: TStringField;
+    cdsCntReceberPARCELA: TStringField;
+    cdsCntReceberDT_VENC: TDateField;
+    cdsCntReceberVALOR: TFloatField;
+    cdsCntReceberIDVENDA: TIntegerField;
+    cdsCntReceberDESCONTO: TFloatField;
+    cdsCntReceberVLR_TOTAL_ITEM: TFloatField;
+    cdsCntReceberREFEREENCIA: TFloatField;
+    cdsCntReceberDT_PAG: TDateField;
+    cdsCntReceberHOSTORICO: TStringField;
+    Panel1: TPanel;
+    RzBitBtn1: TRzBitBtn;
+    RzBitBtn2: TRzBitBtn;
+    procedure btnGerarParcelasClick(Sender: TObject);
+    procedure RzBitBtn1Click(Sender: TObject);
+    procedure RzBitBtn2Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure gdrNotaDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+  private
+    { Private declarations }
+    procedure GeraParcelaCheque(prefixo: string; parcelas: Integer; vlrParcelar: Double);
+
+  public
+  procedure GeraParcelaNota(prefixo: string;parcelas: Integer; vlrParcelar: Double);
+  var
+//  idVenda, idReceber, idFormaPag, idBanco, nBanco, nAgencia, nConta, celula,
+   parcelas: Integer;
+  editouParcela, autoParcela, gerouParcelas,valorDoc, valorParcelar, valorDinheiro, valorDesconto, valorCheque,
+  valorCartao, troco: Boolean;
+  cliente, emitente: string;
+  idCliente, idVendedor, nParcelasFinanceira: Integer;
+  tipoVenda, moeda, tipoCartao: string[2];
+   prazo: Double;
+    { Public declarations }
+  end;
+
+var
+  frmValoresFormaPag: TfrmValoresFormaPag;
+
+implementation
+
+{$R *.dfm}
+
+uses untData, uUtils, untNfe;
+
+procedure TfrmValoresFormaPag.btnGerarParcelasClick(Sender: TObject);
+var
+utils:Tutils;
+begin
+ if (cdsCntReceber.RecordCount>0) or (cdsChequeContReceber.RecordCount>0) then
+ begin
+ cdsCntReceber.EmptyDataSet;
+ cdsChequeContReceber.EmptyDataSet;
+ end;
+  parcelas := 0;
+ parcelas:=StrToInt(edtParcela.Text);
+ if moeda='CH' then
+ begin
+ GeraParcelaCheque('CH', parcelas, StrToFloat(utils.TiraCaracterEspecial(edtValor.Text)));
+ end;
+ parcelas := 0;
+ if moeda='NT' then
+ begin
+   parcelas:=StrToInt(edtParcela.Text);
+   GeraParcelaNota('NT', parcelas, StrToFloat(utils.TiraCaracterEspecial(edtValor.Text)));
+ end;
+  parcelas := 0;
+ if moeda = 'CT' then
+  begin
+    parcelas:=StrToInt(edtParcela.Text);
+   GeraParcelaNota('CT', parcelas,StrToFloat(utils.TiraCaracterEspecial(edtValor.Text)));
+  end;
+
+end;
+
+procedure TfrmValoresFormaPag.FormCreate(Sender: TObject);
+begin
+ prazo := 30;
+end;
+
+procedure TfrmValoresFormaPag.FormShow(Sender: TObject);
+var
+  utils: TUtils;
+begin
+//  //valorDinheiro := 0;
+//  valorDesconto := 0;
+  //   valorCheque := 0;
+//  valorCartao := 0;
+////  valorFinanceira := 0;
+////  valorValeDesconto := 0;
+////  valorTicket := 0;
+//  valorParcelar := valorDoc;
+
+  //cdsCntReceber_Item.CreateDataSet;
+  //cdsCntReceber.EmptyDataSet;
+
+  cdsChequeContReceber.CreateDataSet;
+  cdsChequeContReceber.Open;
+
+  cdsCntReceber.CreateDataSet;
+  cdsCntReceber.Open;
+  moeda := moeda;
+  editouParcela := False;
+  autoParcela := False;
+  gerouParcelas := False;
+end;
+
+procedure TfrmValoresFormaPag.gdrNotaDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+if not odd(cdsCntReceber.RecNo) then
+  begin
+    gdrNota.Canvas.Brush.Color := DM.gridOddColor;
+    gdrNota.Canvas.FillRect(Rect);
+    gdrNota.DefaultDrawDataCell(Rect, Column.Field, State);
+  end;
+end;
+
+procedure TfrmValoresFormaPag.GeraParcelaCheque(prefixo: string;
+  parcelas: Integer; vlrParcelar: Double);
+var
+  i: Integer;
+  parcelasTemp: string[3];
+  valorParcela: Double;
+  dataParcela: TDateTime;
+  utils: TUtils;
+begin
+  i := 1;
+
+  parcelasTemp := utils.FormataParcelas(IntToStr(parcelas));
+  valorParcela := StrToFloat(utils.TiraCaracterEspecial(FloatToStr(vlrParcelar))) / parcelas;
+
+  valorParcela := RoundTo(valorParcela, -2);
+
+  dataParcela := Now;
+
+  for i := 1 to parcelas do
+  begin
+    cdsChequeContReceber.Append;
+    cdsChequeContReceberIDFILIAL.AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+    cdsChequeContReceberEMITENTE.AsString := frmNFe.emitente;
+    cdsChequeContReceberIDBANCO.AsInteger := frmNFe.idBanco;
+    cdsChequeContReceberAGENCIA.AsInteger := frmNFe.nAgencia;
+    cdsChequeContReceberCONTA.AsInteger := frmNFe.nConta;
+    cdsChequeContReceberNUM_BANCO.AsInteger := frmNFe.nBanco;
+    dataParcela := dataParcela + prazo;
+    cdsChequeContReceberDT_VENCIMENTO.AsDateTime := dataParcela;
+    cdsChequeContReceberPARCELA.AsString := utils.FormataParcelas(IntToStr(i)) +parcelasTemp;
+
+    if i = parcelas then
+      valorParcela := valorParcela + (vlrParcelar - (valorParcela * parcelas));
+    // joga os centavos faltando para a última parcela. Devido ao arredondamento
+    cdsChequeContReceberVALOR.AsFloat := valorParcela;
+
+    cdsChequeContReceber.Post;
+    tbsCheque.Show;
+  end;
+
+end;
+
+procedure TfrmValoresFormaPag.GeraParcelaNota(prefixo: string;
+  parcelas: Integer; vlrParcelar: Double);
+var
+  i: Integer;
+  parcelasTemp: string[3];
+  valorParcela: Double;
+  dataParcela: TDateTime;
+  utils: TUtils;
+begin
+  i := 1;
+
+  parcelasTemp := utils.FormataParcelas(IntToStr(parcelas));
+
+  valorParcela := RoundTo(vlrParcelar / parcelas, -2);
+
+  if (DM.fdsConfigTARIFA_BOLETO.AsFloat > 0) and (prefixo = 'BL') then
+    valorParcela :=
+      RoundTo(valorParcela + DM.fdsConfigTARIFA_BOLETO.AsFloat, -2);
+
+  dataParcela := Now;
+
+  for i := 1 to parcelas do
+  begin
+    cdsCntReceber.Append;
+    cdsCntReceberIDFILIAL.AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+    cdsCntReceberPOSICAO.AsString := 'AB';
+    cdsCntReceberPARCELA.AsString := utils.FormataParcelas(IntToStr(i)) +
+      parcelasTemp;
+    cdsCntReceberPREFIXO.AsString := prefixo;
+    if ((prefixo = 'CT') and (DM.fdsConfigCARTAO_CREDITO_AVISTA.AsString = 'S'))
+      or (prefixo = 'CD') then
+      dataParcela := Now
+    else
+      dataParcela := dataParcela + prazo;
+    cdsCntReceberDT_VENC.AsDateTime := dataParcela;
+
+    if i = parcelas then
+    begin
+      if (DM.fdsConfigTARIFA_BOLETO.AsFloat > 0) and (prefixo = 'BL') then
+      begin
+        valorParcela := RoundTo(vlrParcelar / parcelas, -2);
+        valorParcela := valorParcela +
+          (vlrParcelar - (valorParcela * parcelas));
+        valorParcela :=
+          RoundTo(valorParcela + DM.fdsConfigTARIFA_BOLETO.AsFloat, -2);
+      end
+      else
+        valorParcela := valorParcela + (vlrParcelar - (valorParcela * parcelas)
+          ); // joga os centavos faltando para a última parcela. Devido ao arredondamento
+    end;
+    cdsCntReceberVALOR.AsFloat := valorParcela;
+
+    cdsCntReceber.Post;
+  end;
+//
+end;
+
+procedure TfrmValoresFormaPag.RzBitBtn1Click(Sender: TObject);
+begin
+ModalResult:= mrOK;
+end;
+
+procedure TfrmValoresFormaPag.RzBitBtn2Click(Sender: TObject);
+begin
+  ModalResult:=mrCancel;
+end;
+
+end.

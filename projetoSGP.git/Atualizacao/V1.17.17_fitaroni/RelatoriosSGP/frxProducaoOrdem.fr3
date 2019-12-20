@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="4.13.2" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="4095" PreviewOptions.Zoom="1" PrintOptions.Printer="XPS" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="41879,500308125" ReportOptions.Description.Text="" ReportOptions.LastChange="42678,5366807292" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;                   &#13;&#10;end.  " PropData="044C656674024803546F700380000844617461736574730101063C20446174615365743D2266726D50726F647563616F2E66727850726F647563616F2220446174615365744E616D653D2266727850726F647563616F220001064420446174615365743D2266726D50726F647563616F2E66727850726F647563616F4974656D2220446174615365744E616D653D2266727850726F647563616F4974656D220000095661726961626C657301010616204E616D653D22204E65772043617465676F7279312200010610204E616D653D22746F744974656E73220000055374796C650100">
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="0" RightMargin="0" TopMargin="0" BottomMargin="0" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxHeader Name="Header1" Height="22,67718" Left="0" Top="185,19697" Width="793,7013">
+      <TfrxShapeView Name="Shape4" Align="baCenter" Left="17,008130315" Top="0" Width="759,68503937" Height="22,67718" ShowHint="False" Color="-16777194" Curve="1" Shape="skRoundRectangle"/>
+      <TfrxMemoView Name="Memo6" Left="30,11812" Top="3,77953" Width="468,66172" Height="18,89765" ShowHint="False" DisplayFormat.DecimalSeparator="," Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Produto"/>
+      <TfrxMemoView Name="Memo7" Left="691,53587" Top="3,77953" Width="37,7953" Height="18,89765" ShowHint="False" DisplayFormat.DecimalSeparator="," Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Qtn"/>
+    </TfrxHeader>
+    <TfrxReportTitle Name="ReportTitle1" Height="105,82684" Left="0" Top="18,89765" Width="793,7013">
+      <TfrxShapeView Name="Shape2" Align="baCenter" Left="15,118365315" Top="7,55906" Width="763,46456937" Height="90,70887378" ShowHint="False" Curve="2" Shape="skRoundRectangle"/>
+      <TfrxMemoView Name="Memo10" Align="baCenter" Left="292,913575" Top="16,55921378" Width="207,87415" Height="22,67718" ShowHint="False" Font.Charset="1" Font.Color="0" Font.Height="-19" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Ordem de Produção"/>
+      <TfrxMemoView Name="frxProducaoFUNCIONARIO" Left="109,60637" Top="64,25201" Width="291,02381" Height="18,89765" ShowHint="False" DataSet="frmProducao.frxProducao" DataSetName="frxProducao" Text="[frxProducao.&#34;FUNCIONARIO&#34;]"/>
+      <TfrxMemoView Name="Memo1" Left="22,67718" Top="64,25201" Width="83,14966" Height="18,89765" ShowHint="False" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Funcionário:"/>
+      <TfrxMemoView Name="frxProducaoDT_INC" Left="634,96104" Top="68,03154" Width="132,28355" Height="18,89765" ShowHint="False" DataField="DT_INC" DataSet="frmProducao.frxProducao" DataSetName="frxProducao" Text="[frxProducao.&#34;DT_INC&#34;]"/>
+    </TfrxReportTitle>
+    <TfrxMasterData Name="MasterData1" Height="30,23622047" Left="0" Top="230,55133" Width="793,7013" ColumnWidth="0" ColumnGap="0" DataSet="frmProducao.frxProducaoItem" DataSetName="frxProducaoItem" RowCount="0">
+      <TfrxLineView Name="Line2" Align="baCenter" Left="37,79553189" Top="26,45671" Width="718,11023622" Height="0" ShowHint="False" Frame.Style="fsDot" Frame.Typ="4"/>
+      <TfrxMemoView Name="frxProducaoItemNOME" Left="22,67718" Top="3,77953" Width="472,44125" Height="18,89765" ShowHint="False" DataField="NOME" DataSet="frmProducao.frxProducaoItem" DataSetName="frxProducaoItem" Text="[frxProducaoItem.&#34;NOME&#34;]"/>
+      <TfrxMemoView Name="frxProducaoItemQTN" Left="684,09493" Top="3,77953" Width="79,37013" Height="18,89765" ShowHint="False" DataField="QTN" DataSet="frmProducao.frxProducaoItem" DataSetName="frxProducaoItem" Text="[frxProducaoItem.&#34;QTN&#34;]"/>
+    </TfrxMasterData>
+    <TfrxPageFooter Name="PageFooter1" Height="22,67718" Left="0" Top="321,26005" Width="793,7013">
+      <TfrxMemoView Name="Page" Left="691,65399" Top="0,77953" Width="94,48825" Height="18,89765" ShowHint="False" Text="Página: [Page]"/>
+    </TfrxPageFooter>
+  </TfrxReportPage>
+</TfrxReport>

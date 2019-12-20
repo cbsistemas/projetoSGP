@@ -1,0 +1,69 @@
+unit untRomaneioCobranca;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, RzEdit,
+  RzButton, RzLabel, Vcl.Imaging.pngimage, Vcl.ExtCtrls, JvExExtCtrls, JvImage,
+  RzPanel, RzBckgnd, dxGDIPlusClasses, RzDBEdit, Vcl.Grids, Vcl.DBGrids,
+  JvExDBGrids, JvDBGrid, RzTabs, RzCmboBx, Data.DB, FIBDataSet, pFIBDataSet,
+  Datasnap.Provider, pFIBClientDataSet, Datasnap.DBClient;
+
+type
+  TfrmRomaneioCobranca = class(TForm)
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloCliente: TRzLabel;
+    RzBackground1: TRzBackground;
+    pgcControl: TRzPageControl;
+    tbsSintetico: TRzTabSheet;
+    gdrReceberSintetico: TJvDBGrid;
+    tbsAnalitico: TRzTabSheet;
+    gdrReceberAnalitico: TJvDBGrid;
+    tbsForm: TRzTabSheet;
+    RzGroupBox1: TRzGroupBox;
+    lblNome: TRzLabel;
+    RzGroupBox2: TRzGroupBox;
+    gdrParcelas: TJvDBGrid;
+    btnIncluir: TRzBitBtn;
+    btnCancelarReceber: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    btnGravar: TRzBitBtn;
+    fdsCobranca_Itens: TpFIBDataSet;
+    dsCobranca_Itens: TDataSource;
+    cbxVendedor: TRzComboBox;
+    RzBitBtn1: TRzBitBtn;
+    cdsCobranca_Itens: TpFIBClientDataSet;
+    dspCobranca_Itens: TpFIBDataSetProvider;
+    fdsCobranca: TpFIBDataSet;
+    DataSource1: TDataSource;
+    fdsCombra: TDataSource;
+    RzDBEdit9: TRzDBEdit;
+    RzLabel9: TRzLabel;
+    RzDBEdit1: TRzDBEdit;
+    RzLabel1: TRzLabel;
+    RzLabel2: TRzLabel;
+    RzDBEdit2: TRzDBEdit;
+    RzDBEdit3: TRzDBEdit;
+    RzLabel3: TRzLabel;
+    RzLabel4: TRzLabel;
+    RzDBEdit4: TRzDBEdit;
+    RzDBEdit5: TRzDBEdit;
+    RzLabel5: TRzLabel;
+    RzDBEdit6: TRzDBEdit;
+    RzLabel6: TRzLabel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRomaneioCobranca: TfrmRomaneioCobranca;
+
+implementation
+
+{$R *.dfm}
+
+end.

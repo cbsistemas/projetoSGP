@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="5.2.3" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="4095" PreviewOptions.Zoom="1" PrintOptions.Printer="Padrão" PrintOptions.PrintOnSheet="0" PrintOptions.ShowDialog="False" ReportOptions.CreateDate="42983,6694028819" ReportOptions.Description.Text="" ReportOptions.LastChange="43588,6691640857" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;procedure Footer1OnBeforePrint(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;           &#13;&#10;end;&#13;&#10;&#13;&#10;procedure MasterData1OnBeforePrint(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;            &#13;&#10;end;&#13;&#10;&#13;&#10;begin&#13;&#10;&#13;&#10;end." OnReportPrint="frxReportOnReportPrint">
+  <Datasets>
+    <item DataSet="frxConfig" DataSetName="frxConfig"/>
+  </Datasets>
+  <Variables>
+    <item Name=" MinhasVariaveis"/>
+    <item Name="Operador"/>
+    <item Name="ValorTotal"/>
+    <item Name="historico"/>
+    <item Name="cliente"/>
+    <item Name="valor"/>
+  </Variables>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page2" PaperWidth="90" PaperHeight="200" PaperSize="256" LeftMargin="5" RightMargin="5" TopMargin="5" BottomMargin="5" ColumnWidth="0" ColumnPositions.Text="" EndlessHeight="True" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="257,00804" Left="0" Top="18,89765" Width="302,3624" Stretched="True">
+      <TfrxLineView Name="Line4" Align="baCenter" Left="11,338680315" Top="3,77953" Width="279,68503937" Height="0" Color="0" Frame.Style="fsDot" Diagonal="True"/>
+      <TfrxMemoView Name="Memo6" Left="0" Top="34,01577" Width="302,36220472" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[frxConfig.&#34;ENDERECO&#34;]"/>
+      <TfrxMemoView Name="Memo7" Left="0" Top="52,91342" Width="306,14173472" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[frxConfig.&#34;BAIRRO&#34;], [frxConfig.&#34;CIDADE&#34;] - [frxConfig.&#34;UF&#34;]"/>
+      <TfrxMemoView Name="Memo8" Left="0" Top="71,81107" Width="302,36220472" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[frxConfig.&#34;TELEFONE&#34;]"/>
+      <TfrxMemoView Name="Memo10" Left="0,33849235" Top="95,48825" Width="302,3624" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="COMPROVANTE DE DEVOLUÇÃO "/>
+      <TfrxMemoView Name="Memo11" Left="1,22834645" Top="14,11812" Width="298,58287" Height="18,89765" DataField="NOME" DataSet="frxConfig" DataSetName="frxConfig" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="[frxConfig.&#34;NOME&#34;]"/>
+      <TfrxMemoView Name="historico1" Left="19,33859" Top="226,1812" Width="264,5671" Height="22,67718" StretchMode="smMaxHeight" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text=" [historico]"/>
+      <TfrxMemoView Name="Memo12" Left="16,55906" Top="201,50402" Width="75,5906" Height="22,67718" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="Descrição :"/>
+      <TfrxLineView Name="Line3" Left="0" Top="117,16543" Width="302,3624" Height="0" Color="0" Frame.Style="fsDot" Diagonal="True"/>
+      <TfrxMemoView Name="Memo2" Left="18,11812" Top="120,94496" Width="75,5906" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Operador :"/>
+      <TfrxMemoView Name="Operador" Left="88,26778" Top="122,94496" Width="192,75603" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[Operador]"/>
+      <TfrxMemoView Name="Memo3" Left="18,89765" Top="173,1812" Width="41,57483" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Data :"/>
+      <TfrxMemoView Name="Date1" Left="60,47248" Top="173,1812" Width="68,03154" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[Date]"/>
+      <TfrxMemoView Name="Time1" Left="128,50402" Top="173,1812" Width="79,37013" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[Time]"/>
+      <TfrxMemoView Name="cliente" Left="79,37013" Top="143,62214" Width="215,43321" Height="18,89765" StretchMode="smMaxHeight" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[cliente]"/>
+      <TfrxMemoView Name="Memo4" Left="18,89765" Top="143,62214" Width="60,47248" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Cliente :"/>
+    </TfrxReportTitle>
+    <TfrxPageFooter Name="PageFooter2" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="37,7953" Left="0" Top="336,37817" Width="302,3624">
+      <TfrxLineView Name="Line1" Left="3" Top="3,77953" Width="294,80334" Height="0" Color="0" Frame.Style="fsDot" Diagonal="True"/>
+      <TfrxLineView Name="Line2" Left="3" Top="11,33859" Width="294,80334" Height="0" Color="0" Frame.Style="fsDot" Diagonal="True"/>
+      <TfrxMemoView Name="Memo1" Left="10,55906" Top="15,11812" Width="177,63791" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="Fornecido por CBSitemas  Emissão:"/>
+      <TfrxMemoView Name="Date" Left="186,9765" Top="15,11812" Width="56,69295" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[Date]"/>
+      <TfrxMemoView Name="Time" Left="241,88992" Top="15,11812" Width="52,91342" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[Time]"/>
+    </TfrxPageFooter>
+  </TfrxReportPage>
+</TfrxReport>

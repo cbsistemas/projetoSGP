@@ -1,0 +1,1509 @@
+object DM: TDM
+  OldCreateOrder = False
+  Height = 290
+  Width = 474
+  object conexao: TpFIBDatabase
+    Connected = True
+    DBName = 'D:\Delphi\Sistemas\SGP\Banco\SGP.FDB'
+    DBParams.Strings = (
+      'password=masterkey'
+      'user_name=SYSDBA'
+      'lc_ctype=WIN1252')
+    DefaultTransaction = trans
+    DefaultUpdateTransaction = trans
+    SQLDialect = 3
+    Timeout = 0
+    LibraryName = 'fbclient.dll'
+    WaitForRestoreConnect = 0
+    Left = 24
+    Top = 16
+  end
+  object trans: TpFIBTransaction
+    Active = True
+    DefaultDatabase = conexao
+    Left = 88
+    Top = 16
+  end
+  object fdsConfig: TpFIBDataSet
+    UpdateSQL.Strings = (
+      'UPDATE CONFIG'
+      'SET '
+      '    IDFILIAL = :IDFILIAL,'
+      '    NOME = :NOME,'
+      '    RAZAO = :RAZAO,'
+      '    CNPJ = :CNPJ,'
+      '    IE = :IE,'
+      '    ENDERECO = :ENDERECO,'
+      '    ENDERECO_FANTASIA = :ENDERECO_FANTASIA,'
+      '    NUMERO = :NUMERO,'
+      '    BAIRRO = :BAIRRO,'
+      '    BAIRRO_FANTASIA = :BAIRRO_FANTASIA,'
+      '    IDCIDADE = :IDCIDADE,'
+      '    CEP = :CEP,'
+      '    TELEFONE = :TELEFONE,'
+      '    TELEFONE2 = :TELEFONE2,'
+      '    EMAIL = :EMAIL,'
+      '    SITE = :SITE,'
+      '    LOGO_IMG_CAMINHO = :LOGO_IMG_CAMINHO,'
+      '    IDCLIENTEPADRAO = :IDCLIENTEPADRAO,'
+      '    IDVENDEDORPADRAO = :IDVENDEDORPADRAO,'
+      '    FABRICA = :FABRICA,'
+      '    IDFORM_PAG_PAD = :IDFORM_PAG_PAD,'
+      '    IDPORTADOR_PADRAO = :IDPORTADOR_PADRAO,'
+      '    UTILIZAR_TABELA_PRECO = :UTILIZAR_TABELA_PRECO,'
+      '    CLIENTE_EXIBIR_PJ = :CLIENTE_EXIBIR_PJ,'
+      '    HORA_BKP = :HORA_BKP,'
+      '    BAIXA_AUTO_CARTAO = :BAIXA_AUTO_CARTAO,'
+      '    PARAM = :PARAM,'
+      '    CHAVE = :CHAVE,'
+      '    HOJE = :HOJE,'
+      '    CARENCIA_JUROS = :CARENCIA_JUROS,'
+      '    VALOR_MULTA_ATRASO = :VALOR_MULTA_ATRASO,'
+      '    JUROS_DIA_PORCENTAGEM = :JUROS_DIA_PORCENTAGEM,'
+      '    PDV_DESC_MAX_VENDA = :PDV_DESC_MAX_VENDA,'
+      '    DIAS_ATRASO_BLOQUEIO = :DIAS_ATRASO_BLOQUEIO,'
+      '    CONTROLAR_FALTAS = :CONTROLAR_FALTAS,'
+      '    IDTRANPS_PADRAO = :IDTRANPS_PADRAO,'
+      '    IDVEICULO_PADRAO = :IDVEICULO_PADRAO,'
+      '    ESTOQUE_GERENCIAL = :ESTOQUE_GERENCIAL,'
+      '    CFOP_PADRAO = :CFOP_PADRAO,'
+      '    CEST_PADRAO = :CEST_PADRAO,'
+      '    CSOSN_PADRAO = :CSOSN_PADRAO,'
+      '    MARGEN_LUCRO_PADRAO = :MARGEN_LUCRO_PADRAO,'
+      '    CARTAO_CREDITO_AVISTA = :CARTAO_CREDITO_AVISTA,'
+      '    TARIFA_BOLETO = :TARIFA_BOLETO,'
+      '    PDV_UTILIZAR_GAVETA = :PDV_UTILIZAR_GAVETA,'
+      '    FILIAL_PREC_VENDA_IGUAL = :FILIAL_PREC_VENDA_IGUAL,'
+      '    FISCAL = :FISCAL,'
+      '    MODELO_IMPRESSORA = :MODELO_IMPRESSORA,'
+      '    AUTO_PECAS = :AUTO_PECAS,'
+      '    BAIXA_DOCS_AUTO = :BAIXA_DOCS_AUTO,'
+      '    MODO_TAB_PRECO = :MODO_TAB_PRECO,'
+      '    TIPO_IMPRESSAO_PEDIDO = :TIPO_IMPRESSAO_PEDIDO,'
+      '    PEDIDO_SIMPLES = :PEDIDO_SIMPLES,'
+      '    BLOQUEAR_CLIENT_ATRASO = :BLOQUEAR_CLIENT_ATRASO,'
+      '    TP_CERTIFICADO_NFE = :TP_CERTIFICADO_NFE,'
+      '    MODELO_ETIQ_PROD = :MODELO_ETIQ_PROD,'
+      '    MODELO_BALANCA_GERAL = :MODELO_BALANCA_GERAL,'
+      '    TAMANHO_CAMPOS_BAL = :TAMANHO_CAMPOS_BAL,'
+      '    TIPO_COD_PROD_ETIQUETABAL = :TIPO_COD_PROD_ETIQUETABAL,'
+      '    DADOS_COD_ETIQUETA_BAL = :DADOS_COD_ETIQUETA_BAL,'
+      '    UTILIZAR_BAL_ETIQUETA = :UTILIZAR_BAL_ETIQUETA,'
+      '    PREFIXO_EAN = :PREFIXO_EAN,'
+      '    CNPJ_OU_CPF = :CNPJ_OU_CPF,'
+      '    PRODUTOR_RURAL = :PRODUTOR_RURAL,'
+      '    CUPOM_CREDIARIO_SIMPLIFIC = :CUPOM_CREDIARIO_SIMPLIFIC,'
+      '    DIAS_PRIMEIRA_PARCELA = :DIAS_PRIMEIRA_PARCELA,'
+      '    QTN_SOLICITAR = :QTN_SOLICITAR,'
+      '    TAB_PADRAO_PDV = :TAB_PADRAO_PDV,'
+      '    TAB_PADRAO_PRE_VENDA = :TAB_PADRAO_PRE_VENDA'
+      'WHERE'
+      '    ID = :OLD_ID'
+      '    ')
+    DeleteSQL.Strings = (
+      'DELETE FROM'
+      '    CONFIG'
+      'WHERE'
+      '        ID = :OLD_ID'
+      '    ')
+    InsertSQL.Strings = (
+      'INSERT INTO CONFIG('
+      '    ID,'
+      '    IDFILIAL,'
+      '    NOME,'
+      '    RAZAO,'
+      '    CNPJ,'
+      '    IE,'
+      '    ENDERECO,'
+      '    ENDERECO_FANTASIA,'
+      '    NUMERO,'
+      '    BAIRRO,'
+      '    BAIRRO_FANTASIA,'
+      '    IDCIDADE,'
+      '    CEP,'
+      '    TELEFONE,'
+      '    TELEFONE2,'
+      '    EMAIL,'
+      '    SITE,'
+      '    LOGO_IMG_CAMINHO,'
+      '    IDCLIENTEPADRAO,'
+      '    IDVENDEDORPADRAO,'
+      '    FABRICA,'
+      '    IDFORM_PAG_PAD,'
+      '    IDPORTADOR_PADRAO,'
+      '    UTILIZAR_TABELA_PRECO,'
+      '    CLIENTE_EXIBIR_PJ,'
+      '    HORA_BKP,'
+      '    BAIXA_AUTO_CARTAO,'
+      '    PARAM,'
+      '    CHAVE,'
+      '    HOJE,'
+      '    CARENCIA_JUROS,'
+      '    VALOR_MULTA_ATRASO,'
+      '    JUROS_DIA_PORCENTAGEM,'
+      '    PDV_DESC_MAX_VENDA,'
+      '    DIAS_ATRASO_BLOQUEIO,'
+      '    CONTROLAR_FALTAS,'
+      '    IDTRANPS_PADRAO,'
+      '    IDVEICULO_PADRAO,'
+      '    ESTOQUE_GERENCIAL,'
+      '    CFOP_PADRAO,'
+      '    CEST_PADRAO,'
+      '    CSOSN_PADRAO,'
+      '    MARGEN_LUCRO_PADRAO,'
+      '    CARTAO_CREDITO_AVISTA,'
+      '    TARIFA_BOLETO,'
+      '    PDV_UTILIZAR_GAVETA,'
+      '    FILIAL_PREC_VENDA_IGUAL,'
+      '    FISCAL,'
+      '    MODELO_IMPRESSORA,'
+      '    AUTO_PECAS,'
+      '    BAIXA_DOCS_AUTO,'
+      '    MODO_TAB_PRECO,'
+      '    TIPO_IMPRESSAO_PEDIDO,'
+      '    PEDIDO_SIMPLES,'
+      '    BLOQUEAR_CLIENT_ATRASO,'
+      '    TP_CERTIFICADO_NFE,'
+      '    MODELO_ETIQ_PROD,'
+      '    MODELO_BALANCA_GERAL,'
+      '    TAMANHO_CAMPOS_BAL,'
+      '    TIPO_COD_PROD_ETIQUETABAL,'
+      '    DADOS_COD_ETIQUETA_BAL,'
+      '    UTILIZAR_BAL_ETIQUETA,'
+      '    PREFIXO_EAN,'
+      '    CNPJ_OU_CPF,'
+      '    PRODUTOR_RURAL,'
+      '    CUPOM_CREDIARIO_SIMPLIFIC,'
+      '    DIAS_PRIMEIRA_PARCELA,'
+      '    QTN_SOLICITAR,'
+      '    TAB_PADRAO_PDV,'
+      '    TAB_PADRAO_PRE_VENDA'
+      ')'
+      'VALUES('
+      '    :ID,'
+      '    :IDFILIAL,'
+      '    :NOME,'
+      '    :RAZAO,'
+      '    :CNPJ,'
+      '    :IE,'
+      '    :ENDERECO,'
+      '    :ENDERECO_FANTASIA,'
+      '    :NUMERO,'
+      '    :BAIRRO,'
+      '    :BAIRRO_FANTASIA,'
+      '    :IDCIDADE,'
+      '    :CEP,'
+      '    :TELEFONE,'
+      '    :TELEFONE2,'
+      '    :EMAIL,'
+      '    :SITE,'
+      '    :LOGO_IMG_CAMINHO,'
+      '    :IDCLIENTEPADRAO,'
+      '    :IDVENDEDORPADRAO,'
+      '    :FABRICA,'
+      '    :IDFORM_PAG_PAD,'
+      '    :IDPORTADOR_PADRAO,'
+      '    :UTILIZAR_TABELA_PRECO,'
+      '    :CLIENTE_EXIBIR_PJ,'
+      '    :HORA_BKP,'
+      '    :BAIXA_AUTO_CARTAO,'
+      '    :PARAM,'
+      '    :CHAVE,'
+      '    :HOJE,'
+      '    :CARENCIA_JUROS,'
+      '    :VALOR_MULTA_ATRASO,'
+      '    :JUROS_DIA_PORCENTAGEM,'
+      '    :PDV_DESC_MAX_VENDA,'
+      '    :DIAS_ATRASO_BLOQUEIO,'
+      '    :CONTROLAR_FALTAS,'
+      '    :IDTRANPS_PADRAO,'
+      '    :IDVEICULO_PADRAO,'
+      '    :ESTOQUE_GERENCIAL,'
+      '    :CFOP_PADRAO,'
+      '    :CEST_PADRAO,'
+      '    :CSOSN_PADRAO,'
+      '    :MARGEN_LUCRO_PADRAO,'
+      '    :CARTAO_CREDITO_AVISTA,'
+      '    :TARIFA_BOLETO,'
+      '    :PDV_UTILIZAR_GAVETA,'
+      '    :FILIAL_PREC_VENDA_IGUAL,'
+      '    :FISCAL,'
+      '    :MODELO_IMPRESSORA,'
+      '    :AUTO_PECAS,'
+      '    :BAIXA_DOCS_AUTO,'
+      '    :MODO_TAB_PRECO,'
+      '    :TIPO_IMPRESSAO_PEDIDO,'
+      '    :PEDIDO_SIMPLES,'
+      '    :BLOQUEAR_CLIENT_ATRASO,'
+      '    :TP_CERTIFICADO_NFE,'
+      '    :MODELO_ETIQ_PROD,'
+      '    :MODELO_BALANCA_GERAL,'
+      '    :TAMANHO_CAMPOS_BAL,'
+      '    :TIPO_COD_PROD_ETIQUETABAL,'
+      '    :DADOS_COD_ETIQUETA_BAL,'
+      '    :UTILIZAR_BAL_ETIQUETA,'
+      '    :PREFIXO_EAN,'
+      '    :CNPJ_OU_CPF,'
+      '    :PRODUTOR_RURAL,'
+      '    :CUPOM_CREDIARIO_SIMPLIFIC,'
+      '    :DIAS_PRIMEIRA_PARCELA,'
+      '    :QTN_SOLICITAR,'
+      '    :TAB_PADRAO_PDV,'
+      '    :TAB_PADRAO_PRE_VENDA'
+      ')')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '    C.*,'
+      '    CI.NOME CIDADE,'
+      '    CI.UF UF'
+      'FROM'
+      '    CONFIG C, CIDADE_IBGE CI'
+      'WHERE( '
+      '   CI.ID = C.IDCIDADE'
+      '     ) and (     C.ID = :OLD_ID'
+      '     )'
+      '     ')
+    SelectSQL.Strings = (
+      'SELECT'
+      '    C.*,'
+      '    CI.NOME CIDADE,'
+      '    CI.UF UF'
+      'FROM'
+      '    CONFIG C, CIDADE_IBGE CI'
+      'WHERE'
+      '   CI.ID = C.IDCIDADE ')
+    Active = True
+    Transaction = trans
+    Database = conexao
+    Left = 176
+    Top = 16
+    object fdsConfigID: TFIBBCDField
+      FieldName = 'ID'
+      Size = 0
+    end
+    object fdsConfigIDFILIAL: TFIBBCDField
+      FieldName = 'IDFILIAL'
+      Size = 0
+    end
+    object fdsConfigRAZAO: TFIBStringField
+      FieldName = 'RAZAO'
+      Size = 100
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigCNPJ: TFIBStringField
+      FieldName = 'CNPJ'
+      Size = 14
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigIE: TFIBStringField
+      FieldName = 'IE'
+      Size = 15
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigENDERECO: TFIBStringField
+      FieldName = 'ENDERECO'
+      Size = 100
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigBAIRRO: TFIBStringField
+      FieldName = 'BAIRRO'
+      Size = 50
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigIDCIDADE: TFIBBCDField
+      FieldName = 'IDCIDADE'
+      Size = 0
+    end
+    object fdsConfigCEP: TFIBStringField
+      FieldName = 'CEP'
+      Size = 16
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigTELEFONE: TFIBStringField
+      FieldName = 'TELEFONE'
+      Size = 14
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigEMAIL: TFIBStringField
+      FieldName = 'EMAIL'
+      Size = 50
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigSITE: TFIBStringField
+      FieldName = 'SITE'
+      Size = 50
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigLOGO_IMG_CAMINHO: TFIBStringField
+      FieldName = 'LOGO_IMG_CAMINHO'
+      Size = 200
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigNOME: TFIBStringField
+      FieldName = 'NOME'
+      Size = 100
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigIDCLIENTEPADRAO: TFIBBCDField
+      FieldName = 'IDCLIENTEPADRAO'
+      Size = 0
+    end
+    object fdsConfigIDVENDEDORPADRAO: TFIBBCDField
+      FieldName = 'IDVENDEDORPADRAO'
+      Size = 0
+    end
+    object fdsConfigFABRICA: TFIBStringField
+      FieldName = 'FABRICA'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigIDFORM_PAG_PAD: TFIBBCDField
+      FieldName = 'IDFORM_PAG_PAD'
+      Size = 0
+    end
+    object fdsConfigIDPORTADOR_PADRAO: TFIBBCDField
+      FieldName = 'IDPORTADOR_PADRAO'
+      Size = 0
+    end
+    object fdsConfigUTILIZAR_TABELA_PRECO: TFIBStringField
+      DefaultExpression = #39'N'#39
+      FieldName = 'UTILIZAR_TABELA_PRECO'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigCLIENTE_EXIBIR_PJ: TFIBStringField
+      FieldName = 'CLIENTE_EXIBIR_PJ'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigHORA_BKP: TFIBTimeField
+      FieldName = 'HORA_BKP'
+      DisplayFormat = 'hh:mm AMPM'
+    end
+    object fdsConfigBAIXA_AUTO_CARTAO: TFIBStringField
+      DefaultExpression = #39'S'#39
+      FieldName = 'BAIXA_AUTO_CARTAO'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigPARAM: TFIBStringField
+      FieldName = 'PARAM'
+      Size = 50
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigCHAVE: TFIBStringField
+      FieldName = 'CHAVE'
+      Size = 50
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigHOJE: TFIBStringField
+      FieldName = 'HOJE'
+      Size = 10
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigCIDADE: TFIBStringField
+      FieldName = 'CIDADE'
+      Size = 250
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigUF: TFIBStringField
+      FieldName = 'UF'
+      Size = 2
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigCARENCIA_JUROS: TFIBIntegerField
+      FieldName = 'CARENCIA_JUROS'
+    end
+    object fdsConfigVALOR_MULTA_ATRASO: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'VALOR_MULTA_ATRASO'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+    end
+    object fdsConfigPDV_DESC_MAX_VENDA: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'PDV_DESC_MAX_VENDA'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+    end
+    object fdsConfigDIAS_ATRASO_BLOQUEIO: TFIBIntegerField
+      FieldName = 'DIAS_ATRASO_BLOQUEIO'
+    end
+    object fdsConfigNUMERO: TFIBSmallIntField
+      FieldName = 'NUMERO'
+    end
+    object fdsConfigTELEFONE2: TFIBStringField
+      FieldName = 'TELEFONE2'
+      Size = 14
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigJUROS_DIA_PORCENTAGEM: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'JUROS_DIA_PORCENTAGEM'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+    end
+    object fdsConfigCONTROLAR_FALTAS: TFIBStringField
+      DefaultExpression = #39'N'#39
+      FieldName = 'CONTROLAR_FALTAS'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigIDTRANPS_PADRAO: TFIBBCDField
+      FieldName = 'IDTRANPS_PADRAO'
+      Size = 0
+    end
+    object fdsConfigIDVEICULO_PADRAO: TFIBBCDField
+      FieldName = 'IDVEICULO_PADRAO'
+      Size = 0
+    end
+    object fdsConfigENDERECO_FANTASIA: TFIBStringField
+      FieldName = 'ENDERECO_FANTASIA'
+      Size = 100
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigBAIRRO_FANTASIA: TFIBStringField
+      FieldName = 'BAIRRO_FANTASIA'
+      Size = 50
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigESTOQUE_GERENCIAL: TFIBStringField
+      DefaultExpression = #39'N'#39
+      FieldName = 'ESTOQUE_GERENCIAL'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigCFOP_PADRAO: TFIBStringField
+      FieldName = 'CFOP_PADRAO'
+      Size = 4
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigCEST_PADRAO: TFIBStringField
+      FieldName = 'CEST_PADRAO'
+      Size = 12
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigCSOSN_PADRAO: TFIBStringField
+      FieldName = 'CSOSN_PADRAO'
+      Size = 12
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigMARGEN_LUCRO_PADRAO: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'MARGEN_LUCRO_PADRAO'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+    end
+    object fdsConfigCARTAO_CREDITO_AVISTA: TFIBStringField
+      FieldName = 'CARTAO_CREDITO_AVISTA'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigTARIFA_BOLETO: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'TARIFA_BOLETO'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+    end
+    object fdsConfigPDV_UTILIZAR_GAVETA: TFIBStringField
+      DefaultExpression = #39'N'#39
+      FieldName = 'PDV_UTILIZAR_GAVETA'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigFILIAL_PREC_VENDA_IGUAL: TFIBStringField
+      DefaultExpression = #39'S'#39
+      FieldName = 'FILIAL_PREC_VENDA_IGUAL'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigFISCAL: TFIBStringField
+      DefaultExpression = #39'N'#39
+      FieldName = 'FISCAL'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigMODELO_IMPRESSORA: TFIBStringField
+      FieldName = 'MODELO_IMPRESSORA'
+      Size = 50
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigAUTO_PECAS: TFIBStringField
+      FieldName = 'AUTO_PECAS'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigBAIXA_DOCS_AUTO: TFIBStringField
+      FieldName = 'BAIXA_DOCS_AUTO'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigMODO_TAB_PRECO: TFIBStringField
+      DefaultExpression = #39'N'#39
+      FieldName = 'MODO_TAB_PRECO'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigTIPO_IMPRESSAO_PEDIDO: TFIBIntegerField
+      FieldName = 'TIPO_IMPRESSAO_PEDIDO'
+    end
+    object fdsConfigPEDIDO_SIMPLES: TFIBStringField
+      FieldName = 'PEDIDO_SIMPLES'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigBLOQUEAR_CLIENT_ATRASO: TFIBStringField
+      FieldName = 'BLOQUEAR_CLIENT_ATRASO'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigTP_CERTIFICADO_NFE: TFIBStringField
+      FieldName = 'TP_CERTIFICADO_NFE'
+      Size = 2
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigMODELO_ETIQ_PROD: TFIBStringField
+      FieldName = 'MODELO_ETIQ_PROD'
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigMODELO_BALANCA_GERAL: TFIBStringField
+      FieldName = 'MODELO_BALANCA_GERAL'
+      Size = 100
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigTAMANHO_CAMPOS_BAL: TFIBStringField
+      DefaultExpression = #39'C6P5'#39
+      FieldName = 'TAMANHO_CAMPOS_BAL'
+      Size = 4
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigTIPO_COD_PROD_ETIQUETABAL: TFIBStringField
+      DefaultExpression = #39'CI'#39
+      FieldName = 'TIPO_COD_PROD_ETIQUETABAL'
+      Size = 2
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigDADOS_COD_ETIQUETA_BAL: TFIBStringField
+      DefaultExpression = #39'CP'#39
+      FieldName = 'DADOS_COD_ETIQUETA_BAL'
+      Size = 2
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigUTILIZAR_BAL_ETIQUETA: TFIBStringField
+      DefaultExpression = #39'N'#39
+      FieldName = 'UTILIZAR_BAL_ETIQUETA'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsConfigPREFIXO_EAN: TFIBIntegerField
+      DefaultExpression = '2'
+      FieldName = 'PREFIXO_EAN'
+    end
+    object fdsConfigTAB_PADRAO_PRE_VENDA: TFIBIntegerField
+      DefaultExpression = '1'
+      FieldName = 'TAB_PADRAO_PRE_VENDA'
+    end
+  end
+  object fdsUsuarioPermic: TpFIBDataSet
+    UpdateSQL.Strings = (
+      'UPDATE USUARIO_PERMICOES_PDV'
+      'SET '
+      '    DT_INC = :DT_INC,'
+      '    DT_ALT = :DT_ALT,'
+      '    RECEBIMENTO = :RECEBIMENTO,'
+      '    DESC_MAX_ITEM = :DESC_MAX_ITEM,'
+      '    DESC_MAX_TOT_VENDA = :DESC_MAX_TOT_VENDA,'
+      '    VER_MOVIMENTO = :VER_MOVIMENTO,'
+      '    SANGRIA = :SANGRIA,'
+      '    SUPRIMENTO = :SUPRIMENTO,'
+      '    FECHAMENTO = :FECHAMENTO,'
+      '    ALTERAR_PREC_UNIT = :ALTERAR_PREC_UNIT,'
+      '    DEVOLUCAO = :DEVOLUCAO,'
+      '    ESTOQUE_ZERADO_VENDER = :ESTOQUE_ZERADO_VENDER,'
+      '    LIBERAR_CLIENTE_BLOQ = :LIBERAR_CLIENTE_BLOQ'
+      'WHERE'
+      '    IDUSUARIO = :OLD_IDUSUARIO'
+      '    and IDFILIAL = :OLD_IDFILIAL'
+      '    ')
+    DeleteSQL.Strings = (
+      'DELETE FROM'
+      '    USUARIO_PERMICOES_PDV'
+      'WHERE'
+      '        IDUSUARIO = :OLD_IDUSUARIO'
+      '    and IDFILIAL = :OLD_IDFILIAL'
+      '    ')
+    InsertSQL.Strings = (
+      'INSERT INTO USUARIO_PERMICOES_PDV('
+      '    IDUSUARIO,'
+      '    IDFILIAL,'
+      '    DT_INC,'
+      '    DT_ALT,'
+      '    RECEBIMENTO,'
+      '    DESC_MAX_ITEM,'
+      '    DESC_MAX_TOT_VENDA,'
+      '    VER_MOVIMENTO,'
+      '    SANGRIA,'
+      '    SUPRIMENTO,'
+      '    FECHAMENTO,'
+      '    ALTERAR_PREC_UNIT,'
+      '    DEVOLUCAO,'
+      '    ESTOQUE_ZERADO_VENDER,'
+      '    LIBERAR_CLIENTE_BLOQ'
+      ')'
+      'VALUES('
+      '    :IDUSUARIO,'
+      '    :IDFILIAL,'
+      '    :DT_INC,'
+      '    :DT_ALT,'
+      '    :RECEBIMENTO,'
+      '    :DESC_MAX_ITEM,'
+      '    :DESC_MAX_TOT_VENDA,'
+      '    :VER_MOVIMENTO,'
+      '    :SANGRIA,'
+      '    :SUPRIMENTO,'
+      '    :FECHAMENTO,'
+      '    :ALTERAR_PREC_UNIT,'
+      '    :DEVOLUCAO,'
+      '    :ESTOQUE_ZERADO_VENDER,'
+      '    :LIBERAR_CLIENTE_BLOQ'
+      ')')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '    *'
+      'FROM'
+      '    USUARIO_PERMICOES_PDV'
+      'WHERE( '
+      '    IDUSUARIO = :IDUSUARIO'
+      'AND'
+      '    IDFILIAL = :IDFILIAL'
+      
+        '     ) and (     USUARIO_PERMICOES_PDV.IDUSUARIO = :OLD_IDUSUARI' +
+        'O'
+      '    and USUARIO_PERMICOES_PDV.IDFILIAL = :OLD_IDFILIAL'
+      '     )'
+      '     ')
+    SelectSQL.Strings = (
+      'SELECT'
+      '    *'
+      'FROM'
+      '    USUARIO_PERMICOES_PDV'
+      'WHERE'
+      '    IDUSUARIO = :IDUSUARIO'
+      'AND'
+      '    IDFILIAL = :IDFILIAL ')
+    Transaction = trans
+    Database = conexao
+    Left = 272
+    Top = 16
+    object fdsUsuarioPermicIDUSUARIO: TFIBBCDField
+      FieldName = 'IDUSUARIO'
+      Size = 0
+    end
+    object fdsUsuarioPermicIDFILIAL: TFIBBCDField
+      FieldName = 'IDFILIAL'
+      Size = 0
+    end
+    object fdsUsuarioPermicDT_INC: TFIBDateField
+      FieldName = 'DT_INC'
+    end
+    object fdsUsuarioPermicDT_ALT: TFIBDateField
+      FieldName = 'DT_ALT'
+    end
+    object fdsUsuarioPermicRECEBIMENTO: TFIBStringField
+      FieldName = 'RECEBIMENTO'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsUsuarioPermicDESC_MAX_ITEM: TFIBStringField
+      FieldName = 'DESC_MAX_ITEM'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsUsuarioPermicDESC_MAX_TOT_VENDA: TFIBStringField
+      FieldName = 'DESC_MAX_TOT_VENDA'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsUsuarioPermicVER_MOVIMENTO: TFIBStringField
+      FieldName = 'VER_MOVIMENTO'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsUsuarioPermicSANGRIA: TFIBStringField
+      FieldName = 'SANGRIA'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsUsuarioPermicSUPRIMENTO: TFIBStringField
+      FieldName = 'SUPRIMENTO'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsUsuarioPermicFECHAMENTO: TFIBStringField
+      FieldName = 'FECHAMENTO'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsUsuarioPermicALTERAR_PREC_UNIT: TFIBStringField
+      FieldName = 'ALTERAR_PREC_UNIT'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsUsuarioPermicDEVOLUCAO: TFIBStringField
+      FieldName = 'DEVOLUCAO'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsUsuarioPermicESTOQUE_ZERADO_VENDER: TFIBStringField
+      FieldName = 'ESTOQUE_ZERADO_VENDER'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsUsuarioPermicLIBERAR_CLIENTE_BLOQ: TFIBStringField
+      FieldName = 'LIBERAR_CLIENTE_BLOQ'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+  end
+  object frxReport1: TfrxReport
+    Version = '5.2.3'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'XPS'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 41879.500308125000000000
+    ReportOptions.LastChange = 43696.422685370370000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'procedure Shape3OnBeforePrint(Sender: TfrxComponent);'
+      'var'
+      '  TEL : String;                                            '
+      'begin '
+      '  TEL := <frxConfig."TELEFONE">;'
+      ' '
+      ''
+      
+        '  lblTelEmpresa.Text := '#39'('#39'+Copy(TEL,1,2)+'#39')'#39'+Copy(TEL,3,4)+'#39'-'#39'+' +
+        'Copy(TEL,7,4);  '
+      'end;'
+      ''
+      'procedure Footer1OnBeforePrint(Sender: TfrxComponent);'
+      'begin'
+      '             '
+      'end;'
+      ''
+      'procedure Child1OnBeforePrint(Sender: TfrxComponent);'
+      'begin'
+      '   if <frxConfig."INFO_ADICINAL">='#39#39' then'
+      '  begin'
+      
+        '   child1.Visible:=false;                                       ' +
+        '    '
+      '  end;  '
+      'end;'
+      ''
+      'begin'
+      ''
+      'end.')
+    OnReportPrint = 'frxReportOnReportPrint'
+    Left = 32
+    Top = 88
+    Datasets = <
+      item
+        DataSet = frxConfig
+        DataSetName = 'frxConfig'
+      end
+      item
+        DataSet = frmPrincipal.frxPreVenda
+        DataSetName = 'frxPreVenda'
+      end
+      item
+        DataSet = frmPrincipal.frxPreVendaItens
+        DataSetName = 'frxPreVendaItens'
+      end>
+    Variables = <>
+    Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      HGuides.Strings = (
+        '49,13389')
+      object PageHeader1: TfrxPageHeader
+        FillType = ftBrush
+        Height = 120.944960000000000000
+        Top = 18.897650000000000000
+        Width = 793.701300000000000000
+        object Shape3: TfrxShapeView
+          Align = baCenter
+          Left = 17.008130315000000000
+          Top = 19.559060000000000000
+          Width = 759.685039370000000000
+          Height = 98.267780000000000000
+          OnBeforePrint = 'Shape3OnBeforePrint'
+          Curve = 2
+          Shape = skRoundRectangle
+        end
+        object lblTelEmpresa: TfrxMemoView
+          Align = baCenter
+          Left = 300.472635000000000000
+          Top = 95.708720000000000000
+          Width = 192.756030000000000000
+          Height = 18.897650000000000000
+          AutoWidth = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -16
+          Font.Name = 'Arial'
+          Font.Style = []
+          Memo.UTF8W = (
+            'telefone')
+          ParentFont = False
+        end
+        object lblEndEmpresa: TfrxMemoView
+          Align = baCenter
+          Left = 52.913420000000000000
+          Top = 75.149660000000000000
+          Width = 687.874460000000000000
+          Height = 18.897650000000000000
+          AutoWidth = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -16
+          Font.Name = 'Arial'
+          Font.Style = []
+          Memo.UTF8W = (
+            
+              '[frxConfig."ENDERECO"], [frxConfig."NUMERO"] - [frxConfig."BAIRR' +
+              'O"] - [frxConfig."CIDADE"]')
+          ParentFont = False
+        end
+        object lblNomeEmpresa: TfrxMemoView
+          Align = baCenter
+          Left = 308.031695000000000000
+          Top = 52.133890000000000000
+          Width = 177.637910000000000000
+          Height = 26.456710000000000000
+          AutoWidth = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -19
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Memo.UTF8W = (
+            '[frxConfig."NOME"]')
+          ParentFont = False
+        end
+        object Memo3: TfrxMemoView
+          Align = baCenter
+          Left = 300.472635000000000000
+          Top = 30.236240000000000000
+          Width = 192.756030000000000000
+          Height = 22.677180000000000000
+          AutoWidth = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -19
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Memo.UTF8W = (
+            'Or'#231'amento de Venda')
+          ParentFont = False
+        end
+      end
+      object MasterData1: TfrxMasterData
+        FillType = ftBrush
+        Height = 98.267626220000000000
+        Top = 200.315090000000000000
+        Width = 793.701300000000000000
+        OnBeforePrint = 'MasterData1OnBeforePrint'
+        DataSet = frmPrincipal.frxPreVenda
+        DataSetName = 'frxPreVenda'
+        RowCount = 1
+        object Shape1: TfrxShapeView
+          Align = baCenter
+          Left = 17.008130315000000000
+          Top = 3.779530000000000000
+          Width = 759.685039370000000000
+          Height = 90.708566220000000000
+          Curve = 2
+          Shape = skRoundRectangle
+        end
+        object frxDBPedidoCLIENTE: TfrxMemoView
+          Left = 29.338590000000000000
+          Top = 64.031540000000000000
+          Width = 746.448589980000000000
+          Height = 18.897650000000000000
+          DataSetName = 'frxDBPedido'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Memo.UTF8W = (
+            '[frxPreVenda."CLIENTE"]')
+          ParentFont = False
+        end
+        object frxDBPedidoDT_INC: TfrxMemoView
+          Left = 286.868128940000000000
+          Top = 26.456710000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          DataSetName = 'frxDBPedido'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Memo.UTF8W = (
+            '[frxPreVenda."DT_INC"]')
+          ParentFont = False
+        end
+        object frxDBPedidoVLR_TOTAL: TfrxMemoView
+          Left = 678.065098950000000000
+          Top = 26.456710000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          DataSetName = 'frxDBPedido'
+          DisplayFormat.DecimalSeparator = ','
+          DisplayFormat.FormatStr = 'R$ #,##0.00'
+          DisplayFormat.Kind = fkNumeric
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Memo.UTF8W = (
+            '[frxPreVenda."VLR_TOTAL"]')
+          ParentFont = False
+        end
+        object Memo1: TfrxMemoView
+          Left = 25.559060000000000000
+          Top = 7.559060000000000000
+          Width = 105.826840000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Memo.UTF8W = (
+            'N'#186' Or'#231'amento:')
+          ParentFont = False
+        end
+        object frxDBPedidoID: TfrxMemoView
+          Left = 29.338590000000000000
+          Top = 26.456710000000000000
+          Width = 90.708720000000000000
+          Height = 18.897650000000000000
+          DataSetName = 'frxDBPedido'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Memo.UTF8W = (
+            '[frxPreVenda."ID"]')
+          ParentFont = False
+        end
+        object Memo2: TfrxMemoView
+          Left = 25.559060000000000000
+          Top = 45.133890000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          DisplayFormat.DecimalSeparator = ','
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Memo.UTF8W = (
+            'Cliente:')
+          ParentFont = False
+        end
+        object Memo5: TfrxMemoView
+          Left = 677.874460000000000000
+          Top = 7.559060000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Memo.UTF8W = (
+            'Valor Total:')
+          ParentFont = False
+        end
+        object Memo23: TfrxMemoView
+          Left = 287.299125260000000000
+          Top = 7.559060000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          DisplayFormat.DecimalSeparator = ','
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Memo.UTF8W = (
+            'Data:')
+          ParentFont = False
+        end
+        object Memo11: TfrxMemoView
+          Left = 474.736842110000000000
+          Top = 7.053331050000000000
+          Width = 107.119828940000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Memo.UTF8W = (
+            'Desconto Total:')
+          ParentFont = False
+        end
+        object frxPreVendaVLR_DESCONTO: TfrxMemoView
+          Left = 475.789473690000000000
+          Top = 30.211225790000000000
+          Width = 104.633287890000000000
+          Height = 18.897650000000000000
+          DataSet = frmPrincipal.frxPreVenda
+          DataSetName = 'frxPreVenda'
+          DisplayFormat.DecimalSeparator = ','
+          DisplayFormat.FormatStr = 'R$ #,##0.00'
+          DisplayFormat.Kind = fkNumeric
+          Memo.UTF8W = (
+            
+              '[(SUM(<frxPreVenda."VLR_DESCONTO">)+ SUM(<frxPreVendaItens."VLR_' +
+              'DESC">))]')
+        end
+      end
+      object Header1: TfrxHeader
+        FillType = ftBrush
+        Height = 22.677180000000000000
+        Top = 321.260050000000000000
+        Width = 793.701300000000000000
+        object Shape4: TfrxShapeView
+          Align = baCenter
+          Left = 17.008130315000000000
+          Width = 759.685039370000000000
+          Height = 22.677180000000000000
+          Curve = 1
+          Shape = skRoundRectangle
+        end
+        object Memo6: TfrxMemoView
+          Left = 30.118120000000000000
+          Top = 3.779530000000020000
+          Width = 166.299320000000000000
+          Height = 18.897650000000000000
+          DisplayFormat.DecimalSeparator = ','
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Memo.UTF8W = (
+            'Produto')
+          ParentFont = False
+        end
+        object Memo7: TfrxMemoView
+          Left = 627.283860000000000000
+          Top = 3.779530000000020000
+          Width = 37.795300000000000000
+          Height = 18.897650000000000000
+          DisplayFormat.DecimalSeparator = ','
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Memo.UTF8W = (
+            'Qtn')
+          ParentFont = False
+        end
+        object Memo8: TfrxMemoView
+          Left = 687.756340000000000000
+          Top = 3.779530000000020000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          DisplayFormat.DecimalSeparator = ','
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Memo.UTF8W = (
+            'Valor Total')
+          ParentFont = False
+        end
+        object Memo19: TfrxMemoView
+          Left = 419.409710000000000000
+          Top = 3.779530000000020000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          DisplayFormat.DecimalSeparator = ','
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Memo.UTF8W = (
+            'P.Unit'#225'rio')
+          ParentFont = False
+        end
+        object Memo22: TfrxMemoView
+          Left = 526.575140000000000000
+          Top = 3.779530000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          DisplayFormat.DecimalSeparator = ','
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Memo.UTF8W = (
+            'Desconto Un.')
+          ParentFont = False
+        end
+      end
+      object DetailData1: TfrxDetailData
+        FillType = ftBrush
+        Height = 30.236240000000000000
+        Top = 366.614410000000000000
+        Width = 793.701300000000000000
+        DataSet = frmPrincipal.frxPreVendaItens
+        DataSetName = 'frxPreVendaItens'
+        RowCount = 0
+        object frxDBItensPedidoNOME: TfrxMemoView
+          Left = 25.118120000000000000
+          Top = 3.779530000000000000
+          Width = 377.952755910000000000
+          Height = 18.897650000000000000
+          DataSetName = 'frxDBItensPedido'
+          DisplayFormat.Kind = fkNumeric
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Memo.UTF8W = (
+            '[frxPreVendaItens."NOME"]')
+          ParentFont = False
+        end
+        object frxDBItensPedidoVLR_TOTAL: TfrxMemoView
+          Left = 682.756340000000000000
+          Top = 3.779530000000000000
+          Width = 102.047310000000000000
+          Height = 18.897650000000000000
+          DataSetName = 'frxDBItensPedido'
+          DisplayFormat.DecimalSeparator = ','
+          DisplayFormat.FormatStr = 'R$ #,##0.00'
+          DisplayFormat.Kind = fkNumeric
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Memo.UTF8W = (
+            '[frxPreVendaItens."VLR_TOTAL"]')
+          ParentFont = False
+        end
+        object Line1: TfrxLineView
+          Align = baCenter
+          Left = 37.795531889764000000
+          Top = 26.456709999999900000
+          Width = 718.110236220472000000
+          Color = clBlack
+          Frame.Style = fsDot
+          Frame.Typ = [ftTop]
+        end
+        object frxDBItensPedidoVLR_UNITARIO: TfrxMemoView
+          Left = 425.748300000000000000
+          Top = 3.779530000000000000
+          Width = 102.047310000000000000
+          Height = 18.897650000000000000
+          DataSetName = 'frxDBItensPedido'
+          DisplayFormat.DecimalSeparator = ','
+          DisplayFormat.FormatStr = 'R$ #,##0.00'
+          DisplayFormat.Kind = fkNumeric
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Memo.UTF8W = (
+            '[frxPreVendaItens."VLR_UNITARIO"]')
+          ParentFont = False
+        end
+        object frxDBItensPedidoQTN: TfrxMemoView
+          Left = 603.386210000000000000
+          Top = 3.779530000000000000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          DataSetName = 'frxDBItensPedido'
+          DisplayFormat.FormatStr = '#0'
+          DisplayFormat.Kind = fkNumeric
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            '[frxPreVendaItens."QTN"]')
+          ParentFont = False
+        end
+        object Memo25: TfrxMemoView
+          Left = 532.913730000000000000
+          Top = 3.779530000000000000
+          Width = 102.047310000000000000
+          Height = 18.897650000000000000
+          DataSetName = 'frxDBItensPedido'
+          DisplayFormat.DecimalSeparator = ','
+          DisplayFormat.FormatStr = '#0%'
+          DisplayFormat.Kind = fkNumeric
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Memo.UTF8W = (
+            '[frxPreVendaItens."VLR_DESC"]')
+          ParentFont = False
+        end
+      end
+      object PageFooter1: TfrxPageFooter
+        FillType = ftBrush
+        Height = 22.677180000000000000
+        Top = 612.283860000000000000
+        Width = 793.701300000000000000
+        object Line2: TfrxLineView
+          Align = baCenter
+          Left = 17.008130315000000000
+          Top = 0.779530000000000000
+          Width = 759.685039370000000000
+          Color = clBlack
+          Frame.Typ = [ftTop]
+        end
+        object Memo4: TfrxMemoView
+          Left = 18.947368420000000000
+          Top = 3.729501580000000000
+          Width = 235.540881580000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Memo.UTF8W = (
+            'Relat'#243'rio fornecido por CBSistemas    Emiss'#227'o:')
+          ParentFont = False
+        end
+        object Date: TfrxMemoView
+          Left = 253.684210530000000000
+          Top = 3.729501580000000000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Memo.UTF8W = (
+            '[Date]')
+          ParentFont = False
+        end
+        object Time: TfrxMemoView
+          Left = 333.684210530000000000
+          Top = 3.729501580000000000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Memo.UTF8W = (
+            '[Time]')
+          ParentFont = False
+        end
+      end
+      object Footer1: TfrxFooter
+        FillType = ftBrush
+        Height = 56.361390530000000000
+        Top = 419.527830000000000000
+        Width = 793.701300000000000000
+        OnBeforePrint = 'Footer1OnBeforePrint'
+        Stretched = True
+        object Memo10: TfrxMemoView
+          Left = 22.105263160000000000
+          Top = 6.787959470000000000
+          Width = 149.225092110000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Memo.UTF8W = (
+            'Forma de Pagamento :')
+          ParentFont = False
+        end
+        object frxPreVendaFORMA_PAGAMENTO: TfrxMemoView
+          Left = 171.578947370000000000
+          Top = 27.840591050000000000
+          Width = 400.630180000000000000
+          Height = 18.897650000000000000
+          DataField = 'FORMA_PAGAMENTO'
+          DataSet = frmPrincipal.frxPreVenda
+          DataSetName = 'frxPreVenda'
+          Memo.UTF8W = (
+            '[frxPreVenda."FORMA_PAGAMENTO"]')
+        end
+      end
+      object Child1: TfrxChild
+        FillType = ftBrush
+        Height = 52.150864210000000000
+        Top = 498.897960000000000000
+        Width = 793.701300000000000000
+        OnBeforePrint = 'Child1OnBeforePrint'
+        Stretched = True
+        object Memo9: TfrxMemoView
+          Left = 18.947368420000000000
+          Top = 1.102040000000000000
+          Width = 117.646144740000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Memo.UTF8W = (
+            'Info. Adicional : ')
+          ParentFont = False
+        end
+        object frxPreVendaINFO_ADICINAL: TfrxMemoView
+          Left = 29.421052640000000000
+          Top = 23.207303160000000000
+          Width = 742.735443160000000000
+          Height = 18.897650000000000000
+          DataField = 'INFO_ADICINAL'
+          DataSet = frmPrincipal.frxPreVenda
+          DataSetName = 'frxPreVenda'
+          Memo.UTF8W = (
+            '[frxPreVenda."INFO_ADICINAL"]')
+          WordBreak = True
+        end
+      end
+    end
+  end
+  object frxConfig: TfrxDBDataset
+    UserName = 'frxConfig'
+    CloseDataSource = False
+    FieldAliases.Strings = (
+      'ID=ID'
+      'IDFILIAL=IDFILIAL'
+      'RAZAO=RAZAO'
+      'CNPJ=CNPJ'
+      'IE=IE'
+      'ENDERECO=ENDERECO'
+      'BAIRRO=BAIRRO'
+      'IDCIDADE=IDCIDADE'
+      'CEP=CEP'
+      'TELEFONE=TELEFONE'
+      'FAX=FAX'
+      'EMAIL=EMAIL'
+      'SITE=SITE'
+      'LOGO_IMG_CAMINHO=LOGO_IMG_CAMINHO'
+      'NOME=NOME'
+      'IDCLIENTEPADRAO=IDCLIENTEPADRAO'
+      'IDVENDEDORPADRAO=IDVENDEDORPADRAO'
+      'FABRICA=FABRICA'
+      'IDFORM_PAG_PAD=IDFORM_PAG_PAD'
+      'IDPORTADOR_PADRAO=IDPORTADOR_PADRAO'
+      'UTILIZAR_TABELA_PRECO=UTILIZAR_TABELA_PRECO'
+      'CLIENTE_EXIBIR_PJ=CLIENTE_EXIBIR_PJ'
+      'HORA_BKP=HORA_BKP'
+      'BAIXA_AUTO_CARTAO=BAIXA_AUTO_CARTAO'
+      'PARAM=PARAM'
+      'CHAVE=CHAVE'
+      'HOJE=HOJE'
+      'CIDADE=CIDADE'
+      'UF=UF'
+      'CARENCIA_JUROS=CARENCIA_JUROS'
+      'VALOR_MULTA_ATRASO=VALOR_MULTA_ATRASO'
+      'JUROS_DIA=JUROS_DIA'
+      'PDV_DESC_MAX_VENDA=PDV_DESC_MAX_VENDA'
+      'DIAS_ATRASO_BLOQUEIO=DIAS_ATRASO_BLOQUEIO'
+      'NUMERO=NUMERO')
+    DataSet = fdsConfig
+    BCDToCurrency = False
+    Left = 176
+    Top = 96
+  end
+end

@@ -1,0 +1,1010 @@
+object frmGrupoRelacion: TfrmGrupoRelacion
+  Left = 0
+  Top = 0
+  BorderIcons = []
+  Caption = 'Ve'#237'culos e Aplica'#231#245'es'
+  ClientHeight = 412
+  ClientWidth = 742
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  OnCreate = FormCreate
+  DesignSize = (
+    742
+    412)
+  PixelsPerInch = 96
+  TextHeight = 13
+  object RzBackground1: TRzBackground
+    Left = 0
+    Top = 0
+    Width = 742
+    Height = 412
+    Active = True
+    Align = alClient
+    GradientColorStart = -1
+    GradientColorStop = 2497553
+    GradientDirection = gdDiagonalDown
+    ImageStyle = isCenter
+    ShowGradient = True
+    ShowImage = False
+    ShowTexture = False
+    ExplicitLeft = 1
+    ExplicitWidth = 843
+  end
+  object RzPanel1: TRzPanel
+    Left = -6
+    Top = 0
+    Width = 748
+    Height = 85
+    Anchors = [akLeft, akTop, akRight]
+    Color = clWhite
+    TabOrder = 0
+    object imgPrincipal: TJvImage
+      Left = 9
+      Top = 12
+      Width = 64
+      Height = 64
+      Picture.Data = {
+        0954506E67496D61676589504E470D0A1A0A0000000D49484452000000400000
+        00400806000000AA6971DE0000000473424954080808087C0864880000000970
+        48597300000B1200000B1201D2DD7EFC0000001C74455874536F667477617265
+        0041646F62652046697265776F726B7320435336E8BCB28C00000E3E49444154
+        78DAE55B795055D719FF407694CD05041497200A1AD12C3589D61570A949A798
+        2692685C5A932676BAD93F9C69C721695A635C50480015E396D834B66612D24E
+        6CAAA96955628DC44A272258165915417690A5F777F47B3D1CEEBDEFBEE7CB36
+        F966EEDCFBEE7ABEDFF97DEBBDCFADB7B79758DCDCDCFCB0D2F6B5D03744DC14
+        00BCC3C2C2A64F9B366D86979757B776AC57DBC727B8DD3EA7475BF5F26F13C1
+        B5C4F7C7F6ED6B49BAB6E7F6FD75EF856BF83EB79F797BB7B8468C0D43E473DD
+        DDDD7B147DFADD72C08001ED050505F9A74E9D3AD90F00C8CC9933D76ED9B225
+        7DF8F0E174F3E6CD2F6E26FA0FB6CF3E194867AE8768CA536D6D2D6565656DCB
+        CCCCFCB911004FE7E4E4648D1C39923A3B3BBF3000CC94B37ADCDE391E1E1E54
+        5555452FBFFCF2C6F4F4F4F5BA00CC9A356B4DB62623468CB031E0367DBF3600
+        4027552F06A0BABA9A366FDEBC312323C33A003D3D3D9FBB39B8527950DDD3D3
+        B3DF71EC0303EC01F0B4A67F1603C0B4292F2F17DB5F9658652026CBD7D797C6
+        8F1F0FA7D8C777B02E0E3100175DB972452C5F16008E981F00F0F6F6A6891327
+        3A07C0ECD9B37FA879C89D70820C404545C5970680A3BE8701888B8BB301C0F7
+        B00AC01A0D80ECAF0200CE385E1900BEFE1B0B001820CBD70A0067C3AE0C00A2
+        81AC9F9C07BCF2CA2BD60180F2656565BAA1E5AB0AC0DD77DFDDC70932009595
+        9582019601008A757575E2426C7F959567001006C78E1DDBEF985300F080F432
+        ABCF4331572444EACCF3B60CC0ABAFBE6A2D0C3AF2E03B510EE3509D96B300A9
+        3A390AC06A0D80DD4600E831C115335B5EDD4125956DB66760891AEE4323B585
+        6B117B00A9D5A33A561C8713DCBA75AB6B0180DD39AA7C59753BE59EB846EF7D
+        5447273F6D34BDFE5B13FD28715A202D9A3E984645F88999843F92EFAB6EABCF
+        ECEEEE16EB9A9A1A4A4B4B3305E0071A00BB6427881A1A174282838329323252
+        DC100FE9EAEAA2CB972F5347478725269C2BBC4939B96D62ED8CC445F5D09389
+        1E74EF046FF2F2F212E30333E40942B48A8989B1F9028C15E3645DEC01D08701
+        B8C98D1B37A8A1A1411C1F3870200D1E3C58CC3A1E8A358E33C246B3DFD8D24D
+        BFDC5E417FCD339F6DABF2409C3B3DBF268442870C243FBF5BACE0F140514C14
+        048AF3D82C013067CE9C55DAC11CD904000287403C4055D6283CB2F2E72F35D3
+        FC673FA1C6E62E9728CFB271CD004A9A1E4EA1A1A1E4EFEF2F669E9D20CF3AD6
+        AC2303B07DFB765300566B07FBF9004785953FF85E15AD4FBFEC72E521CF2496
+        D1DC69A174D75D770910C04E7EAEAA3C03005306001ACB1D03C0D128807D98F9
+        E92BFEE572C559563F748A26C70E17A5EFE8D1A329242444B055555E65004C20
+        2B2BCB9A0970FE8C0502FB8F8A8A120F819278507171B1708272F95955D74D4F
+        BDD040CD6D779E4019C99298FD141E1E2E9A1F185350509030518C1999A09C13
+        70A7884DC01080B973E7AED0D2C4D76427D8D4D444CDCDCDE238D24C7E10DFB8
+        BEBEDE0608B321E55725F47141AB6565C2FC4A29C8E73A0DF3AF257737776AEB
+        1944F56D4154DB124A0DEDC1BAD72C8B7F4B44A4C99327DB00C0780000B65938
+        27C07E98C08E1D3B4C0158A901B0477582B209A8719F9D209F7320B7927EF4E2
+        6796148F1B729EE2428BC9CFA757808BC5C7C7C7E6D0006C71B52F9DB8184915
+        0DFF0762A85F2D2D997A56CCF494295368D4A85136CFCF4ED0C804C080ECEC6C
+        EB00C8CA99F9005EC7259FD632BB7653C53DDD3B68C6C88F2822A85E84310C1E
+        B38605CE0C2040A0486B6BAB60E1E9825EFA63DE08EAE8F6A0508D294BEE3947
+        63C68C110C0000818181FD94D6330130C02100F45E50A800F039C8EE52D65FB0
+        3BF34963FF42A1012D42617870BC88C11A400010660000807F81095EBF7E9DCE
+        16D453CED18114ECDB408BE38B8509A0F4C578019C91F23200E9E9E9D601E08B
+        D04F87C0D3AA99606969A92D137C7ECF0DFAF3A90E53E5C707FE93A283FF4301
+        0101346CD83091B54D9D3A5580C1F15CCD3B18846BD7AE51617185489F63239B
+        68E8D0A1141D1D2D9C21AE5595D63301870080FD3736368A6C0F82870004D909
+        6250000272FF8A626A6A35AE0D7C3D9A2829EA2DA13C060DEAC28B8F1B374ED0
+        9E333A5500427B7BBB3005385D2802D3C0AC878585D19021434423C48A090080
+        9D3B77BAC609623FCF16E2FE83CB3F369DFDA9C33FA1A923AF08CA43712CD806
+        EDF5324A7E1E166C0368008109E1D03B68D0205B3AAC9A29334106202323C318
+        8079F3E6ADD04E78CD4A26A8CE14B2BEE77E57687ACD2331EF5254F8AD8E0D12
+        183831501FB497C7C20ACB8B0C08C686858B1FAE0EAD98803D009ED24ED86BE4
+        04F9867AA5E86F77FF9736BE566AA83C3C7F4A7CAEA03E9A96B1B1B114111121
+        A8AF46193DC5E5B50C108F41FE2DB3548F01BB76EDB2C6005C041BC78510CC16
+        06CD4E106B344CF12639EB4823E5BC6BFC6D45885725CD19FD81B81E8E0FF60F
+        7F22E7117AAD2C7546D5C950CF8129E019EA71A70180D3C18201C2E9C073CB00
+        20BBC2B9E97FB8463BDF6E320460B04F152D88F948646D60009E81D8AD37FB7A
+        CA996DCB6BF8058C51DDCF00683ECE14807E26C0E5309FAB96C3EC7C52B30A69
+        D3DE72430090E63E7EFF79E1F191BDA18041343052C4DE3EA3E3EC2CF500B87A
+        F5AA3900090909CBB530B1CFC8099A757D5ED859449BF757181EF7F76CA5D5D3
+        4F0A00E2E3E30513E0C19D51D42A48F25A66C0EEDDBB0D0158A601B05F2F0C62
+        CD214916B6E1E7B32F993200F2CCB7FF4E9362C70800C000397B73250BD45E80
+        6C025AB56B0A401F06B013C4021060B388DBB20FC09B239C7BFADF2DF4ECE67A
+        53001E88CCA359F13D3461C204C22B78304015D5E119B5B9F5B659518C510586
+        4DC01480C4C4C4655AB1B05F0600393803009B45E62503805E3BCEAD6B68A7B9
+        3FAE350560A85F0D2D9FFE9900002680DC9FDBDD7A9E5ECF21EAED5715455DA1
+        9ECB0CC8CCCC3406202929E909AD5C3CA89A803C483D130018C8CC1E7CEA0C7D
+        56625E0B2CB9EF22252744DAB240A4B0F6E8ADCEF48DA62E2AAFE9A009A37D6C
+        C7E56862540E3303727272EC03C09ED44C64A788F3B7EC2BA217F7549B5EE33D
+        A08B7EF2480D25CE88162C00AB38CAE829AB82515ED349AB528B28E1FE41F4DC
+        A321623F2211FB2A23DFC00080018600CC9F3FFFC9B4B4B40332002A03E430C8
+        9F9E70665651DD40F7A49CA316F37600F97876D186659D34F7A131C2A4D00891
+        9FA1C70201F0C14ADA75A4969A5ABA69CD770368E5426FF17CD4026012B6CDCA
+        6100909595651F00CC0C5783F0014884702E97B05018C7D80720136433483B54
+        436F7C60BF17E8AD81F09DFB9A68F9C25B8D1019843E746FEEA67F9CBF49BBDF
+        69A12BB5FFFF7671E5FC6E4ABAA7438C09D520FC895C1019990018B067CF1E43
+        1378527382076427888BE03CA020068A5C9E5F8C0000F40300008749B02025B5
+        855A3BECBFEC84F87AF5D07D31DD74EF041F8A1876ABB0415F30FF5217159677
+        09E5F5E4E984328A0E6F177E0421150D5BFE86C1CC04C000CB0030CD6507A316
+        43AA036A6B6BA3D7DF2DA65FECA8B30480B3F2BDF8B3141BD52D2A4BBC1B0033
+        D5AA5266022608D1CC610054317B0B8B63B80EAFD252330BE9C051D7BF10B18D
+        35FA04C5470F1021155D2174873829D36300CCC30A039ED0003868C400F9A610
+        3605952160018AA49F6D29A1E3F9D64CC15149187B9CA68CF314851518001360
+        27A8973F801DF8DA450B835B3400D6E902A039C1142D0CBECE0070DF8FFBFEFC
+        19AA5C77736342BE17CE470F0FBD4478EE774EFBBB1C80C726BD4DE3C646D81A
+        2B5C5AAB8C8480FE18775151518956087D7FDFBE7D678C00E89308C95F8AE266
+        A0196C0E0A72682A2C2C146D2AB550C2F5E8DBC181FEED4C33FDE9CC48EAEC72
+        CD87561E6EEDF468DC119A346992688BC304C000D904F86D31B3B4A4A4A4F9CD
+        37DF9CF9D24B2F7D6203C81E001CDAF8D379A08870C5711FD2D2D2624B8DD5D8
+        8B7BA0A90A73B85874850E1D73A38F8B432D29692463022ED0F8E073141E1628
+        BA4A688B83010883F224604CACBC16AA3B0F1F3E3C3F3535F5B87CAF7E002C58
+        B02045CB035EB7970ACB199A512E2FF7EFD0CD0513F0CDE1A5CB9574EC9C1B7D
+        5A3684EA5A022C291DE8759DA2028B6874D065F2F7B9F58A0EF93E1C20CA6B74
+        80D0B1E649E099C7D8B4E7F6E6E6E626AF5BB7EE887ADF7E002C5CB8F0F16DDB
+        B61D9219A08A5E7A6A569C6020301530855BDA60043C7269551B95D57A505583
+        CF2D607B7A4982908669C55388DF0D2D73EC16E6886C0F8A72558AD61AF212FC
+        C61723EACC23897BFFFDF79F59BB766DB61EB07A002CD50078434D85D9B67073
+        393C728261C4003595E5171C089300035E19DB3013F811989ADC0687B0E385F2
+        E81F20F34342067FC46F84A03C67A6AC3C5AE71F7EF8E1AF57AD5AF51B2366D9
+        0580CB61EE09027DA49DF2EB71EE091A3145FDCD6F7AA030C22598015018001C
+        87521CD2B08682A03D727E2CD8462F01C98FFC790CFB22DCEFE4C993DB972E5D
+        FA5333D3323401AE05E45418E7826AA01C038035FE4C61F491941923D834A034
+        166CE399D80F90A1347FF30325C102ECE3CA0FDBF0FC3C11AC3C40CDCBCBDB9B
+        9C9CBC92EC483F00162D5AF4D8D6AD5B7FCF00889324C7A2F7B24255D6D15E1D
+        CF9C5CC7F35A7EF3CCCE96671B80C81F434130E6B367CF1E59BC78F112ED7AF3
+        EFF70C00785C03403080439FD53EDC9D80E068FF0F0B18005FC0600194FCFCFC
+        E35A36BB48FBDD664F795300F82F336614768582CE28CF6B000093E4FEC4850B
+        17F2B5303E4F3301CB5598AE0F0000F2FF065D3DE377DAE69601E0B6FAC58B17
+        4BB52467E6D1A3478DDFCD390280CC004759F0792BCFBF11160180968A5FCBC9
+        C999A5E5F8058E286F0800470130E08BB0697BC0AA63644148AEAAAA6A3E74E8
+        D0BC4D9B36E539AABC2E000F3FFC70F2860D1B0E23CBE282C78A425600711634
+        3D4144D0F286ABC78E1D5BB27EFDFA13CE286FC48019B367CF4ED3E8D5A92AA7
+        163BAA98CD967A2F478FEB9CEFA9CD7E8656B8ED755679C8FF00813631534798
+        B63B0000000049454E44AE426082}
+      Stretch = True
+    end
+    object lblTitulo: TRzLabel
+      Left = 79
+      Top = 29
+      Width = 48
+      Height = 18
+      Caption = 'Cores'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Arial Rounded MT Bold'
+      Font.Style = [fsUnderline]
+      ParentFont = False
+    end
+    object lblTituloTotal: TRzLabel
+      Left = 592
+      Top = 59
+      Width = 111
+      Height = 17
+      Caption = 'Total de Cores:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Arial Rounded MT Bold'
+      Font.Style = [fsUnderline]
+      ParentFont = False
+    end
+    object lblTotal: TRzLabel
+      Left = 723
+      Top = 59
+      Width = 10
+      Height = 17
+      Caption = '--'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlue
+      Font.Height = -15
+      Font.Name = 'Arial Rounded MT Bold'
+      Font.Style = [fsUnderline]
+      ParentFont = False
+    end
+  end
+  object RzPanel3: TRzPanel
+    Left = -6
+    Top = 360
+    Width = 748
+    Height = 52
+    Align = alCustom
+    Anchors = [akLeft, akRight, akBottom]
+    TabOrder = 1
+    Transparent = True
+    DesignSize = (
+      748
+      52)
+    object btnGravar: TRzBitBtn
+      Left = 662
+      Top = 8
+      Height = 33
+      FrameColor = 7617536
+      Anchors = [akRight, akBottom]
+      Caption = '&Gravar'
+      Color = 15791348
+      HotTrack = True
+      TabOrder = 0
+      Glyph.Data = {
+        36060000424D3606000000000000360400002800000020000000100000000100
+        08000000000000020000630B0000630B00000001000000000000000000003300
+        00006600000099000000CC000000FF0000000033000033330000663300009933
+        0000CC330000FF33000000660000336600006666000099660000CC660000FF66
+        000000990000339900006699000099990000CC990000FF99000000CC000033CC
+        000066CC000099CC0000CCCC0000FFCC000000FF000033FF000066FF000099FF
+        0000CCFF0000FFFF000000003300330033006600330099003300CC003300FF00
+        330000333300333333006633330099333300CC333300FF333300006633003366
+        33006666330099663300CC663300FF6633000099330033993300669933009999
+        3300CC993300FF99330000CC330033CC330066CC330099CC3300CCCC3300FFCC
+        330000FF330033FF330066FF330099FF3300CCFF3300FFFF3300000066003300
+        66006600660099006600CC006600FF0066000033660033336600663366009933
+        6600CC336600FF33660000666600336666006666660099666600CC666600FF66
+        660000996600339966006699660099996600CC996600FF99660000CC660033CC
+        660066CC660099CC6600CCCC6600FFCC660000FF660033FF660066FF660099FF
+        6600CCFF6600FFFF660000009900330099006600990099009900CC009900FF00
+        990000339900333399006633990099339900CC339900FF339900006699003366
+        99006666990099669900CC669900FF6699000099990033999900669999009999
+        9900CC999900FF99990000CC990033CC990066CC990099CC9900CCCC9900FFCC
+        990000FF990033FF990066FF990099FF9900CCFF9900FFFF99000000CC003300
+        CC006600CC009900CC00CC00CC00FF00CC000033CC003333CC006633CC009933
+        CC00CC33CC00FF33CC000066CC003366CC006666CC009966CC00CC66CC00FF66
+        CC000099CC003399CC006699CC009999CC00CC99CC00FF99CC0000CCCC0033CC
+        CC0066CCCC0099CCCC00CCCCCC00FFCCCC0000FFCC0033FFCC0066FFCC0099FF
+        CC00CCFFCC00FFFFCC000000FF003300FF006600FF009900FF00CC00FF00FF00
+        FF000033FF003333FF006633FF009933FF00CC33FF00FF33FF000066FF003366
+        FF006666FF009966FF00CC66FF00FF66FF000099FF003399FF006699FF009999
+        FF00CC99FF00FF99FF0000CCFF0033CCFF0066CCFF0099CCFF00CCCCFF00FFCC
+        FF0000FFFF0033FFFF0066FFFF0099FFFF00CCFFFF00FFFFFF00000080000080
+        000000808000800000008000800080800000C0C0C00080808000191919004C4C
+        4C00B2B2B200E5E5E500C8AC2800E0CC6600F2EABF00B59B2400D8E9EC009933
+        6600D075A300ECC6D900646F710099A8AC00E2EFF10000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8180C
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E2DFE8E8E8E8E8E8E8E8E8E8E8E8E8181212
+        0CE8E8E8E8E8E8E8E8E8E8E8E8E28181DFE8E8E8E8E8E8E8E8E8E8E818121212
+        120CE8E8E8E8E8E8E8E8E8E8E281818181DFE8E8E8E8E8E8E8E8E81812121212
+        12120CE8E8E8E8E8E8E8E8E2818181818181DFE8E8E8E8E8E8E8E81812120C18
+        1212120CE8E8E8E8E8E8E8E28181DFE2818181DFE8E8E8E8E8E8E818120CE8E8
+        181212120CE8E8E8E8E8E8E281DFE8E8E2818181DFE8E8E8E8E8E8180CE8E8E8
+        E8181212120CE8E8E8E8E8E2DFE8E8E8E8E2818181DFE8E8E8E8E8E8E8E8E8E8
+        E8E8181212120CE8E8E8E8E8E8E8E8E8E8E8E2818181DFE8E8E8E8E8E8E8E8E8
+        E8E8E8181212120CE8E8E8E8E8E8E8E8E8E8E8E2818181DFE8E8E8E8E8E8E8E8
+        E8E8E8E81812120CE8E8E8E8E8E8E8E8E8E8E8E8E28181DFE8E8E8E8E8E8E8E8
+        E8E8E8E8E818120CE8E8E8E8E8E8E8E8E8E8E8E8E8E281DFE8E8E8E8E8E8E8E8
+        E8E8E8E8E8E8180CE8E8E8E8E8E8E8E8E8E8E8E8E8E8E2DFE8E8E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8}
+      NumGlyphs = 2
+    end
+    object btnCancelar: TRzBitBtn
+      Left = 581
+      Top = 8
+      Height = 33
+      FrameColor = 7617536
+      Anchors = [akRight, akBottom]
+      Caption = '&Cancelar'
+      Color = 15791348
+      HotTrack = True
+      TabOrder = 1
+      OnClick = btnCancelarClick
+      Glyph.Data = {
+        36060000424D3606000000000000360400002800000020000000100000000100
+        08000000000000020000630B0000630B00000001000000000000000000003300
+        00006600000099000000CC000000FF0000000033000033330000663300009933
+        0000CC330000FF33000000660000336600006666000099660000CC660000FF66
+        000000990000339900006699000099990000CC990000FF99000000CC000033CC
+        000066CC000099CC0000CCCC0000FFCC000000FF000033FF000066FF000099FF
+        0000CCFF0000FFFF000000003300330033006600330099003300CC003300FF00
+        330000333300333333006633330099333300CC333300FF333300006633003366
+        33006666330099663300CC663300FF6633000099330033993300669933009999
+        3300CC993300FF99330000CC330033CC330066CC330099CC3300CCCC3300FFCC
+        330000FF330033FF330066FF330099FF3300CCFF3300FFFF3300000066003300
+        66006600660099006600CC006600FF0066000033660033336600663366009933
+        6600CC336600FF33660000666600336666006666660099666600CC666600FF66
+        660000996600339966006699660099996600CC996600FF99660000CC660033CC
+        660066CC660099CC6600CCCC6600FFCC660000FF660033FF660066FF660099FF
+        6600CCFF6600FFFF660000009900330099006600990099009900CC009900FF00
+        990000339900333399006633990099339900CC339900FF339900006699003366
+        99006666990099669900CC669900FF6699000099990033999900669999009999
+        9900CC999900FF99990000CC990033CC990066CC990099CC9900CCCC9900FFCC
+        990000FF990033FF990066FF990099FF9900CCFF9900FFFF99000000CC003300
+        CC006600CC009900CC00CC00CC00FF00CC000033CC003333CC006633CC009933
+        CC00CC33CC00FF33CC000066CC003366CC006666CC009966CC00CC66CC00FF66
+        CC000099CC003399CC006699CC009999CC00CC99CC00FF99CC0000CCCC0033CC
+        CC0066CCCC0099CCCC00CCCCCC00FFCCCC0000FFCC0033FFCC0066FFCC0099FF
+        CC00CCFFCC00FFFFCC000000FF003300FF006600FF009900FF00CC00FF00FF00
+        FF000033FF003333FF006633FF009933FF00CC33FF00FF33FF000066FF003366
+        FF006666FF009966FF00CC66FF00FF66FF000099FF003399FF006699FF009999
+        FF00CC99FF00FF99FF0000CCFF0033CCFF0066CCFF0099CCFF00CCCCFF00FFCC
+        FF0000FFFF0033FFFF0066FFFF0099FFFF00CCFFFF00FFFFFF00000080000080
+        000000808000800000008000800080800000C0C0C00080808000191919004C4C
+        4C00B2B2B200E5E5E500C8AC2800E0CC6600F2EABF00B59B2400D8E9EC009933
+        6600D075A300ECC6D900646F710099A8AC00E2EFF10000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8B46C6C6CE8
+        E8E8E8E8B46C6C6CE8E8E8E2DFDFDFE8E8E8E8E8E2DFDFDFE8E8E8B49090906C
+        E8E8E8B49090906CE8E8E8E2818181DFE8E8E8E2818181DFE8E8E8E8B4909090
+        6CE8B49090906CE8E8E8E8E8E2818181DFE8E2818181DFE8E8E8E8E8E8B49090
+        906C9090906CE8E8E8E8E8E8E8E2818181DF818181DFE8E8E8E8E8E8E8E8B490
+        909090906CE8E8E8E8E8E8E8E8E8E28181818181DFE8E8E8E8E8E8E8E8E8E8B4
+        9090906CE8E8E8E8E8E8E8E8E8E8E8E2818181DFE8E8E8E8E8E8E8E8E8E8B490
+        909090906CE8E8E8E8E8E8E8E8E8E28181818181DFE8E8E8E8E8E8E8E8B49090
+        906C9090906CE8E8E8E8E8E8E8E2818181DF818181DFE8E8E8E8E8E8B4909090
+        6CE8B49090906CE8E8E8E8E8E2818181DFE8E2818181DFE8E8E8E8B49090906C
+        E8E8E8B49090906CE8E8E8E2818181DFE8E8E8E2818181DFE8E8E8B4B4B4B4E8
+        E8E8E8E8B4B4B4B4E8E8E8E2E2E2E2E8E8E8E8E8E2E2E2E2E8E8E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8
+        E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8}
+      NumGlyphs = 2
+    end
+  end
+  object pgcControlCor: TRzPageControl
+    Left = 0
+    Top = 86
+    Width = 360
+    Height = 275
+    Hint = ''
+    ActivePage = tbsCor
+    Align = alCustom
+    Anchors = [akLeft, akTop, akBottom]
+    UseColoredTabs = True
+    TabIndex = 0
+    TabOrder = 2
+    Transparent = True
+    FixedDimension = 19
+    object tbsCor: TRzTabSheet
+      Tag = 1
+      Caption = 'Ve'#237'culos'
+      object gdrCor: TJvDBGrid
+        Left = 0
+        Top = 0
+        Width = 356
+        Height = 252
+        Align = alClient
+        DataSource = dsCor
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+        ReadOnly = True
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+        OnCellClick = gdrCorCellClick
+        OnDrawColumnCell = gdrCorDrawColumnCell
+        SelectColumnsDialogStrings.Caption = 'Select columns'
+        SelectColumnsDialogStrings.OK = '&OK'
+        SelectColumnsDialogStrings.NoSelectionWarning = 'At least one column must be visible!'
+        EditControls = <>
+        RowsHeight = 17
+        TitleRowHeight = 17
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'NOME'
+            Title.Caption = 'Nome'
+            Width = 204
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'REFERENCIA'
+            Title.Caption = 'Refer'#234'ncia'
+            Width = 75
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'SEL'
+            Title.Caption = '  X'
+            Width = 23
+            Visible = True
+          end>
+      end
+    end
+  end
+  object pgControlTamanho: TRzPageControl
+    Left = 383
+    Top = 87
+    Width = 360
+    Height = 274
+    Hint = ''
+    ActivePage = tbsAplicacao
+    Align = alCustom
+    Anchors = [akTop, akRight, akBottom]
+    UseColoredTabs = True
+    TabIndex = 0
+    TabOrder = 3
+    Transparent = True
+    FixedDimension = 19
+    object tbsAplicacao: TRzTabSheet
+      Tag = 1
+      Caption = 'Aplica'#231#227'o'
+      object gdrTamanho: TJvDBGrid
+        Left = 0
+        Top = 0
+        Width = 356
+        Height = 251
+        Align = alClient
+        DataSource = dsTamanho
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+        ReadOnly = True
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+        OnDrawColumnCell = gdrTamanhoDrawColumnCell
+        SelectColumnsDialogStrings.Caption = 'Select columns'
+        SelectColumnsDialogStrings.OK = '&OK'
+        SelectColumnsDialogStrings.NoSelectionWarning = 'At least one column must be visible!'
+        EditControls = <>
+        RowsHeight = 17
+        TitleRowHeight = 17
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'NOME'
+            Title.Caption = 'Nome'
+            Width = 215
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'REFERENCIA'
+            Title.Caption = 'Refer'#234'ncia'
+            Width = 75
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'SEL'
+            Title.Caption = '  X'
+            Width = 22
+            Visible = True
+          end>
+      end
+    end
+  end
+  object cdsCor: TpFIBClientDataSet
+    Aggregates = <>
+    Params = <>
+    Left = 226
+    object cdsCorID: TIntegerField
+      FieldName = 'ID'
+    end
+    object cdsCorNOME: TStringField
+      FieldName = 'NOME'
+    end
+    object cdsCorREFERENCIA: TStringField
+      FieldName = 'REFERENCIA'
+    end
+    object cdsCorSELECT: TStringField
+      FieldName = 'SELECT'
+    end
+    object cdsCorSEL: TStringField
+      FieldName = 'SEL'
+    end
+  end
+  object dsCor: TDataSource
+    DataSet = cdsCor
+    Left = 226
+    Top = 48
+  end
+  object dsTamanho: TDataSource
+    DataSet = cdsTamanho
+    Left = 330
+    Top = 48
+  end
+  object fdsCor_Grupo: TpFIBDataSet
+    UpdateSQL.Strings = (
+      'UPDATE COR_GRUPO'
+      'SET '
+      '    DT_INC = :DT_INC,'
+      '    DT_ALT = :DT_ALT,'
+      '    STATUS = :STATUS'
+      'WHERE'
+      '    IDCOR = :OLD_IDCOR'
+      '    and IDGRUPO = :OLD_IDGRUPO'
+      '    ')
+    DeleteSQL.Strings = (
+      'DELETE FROM'
+      '    COR_GRUPO'
+      'WHERE'
+      '        IDCOR = :OLD_IDCOR'
+      '    and IDGRUPO = :OLD_IDGRUPO'
+      '    ')
+    InsertSQL.Strings = (
+      'INSERT INTO COR_GRUPO('
+      '    IDCOR,'
+      '    IDGRUPO,'
+      '    DT_INC,'
+      '    DT_ALT,'
+      '    STATUS'
+      ')'
+      'VALUES('
+      '    :IDCOR,'
+      '    :IDGRUPO,'
+      '    :DT_INC,'
+      '    :DT_ALT,'
+      '    :STATUS'
+      ')')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '    IDCOR,'
+      '    IDGRUPO,'
+      '    DT_INC,'
+      '    DT_ALT,'
+      '    STATUS'
+      'FROM'
+      '    COR_GRUPO '
+      ''
+      ' WHERE '
+      '        COR_GRUPO.IDCOR = :OLD_IDCOR'
+      '    and COR_GRUPO.IDGRUPO = :OLD_IDGRUPO'
+      '    ')
+    SelectSQL.Strings = (
+      'SELECT'
+      '    CR.IDCOR,'
+      '    CR.IDGRUPO,'
+      '    CR.DT_INC,'
+      '    CR.DT_ALT,'
+      '    CR.STATUS,'
+      
+        '    case CR.status  when '#39'A'#39' then '#39'Ativo'#39' when '#39'I'#39' then '#39'inativo' +
+        #39' end AS ST,'
+      '    G.NOME AS GRUPO'
+      'FROM'
+      '    COR_GRUPO CR, GRUPO G'
+      'WHERE'
+      '    IDCOR = :IDCOR '
+      'AND'
+      '    G.ID = IDGRUPO ')
+    AutoUpdateOptions.UpdateTableName = 'ALUNO'
+    AutoUpdateOptions.KeyFields = 'ID'
+    AutoUpdateOptions.GeneratorName = 'GEN_ID_ALUNO'
+    Transaction = DM.transPricipal
+    Database = DM.Conexao
+    DefaultFormats.DateTimeDisplayFormat = 'dd/mm/yyyy hh:mm:ss'
+    DefaultFormats.DisplayFormatDate = 'dd/mm/yyyy'
+    DefaultFormats.DisplayFormatTime = 'hh:mm:ss'
+    Left = 416
+    Top = 8
+    oFetchAll = True
+    object fdsCor_GrupoIDCOR: TFIBBCDField
+      FieldName = 'IDCOR'
+      Size = 0
+    end
+    object fdsCor_GrupoIDGRUPO: TFIBBCDField
+      FieldName = 'IDGRUPO'
+      Size = 0
+    end
+    object fdsCor_GrupoDT_INC: TFIBDateField
+      FieldName = 'DT_INC'
+    end
+    object fdsCor_GrupoDT_ALT: TFIBDateField
+      FieldName = 'DT_ALT'
+    end
+    object fdsCor_GrupoSTATUS: TFIBStringField
+      FieldName = 'STATUS'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsCor_GrupoST: TFIBStringField
+      FieldName = 'ST'
+      Size = 7
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsCor_GrupoGRUPO: TFIBStringField
+      FieldName = 'GRUPO'
+      Size = 250
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+  end
+  object fdsCor: TpFIBDataSet
+    UpdateSQL.Strings = (
+      'UPDATE COR'
+      'SET '
+      '    DT_INC = :DT_INC,'
+      '    DT_ALT = :DT_ALT,'
+      '    STATUS = :STATUS,'
+      '    NOME = :NOME,'
+      '    REFERENCIA = :REFERENCIA'
+      'WHERE'
+      '    ID = :OLD_ID'
+      '    ')
+    DeleteSQL.Strings = (
+      'DELETE FROM'
+      '    COR'
+      'WHERE'
+      '        ID = :OLD_ID'
+      '    ')
+    InsertSQL.Strings = (
+      'INSERT INTO COR('
+      '    ID,'
+      '    DT_INC,'
+      '    DT_ALT,'
+      '    STATUS,'
+      '    NOME,'
+      '    REFERENCIA'
+      ')'
+      'VALUES('
+      '    :ID,'
+      '    :DT_INC,'
+      '    :DT_ALT,'
+      '    :STATUS,'
+      '    :NOME,'
+      '    :REFERENCIA'
+      ')')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '    C.*'
+      'FROM'
+      '    COR C'
+      ''
+      ' WHERE '
+      '        C.ID = :OLD_ID'
+      '    ')
+    SelectSQL.Strings = (
+      'SELECT'
+      '    C.*'
+      'FROM'
+      '    COR C')
+    AutoUpdateOptions.UpdateTableName = 'ALUNO'
+    AutoUpdateOptions.KeyFields = 'ID'
+    AutoUpdateOptions.GeneratorName = 'GEN_ID_ALUNO'
+    Transaction = DM.transPricipal
+    Database = DM.Conexao
+    DefaultFormats.DateTimeDisplayFormat = 'dd/mm/yyyy hh:mm:ss'
+    DefaultFormats.DisplayFormatDate = 'dd/mm/yyyy'
+    DefaultFormats.DisplayFormatTime = 'hh:mm:ss'
+    Left = 480
+    Top = 8
+    oFetchAll = True
+    object fdsCorID: TFIBBCDField
+      FieldName = 'ID'
+      Size = 0
+    end
+    object fdsCorDT_INC: TFIBDateField
+      FieldName = 'DT_INC'
+    end
+    object fdsCorDT_ALT: TFIBDateField
+      FieldName = 'DT_ALT'
+    end
+    object fdsCorSTATUS: TFIBStringField
+      FieldName = 'STATUS'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsCorNOME: TFIBStringField
+      FieldName = 'NOME'
+      Size = 250
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsCorREFERENCIA: TFIBStringField
+      FieldName = 'REFERENCIA'
+      Size = 4
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsCorENVIADO_WEB: TFIBStringField
+      FieldName = 'ENVIADO_WEB'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+  end
+  object fdsTamanho_Grupo: TpFIBDataSet
+    UpdateSQL.Strings = (
+      'UPDATE TAMANHO_GRUPO'
+      'SET '
+      '    DT_INC = :DT_INC,'
+      '    DT_ALT = :DT_ALT,'
+      '    STATUS = :STATUS'
+      'WHERE'
+      '    IDTAMANHO = :OLD_IDTAMANHO'
+      '    and IDGRUPO = :OLD_IDGRUPO'
+      '    ')
+    DeleteSQL.Strings = (
+      'DELETE FROM'
+      '    TAMANHO_GRUPO'
+      'WHERE'
+      '        IDTAMANHO = :OLD_IDTAMANHO'
+      '    and IDGRUPO = :OLD_IDGRUPO'
+      '    ')
+    InsertSQL.Strings = (
+      'INSERT INTO TAMANHO_GRUPO('
+      '    IDTAMANHO,'
+      '    IDGRUPO,'
+      '    DT_INC,'
+      '    DT_ALT,'
+      '    STATUS'
+      ')'
+      'VALUES('
+      '    :IDTAMANHO,'
+      '    :IDGRUPO,'
+      '    :DT_INC,'
+      '    :DT_ALT,'
+      '    :STATUS'
+      ')')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '    TM.IDTAMANHO,'
+      '    TM.IDGRUPO,'
+      '    TM.DT_INC,'
+      '    TM.DT_ALT,'
+      '    TM.STATUS,'
+      
+        '    case TM.status  when '#39'A'#39' then '#39'Ativo'#39' when '#39'I'#39' then '#39'inativo' +
+        #39' end AS ST,'
+      '    G.NOME AS GRUPO'
+      'FROM'
+      '    TAMANHO_GRUPO TM, GRUPO G'
+      'WHERE( '
+      '    IDTAMANHO = :IDTAMANHO '
+      'AND'
+      '    G.ID = IDGRUPO'
+      '     ) and (     TM.IDTAMANHO = :OLD_IDTAMANHO'
+      '    and TM.IDGRUPO = :OLD_IDGRUPO'
+      '     )'
+      '     ')
+    SelectSQL.Strings = (
+      'SELECT'
+      '    TM.IDTAMANHO,'
+      '    TM.IDGRUPO,'
+      '    TM.DT_INC,'
+      '    TM.DT_ALT,'
+      '    TM.STATUS,'
+      
+        '    case TM.status  when '#39'A'#39' then '#39'Ativo'#39' when '#39'I'#39' then '#39'inativo' +
+        #39' end AS ST,'
+      '    G.NOME AS GRUPO'
+      'FROM'
+      '    TAMANHO_GRUPO TM, GRUPO G'
+      'WHERE'
+      '    IDTAMANHO = :IDTAMANHO '
+      'AND'
+      '    G.ID = IDGRUPO ')
+    AutoUpdateOptions.UpdateTableName = 'ALUNO'
+    AutoUpdateOptions.KeyFields = 'ID'
+    AutoUpdateOptions.GeneratorName = 'GEN_ID_ALUNO'
+    Transaction = DM.transPricipal
+    Database = DM.Conexao
+    DefaultFormats.DateTimeDisplayFormat = 'dd/mm/yyyy hh:mm:ss'
+    DefaultFormats.DisplayFormatDate = 'dd/mm/yyyy'
+    DefaultFormats.DisplayFormatTime = 'hh:mm:ss'
+    Left = 408
+    Top = 56
+    oFetchAll = True
+    object fdsTamanho_GrupoIDTAMANHO: TFIBBCDField
+      FieldName = 'IDTAMANHO'
+      Size = 0
+    end
+    object fdsTamanho_GrupoIDGRUPO: TFIBBCDField
+      FieldName = 'IDGRUPO'
+      Size = 0
+    end
+    object fdsTamanho_GrupoDT_INC: TFIBDateField
+      FieldName = 'DT_INC'
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object fdsTamanho_GrupoDT_ALT: TFIBDateField
+      FieldName = 'DT_ALT'
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object fdsTamanho_GrupoSTATUS: TFIBStringField
+      FieldName = 'STATUS'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsTamanho_GrupoST: TFIBStringField
+      FieldName = 'ST'
+      Size = 7
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsTamanho_GrupoGRUPO: TFIBStringField
+      FieldName = 'GRUPO'
+      Size = 250
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+  end
+  object fdsTamanho: TpFIBDataSet
+    UpdateSQL.Strings = (
+      'UPDATE TAMANHO'
+      'SET '
+      '    DT_INC = :DT_INC,'
+      '    DT_ALT = :DT_ALT,'
+      '    STATUS = :STATUS,'
+      '    NOME = :NOME,'
+      '    REFERENCIA = :REFERENCIA,'
+      '    ALTURA_I = :ALTURA_I,'
+      '    LARGURA_I = :LARGURA_I,'
+      '    PROFUNDIDADE_I = :PROFUNDIDADE_I,'
+      '    ALTURA_E = :ALTURA_E,'
+      '    LARGURA_E = :LARGURA_E,'
+      '    PROFUNDIDADE_E = :PROFUNDIDADE_E'
+      'WHERE'
+      '    ID = :OLD_ID'
+      '    ')
+    DeleteSQL.Strings = (
+      'DELETE FROM'
+      '    TAMANHO'
+      'WHERE'
+      '        ID = :OLD_ID'
+      '    ')
+    InsertSQL.Strings = (
+      'INSERT INTO TAMANHO('
+      '    ID,'
+      '    DT_INC,'
+      '    DT_ALT,'
+      '    STATUS,'
+      '    NOME,'
+      '    REFERENCIA,'
+      '    ALTURA_I,'
+      '    LARGURA_I,'
+      '    PROFUNDIDADE_I,'
+      '    ALTURA_E,'
+      '    LARGURA_E,'
+      '    PROFUNDIDADE_E'
+      ')'
+      'VALUES('
+      '    :ID,'
+      '    :DT_INC,'
+      '    :DT_ALT,'
+      '    :STATUS,'
+      '    :NOME,'
+      '    :REFERENCIA,'
+      '    :ALTURA_I,'
+      '    :LARGURA_I,'
+      '    :PROFUNDIDADE_I,'
+      '    :ALTURA_E,'
+      '    :LARGURA_E,'
+      '    :PROFUNDIDADE_E'
+      ')')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '    T.*'
+      'FROM'
+      '    TAMANHO T'
+      ''
+      ' WHERE '
+      '        T.ID = :OLD_ID'
+      '    ')
+    SelectSQL.Strings = (
+      'SELECT'
+      '    T.*'
+      'FROM'
+      '    TAMANHO T')
+    AutoUpdateOptions.UpdateTableName = 'ALUNO'
+    AutoUpdateOptions.KeyFields = 'ID'
+    AutoUpdateOptions.GeneratorName = 'GEN_ID_ALUNO'
+    Transaction = DM.transPricipal
+    Database = DM.Conexao
+    DefaultFormats.DateTimeDisplayFormat = 'dd/mm/yyyy hh:mm:ss'
+    DefaultFormats.DisplayFormatDate = 'dd/mm/yyyy'
+    DefaultFormats.DisplayFormatTime = 'hh:mm:ss'
+    Left = 496
+    Top = 56
+    oFetchAll = True
+    object fdsTamanhoID: TFIBBCDField
+      FieldName = 'ID'
+      Size = 0
+    end
+    object fdsTamanhoDT_INC: TFIBDateField
+      FieldName = 'DT_INC'
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object fdsTamanhoDT_ALT: TFIBDateField
+      FieldName = 'DT_ALT'
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object fdsTamanhoSTATUS: TFIBStringField
+      FieldName = 'STATUS'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsTamanhoNOME: TFIBStringField
+      FieldName = 'NOME'
+      Size = 250
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsTamanhoREFERENCIA: TFIBStringField
+      FieldName = 'REFERENCIA'
+      Size = 4
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object fdsTamanhoALTURA_I: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'ALTURA_I'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+      Size = 8
+    end
+    object fdsTamanhoLARGURA_I: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'LARGURA_I'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+      Size = 8
+    end
+    object fdsTamanhoPROFUNDIDADE_I: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'PROFUNDIDADE_I'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+      Size = 8
+    end
+    object fdsTamanhoALTURA_E: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'ALTURA_E'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+      Size = 8
+    end
+    object fdsTamanhoLARGURA_E: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'LARGURA_E'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+      Size = 8
+    end
+    object fdsTamanhoPROFUNDIDADE_E: TFIBBCDField
+      DefaultExpression = '0,00'
+      FieldName = 'PROFUNDIDADE_E'
+      DisplayFormat = '#,##0.0000'
+      EditFormat = '0.0000'
+      Size = 8
+    end
+    object fdsTamanhoENVIADO_WEB: TFIBStringField
+      FieldName = 'ENVIADO_WEB'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+  end
+  object cdsTamanho: TpFIBClientDataSet
+    Aggregates = <>
+    Params = <>
+    Left = 330
+    object cdsTamanhoID: TIntegerField
+      FieldName = 'ID'
+    end
+    object cdsTamanhoNOME: TStringField
+      FieldName = 'NOME'
+    end
+    object cdsTamanhoREFERENCIA: TStringField
+      FieldName = 'REFERENCIA'
+    end
+    object cdsTamanhoSELECT: TStringField
+      FieldName = 'SELECT'
+    end
+    object cdsTamanhoSEL: TStringField
+      FieldName = 'SEL'
+    end
+  end
+end

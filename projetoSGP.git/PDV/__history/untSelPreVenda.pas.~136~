@@ -1,0 +1,507 @@
+unit untSelPreVenda;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzButton, Vcl.DBCtrls, RzDBCmbo,
+  RzDBEdit, Vcl.StdCtrls, Vcl.Mask, RzEdit, RzPanel, Vcl.Grids, Vcl.DBGrids,
+  JvExDBGrids, JvDBGrid, RzTabs, RzBckgnd, RzLabel, dxGDIPlusClasses,
+  Vcl.ExtCtrls, JvExExtCtrls, JvImage, pFIBClientDataSet, Datasnap.DBClient,
+  Datasnap.Provider, Data.DB, FIBDataSet, pFIBDataSet, Math;
+
+type
+  TfrmSelPreVenda = class(TForm)
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloCliente: TRzLabel;
+    imgFlagYellow: TImage;
+    imgFlagRed: TImage;
+    imgFlagGreen: TImage;
+    imgFlagYellow2: TImage;
+    imgFlagRed2: TImage;
+    imgFlagGreen2: TImage;
+    RzBackground1: TRzBackground;
+    pgcControl: TRzPageControl;
+    tbsVenda: TRzTabSheet;
+    gdrVendas: TJvDBGrid;
+    tbsItens: TRzTabSheet;
+    RzGroupBox1: TRzGroupBox;
+    lblCidade: TRzLabel;
+    lblCodigo: TRzLabel;
+    lblDtInc: TRzLabel;
+    RzLabel1: TRzLabel;
+    lblVendedor: TRzLabel;
+    RzLabel6: TRzLabel;
+    RzLabel7: TRzLabel;
+    RzLabel17: TRzLabel;
+    RzLabel2: TRzLabel;
+    edtCliente: TRzEdit;
+    edtPrefixo: TRzDBEdit;
+    edtDt_Inc: TRzDBEdit;
+    edtID: TRzDBEdit;
+    lcbVendedor: TRzDBLookupComboBox;
+    lbcFormaPagamento: TRzDBLookupComboBox;
+    RzDBEdit5: TRzDBEdit;
+    RzDBEdit7: TRzDBEdit;
+    edtIDVendedor: TRzDBEdit;
+    RzGroupBox2: TRzGroupBox;
+    gdrVendaItens: TJvDBGrid;
+    btnGravar: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    fdsVendedor: TpFIBDataSet;
+    fdsVendedorID: TFIBBCDField;
+    fdsVendedorNOME: TFIBStringField;
+    fdsFormaPagamento: TpFIBDataSet;
+    fdsFormaPagamentoID: TFIBBCDField;
+    fdsFormaPagamentoDT_INC: TFIBDateField;
+    fdsFormaPagamentoDT_ALT: TFIBDateField;
+    fdsFormaPagamentoNOME: TFIBStringField;
+    fdsFormaPagamentoPARCELA_MAXIMA: TFIBSmallIntField;
+    fdsFormaPagamentoMOEDA: TFIBStringField;
+    fdsFormaPagamentoENVIADO_WEB: TFIBStringField;
+    dsFormaPagamento: TDataSource;
+    dsVendedor: TDataSource;
+    dsPreVenda: TDataSource;
+    fdsPreVenda: TpFIBDataSet;
+    fdsPreVendaID: TFIBBCDField;
+    fdsPreVendaIDFILIAL: TFIBBCDField;
+    fdsPreVendaDT_INC: TFIBDateField;
+    fdsPreVendaSTATUS: TFIBStringField;
+    fdsPreVendaIDCLIENTE: TFIBBCDField;
+    fdsPreVendaIDVENDEDOR: TFIBBCDField;
+    fdsPreVendaIDFORMA_PAG: TFIBBCDField;
+    fdsPreVendaVLR_TOTITEM: TFIBBCDField;
+    fdsPreVendaVLR_DESCONTO: TFIBBCDField;
+    fdsPreVendaVLR_TOTAL: TFIBBCDField;
+    fdsPreVendaVLR_VENDA: TFIBBCDField;
+    fdsPreVendaPREFIXO: TFIBStringField;
+    fdsPreVendaVENDEDOR: TFIBStringField;
+    fdsPreVendaCLIENTE: TFIBStringField;
+    fdsPreVendaFORMA_PAGAMENTO: TFIBStringField;
+    fdsPreVendaItens: TpFIBDataSet;
+    dspPreVendaItens: TpFIBDataSetProvider;
+    dsPreVendaItens: TDataSource;
+    cdsPreVendaItens: TpFIBClientDataSet;
+    cdsPreVendaItensIDPREVENDA: TpFIBClientBCDField;
+    cdsPreVendaItensITEM: TSmallintField;
+    cdsPreVendaItensIDPROD_ITEM: TpFIBClientBCDField;
+    cdsPreVendaItensDT_INC: TDateField;
+    cdsPreVendaItensQTN: TpFIBClientBCDField;
+    cdsPreVendaItensVLR_UNITARIO: TpFIBClientBCDField;
+    cdsPreVendaItensVLR_DESC: TpFIBClientBCDField;
+    cdsPreVendaItensVLR_TOTAL: TpFIBClientBCDField;
+    cdsPreVendaItensIDFILIAL: TpFIBClientBCDField;
+    cdsPreVendaItensNOME: TStringField;
+    cdsPreVendaItensCOD_FABRICA: TStringField;
+    fdsPreVendaNUM_PROPIO: TFIBIntegerField;
+    cdsPreVendaItensSEL: TStringField;
+    cdsPreVendaItensCONFIRMADO: TStringField;
+    RzPanel2: TRzPanel;
+    RzLabel32: TRzLabel;
+    RzLabel33: TRzLabel;
+    RzLabel34: TRzLabel;
+    RzLabel35: TRzLabel;
+    RzLabel38: TRzLabel;
+    edtQtnItem: TRzDBEdit;
+    edtPrecCusto: TRzDBEdit;
+    edtPreVenda: TRzDBEdit;
+    btnItemGravar: TRzBitBtn;
+    btnItemCancelar: TRzBitBtn;
+    btnItemAlterar: TRzBitBtn;
+    edtItemNome: TRzDBEdit;
+    edtItemDesconto: TRzDBEdit;
+    RzLabel3: TRzLabel;
+    RzDBEdit2: TRzDBEdit;
+    RzLabel4: TRzLabel;
+    cdsPreVendaItensPREC_TAB1: TpFIBClientBCDField;
+    btnExcluir: TRzBitBtn;
+    cdsPreVendaItensIDITEM: TpFIBClientBCDField;
+    cdsPreVendaItensIDFILIAL1: TpFIBClientBCDField;
+    cdsPreVendaItensSALDO: TpFIBClientBCDField;
+    cdsPreVendaItensSALDO_GERENCIAL: TpFIBClientBCDField;
+    cdsPreVendaItensSALDO_MINIMO: TpFIBClientBCDField;
+    cdsPreVendaItensENVIADO_WEB: TStringField;
+    cdsPreVendaItensPREC_VENDA: TpFIBClientBCDField;
+    cdsPreVendaItensPREC_TAB2: TpFIBClientBCDField;
+    cdsPreVendaItensPREC_TAB3: TpFIBClientBCDField;
+    cdsPreVendaItensPREC_TAB4: TpFIBClientBCDField;
+    cdsPreVendaItensPREC_TAB5: TpFIBClientBCDField;
+    cdsPreVendaItensPREC_TAB6: TpFIBClientBCDField;
+    cdsPreVendaItensMARGEM_LUCRO: TpFIBClientBCDField;
+    procedure FormCreate(Sender: TObject);
+    procedure fdsPreVendaAfterScroll(DataSet: TDataSet);
+    procedure RetornaItens;
+    procedure btnCancelarClick(Sender: TObject);
+    procedure gdrVendasDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure gdrVendaItensDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure gdrVendasTitleClick(Column: TColumn);
+    procedure btnGravarClick(Sender: TObject);
+    procedure tbsItensShow(Sender: TObject);
+    procedure gdrVendaItensCellClick(Column: TColumn);
+    procedure cdsPreVendaItensBeforeEdit(DataSet: TDataSet);
+    procedure cdsPreVendaItensBeforePost(DataSet: TDataSet);
+    procedure cdsPreVendaItensAfterPost(DataSet: TDataSet);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure cdsPreVendaItensAfterCancel(DataSet: TDataSet);
+    procedure btnItemAlterarClick(Sender: TObject);
+    procedure ControlaBtnsItens;
+    procedure btnItemGravarClick(Sender: TObject);
+    procedure btnItemCancelarClick(Sender: TObject);
+    procedure edtItemDescontoExit(Sender: TObject);
+    procedure RzDBEdit2Exit(Sender: TObject);
+    procedure edtQtnItemExit(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+    procedure fdsPreVendaItensBeforeOpen(DataSet: TDataSet);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmSelPreVenda: TfrmSelPreVenda;
+  ordem: string[4];
+  vlr_total, vlr_totitem, vlr_desconto: Double;
+  alterandoItem: Boolean;
+
+implementation
+
+{$R *.dfm}
+
+uses untData, uUtils;
+
+procedure TfrmSelPreVenda.btnCancelarClick(Sender: TObject);
+begin
+  ModalResult := mrCancel;
+end;
+
+procedure TfrmSelPreVenda.btnExcluirClick(Sender: TObject);
+begin
+  if not(fdsPreVenda.RecordCount = 0) then
+  begin
+    Case MessageBox(Application.Handle, Pchar('Deseja realmente excluir a Pré-Venda atual?'), 'Atenção', MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) of
+            idNo: begin
+                      Abort;
+                   end;
+          end;
+
+    RetornaItens;
+    cdsPreVendaItens.EmptyDataSet;
+    cdsPreVendaItens.Close;
+    fdsPreVendaItens.First;
+
+    while not(fdsPreVendaItens.EOF) do
+    begin
+      fdsPreVendaItens.Delete;
+      fdsPreVendaItens.First;
+    end;
+
+    DM.conexao.CommitRetaining;
+    fdsPreVenda.Delete;
+    DM.conexao.CommitRetaining;
+    fdsPreVenda.First;
+    pgcControl.ActivePageIndex := 0;
+  end;
+end;
+
+procedure TfrmSelPreVenda.btnGravarClick(Sender: TObject);
+begin
+  if not(fdsPreVenda.RecordCount = 0) then
+  begin
+    if (pgcControl.ActivePageIndex = 1) then
+      cdsPreVendaItens.ApplyUpdates(-1);
+    RetornaItens;
+    ModalResult := mrOk;
+  end;
+end;
+
+procedure TfrmSelPreVenda.btnItemAlterarClick(Sender: TObject);
+begin
+  cdsPreVendaItens.Edit;
+  cdsPreVendaItensCONFIRMADO.AsString := 'S';
+  ControlaBtnsItens;
+  edtItemDesconto.SetFocus;
+end;
+
+procedure TfrmSelPreVenda.btnItemCancelarClick(Sender: TObject);
+begin
+  cdsPreVendaItens.Cancel;
+  ControlaBtnsItens;
+end;
+
+procedure TfrmSelPreVenda.btnItemGravarClick(Sender: TObject);
+begin
+  cdsPreVendaItens.Post;
+  ControlaBtnsItens;
+end;
+
+procedure TfrmSelPreVenda.cdsPreVendaItensAfterCancel(DataSet: TDataSet);
+begin
+  vlr_totitem := RoundTo(vlr_totitem + cdsPreVendaItensVLR_TOTAL.AsFloat, -2);
+  vlr_total := RoundTo(vlr_total + cdsPreVendaItensVLR_TOTAL.AsFloat, -2);
+end;
+
+procedure TfrmSelPreVenda.cdsPreVendaItensAfterPost(DataSet: TDataSet);
+begin
+  fdsPreVenda.Edit;
+  fdsPreVendaVLR_TOTITEM.AsFloat := vlr_totitem;
+  fdsPreVendaVLR_TOTAL.AsFloat := vlr_total;
+  fdsPreVendaVLR_VENDA.AsFloat := vlr_total;
+  fdsPreVenda.Post;
+
+  cdsPreVendaItens.ApplyUpdates(-1);
+  DM.conexao.CommitRetaining;
+end;
+
+procedure TfrmSelPreVenda.cdsPreVendaItensBeforeEdit(DataSet: TDataSet);
+begin
+  if cdsPreVendaItensCONFIRMADO.AsString = 'S' then
+  begin
+    vlr_totitem := RoundTo(vlr_totitem - cdsPreVendaItensVLR_TOTAL.AsFloat, -2);
+    vlr_total := RoundTo(vlr_total - cdsPreVendaItensVLR_TOTAL.AsFloat, -2);
+  end;
+end;
+
+procedure TfrmSelPreVenda.cdsPreVendaItensBeforePost(DataSet: TDataSet);
+begin
+  if cdsPreVendaItensCONFIRMADO.AsString = 'S' then
+  begin
+    cdsPreVendaItensVLR_TOTAL.AsFloat := RoundTo(cdsPreVendaItensVLR_UNITARIO.AsFloat * cdsPreVendaItensQTN.AsFloat, -2);
+    vlr_totitem := RoundTo(vlr_totitem + cdsPreVendaItensVLR_TOTAL.AsFloat, -2);
+    vlr_total := RoundTo(vlr_total + cdsPreVendaItensVLR_TOTAL.AsFloat, -2);
+  end;
+end;
+
+procedure TfrmSelPreVenda.ControlaBtnsItens;
+begin
+  alterandoItem := not(alterandoItem);
+  btnItemCancelar.Enabled := alterandoItem;
+  btnItemGravar.Enabled := alterandoItem;
+  btnItemAlterar.Enabled := not(alterandoItem);
+  gdrVendaItens.Enabled := not(alterandoItem);
+  btnCancelar.Enabled := not(alterandoItem);
+  btnGravar.Enabled := not(alterandoItem);
+  btnExcluir.Enabled := not(alterandoItem);
+end;
+
+procedure TfrmSelPreVenda.edtQtnItemExit(Sender: TObject);
+begin
+  if cdsPreVendaItens.State in [dsInsert, dsEdit] then
+  begin
+    cdsPreVendaItensVLR_TOTAL.AsFloat := RoundTo(cdsPreVendaItensVLR_UNITARIO.AsFloat * cdsPreVendaItensQTN.AsFloat, -2);
+  end;
+end;
+
+procedure TfrmSelPreVenda.fdsPreVendaAfterScroll(DataSet: TDataSet);
+begin
+  vlr_totitem := fdsPreVendaVLR_TOTITEM.AsFloat;
+  vlr_total := fdsPreVendaVLR_TOTAL.AsFloat;
+
+  if (pgcControl.ActivePageIndex = 1) then
+    RetornaItens;
+end;
+
+procedure TfrmSelPreVenda.fdsPreVendaItensBeforeOpen(DataSet: TDataSet);
+begin
+  fdsPreVendaItens.ParamByName('IDFILIAL').AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+end;
+
+procedure TfrmSelPreVenda.FormCreate(Sender: TObject);
+begin
+  pgcControl.ActivePageIndex := 0;
+  ordem := 'ASC';
+  fdsPreVenda.Open;
+  fdsPreVenda.First;
+  fdsVendedor.Open;
+  fdsVendedor.Last;
+  fdsVendedor.First;
+  fdsFormaPagamento.Open;
+  fdsFormaPagamento.Last;
+  fdsFormaPagamento.First;
+  alterandoItem := False;
+end;
+
+procedure TfrmSelPreVenda.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = VK_F5 then
+  begin
+    btnGravar.Click;
+  end;
+
+  if Key = VK_ESCAPE then
+  begin
+    if cdsPreVendaItens.State in [dsEdit] then
+      btnItemCancelar.Click
+    else
+      btnCancelar.Click; 
+  end
+     
+end;
+
+procedure TfrmSelPreVenda.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+    SelectNext(ActiveControl, True, True);
+  end;
+end;
+
+procedure TfrmSelPreVenda.gdrVendaItensCellClick(Column: TColumn);
+begin
+  if gdrVendaItens.SelectedField.FieldName = 'SEL' then
+  begin
+    cdsPreVendaItens.Edit;
+
+    if cdsPreVendaItensCONFIRMADO.AsString = 'S' then
+      cdsPreVendaItensCONFIRMADO.AsString := 'N'
+    else
+      cdsPreVendaItensCONFIRMADO.AsString := 'S';
+
+    cdsPreVendaItens.Post;
+  end;
+end;
+
+procedure TfrmSelPreVenda.gdrVendaItensDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+var
+  Check: Integer;
+  R: TRect;
+begin
+  if not odd(cdsPreVendaItens.RecNo) then
+  begin
+    gdrVendaItens.Canvas.Brush.Color := DM.gridOddColor;
+    gdrVendaItens.Canvas.FillRect(Rect);
+    gdrVendaItens.DefaultDrawDataCell(rect,Column.Field,state);
+  end;
+
+  if Column.FieldName =  'SEL' then
+  begin
+    gdrVendaItens.Canvas.FillRect(Rect);
+    Check := 0;
+
+    if cdsPreVendaItensCONFIRMADO.AsString = 'S' then
+      Check := DFCS_CHECKED
+    else
+      Check := 0;
+
+    R := Rect;
+    InflateRect(R, -1,-1);
+    DrawFrameControl(gdrVendaItens.Canvas.Handle,R,DFC_BUTTON, DFCS_BUTTONCHECK or Check);
+  end;
+end;
+
+procedure TfrmSelPreVenda.gdrVendasDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+var
+  status : string;
+  Bitmap : TBitmap;
+begin
+
+//  gdrVendasConfirmadas.Canvas.Font.Color:= clYellow; // coloque aqui a cor desejada para a fonte
+
+  if not odd(fdsPreVenda.RecNo) then
+  begin
+    gdrVendas.Canvas.Brush.Color := DM.gridOddColor;
+    if gdSelected in State then
+    gdrVendas.Canvas.Brush.Color:=clHighlight;
+    gdrVendas.Canvas.FillRect(Rect);
+    gdrVendas.DefaultDrawDataCell(rect,Column.Field,state);
+
+    if (Column.Index = 1) and not(fdsPreVenda.IsEmpty) then
+    begin
+    Bitmap := imgFlagYellow2.Picture.Bitmap;
+      with TDBGrid(Sender) do
+      begin
+      Canvas.Draw((Rect.Right - Rect.Left - Bitmap.Width) div 2 + Rect.Left,
+      (Rect.Bottom - Rect.Top - Bitmap.Height) div 2 + Rect.Top, Bitmap);
+      // ou: Canvas.Draw(Rect.Left, Rect.Top, Bitmap);
+      end;
+    end;
+  end
+  else
+  begin
+    if Column.Index = 1 then
+    begin
+    Bitmap := imgFlagYellow.Picture.Bitmap;
+      with TDBGrid(Sender) do
+      begin
+      Canvas.Draw((Rect.Right - Rect.Left - Bitmap.Width) div 2 + Rect.Left,
+      (Rect.Bottom - Rect.Top - Bitmap.Height) div 2 + Rect.Top, Bitmap);
+      // ou: Canvas.Draw(Rect.Left, Rect.Top, Bitmap);
+      end;
+    end;
+  end;
+end;
+
+procedure TfrmSelPreVenda.gdrVendasTitleClick(Column: TColumn);
+begin
+  fdsPreVenda.Close;
+  fdsPreVenda.OrderClause := Column.FieldName + ' ' + ordem;
+  fdsPreVenda.Open;
+
+  if ordem = 'ASC' then
+    ordem := 'DESC'
+  else
+    ordem := 'ASC';
+end;
+
+procedure TfrmSelPreVenda.RetornaItens;
+begin
+  if not(fdsPreVenda.RecordCount = 0) then
+  begin
+    if (pgcControl.ActivePageIndex = 1) then
+      cdsPreVendaItens.CancelUpdates;
+
+    cdsPreVendaItens.Close;
+    with fdsPreVendaItens do
+    begin
+      Close;
+      Conditions.Clear;
+      Conditions.AddCondition('PREVENDAID', 'IDPREVENDA = ' + fdsPreVendaID.AsString, True);
+      Conditions.Apply;
+      Prepare;
+      Open;
+    end;
+    cdsPreVendaItens.Open;
+    edtCliente.Text := fdsPreVendaCLIENTE.AsString;
+  end;
+end;
+
+procedure TfrmSelPreVenda.edtItemDescontoExit(Sender: TObject);
+var
+  utils : TUtils;
+begin
+  if cdsPreVendaItens.State in [dsInsert, dsEdit] then
+  begin
+    if utils.ValidaInteiroFloat(FloatToStr(cdsPreVendaItensVLR_DESC.AsFloat), 'F') > 0 then
+    begin
+      cdsPreVendaItensVLR_UNITARIO.AsFloat := RoundTo((cdsPreVendaItensPREC_TAB1.AsFloat - (cdsPreVendaItensPREC_TAB1.AsFloat * cdsPreVendaItensVLR_DESC.AsFloat / 100)), -2);
+
+      cdsPreVendaItensVLR_TOTAL.AsFloat := RoundTo(cdsPreVendaItensVLR_UNITARIO.AsFloat * cdsPreVendaItensQTN.AsFloat, -2);
+    end;
+  end;
+end;
+
+procedure TfrmSelPreVenda.RzDBEdit2Exit(Sender: TObject);
+begin
+  if cdsPreVendaItens.State in [dsInsert, dsEdit] then
+  begin
+    cdsPreVendaItensVLR_DESC.AsFloat := RoundTo((((cdsPreVendaItensPREC_TAB1.AsFloat - cdsPreVendaItensVLR_UNITARIO.AsFloat) * 100) / cdsPreVendaItensVLR_UNITARIO.AsFloat), -2);
+
+    cdsPreVendaItensVLR_TOTAL.AsFloat := RoundTo(cdsPreVendaItensVLR_UNITARIO.AsFloat * cdsPreVendaItensQTN.AsFloat, -2);
+  end;
+end;
+
+procedure TfrmSelPreVenda.tbsItensShow(Sender: TObject);
+begin
+  if not(fdsPreVenda.IsEmpty) then
+    RetornaItens;
+end;
+
+end.

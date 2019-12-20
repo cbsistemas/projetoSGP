@@ -1,0 +1,219 @@
+unit untCadFormasPagamento;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, FIBDataSet, pFIBDataSet, RzButton, RzEdit, StdCtrls, Mask,
+  RzDBEdit, Grids, DBGrids, JvExDBGrids, JvDBGrid, RzTabs, RzLabel,
+  dxGDIPlusClasses, ExtCtrls, JvExExtCtrls, JvImage, RzPanel, RzBckgnd,
+  RzCmboBx, RzDBCmbo, RzRadChk, RzDBChk, Vcl.Imaging.pngimage;
+
+type
+  TfrmCadFormasPagamento = class(TForm)
+    RzBackground1: TRzBackground;
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    RzLabel1: TRzLabel;
+    pgcControl: TRzPageControl;
+    tbsTabela: TRzTabSheet;
+    JvDBGrid1: TJvDBGrid;
+    tbsForm: TRzTabSheet;
+    RzLabel2: TRzLabel;
+    RzLabel3: TRzLabel;
+    RzLabel4: TRzLabel;
+    RzLabel5: TRzLabel;
+    RzLabel6: TRzLabel;
+    RzLabel8: TRzLabel;
+    edtID: TRzDBEdit;
+    edtDt_Inc: TRzDBEdit;
+    edtDt_Alt: TRzDBEdit;
+    edtNome: TRzDBEdit;
+    edtParcMax: TRzDBEdit;
+    RzPanel2: TRzPanel;
+    btnIncluir: TRzBitBtn;
+    btnGravar: TRzBitBtn;
+    btnAlterar: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    fdsFomasPagamento: TpFIBDataSet;
+    dsFomaPagamento: TDataSource;
+    fdsFomasPagamentoID: TFIBBCDField;
+    fdsFomasPagamentoDT_INC: TFIBDateField;
+    fdsFomasPagamentoDT_ALT: TFIBDateField;
+    fdsFomasPagamentoNOME: TFIBStringField;
+    fdsFomasPagamentoPARCELA_MAXIMA: TFIBSmallIntField;
+    fdsFomasPagamentoMOEDA: TFIBStringField;
+    RzDBEdit1: TRzDBEdit;
+    RzLabel9: TRzLabel;
+    RzDBEdit2: TRzDBEdit;
+    RzLabel10: TRzLabel;
+    cbxMoeda: TRzDBComboBox;
+    fdsFomasPagamentoENVIADO_WEB: TFIBStringField;
+    fdsFomasPagamentoCARENCIA_JUROS: TFIBIntegerField;
+    fdsFomasPagamentoVALOR_MULTA: TFIBBCDField;
+    RzDBEdit3: TRzDBEdit;
+    RzLabel7: TRzLabel;
+    RzLabel11: TRzLabel;
+    RzDBEdit4: TRzDBEdit;
+    RzDBEdit5: TRzDBEdit;
+    RzLabel12: TRzLabel;
+    fdsFomasPagamentoJUROS_DIA: TFIBBCDField;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure EditaInsere;
+    procedure GravaCancela;
+    procedure btnIncluirClick(Sender: TObject);
+    procedure btnAlterarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
+    procedure JvDBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadFormasPagamento: TfrmCadFormasPagamento;
+
+implementation
+
+uses untData, uUtils;
+
+{$R *.dfm}
+
+procedure TfrmCadFormasPagamento.btnAlterarClick(Sender: TObject);
+begin
+  fdsFomasPagamento.Edit;
+  fdsFomasPagamentoDT_ALT.AsDateTime := Now;
+  fdsFomasPagamentoENVIADO_WEB.AsString := 'N';
+  EditaInsere;
+end;
+
+procedure TfrmCadFormasPagamento.btnCancelarClick(Sender: TObject);
+begin
+  fdsFomasPagamento.Cancel;
+  DM.Conexao.RollbackRetaining;
+  GravaCancela;
+end;
+
+procedure TfrmCadFormasPagamento.btnGravarClick(Sender: TObject);
+var
+  utils : TUtils;
+  i : Smallint;
+  campoVazio : Boolean;
+begin
+  campoVazio := False;
+  for i := 0 to ComponentCount -1 do
+  begin
+    if (Components[i].Tag = 15) then
+    begin
+        if utils.VerificaCampoObrigatorio(TRzDBEdit(Components[i])) then
+          campoVazio := True;
+    end;
+  end;
+
+  if campoVazio then
+    Application.MessageBox('Existem campos obrigatórios sem preencher.','Anteção',MB_OK+MB_ICONERROR)
+  else
+  begin
+    fdsFomasPagamento.Post;
+    DM.Conexao.CommitRetaining;
+    GravaCancela;
+    fdsFomasPagamento.Close;
+    fdsFomasPagamento.OrderClause := 'NOME';
+    fdsFomasPagamento.Open;
+    fdsFomasPagamento.Last;
+  end;
+end;
+
+procedure TfrmCadFormasPagamento.btnIncluirClick(Sender: TObject);
+begin
+  fdsFomasPagamento.Append;
+  fdsFomasPagamentoDT_Inc.AsDateTime := Now;
+  EditaInsere;
+end;
+
+procedure TfrmCadFormasPagamento.EditaInsere;
+var
+  i : Smallint;
+begin
+  for i := 0 to ComponentCount -1 do
+  begin
+    if (Components[i] is TRzPageControl) then
+    begin
+      TRzPageControl(Components[i]).ActivePageIndex:= 1;
+      TRzPageControl(Components[i]).Pages[0].TabVisible := False;
+    end;
+
+    if (Components[i] is TRzBitBtn) then
+    begin
+      if Components[i].Tag = 1 then
+        TRzBitBtn(Components[i]).Enabled := False
+      else
+        TRzBitBtn(Components[i]).Enabled := True;
+    end;
+  end;
+  edtNome.SetFocus;
+end;
+
+procedure TfrmCadFormasPagamento.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  Action := caFree;
+  frmCadFormasPagamento := nil;
+end;
+
+procedure TfrmCadFormasPagamento.FormCreate(Sender: TObject);
+begin
+  fdsFomasPagamento.Open;
+end;
+
+procedure TfrmCadFormasPagamento.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+    SelectNext(ActiveControl, True, True);
+  end;
+end;
+
+procedure TfrmCadFormasPagamento.GravaCancela;
+var
+  i : Smallint;
+begin
+  for i := 0 to ComponentCount -1 do
+  begin
+    if (Components[i] is TRzPageControl) then
+    begin
+      TRzPageControl(Components[i]).Pages[0].TabVisible := True;
+      TRzPageControl(Components[i]).ActivePageIndex:= 0;
+    end;
+    if (Components[i] is TRzBitBtn) then
+    begin
+      if Components[i].Tag = 1 then
+        TRzBitBtn(Components[i]).Enabled := True
+      else
+        TRzBitBtn(Components[i]).Enabled := False;
+    end;
+  end;
+
+  fdsFomasPagamento.Close;
+  fdsFomasPagamento.Open;
+  fdsFomasPagamento.Last;
+end;
+
+procedure TfrmCadFormasPagamento.JvDBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  if not odd(fdsFomasPagamento.RecNo) then
+  begin
+    JvDBGrid1.Canvas.Brush.Color := DM.gridOddColor;
+    JvDBGrid1.Canvas.FillRect(Rect);
+    JvDBGrid1.DefaultDrawDataCell(rect,Column.Field,state);
+  end;
+end;
+
+end.

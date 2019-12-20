@@ -1,0 +1,860 @@
+unit untOrdemServicoSimples;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzPanel, RzButton, Vcl.StdCtrls,
+  RzLabel, Vcl.Imaging.pngimage, Vcl.ExtCtrls, JvExExtCtrls, JvImage,
+  dxGDIPlusClasses, RzSplit, RzBckgnd, RzRadGrp, JvExStdCtrls, JvButton,
+  JvCtrls, JvExMask, JvToolEdit, JvMaskEdit, JvCheckedMaskEdit,
+  JvDatePickerEdit, JvCheckBox, Vcl.Mask, RzEdit, RzCmboBx, Vcl.ImgList,
+  PngImageList, RzDBGrid, Vcl.DBCtrls, RzDBEdit, Vcl.Grids, Vcl.DBGrids,
+  JvExDBGrids, JvDBGrid, RzTabs, Data.DB, FIBDataSet, pFIBDataSet,
+  pFIBClientDataSet, Datasnap.DBClient, Datasnap.Provider, RzShellDialogs,
+  frxClass, frxDBSet;
+
+type
+  TfrmOrdemServicoSimples = class(TForm)
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloCliente: TRzLabel;
+    btnPrior: TRzBitBtn;
+    btnFirst: TRzBitBtn;
+    btnNext: TRzBitBtn;
+    btnLast: TRzBitBtn;
+    btnTodos: TRzBitBtn;
+    btnInprimir: TRzBitBtn;
+    pnlValores: TRzGroupBox;
+    lblTotalProdutos: TRzLabel;
+    RzLabel16: TRzLabel;
+    RzLabel17: TRzLabel;
+    lblTotalServicos: TRzLabel;
+    RzBackground1: TRzBackground;
+    RzSplitter1: TRzSplitter;
+    RzPanel2: TRzPanel;
+    btnIncluir: TRzBitBtn;
+    btnGravar: TRzBitBtn;
+    btnAlterar: TRzBitBtn;
+    btnDelete: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    btnFechar: TRzBitBtn;
+    RzPanel3: TRzPanel;
+    pnlNumOs: TRzGroupBox;
+    edtPesqNumOs: TRzEdit;
+    chkNumOs: TJvCheckBox;
+    pnlPeriodo: TRzGroupBox;
+    RzLabel20: TRzLabel;
+    RzLabel21: TRzLabel;
+    dtpInicio: TJvDatePickerEdit;
+    dtpFim: TJvDatePickerEdit;
+    chkPeriodo: TJvCheckBox;
+    pnlCliente: TRzGroupBox;
+    edtPesqCliente: TRzEdit;
+    chkCliente: TJvCheckBox;
+    btnPesquisar: TJvImgBtn;
+    rgbStatus: TRzRadioGroup;
+    PngImageList1: TPngImageList;
+    fdsOS: TpFIBDataSet;
+    fdsOSID: TFIBBCDField;
+    fdsOSIDCLIENTE: TFIBBCDField;
+    fdsOSCLIENTE: TFIBStringField;
+    fdsOSIDVEICULO: TFIBBCDField;
+    fdsOSDT_INC: TFIBDateField;
+    fdsOSDT_FECHAMENTO: TFIBDateField;
+    fdsOSDESCRICAO_PROBLEMA: TFIBBlobField;
+    fdsOSOBS_TECNICAS: TFIBBlobField;
+    fdsOSTELEFONE: TFIBStringField;
+    fdsOSCELULAR: TFIBStringField;
+    fdsOSEMAIL: TFIBStringField;
+    fdsOSSTATUS: TFIBStringField;
+    fdsOSVLR_SERVICOS: TFIBBCDField;
+    fdsOSVLR_PRODUTOS: TFIBBCDField;
+    fdsOSVLR_TOTAL: TFIBBCDField;
+    fdsOS_ProdItem: TpFIBDataSet;
+    fdsOS_ProdItemIDOS: TFIBBCDField;
+    fdsOS_ProdItemIDPRODITEM: TFIBBCDField;
+    fdsOS_ProdItemNOME: TFIBStringField;
+    fdsOS_ProdItemDT_INC: TFIBDateField;
+    cdsOS_ProdItem: TpFIBClientDataSet;
+    cdsOS_ProdItemIDOS: TpFIBClientBCDField;
+    cdsOS_ProdItemIDPRODITEM: TpFIBClientBCDField;
+    cdsOS_ProdItemNOME: TStringField;
+    cdsOS_ProdItemDT_INC: TDateField;
+    dsOS_ProdItem: TDataSource;
+    dsOS: TDataSource;
+    dspOS_ProdItem: TpFIBDataSetProvider;
+    fdsOS_ProdItemOBS: TFIBStringField;
+    cdsOS_ProdItemOBS: TStringField;
+    fdsMovimentoCaixa: TpFIBDataSet;
+    fdsMovimentoCaixaID: TFIBBCDField;
+    fdsMovimentoCaixaIDCAIXA: TFIBBCDField;
+    fdsMovimentoCaixaIDFILIAL: TFIBBCDField;
+    fdsMovimentoCaixaDT_INC: TFIBDateField;
+    fdsMovimentoCaixaHR_INC: TFIBTimeField;
+    fdsMovimentoCaixaIDUSUARIO: TFIBBCDField;
+    fdsMovimentoCaixaCONTROLE: TFIBBCDField;
+    fdsMovimentoCaixaTIPO: TFIBStringField;
+    fdsMovimentoCaixaMOEDA: TFIBStringField;
+    fdsMovimentoCaixaVLR_ENTRADA: TFIBBCDField;
+    fdsMovimentoCaixaVLR_VENDA: TFIBBCDField;
+    fdsMovimentoCaixaVLR_TOTAL: TFIBBCDField;
+    fdsMovimentoCaixaVLR_DESCONTO: TFIBBCDField;
+    fdsMovimentoCaixaTROCO: TFIBBCDField;
+    fdsMovimentoCaixaENVIADO_WEB: TFIBStringField;
+    fdsMovimentoCaixaIDMOVIMENTO: TFIBBCDField;
+    fdsMovimentoCaixaHISTORICO: TFIBStringField;
+    fdsMovimentoCaixaVLR_CHEQUE: TFIBBCDField;
+    fdsMovimentoCaixaVLR_CARTAO: TFIBBCDField;
+    fdsMovimentoCaixaVLR_NOTA: TFIBBCDField;
+    fdsMovimentoCaixaVLR_FINANCEIRA: TFIBBCDField;
+    fdsMovimentoCaixaVLR_VALEDESCONTO: TFIBBCDField;
+    fdsMovimentoCaixaVLR_TICKET: TFIBBCDField;
+    imgFlagGreen2: TImage;
+    imgFlagRed2: TImage;
+    imgFlagBlue2: TImage;
+    imgFlagYellow2: TImage;
+    Image1: TImage;
+    Image2: TImage;
+    Image3: TImage;
+    Image4: TImage;
+    imgFlagYellow: TImage;
+    imgFlagBlue: TImage;
+    imgFlagRed: TImage;
+    imgFlagGreen: TImage;
+    fdsOS_ProdItemQTN: TFIBBCDField;
+    cdsOS_ProdItemQTN: TpFIBClientBCDField;
+    pgcControle: TRzPageControl;
+    tbsOS: TRzTabSheet;
+    gdrOS: TJvDBGrid;
+    tbsDetalhamento: TRzTabSheet;
+    RzGroupBox2: TRzGroupBox;
+    lblCodigo: TRzLabel;
+    RzLabel7: TRzLabel;
+    RzLabel1: TRzLabel;
+    RzLabel18: TRzLabel;
+    RzLabel2: TRzLabel;
+    RzLabel3: TRzLabel;
+    RzLabel8: TRzLabel;
+    RzLabel9: TRzLabel;
+    RzDBEdit11: TRzDBEdit;
+    RzDBEdit12: TRzDBEdit;
+    RzDBEdit13: TRzDBEdit;
+    RzDBEdit14: TRzDBEdit;
+    RzDBEdit8: TRzDBEdit;
+    RzDBEdit1: TRzDBEdit;
+    btnPesqCliente: TRzBitBtn;
+    RzDBEdit6: TRzDBEdit;
+    RzDBEdit7: TRzDBEdit;
+    RzGroupBox3: TRzGroupBox;
+    pnlLancItens: TRzPanel;
+    RzLabel10: TRzLabel;
+    RzLabel15: TRzLabel;
+    RzLabel12: TRzLabel;
+    RzLabel19: TRzLabel;
+    edtItemVlrUnitario: TRzDBEdit;
+    btnItemGravar: TRzBitBtn;
+    btnItemCancelar: TRzBitBtn;
+    btnItemExcluir: TRzBitBtn;
+    btnItemAlterar: TRzBitBtn;
+    btnItensIncluir: TRzBitBtn;
+    RzDBEdit16: TRzDBEdit;
+    RzDBEdit17: TRzDBEdit;
+    RzDBEdit15: TRzDBEdit;
+    JvDBGrid2: TJvDBGrid;
+    RzGroupBox4: TRzGroupBox;
+    RzLabel4: TRzLabel;
+    RzLabel5: TRzLabel;
+    RzLabel6: TRzLabel;
+    RzLabel11: TRzLabel;
+    RzLabel13: TRzLabel;
+    RzLabel14: TRzLabel;
+    RzDBEdit2: TRzDBEdit;
+    RzDBEdit3: TRzDBEdit;
+    RzDBEdit4: TRzDBEdit;
+    RzDBEdit5: TRzDBEdit;
+    RzDBEdit9: TRzDBEdit;
+    RzDBEdit10: TRzDBEdit;
+    fdsOS_ProdItemVLR_UNITARIO: TFIBBCDField;
+    fdsOS_ProdItemVLR_TOTAL: TFIBBCDField;
+    cdsOS_ProdItemVLR_UNITARIO: TpFIBClientBCDField;
+    cdsOS_ProdItemVLR_TOTAL: TpFIBClientBCDField;
+    btnAnexar: TJvImgBtn;
+    RzOpenDialog1: TRzOpenDialog;
+    fdsOSANEXO: TFIBStringField;
+    frxOs: TfrxDBDataset;
+    frxOs_ProdItem: TfrxDBDataset;
+    fdsOSENDERECO: TFIBStringField;
+    fdsOSBAIRRO: TFIBStringField;
+    fdsOSCIDADE: TFIBStringField;
+    fdsOSDOCUMENTO: TFIBStringField;
+    fdsOSCEP: TFIBStringField;
+    procedure btnPesqClienteClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure rgbStatusChanging(Sender: TObject; NewIndex: Integer;
+      var AllowChange: Boolean);
+    procedure fdsOSAfterScroll(DataSet: TDataSet);
+    procedure tbsDetalhamentoShow(Sender: TObject);
+    procedure RetornaItensOS;
+    procedure btnIncluirClick(Sender: TObject);
+    procedure EditaInsere;
+    procedure GravaCancela;
+    procedure Pesquisar;
+    procedure btnAlterarClick(Sender: TObject);
+    procedure btnDeleteClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnItensIncluirClick(Sender: TObject);
+    procedure btnItemGravarClick(Sender: TObject);
+    procedure btnItemCancelarClick(Sender: TObject);
+    procedure btnItemAlterarClick(Sender: TObject);
+    procedure btnItemExcluirClick(Sender: TObject);
+    procedure btnFecharClick(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
+    procedure GeraFinanceiro;
+    procedure ControlaBtnsItens;
+    procedure gdrOSDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure btnPesquisarClick(Sender: TObject);
+    procedure chkPeriodoClick(Sender: TObject);
+    procedure chkClienteClick(Sender: TObject);
+    procedure chkNumOsClick(Sender: TObject);
+    procedure edtPesqClienteExit(Sender: TObject);
+    procedure edtPesqClienteEnter(Sender: TObject);
+    procedure edtPesqNumOsEnter(Sender: TObject);
+    procedure edtPesqNumOsExit(Sender: TObject);
+    procedure btnAnexarClick(Sender: TObject);
+    procedure ImprimirOSAtual;
+    procedure btnInprimirClick(Sender: TObject);
+    procedure btnPriorClick(Sender: TObject);
+    procedure btnFirstClick(Sender: TObject);
+    procedure btnNextClick(Sender: TObject);
+    procedure btnLastClick(Sender: TObject);
+    procedure btnTodosClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmOrdemServicoSimples: TfrmOrdemServicoSimples;
+  alterandoIten : Boolean;
+
+implementation
+
+{$R *.dfm}
+
+uses untCadClientes, uUtils, untPesqProdutoItens, untPesqCliente, untData,
+  untVendaFinalizacao, untPrincipal;
+
+procedure TfrmOrdemServicoSimples.btnAlterarClick(Sender: TObject);
+begin
+  if fdsOSSTATUS.AsString = 'FC' then
+    Application.MessageBox('Você não pode altera uma OS já Fechada.', 'OS Fechada', MB_OK+MB_ICONEXCLAMATION)
+  else
+  begin
+    fdsOS.Edit;
+    EditaInsere;
+    ControlaBtnsItens;
+  end;
+end;
+
+procedure TfrmOrdemServicoSimples.btnAnexarClick(Sender: TObject);
+begin
+  RzOpenDialog1.FileName  :=  '';
+  RzOpenDialog1.Title := 'Selecione o arquivo para anexar a OS';
+  RzOpenDialog1.DefaultExt := '*.*';
+  RzOpenDialog1.Filter := 'Todos os Arquivos (*.*)|*.*';
+  //RzOpenDialog1.InitialDir := ExtractFilePath(Application.ExeName) + 'XML\Compra';
+
+  if RzOpenDialog1.Execute then
+  begin
+    fdsOSANEXO.AsString := RzOpenDialog1.FileName;
+  end;
+end;
+
+procedure TfrmOrdemServicoSimples.btnCancelarClick(Sender: TObject);
+begin
+  fdsOS.Cancel;
+  DM.conexao.RollbackRetaining;
+  GravaCancela;
+end;
+
+procedure TfrmOrdemServicoSimples.btnDeleteClick(Sender: TObject);
+begin
+  if fdsOSSTATUS.AsString = 'FC' then
+    Application.MessageBox('Você não pode altera uma OS já Fechada.', 'OS Fechada', MB_OK+MB_ICONEXCLAMATION)
+  else
+  begin
+    Case MessageBox(Application.Handle, Pchar('Deseja realmente excluir esta OS?'), 'Atenção', MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) of
+          idYes: begin
+                   fdsOS.Delete;
+                   dm.conexao.CommitRetaining;
+                 end;
+    end;
+  end;
+end;
+
+procedure TfrmOrdemServicoSimples.btnFecharClick(Sender: TObject);
+begin
+  if cdsOS_ProdItem.RecordCount = 0 then
+  begin
+    Application.MessageBox('Nenhum Item foi lançado nessa OS.', 'Atenção', MB_OK+MB_ICONWARNING);
+    Abort;
+  end
+  else
+  begin
+    fdsOS.Edit;
+    fdsOSDT_FECHAMENTO.AsDateTime := Now;
+    fdsOSSTATUS.AsString := 'FE';
+    fdsOS.Post;
+    DM.conexao.CommitRetaining;
+    Application.MessageBox('OS Fechada com sucesso.', 'Atenção', MB_OK+MB_ICONWARNING);
+  end;
+end;
+
+procedure TfrmOrdemServicoSimples.btnFirstClick(Sender: TObject);
+begin
+  fdsOS.Prior;
+end;
+
+procedure TfrmOrdemServicoSimples.btnGravarClick(Sender: TObject);
+begin
+
+  if (cdsOS_ProdItem.RecordCount > 0) and (fdsOS.State in [dsInsert]) then
+  begin
+    GeraFinanceiro;
+  end;
+
+  fdsOS.Post;
+  cdsOS_ProdItem.ApplyUpdates(0);
+
+  DM.conexao.CommitRetaining;
+
+  Application.MessageBox('Ordem de Serviço Lançada com Sucesso!', 'OS Finalizada', MB_OK+MB_ICONINFORMATION);
+
+  GravaCancela;
+end;
+
+procedure TfrmOrdemServicoSimples.btnIncluirClick(Sender: TObject);
+begin
+  cdsOS_ProdItem.Open;
+  cdsOS_ProdItem.EmptyDataSet;
+  fdsOS.Append;
+  fdsOSIDVEICULO.AsInteger := 0;
+  fdsOSDT_INC.AsDateTime := Now;
+  fdsOSSTATUS.AsString := 'AB';
+  EditaInsere;
+  ControlaBtnsItens;
+end;
+
+procedure TfrmOrdemServicoSimples.btnInprimirClick(Sender: TObject);
+begin
+  ImprimirOSAtual;
+end;
+
+procedure TfrmOrdemServicoSimples.btnItemAlterarClick(Sender: TObject);
+begin
+  cdsOS_ProdItem.Edit;
+  fdsOSVLR_PRODUTOS.AsFloat := fdsOSVLR_PRODUTOS.AsFloat - cdsOS_ProdItemVLR_TOTAL.AsFloat;
+  fdsOSVLR_TOTAL.AsFloat := fdsOSVLR_TOTAL.AsFloat - cdsOS_ProdItemVLR_TOTAL.AsFloat;
+  edtItemVlrUnitario.SetFocus;
+  ControlaBtnsItens;
+
+end;
+
+procedure TfrmOrdemServicoSimples.btnItemCancelarClick(Sender: TObject);
+begin
+
+  if cdsOS_ProdItem.State in [dsEdit] then
+  begin
+    fdsOSVLR_PRODUTOS.AsFloat := fdsOSVLR_PRODUTOS.AsFloat + cdsOS_ProdItemVLR_TOTAL.AsFloat;
+    fdsOSVLR_TOTAL.AsFloat := fdsOSVLR_TOTAL.AsFloat + cdsOS_ProdItemVLR_TOTAL.AsFloat;
+  end;
+
+  cdsOS_ProdItem.Cancel;
+  ControlaBtnsItens;
+  btnItensIncluir.SetFocus;
+
+end;
+
+procedure TfrmOrdemServicoSimples.btnItemExcluirClick(Sender: TObject);
+begin
+  Case MessageBox(Application.Handle, Pchar('Deseja realmente excluir este item da OS?'), 'Atenção', MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) of
+          idYes: begin
+                   fdsOSVLR_PRODUTOS.AsFloat := fdsOSVLR_PRODUTOS.AsFloat - cdsOS_ProdItemVLR_TOTAL.AsFloat;
+                   fdsOSVLR_TOTAL.AsFloat := fdsOSVLR_TOTAL.AsFloat - cdsOS_ProdItemVLR_TOTAL.AsFloat;
+                   cdsOS_ProdItem.Delete;
+                   btnItensIncluir.SetFocus;
+                 end;
+    end;
+end;
+
+procedure TfrmOrdemServicoSimples.btnItemGravarClick(Sender: TObject);
+begin
+  if not(Trim(cdsOS_ProdItemVLR_UNITARIO.AsString) = EmptyStr) and (cdsOS_ProdItemQTN.AsInteger > 0) then
+  begin
+    cdsOS_ProdItemVLR_TOTAL.AsFloat := cdsOS_ProdItemVLR_UNITARIO.AsFloat * cdsOS_ProdItemQTN.AsFloat;
+    cdsOS_ProdItem.Post;
+    fdsOSVLR_PRODUTOS.AsFloat := fdsOSVLR_PRODUTOS.AsFloat + cdsOS_ProdItemVLR_TOTAL.AsFloat;
+    fdsOSVLR_TOTAL.AsFloat := fdsOSVLR_TOTAL.AsFloat + cdsOS_ProdItemVLR_TOTAL.AsFloat;
+    ControlaBtnsItens;
+    btnItensIncluir.SetFocus;
+  end
+  else
+    edtItemVlrUnitario.SetFocus;
+end;
+
+procedure TfrmOrdemServicoSimples.btnItensIncluirClick(Sender: TObject);
+var
+  utils : TUtils;
+begin
+  Try
+      frmPesqProdutoItens := TfrmPesqProdutoItens.Create(nil);
+      frmPesqProdutoItens.fdsProdutoItens.Open;
+      frmPesqProdutoItens.ShowModal;
+    Finally
+      if frmPesqProdutoItens.ModalResult = mrOk then
+      begin
+        cdsOS_ProdItem.Append;
+        cdsOS_ProdItemIDOS.AsInteger := fdsOSID.AsInteger;
+        cdsOS_ProdItemIDPRODITEM.AsInteger := frmPesqProdutoItens.fdsProdutoItensID.AsInteger;
+        cdsOS_ProdItemNOME.AsString := frmPesqProdutoItens.fdsProdutoItensNOME.AsString;
+        cdsOS_ProdItemVLR_UNITARIO.AsFloat := frmPesqProdutoItens.fdsProdutoItensPREC_VENDA.AsFloat;
+        edtItemVlrUnitario.SetFocus;
+      end;
+  end;
+
+      frmPesqProdutoItens.Free;
+      ControlaBtnsItens;
+end;
+
+procedure TfrmOrdemServicoSimples.btnLastClick(Sender: TObject);
+begin
+  fdsOS.Last;
+end;
+
+procedure TfrmOrdemServicoSimples.btnNextClick(Sender: TObject);
+begin
+  fdsOS.Next;
+end;
+
+procedure TfrmOrdemServicoSimples.btnPesqClienteClick(Sender: TObject);
+begin
+  Try
+    frmPesqCliente := TfrmPesqCliente.Create(nil);
+    frmPesqCliente.ShowModal;
+  Finally
+    if frmPesqCliente.ModalResult = mrOk then
+    begin
+      fdsOSIDCLIENTE.AsInteger := frmPesqCliente.fdsClientesID.AsInteger;
+      fdsOSCLIENTE.AsString := frmPesqCliente.fdsClientesNOME.AsString;
+      fdsOSTELEFONE.AsString := frmPesqCliente.fdsClientesTELEFONE.AsString;
+      fdsOSCELULAR.AsString := frmPesqCliente.fdsClientesCELULAR.AsString;
+    end;
+    frmPesqCliente.Free;
+    btnItensIncluir.SetFocus;
+  End;
+end;
+
+procedure TfrmOrdemServicoSimples.btnPesquisarClick(Sender: TObject);
+begin
+  Pesquisar;
+end;
+
+procedure TfrmOrdemServicoSimples.btnPriorClick(Sender: TObject);
+begin
+  fdsOS.First;
+end;
+
+procedure TfrmOrdemServicoSimples.btnTodosClick(Sender: TObject);
+begin
+  Pesquisar;
+end;
+
+procedure TfrmOrdemServicoSimples.chkClienteClick(Sender: TObject);
+begin
+  pnlCliente.Enabled := chkCliente.Checked;
+  if not(chkCliente.Checked) then
+  begin
+    edtPesqCliente.Text := 'Todos';
+    edtPesqCliente.Font.Color := clGray;
+  end;
+end;
+
+procedure TfrmOrdemServicoSimples.chkNumOsClick(Sender: TObject);
+begin
+  pnlNumOs.Enabled := pnlNumOs.Checked;
+  if not(pnlNumOs.Checked) then
+  begin
+    edtPesqNumOs.Text := 'Todos';
+    edtPesqNumOs.Font.Color := clGray;
+  end;
+end;
+
+procedure TfrmOrdemServicoSimples.chkPeriodoClick(Sender: TObject);
+begin
+  pnlPeriodo.Enabled := chkPeriodo.Checked;
+end;
+
+procedure TfrmOrdemServicoSimples.ControlaBtnsItens;
+begin
+  btnItemCancelar.Enabled := alterandoIten;
+  btnItemGravar.Enabled := alterandoIten;
+  btnItensIncluir.Enabled := not(alterandoIten);
+  btnItemAlterar.Enabled := not(alterandoIten);
+  btnItemExcluir.Enabled := not(alterandoIten);
+  alterandoIten := not(alterandoIten);
+end;
+
+procedure TfrmOrdemServicoSimples.EditaInsere;
+var
+  i : Smallint;
+begin
+  for i := 0 to ComponentCount -1 do
+  begin
+    if (Components[i] is TRzPageControl) then
+    begin
+      TRzPageControl(Components[i]).ActivePageIndex:= 1;
+      TRzPageControl(Components[i]).Pages[0].TabVisible := False;
+    end;
+
+    if (Components[i] is TRzBitBtn) then
+    begin
+      if Components[i].Tag = 1 then
+        TRzBitBtn(Components[i]).Enabled := False
+      else
+        TRzBitBtn(Components[i]).Enabled := True;
+    end;
+  end;
+
+  btnAnexar.Enabled := True;
+  btnPesqCliente.SetFocus;
+end;
+
+procedure TfrmOrdemServicoSimples.edtPesqClienteEnter(Sender: TObject);
+begin
+  if Trim(edtPesqCliente.Text) = 'TODOS' then
+  begin
+    edtPesqCliente.Text := EmptyStr;
+    edtPesqCliente.Font.Color := clBlack;
+  end;
+end;
+
+procedure TfrmOrdemServicoSimples.edtPesqClienteExit(Sender: TObject);
+begin
+  if Trim(edtPesqCliente.Text) = EmptyStr then
+  begin
+    edtPesqCliente.Text := 'TODOS';
+    edtPesqCliente.Font.Color := clGray;
+  end;
+end;
+
+procedure TfrmOrdemServicoSimples.edtPesqNumOsEnter(Sender: TObject);
+begin
+  if Trim(edtPesqNumOs.Text) = 'TODOS' then
+  begin
+    edtPesqNumOs.Text := EmptyStr;
+    edtPesqNumOs.Font.Color := clBlack;
+  end;
+end;
+
+procedure TfrmOrdemServicoSimples.edtPesqNumOsExit(Sender: TObject);
+begin
+  if Trim(edtPesqNumOs.Text) = EmptyStr then
+  begin
+    edtPesqNumOs.Text := 'TODOS';
+    edtPesqNumOs.Font.Color := clGray;
+  end;
+end;
+
+procedure TfrmOrdemServicoSimples.fdsOSAfterScroll(DataSet: TDataSet);
+begin
+  if fdsOSSTATUS.AsString = 'AB' then
+      btnFechar.Enabled := True
+    else
+      btnFechar.Enabled := False;
+end;
+
+procedure TfrmOrdemServicoSimples.FormCreate(Sender: TObject);
+begin
+  pgcControle.ActivePageIndex := 0;
+  alterandoIten := False;
+
+  with fdsOS do
+  Begin
+    Close;
+    Conditions.Clear;
+    Conditions.AddCondition('STATUS', 'O.STATUS = ' + QuotedStr('AB'), True);
+    Conditions.Apply;
+    Prepare;
+    Open;
+  End;
+end;
+
+procedure TfrmOrdemServicoSimples.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+    SelectNext(ActiveControl, True, True);
+  end;
+end;
+
+procedure TfrmOrdemServicoSimples.gdrOSDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+var
+  posicao : string[2];
+  Bitmap : TBitmap;
+begin
+  if not odd(fdsOS.RecNo) then
+  begin
+    gdrOS.Canvas.Brush.Color := DM.gridOddColor;
+    gdrOS.Canvas.FillRect(Rect);
+    gdrOS.DefaultDrawDataCell(rect,Column.Field,state);
+
+    if (Column.Index = 2) and not(fdsOS.IsEmpty) then
+    begin
+      posicao := fdsOSSTATUS.AsString;
+      if posicao = 'AB' then
+      begin
+          Bitmap := imgFlagYellow2.Picture.Bitmap
+      end
+      else
+        if posicao = 'FE' then
+          Bitmap := imgFlagGreen2.Picture.Bitmap;
+
+      with TDBGrid(Sender) do
+      begin
+      Canvas.Draw((Rect.Right - Rect.Left - Bitmap.Width) div 2 + Rect.Left,
+      (Rect.Bottom - Rect.Top - Bitmap.Height) div 2 + Rect.Top, Bitmap);
+      // ou: Canvas.Draw(Rect.Left, Rect.Top, Bitmap);
+      end;
+    end;
+  end
+  else
+  begin
+    if (Column.Index = 2) and not(fdsOS.IsEmpty) then
+    begin
+      posicao := fdsOSSTATUS.AsString;
+      if posicao = 'AB' then
+      begin
+          Bitmap := imgFlagYellow.Picture.Bitmap
+      end
+      else
+        if posicao = 'FE' then
+          Bitmap := imgFlagGreen.Picture.Bitmap;
+
+      with TDBGrid(Sender) do
+      begin
+      Canvas.Draw((Rect.Right - Rect.Left - Bitmap.Width) div 2 + Rect.Left,
+      (Rect.Bottom - Rect.Top - Bitmap.Height) div 2 + Rect.Top, Bitmap);
+      // ou: Canvas.Draw(Rect.Left, Rect.Top, Bitmap);
+      end;
+    end;
+  end;
+end;
+
+procedure TfrmOrdemServicoSimples.GeraFinanceiro;
+begin
+  Try
+    frmVendaFinalizacao := TfrmVendaFinalizacao.Create(nil);
+    frmVendaFinalizacao.valorDoc := fdsOSVLR_TOTAL.AsFloat;
+    frmVendaFinalizacao.idCliente := fdsOSIDCLIENTE.AsInteger;
+    frmVendaFinalizacao.edtCliente.Text := fdsOSCLIENTE.AsString;
+    frmVendaFinalizacao.tipoVenda := 'OS';
+  //  frmBaixaDocumento.tipo := 'Receber';
+  //  frmBaixaDocumento.lblCliente.caption := fdsOSCLIENTE.AsString;
+    frmVendaFinalizacao.ShowModal;
+  Finally
+    if frmVendaFinalizacao.ModalResult = mrOk then
+    begin
+      fdsMovimentoCaixa.Open;
+      fdsMovimentoCaixa.Append;
+      fdsMovimentoCaixaCONTROLE.AsInteger := controle;
+      fdsMovimentoCaixaIDUSUARIO.AsInteger := frmPrincipal.idUsuario;
+      fdsMovimentoCaixaTIPO.AsString := 'OS';
+      fdsMovimentoCaixaMOEDA.AsString := 'OS';
+      fdsMovimentoCaixaVLR_DESCONTO.AsFloat := frmVendaFinalizacao.valorDesconto;
+      fdsMovimentoCaixaVLR_VENDA.AsFloat := fdsOSVLR_TOTAL.AsFloat;
+      fdsMovimentoCaixaVLR_TOTAL.AsFloat := fdsOSVLR_TOTAL.AsFloat - frmVendaFinalizacao.valorDesconto;
+      fdsMovimentoCaixaVLR_ENTRADA.AsFloat := frmVendaFinalizacao.valorDinheiro;
+      fdsMovimentoCaixaVLR_CARTAO.AsFloat := frmVendaFinalizacao.valorCartao;
+      fdsMovimentoCaixaVLR_CHEQUE.AsFloat := frmVendaFinalizacao.valorCheque;
+      fdsMovimentoCaixaVLR_NOTA.AsFloat := frmVendaFinalizacao.valorParcelar;
+      fdsMovimentoCaixaIDMOVIMENTO.AsInteger := fdsOSID.AsInteger;
+      fdsMovimentoCaixaIDCAIXA.AsInteger := numCaixa;
+      fdsMovimentoCaixaIDFILIAL.AsInteger := DM.fdsConfigIDFILIAL.AsInteger;
+      fdsMovimentoCaixaTROCO.AsFloat := 0;
+      fdsMovimentoCaixa.Post;
+    end
+    else
+    begin
+      Abort;
+    end;
+    frmVendaFinalizacao.Free;
+  End;
+end;
+
+procedure TfrmOrdemServicoSimples.GravaCancela;
+var
+  i : Smallint;
+  utils : TUtils;
+  editando : Boolean;
+begin
+  for i := 0 to ComponentCount -1 do
+  begin
+    if (Components[i] is TRzPageControl) then
+    begin
+      TRzPageControl(Components[i]).Pages[0].TabVisible := True;
+      TRzPageControl(Components[i]).ActivePageIndex:= 0;
+    end
+    else
+    begin
+      if (Components[i] is TRzBitBtn) then
+      begin
+        if Components[i].Tag = 1 then
+          TRzBitBtn(Components[i]).Enabled := True
+        else
+          TRzBitBtn(Components[i]).Enabled := False;
+      end
+      else
+      begin
+        if Components[i].Tag = 15 then
+        begin
+          if (Components[i] is TRzEdit) then
+            utils.ResetColorCampo(TRzDBEdit(Components[i]), true)
+          else
+            utils.ResetColorCampo(TRzDBEdit(Components[i]), false);
+        end;
+      end;
+    end;
+  end;
+
+  fdsOS.Close;
+  fdsOS.OrderClause := 'ID';
+  fdsOS.Open;
+  fdsOS.Last;
+  alterandoIten := False;
+  cdsOS_ProdItem.EmptyDataSet;
+  btnAnexar.Enabled := False;
+end;
+
+procedure TfrmOrdemServicoSimples.ImprimirOSAtual;
+var
+  idTemp : string;
+begin
+  idTemp := fdsOSID.AsString;
+//  with fdsOS do
+//  begin
+//    Close;
+//    Conditions.Clear;
+//    Conditions.Apply;
+//    Conditions.AddCondition('ID','O.ID=' + idTemp,True);
+//    Conditions.Apply;
+//    Prepare;
+//    Open;
+//  end;
+
+  RetornaItensOS;
+
+  DM.frxReport1.Clear;
+  DM.frxReport1.LoadFromFile(ExtractFilePath(Application.ExeName) + '/Relatorios/frxOSSimples.fr3');
+  //DM.frxReport1.PrepareReport(True);
+  DM.frxReport1.ShowReport(True);
+
+  Pesquisar;
+  fdsOS.Locate('ID', idTemp, []);
+end;
+
+procedure TfrmOrdemServicoSimples.Pesquisar;
+begin
+
+  pgcControle.ActivePageIndex := 0;
+
+  with fdsOS do
+  begin
+    Close;
+    Conditions.Clear;
+
+    if rgbStatus.ItemIndex = 0 then
+      Conditions.AddCondition('STATUS', 'O.STATUS = ' + QuotedStr('AB'), True)
+    else
+      if rgbStatus.ItemIndex = 1 then
+        Conditions.AddCondition('STATUS', 'O.STATUS = ' + QuotedStr('FE'), True);
+
+    if chkNumOs.Checked then
+      Conditions.AddCondition('ID', 'O.ID = ' + Trim(edtPesqNumOs.Text), True);
+
+    if chkCliente.Checked then
+      Conditions.AddCondition('CLIENTE', 'C.NOME = LIKE' + QuotedStr('%') + Trim(edtPesqNumOs.Text) + QuotedStr('%'), True);
+
+    if (chkPeriodo.Checked) then
+      Conditions.AddCondition('DTINC', 'O.DT_INC BETWEEN ' + QuotedStr(FormatDateTime('MM/DD/YYYY', dtpInicio.Date)) + ' AND ' + QuotedStr(FormatDateTime('MM/DD/YYYY', dtpFim.Date)), True);
+
+    Conditions.Apply;
+    Prepare;
+    Open;
+  end;
+end;
+
+procedure TfrmOrdemServicoSimples.RetornaItensOS;
+begin
+  if fdsOs.RecordCount > 0 then
+  begin
+    with fdsOS_ProdItem do
+    begin
+      cdsOS_ProdItem.Close;
+      Close;
+      Conditions.Clear;
+      Conditions.Apply;
+      Conditions.AddCondition('IDOS','IDOS=' + fdsOSID.AsString,True);
+      Conditions.Apply;
+      Prepare;
+      Open;
+      cdsOS_ProdItem.Open;
+    end;
+  end;
+end;
+
+procedure TfrmOrdemServicoSimples.rgbStatusChanging(Sender: TObject;
+  NewIndex: Integer; var AllowChange: Boolean);
+begin
+  with fdsOS do
+  begin
+    Close;
+    Conditions.Clear;
+
+    if not(NewIndex = 2) then
+    begin
+      if NewIndex = 0 then
+      begin
+        Conditions.AddCondition('STATUS',' O.STATUS = ' + QuotedStr('AB'), True);
+      end;
+
+      if NewIndex = 1 then
+      begin
+        Conditions.AddCondition('STATUS',' O.STATUS = ' + QuotedStr('FE'), True);
+      end;
+    end;
+
+    Conditions.Apply;
+    Prepare;
+    Open;
+  end;
+end;
+
+procedure TfrmOrdemServicoSimples.tbsDetalhamentoShow(Sender: TObject);
+var
+  utils : TUtils;
+begin
+  RetornaItensOs;
+ // pnlValores.Visible := True;
+ // pnlTotalizadores.Visible := False;
+
+//  if fdsOs.RecordCount > 0 then
+//    lblTotalProdutos.Caption := utils.AdicionaMascaraDinheiro(fdsOSVLR_PRODUTOS.AsString);
+end;
+
+end.

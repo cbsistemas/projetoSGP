@@ -1,0 +1,24 @@
+unit untGraficoPedidos;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs;
+
+type
+  TfrmGraficoPedidos = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmGraficoPedidos: TfrmGraficoPedidos;
+
+implementation
+
+{$R *.dfm}
+
+end.

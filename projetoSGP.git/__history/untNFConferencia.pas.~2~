@@ -1,0 +1,28 @@
+unit untNFConferencia;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzBckgnd, dxGDIPlusClasses,
+  Vcl.ExtCtrls, JvExExtCtrls, JvImage, RzPanel;
+
+type
+  TfrmNFConferencia = class(TForm)
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    RzBackground1: TRzBackground;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmNFConferencia: TfrmNFConferencia;
+
+implementation
+
+{$R *.dfm}
+
+end.

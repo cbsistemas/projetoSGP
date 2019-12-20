@@ -1,0 +1,45 @@
+unit uContador;
+
+interface
+
+uses System.Classes, System.SysUtils, Vcl.Forms;
+
+type
+  TContador = class(TThread)
+  protected
+    procedure Execute; override;
+    procedure Contador;
+  end;
+
+implementation
+
+uses untVendas;
+
+procedure TContador.Execute;
+begin
+
+  Contador;
+
+  inherited;
+end;
+
+procedure TContador.Contador;
+begin
+  Priority := tpLower;
+  Inc(Tempo);
+  Inc(Tempo);
+  frmVendas.pgbProgresso.Percent := Tempo;
+  Application.ProcessMessages;
+  if (Tempo >= 100) then
+  begin
+    Tempo := 0;
+  end;
+  Sleep(10);
+
+  if self.Terminated then
+    abort
+  else
+    Contador;
+end;
+
+end.

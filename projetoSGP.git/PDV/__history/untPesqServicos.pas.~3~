@@ -1,0 +1,143 @@
+unit untPesqServicos;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, FIBDataSet, pFIBDataSet, Grids, DBGrids, JvExDBGrids, JvDBGrid,
+  StdCtrls, Mask, RzEdit, RzButton, RzLabel, dxGDIPlusClasses, ExtCtrls,
+  JvExExtCtrls, JvImage, RzPanel, RzBckgnd, Vcl.Imaging.pngimage;
+
+type
+  TfrmPesqServicos = class(TForm)
+    RzBackground1: TRzBackground;
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloCliente: TRzLabel;
+    lblNome: TRzLabel;
+    btnTodos: TRzBitBtn;
+    btnPesquisar: TRzBitBtn;
+    edtNome: TRzEdit;
+    JvDBGrid1: TJvDBGrid;
+    RzPanel2: TRzPanel;
+    btnSelecionar: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    dsTecnicos: TDataSource;
+    fdsTecnicos: TpFIBDataSet;
+    fdsTecnicosID: TFIBBCDField;
+    fdsTecnicosDT_INC: TFIBDateField;
+    fdsTecnicosDT_ALT: TFIBDateField;
+    fdsTecnicosSTATUS: TFIBStringField;
+    fdsTecnicosNOME: TFIBStringField;
+    fdsTecnicosDT_NASC: TFIBDateField;
+    fdsTecnicosTELEFONE: TFIBStringField;
+    fdsTecnicosENDERECO: TFIBStringField;
+    fdsTecnicosBAIRRO: TFIBStringField;
+    fdsTecnicosIDCIDADE: TFIBBCDField;
+    fdsTecnicosCEP: TFIBStringField;
+    fdsTecnicosRG: TFIBStringField;
+    fdsTecnicosCPF: TFIBStringField;
+    fdsTecnicosSEXO: TFIBStringField;
+    fdsTecnicosCELULAR: TFIBStringField;
+    fdsTecnicosENVIADO_WEB: TFIBStringField;
+    procedure btnTodosClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure Pesquisar;
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnSelecionarClick(Sender: TObject);
+    procedure btnPesquisarClick(Sender: TObject);
+    procedure edtNomeChange(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure JvDBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPesqServicos: TfrmPesqServicos;
+
+implementation
+
+uses untData;
+
+{$R *.dfm}
+
+procedure TfrmPesqServicos.btnCancelarClick(Sender: TObject);
+begin
+  ModalResult := mrCancel;
+end;
+
+procedure TfrmPesqServicos.btnPesquisarClick(Sender: TObject);
+begin
+  Pesquisar;
+end;
+
+procedure TfrmPesqServicos.btnSelecionarClick(Sender: TObject);
+begin
+  ModalResult := mrOk;
+end;
+
+procedure TfrmPesqServicos.btnTodosClick(Sender: TObject);
+var
+  sql : string;
+begin
+  fdsTecnicos.Close;
+  fdsTecnicos.SelectSQL.Clear;
+  sql := 'SELECT * FROM SERVICOS';
+  fdsTecnicos.SelectSQL.Add(sql);
+  fdsTecnicos.OrderClause := 'NOME';
+  fdsTecnicos.Prepare;
+  fdsTecnicos.Open;
+  fdsTecnicos.Last;
+  fdsTecnicos.First;
+end;
+
+procedure TfrmPesqServicos.edtNomeChange(Sender: TObject);
+begin
+  Pesquisar;
+end;
+
+procedure TfrmPesqServicos.FormActivate(Sender: TObject);
+begin
+  edtNome.SetFocus;
+  fdsTecnicos.Open;
+  fdsTecnicos.First;
+end;
+
+procedure TfrmPesqServicos.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = VK_F5 then
+  begin
+    btnSelecionar.Click;
+  end;
+end;
+
+procedure TfrmPesqServicos.JvDBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  if not odd(fdsTecnicos.RecNo) then
+  begin
+    JvDBGrid1.Canvas.Brush.Color := DM.gridOddColor;
+    JvDBGrid1.Canvas.FillRect(Rect);
+    JvDBGrid1.DefaultDrawDataCell(rect,Column.Field,state);
+  end;
+end;
+
+procedure TfrmPesqServicos.Pesquisar;
+var
+  sql : string;
+begin
+  fdsTecnicos.Close;
+  fdsTecnicos.SelectSQL.Clear;
+  sql := 'SELECT * FROM FUNCIONARIO F WHERE UPPER(F.NOME) LIKE '+ QuotedStr(edtNome.Text + '%');
+  fdsTecnicos.SelectSQL.Add(sql);
+  fdsTecnicos.OrderClause := 'NOME';
+  fdsTecnicos.Prepare;
+  fdsTecnicos.Open;
+end;
+
+end.

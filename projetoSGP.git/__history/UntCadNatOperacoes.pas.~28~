@@ -1,0 +1,231 @@
+unit UntCadNatOperacoes;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzPanel, RzRadGrp, RzDBRGrp,
+  Vcl.StdCtrls, RzEdit, Vcl.Imaging.pngimage, Vcl.ExtCtrls, JvExExtCtrls,
+  JvImage, Vcl.Mask, RzDBEdit, RzLabel, Vcl.Grids, Vcl.DBGrids, JvExDBGrids,
+  JvDBGrid, RzTabs, RzButton, RzBckgnd, Vcl.DBCtrls, Data.DB, FIBDataSet,
+  pFIBDataSet, FIBDatabase, pFIBDatabase;
+
+type
+  TfrmCadNatOperacoes = class(TForm)
+    RzBackground1: TRzBackground;
+    RzPanel2: TRzPanel;
+    btnIncluir: TRzBitBtn;
+    btnGravar: TRzBitBtn;
+    btnAlterar: TRzBitBtn;
+    btnDelete: TRzBitBtn;
+    btnCancelar: TRzBitBtn;
+    pgcControl: TRzPageControl;
+    tbsTabela: TRzTabSheet;
+    dbGrid1: TJvDBGrid;
+    tbsForm: TRzTabSheet;
+    lblCodigo: TRzLabel;
+    lblDtAlt: TRzLabel;
+    lblDtInc: TRzLabel;
+    edtID: TRzDBEdit;
+    edtDt_Inc: TRzDBEdit;
+    edtDt_Alt: TRzDBEdit;
+    RzPanel1: TRzPanel;
+    lblTituloCliente: TRzLabel;
+    JvImage2: TJvImage;
+    RzDBRadioGroup1: TRzDBRadioGroup;
+    RzDBRadioGroup2: TRzDBRadioGroup;
+    RzDBRadioGroup3: TRzDBRadioGroup;
+    TransNatOperacao: TpFIBTransaction;
+    fdsNatOperacao: TpFIBDataSet;
+    dsNatOperacao: TDataSource;
+    fdsNatOperacaoID: TFIBBCDField;
+    fdsNatOperacaoDT_INC: TFIBDateField;
+    fdsNatOperacaoDT_ALT: TFIBDateField;
+    fdsNatOperacaoSTATUS: TFIBStringField;
+    fdsNatOperacaoOPERACAO: TFIBStringField;
+    fdsNatOperacaoDESCRICAO: TFIBMemoField;
+    fdsNatOperacaoAREA_CIRCULACAO: TFIBStringField;
+    fdsNatOperacaoTIPO_MOVIMENTACAO: TFIBStringField;
+    fdsNatOperacaoCAT_SAIDA_CFOP: TFIBStringField;
+    fdsNatOperacaoCFOP_PADRAO: TFIBStringField;
+    fdsNatOperacaoMOVIMENTO_ESTOQUE: TFIBStringField;
+    RzDBMemo1: TRzDBMemo;
+    edtOperacao: TRzDBEdit;
+    RzLabel1: TRzLabel;
+    RzLabel2: TRzLabel;
+    edtCFOPpadrao: TRzDBEdit;
+    RzLabel3: TRzLabel;
+    btnPesqCFOP: TRzBitBtn;
+    fdsNatOperacaoCIRCULACAO: TFIBStringField;
+    procedure FormCreate(Sender: TObject);
+    procedure btnIncluirClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
+    procedure btnAlterarClick(Sender: TObject);
+    procedure btnDeleteClick(Sender: TObject);
+    procedure dbGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure btnPesqCFOPClick(Sender: TObject);
+  private
+    procedure EditaInsere;
+    procedure GravaCancela;
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadNatOperacoes: TfrmCadNatOperacoes;
+
+implementation
+
+{$R *.dfm}
+
+uses untData, untCFOP;
+
+procedure TfrmCadNatOperacoes.btnAlterarClick(Sender: TObject);
+begin
+  fdsNatOperacao.Edit;
+  fdsNatOperacaoDT_ALT.AsDateTime := Now;
+  EditaInsere;
+end;
+
+procedure TfrmCadNatOperacoes.btnCancelarClick(Sender: TObject);
+begin
+  fdsNatOperacao.Cancel;
+  TransNatOperacao.RollbackRetaining;
+  GravaCancela;
+end;
+
+procedure TfrmCadNatOperacoes.btnDeleteClick(Sender: TObject);
+begin
+if  fdsNatOperacao.RecordCount > 0 then
+  begin
+    Case MessageBox(Application.Handle, Pchar('Deseja realmente excluir o registro atual?'), 'Atenção', MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) of
+          idYes: begin
+                    fdsNatOperacao.Delete;
+                    TransNatOperacao.CommitRetaining;
+                    fdsNatOperacao.close;
+                    fdsNatOperacao.Open;
+                    edtOperacao.Text := intToStr(fdsNatOperacao.RecordCount);
+                 end;
+      end;
+  end;
+end;
+
+procedure TfrmCadNatOperacoes.btnGravarClick(Sender: TObject);
+var
+    i : Smallint;
+  campoVazio : Boolean;
+begin
+  campoVazio := False;
+
+  if campoVazio then
+    Application.MessageBox('Existem campos obrigatórios sem preencher.','Anteção',MB_OK+MB_ICONERROR)
+  else
+  begin
+    fdsNatOperacao.Post;
+    TransNatOperacao.CommitRetaining;
+    GravaCancela;
+    ModalResult = mrOk;
+  end;
+
+end;
+
+procedure TfrmCadNatOperacoes.btnIncluirClick(Sender: TObject);
+begin
+  fdsNatOperacao.Append;
+  fdsNatOperacaoDT_Inc.AsDateTime := Now;
+  fdsNatOperacaoSTATUS.AsString := 'A';
+  EditaInsere;
+end;
+
+procedure TfrmCadNatOperacoes.btnPesqCFOPClick(Sender: TObject);
+begin
+   Try
+    frmCFOP := TfrmCFOP.Create(nil);
+    frmCFOP.ShowModal;
+  Finally
+    if frmCFOP.ModalResult = mrOk then
+    begin
+      fdsNatOperacaoCFOP_PADRAO.AsString := frmCFOP.fdsCFOPCODIGO_CFOP.AsString;
+      fdsNatOperacaoOPERACAO.AsString := frmCFOP.fdsCFOPNOME.AsString;
+    end;
+    frmCFOP.Free;
+  End;
+end;
+
+procedure TfrmCadNatOperacoes.EditaInsere;
+var
+  i : Smallint;
+begin
+  for i := 0 to ComponentCount -1 do
+  begin
+    if (Components[i] is TRzPageControl) then
+    begin
+      TRzPageControl(Components[i]).ActivePageIndex:= 1;
+      TRzPageControl(Components[i]).Pages[0].TabVisible := False;
+    end;
+
+    if (Components[i] is TRzBitBtn) then
+    begin
+      if Components[i].Tag = 1 then
+        TRzBitBtn(Components[i]).Enabled := False
+      else
+        TRzBitBtn(Components[i]).Enabled := True;
+    end;
+  end;
+  edtOperacao.SetFocus;
+
+end;
+
+procedure TfrmCadNatOperacoes.FormCreate(Sender: TObject);
+begin
+  tbsTabela.Show;
+  fdsNatOperacao.Open;
+  fdsNatOperacao.Last;
+  fdsNatOperacao.First;
+end;
+
+procedure TfrmCadNatOperacoes.GravaCancela;
+var
+  i : Smallint;
+begin
+  for i := 0 to ComponentCount -1 do
+  begin
+    if (Components[i] is TRzPageControl) then
+    begin
+      TRzPageControl(Components[i]).Pages[0].TabVisible := True;
+      TRzPageControl(Components[i]).ActivePageIndex:= 0;
+    end
+    else
+    begin
+      if (Components[i] is TRzBitBtn) then
+      begin
+        if Components[i].Tag = 1 then
+          TRzBitBtn(Components[i]).Enabled := True
+        else
+          TRzBitBtn(Components[i]).Enabled := False;
+      end;
+  end;
+  end;
+
+  fdsNatOperacao.Close;
+  fdsNatOperacao.OrderClause := 'OPERACAO';
+  fdsNatOperacao.Open;
+  fdsNatOperacao.Last;
+
+end;
+
+procedure TfrmCadNatOperacoes.dbGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+   if not odd(fdsNatOperacao.RecNo) then
+    begin
+    dbGrid1.Canvas.Brush.Color := DM.gridOddColor;
+    dbGrid1.Canvas.FillRect(Rect);
+    dbGrid1.DefaultDrawDataCell(rect,Column.Field,state);
+    end;
+end;
+
+end.

@@ -1,0 +1,37 @@
+unit untNFConferencia;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzBckgnd, dxGDIPlusClasses,
+  Vcl.ExtCtrls, JvExExtCtrls, JvImage, RzPanel, Data.DB, Datasnap.Provider,
+  pFIBClientDataSet, Datasnap.DBClient, Vcl.Grids, Vcl.DBGrids, JvExDBGrids,
+  JvDBGrid;
+
+type
+  TfrmNFConferencia = class(TForm)
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    RzBackground1: TRzBackground;
+    gdrItens: TJvDBGrid;
+    cdsCabecalhoNF: TpFIBClientDataSet;
+    cdsItensNf: TpFIBClientDataSet;
+    dspCabecalhoNF: TpFIBDataSetProvider;
+    dspItensNf: TpFIBDataSetProvider;
+    dsCabecalhoNF: TDataSource;
+    dsItensNf: TDataSource;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmNFConferencia: TfrmNFConferencia;
+
+implementation
+
+{$R *.dfm}
+
+end.

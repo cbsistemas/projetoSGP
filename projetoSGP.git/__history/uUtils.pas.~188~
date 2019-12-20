@@ -1,0 +1,220 @@
+unit uUtils;
+
+interface
+
+uses
+  RzDBEdit, sysUtils, StrUtils, Windows, Graphics,FIBQuery;
+
+Type
+
+  TUtils = class
+
+  private const
+    textEmptyColor: TColor = $000404FF;
+    textNormalColor: TColor = clMoneyGreen;
+    textReadyOnlyColor: TColor = clInfoBk;
+
+  protected
+
+  public
+    function VerificaCampoObrigatorio(campo: TRzDBEdit): Boolean;
+    function ValidaInteiroFloat(valor: string; tipo: char): Double;
+    procedure ResetColorCampo(campo: TRzDBEdit; isReadOnly: Boolean);
+    function AdicionaMascaraDinheiro(valor: string): string;
+    function RetiraMascaraDinheiro(valor: string): string;
+    function FormataParcelas(valor: string): string;
+    function RetiraZerosEsquerda(valor: string): string;
+    function TiraCaracterEspecial(valor: string): string;
+    procedure CancelarGENDecrementa(NomeGen:string;Decrementar:String;NomeQuery:TFIBQuery);
+
+  published
+
+  end;
+
+implementation
+
+{ TUtils }
+
+{ TUtils }
+
+function TUtils.AdicionaMascaraDinheiro(valor: string): string;
+var
+  temp: string;
+  index, countTotal, countPart, countExclud: integer;
+begin
+
+  if valor = EmptyStr then
+    valor := '0';
+
+  valor := FormatCurr('R$ #,##0.00', StrToFloat(valor));
+  { if not(AnsiContainsStr(valor, ',')) then
+    valor := valor + ',00';
+
+    temp:= AnsiStrPos(Pchar(valor), ',');
+    if Length(temp) < 3 then
+    valor := valor + '0'
+    else
+    if Length(temp) > 3 then
+    begin
+    countTotal := Length(valor);
+    countPart := Length(temp);
+    countExclud := (countPart - 3);
+    index := (countTotal - countExclud + 1);
+    Delete(valor, index, countExclud);
+    end;
+
+    Result := 'R$ ' + valor; }
+  Result := valor;
+end;
+
+procedure TUtils.CancelarGENDecrementa(NomeGen: string; Decrementar:String; NomeQuery:TFIBQuery);
+begin
+  with TFIBQuery(NomeQuery) do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add('SELECT GEN_ID('+NomeGen+','+Decrementar+') FROM RDB$DATABASE');
+    Prepare;
+    ExecQuery;
+  end;
+end;
+
+function TUtils.FormataParcelas(valor: string): string;
+begin
+  while Length(valor) < 3 do
+  begin
+    valor := '0' + valor;
+  end;
+  Result := valor;
+end;
+
+procedure TUtils.ResetColorCampo(campo: TRzDBEdit; isReadOnly: Boolean);
+begin
+  if not(isReadOnly) then
+  begin
+    campo.Color := textNormalColor;
+  end
+  else
+  begin
+    campo.Color := textReadyOnlyColor;
+    campo.ReadOnlyColor := textReadyOnlyColor;
+    campo.FocusColor := textReadyOnlyColor;
+  end;
+end;
+
+function TUtils.RetiraMascaraDinheiro(valor: string): string;
+begin
+  // Delete (valor, 1, 3);
+  valor := StringReplace(valor, 'R$', '', []);
+  valor := StringReplace(valor, ' ', '', []);
+  valor := StringReplace(valor, '.', '', []);
+  if valor = EmptyStr then
+    valor := '0';
+  Result := valor;
+end;
+
+function TUtils.RetiraZerosEsquerda(valor: string): string;
+var
+  i, index: integer;
+  novo: string;
+begin
+  novo := '';
+  index := 1;
+  for i := 1 to Length(valor) - 1 do
+  begin
+    if not(valor[i] = '0') then
+    begin
+      index := i;
+      Break;
+    end;
+  end;
+
+  Result := valor.Substring(index - 1);
+  // while valor[1] = '0' do
+  // begin
+  // valor := valor;
+  // end;
+  // Result := valor;
+end;
+
+function TUtils.TiraCaracterEspecial(valor: string): string;
+begin
+  if (valor <> '') then
+    valor := StringReplace(valor, 'ç', 'c', [rfreplaceall]);
+  if (valor <> '') then
+    valor := StringReplace(valor, 'à', 'a', [rfreplaceall]);
+  if (valor <> '') then
+    valor := StringReplace(valor, 'á', 'a', [rfreplaceall]);
+  if (valor <> '') then
+    valor := StringReplace(valor, 'ó', 'o', [rfreplaceall]);
+  if (valor <> '') then
+    valor := StringReplace(valor, 'ã', 'a', [rfreplaceall]);
+  if (valor <> '') then
+    valor := StringReplace(valor, 'ê', 'e', [rfreplaceall]);
+  if (valor <> '') then
+    valor := StringReplace(valor, 'ô', 'o', [rfreplaceall]);
+  if (valor <> '') then
+    valor := StringReplace(valor, '§', '', [rfreplaceall]);
+  if (valor <> '') then
+    valor := StringReplace(valor, '$', '', [rfreplaceall]);
+    if (valor <> '') then
+    valor := StringReplace(valor, 'R', '', [rfreplaceall]);
+  if (valor <> '') then
+    valor := StringReplace(valor, '@', '', [rfreplaceall]);
+  if (valor <> '') then
+    valor := StringReplace(valor, '£', '', [rfreplaceall]);
+  if (valor <> '') then
+    valor := StringReplace(valor, 'ü', 'u', [rfreplaceall]);
+  if (valor <> '') then
+    valor := StringReplace(valor, '#', '', [rfreplaceall]);
+  if (valor <> '') then
+    valor := StringReplace(valor, '1ª', '1', [rfreplaceall]);
+  if (valor <> '') then
+    valor := StringReplace(valor, '1º', '1', [rfreplaceall]);
+  if (valor <> '') then
+    valor := StringReplace(valor, '.', '', [rfreplaceall]);
+  if (valor <> '') then
+    valor := StringReplace(valor, '-', '', [rfreplaceall]);
+  if (valor <> '') then
+    valor := StringReplace(valor, '  ', '', [rfreplaceall]);
+
+  Result := valor;
+
+end;
+
+function TUtils.ValidaInteiroFloat(valor: string; tipo: char): Double;
+var
+  temp: Double;
+begin
+  try
+    valor := StringReplace(valor, '.', '', []);
+    if tipo = 'I' then
+      temp := StrToInt(valor)
+    else
+      temp := StrToFloat(valor);
+
+    Result := temp;
+  except
+    Result := 0;
+  end;
+end;
+
+function TUtils.VerificaCampoObrigatorio(campo: TRzDBEdit): Boolean;
+var
+  teste: string;
+begin
+  if Trim(campo.Text) = '' then
+  begin
+    teste := campo.Name;
+    campo.Color := textEmptyColor;
+    campo.ReadOnlyColor := textEmptyColor;
+    Result := True;
+  end
+  else
+  begin
+    campo.Color := textNormalColor;
+    Result := False;
+  end;
+end;
+
+end.

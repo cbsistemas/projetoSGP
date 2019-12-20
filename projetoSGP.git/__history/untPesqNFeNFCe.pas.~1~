@@ -1,0 +1,48 @@
+unit untPesqNFeNFCe;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls,
+  RzPanel, RzRadGrp, Vcl.StdCtrls, Vcl.ComCtrls, Data.DB, FIBDataSet,
+  pFIBDataSet;
+
+type
+  TForm1 = class(TForm)
+    Animate1: TAnimate;
+    Label3: TLabel;
+    rgbTipo: TRzRadioGroup;
+    DBGrid1: TDBGrid;
+    pFIBDataSet1: TpFIBDataSet;
+    pFIBDataSet2: TpFIBDataSet;
+    procedure rgbTipoChanging(Sender: TObject; NewIndex: Integer;
+      var AllowChange: Boolean);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.rgbTipoChanging(Sender: TObject; NewIndex: Integer;
+  var AllowChange: Boolean);
+begin
+ if NewIndex=0 then
+ begin
+
+ end;
+ if NewIndex = 1 then
+ begin
+
+ end;
+
+end;
+
+end.

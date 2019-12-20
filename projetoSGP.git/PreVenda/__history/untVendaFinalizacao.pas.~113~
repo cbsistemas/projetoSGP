@@ -1,0 +1,343 @@
+unit untVendaFinalizacao;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzDBEdit, Vcl.DBCtrls, RzDBCmbo,
+  RzButton, RzBckgnd, Vcl.StdCtrls, Vcl.Mask, RzEdit, RzLabel,
+  Vcl.Imaging.pngimage, Vcl.ExtCtrls, JvExExtCtrls, JvImage, RzPanel, Data.DB,
+  FIBDataSet, pFIBDataSet, RzCmboBx, FIBQuery, pFIBQuery,System.Math;
+
+type
+  TfrmVendaFinalizacao = class(TForm)
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    RzLabel1: TRzLabel;
+    lblTituloTotal: TRzLabel;
+    edtValorVenda: TRzEdit;
+    RzBackground1: TRzBackground;
+    btnCancelar: TRzBitBtn;
+    btnGravar: TRzBitBtn;
+    RzPanel2: TRzPanel;
+    lblCidade: TRzLabel;
+    edtCliente: TRzEdit;
+    btnPesqCliente: TRzBitBtn;
+    RzLabel6: TRzLabel;
+    edtIDVendedor: TRzDBEdit;
+    lblVendedor: TRzLabel;
+    RzLabel2: TRzLabel;
+    edtNumPreVenda: TRzEdit;
+    RzLabel3: TRzLabel;
+    fdsVendedor: TpFIBDataSet;
+    fdsFormaPagamento: TpFIBDataSet;
+    dsVendedor: TDataSource;
+    dsFormaPag: TDataSource;
+    fdsFormaPagamentoID: TFIBBCDField;
+    fdsFormaPagamentoNOME: TFIBStringField;
+    fdsVendedorID: TFIBBCDField;
+    fdsVendedorNOME: TFIBStringField;
+    cbxFormaPagamento: TRzComboBox;
+    edtVendedor: TRzEdit;
+    btnPesqVendedor: TRzBitBtn;
+    qryComand: TpFIBQuery;
+    edtCodCliente: TRzEdit;
+    edtDesconto: TRzEdit;
+    RzLabel4: TRzLabel;
+    procedure RetornaVendedor;
+    procedure VerificaSituacaoCliente;
+    procedure btnPesqClienteClick(Sender: TObject);
+    procedure edtIDVendedorExit(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure fdsFormaPagamentoAfterOpen(DataSet: TDataSet);
+    procedure cbxFormaPagamentoChange(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure btnPesqVendedorClick(Sender: TObject);
+    procedure edtCodClienteExit(Sender: TObject);
+    procedure edtDescontoExit(Sender: TObject);
+    procedure edtDescontoEnter(Sender: TObject);
+    procedure edtDescontoClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    idCliente, idFormaPagamento, idVendedor: Integer;
+    valorDesc, valorTotal, valorTotItem: Double;
+  end;
+
+var
+  frmVendaFinalizacao: TfrmVendaFinalizacao;
+
+implementation
+
+{$R *.dfm}
+
+uses untData, untPesqCliente, uUtils, untPesqVendedor, uVerificaPermicao,
+  untPrincipal;
+
+procedure TfrmVendaFinalizacao.btnCancelarClick(Sender: TObject);
+begin
+  Case MessageBox(Application.Handle, Pchar('Deseja realmente cancelar a finalização da Venda?'), 'Atenção', MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON1) of
+          idYes: begin
+                    ModalResult := mrCancel;
+                 end;
+        end;
+
+end;
+
+procedure TfrmVendaFinalizacao.btnGravarClick(Sender: TObject);
+begin
+  if (edtNumPreVenda.Text = EmptyStr)  then
+  begin
+    Application.MessageBox('Informe um número de Pré Venda.', 'Atenção', MB_OK+MB_ICONEXCLAMATION);
+    edtNumPreVenda.SetFocus;
+    Abort;
+  end;
+
+  ModalResult := mrOk;
+
+
+end;
+
+procedure TfrmVendaFinalizacao.btnPesqClienteClick(Sender: TObject);
+begin
+  try
+    frmPesqCliente := TfrmPesqCliente.Create(nil);
+    frmPesqCliente.ShowModal;
+  Finally
+    if frmPesqCliente.ModalResult = mrOk then
+    begin
+      idCliente := frmPesqCliente.fdsClientesID.AsInteger;
+      edtCodCliente.Text := IntToStr(idCliente);
+      edtCliente.Text := frmPesqCliente.fdsClientesNOME.AsString;
+    //  VerificaSituacaoCliente;
+      edtIDVendedor.SetFocus;
+    end;
+    frmPesqCliente.Free;
+  end;
+end;
+
+procedure TfrmVendaFinalizacao.btnPesqVendedorClick(Sender: TObject);
+begin
+  RetornaVendedor;
+end;
+
+procedure TfrmVendaFinalizacao.cbxFormaPagamentoChange(Sender: TObject);
+begin
+  idFormaPagamento := StrToInt(cbxFormaPagamento.Value);
+  if (idFormaPagamento <> 1) and (idFormaPagamento <> 2) and (idFormaPagamento <> 3) then
+  begin
+    btnPesqCliente.SetFocus;
+  end;
+
+end;
+
+procedure TfrmVendaFinalizacao.edtCodClienteExit(Sender: TObject);
+var
+  pesquisar : Boolean;
+begin
+  if Trim(edtCodCliente.Text) = EmptyStr then
+    idCliente := 0
+  else
+  begin
+    try
+      idCliente := StrToInt(edtCodCliente.Text);
+    except
+      idCliente := 0;
+    end;
+  end;
+
+  if not(idCliente = 99999) then
+  begin
+    if idCliente = 0 then
+    begin
+      pesquisar := True;
+    end
+    else
+    begin
+      with qryComand do
+      begin
+        Close;
+        SQL.Clear;
+        SQL.Add('SELECT ID, NOME FROM CLIENTE WHERE ID = :IDCLIENTE ');
+        ParamByName('IDCLIENTE').AsInteger := idCliente;
+        Prepare;
+        ExecQuery;
+      end;
+      // if qryComand.FieldByName('ID').AsInteger <> idCliente then
+      if qryComand.RecordCount = 0 then
+        pesquisar := True
+      else
+        pesquisar := False;
+    end;
+
+    if pesquisar then
+      btnPesqCliente.Click
+    else
+    begin
+      edtCliente.Text := qryComand.FieldByName('NOME').AsString;
+      //  VerificaSituacaoCliente;
+      edtIDVendedor.SetFocus;
+    end;
+  end;
+
+end;
+
+procedure TfrmVendaFinalizacao.edtIDVendedorExit(Sender: TObject);
+var
+  utils : TUtils;
+begin
+  edtIdVendedor.Text := FloatToStr(utils.ValidaInteiroFloat(edtIdVendedor.Text, 'I'));
+  if fdsVendedor.Locate('ID', edtIdVendedor.Text, []) then
+  begin
+    idVendedor := fdsVendedorID.AsInteger;
+    edtVendedor.Text := fdsVendedorNOME.AsString;
+    edtIdVendedor.Text := IntToStr(idVendedor);
+  end
+  else
+    RetornaVendedor;
+end;
+
+procedure TfrmVendaFinalizacao.fdsFormaPagamentoAfterOpen(DataSet: TDataSet);
+begin
+  fdsFormaPagamento.First;
+  cbxFormaPagamento.ClearItems;
+  while not(fdsFormaPagamento.Eof) do
+  begin
+    cbxFormaPagamento.AddItemValue(fdsFormaPagamentoNOME.AsString, fdsFormaPagamentoID.AsString);
+    fdsFormaPagamento.Next;
+  end;
+
+  cbxFormaPagamento.ItemIndex := 0;
+end;
+
+procedure TfrmVendaFinalizacao.FormActivate(Sender: TObject);
+begin
+  cbxFormaPagamento.SetFocus;
+end;
+
+procedure TfrmVendaFinalizacao.FormCreate(Sender: TObject);
+begin
+   ValorDesc:= 0;
+  fdsVendedor.Open;
+  fdsVendedor.First;
+  idVendedor := fdsVendedorID.AsInteger;
+  edtVendedor.Text := fdsVendedorNOME.AsString;
+  edtIdVendedor.Text := IntToStr(idVendedor);
+  fdsFormaPagamento.Open;
+
+end;
+
+procedure TfrmVendaFinalizacao.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+    SelectNext(ActiveControl, True, True);
+  end;
+end;
+
+procedure TfrmVendaFinalizacao.RetornaVendedor;
+begin
+  try
+    frmPesqVendedor := TfrmPesqVendedor.Create(nil);
+    frmPesqVendedor.ShowModal;
+  Finally
+    if frmPesqVendedor.ModalResult = mrOk then
+    begin
+      fdsVendedor.Locate('ID', frmPesqVendedor.fdsVendedoresID.AsString, []);
+      idVendedor := fdsVendedorID.AsInteger;
+      edtVendedor.Text := fdsVendedorNOME.AsString;
+      edtIdVendedor.Text := IntToStr(idVendedor);
+      edtDesconto.SetFocus;
+    end;
+    frmPesqVendedor.Free;
+  end;
+end;
+
+procedure TfrmVendaFinalizacao.edtDescontoClick(Sender: TObject);
+begin
+edtDesconto.SelectAll;
+end;
+
+procedure TfrmVendaFinalizacao.edtDescontoEnter(Sender: TObject);
+begin
+  edtDesconto.Text := StringReplace(edtDesconto.Text, '%', '', []);
+  edtDesconto.Text := StringReplace(edtDesconto.Text, ' ', '', []);
+  edtDesconto.SelectAll;
+end;
+
+procedure TfrmVendaFinalizacao.edtDescontoExit(Sender: TObject);
+var
+  utils : TUtils;
+  valorDescTemp:Double;
+begin
+   edtDesconto.Text := FloatToStr(utils.ValidaInteiroFloat(edtDesconto.Text, 'F'));
+   valorDesc := StrToFloat(edtDesconto.Text);
+   valorDescTemp:= valorDesc;
+   valorDescTemp := RoundTo(valorTotItem * valorDesc / 100, -2);
+   ValorTotal := valorTotItem - valorDescTemp;
+   edtValorVenda.Text := FormatCurr('R$ #,##0.00', ValorTotal);
+   edtDesconto.Text := FormatCurr('#0 %', StrToFloat(edtDesconto.text));
+
+   if frmPrincipal.lancNumManual = 'N' then
+        btnGravar.SetFocus
+      else
+        edtNumPreVenda.SetFocus;
+end;
+
+procedure TfrmVendaFinalizacao.VerificaSituacaoCliente;
+var
+  impedido, temPermicao : Boolean;
+  diasRestantes, diasTolerancia: Double;
+  uVerificaPermicao : TVerificaPermicao;
+begin
+  diasTolerancia := DM.fdsConfigDIAS_ATRASO_BLOQUEIO.AsInteger;
+  impedido := False;
+
+  with qryComand do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add('SELECT RI.DT_VENC, (RI.VALOR - RI.VALOR_PAGO) AS VALOR FROM CNT_RECEBER_ITEM RI ');
+    SQL.Add('WHERE RI.IDRECEBER IN (SELECT ID FROM CNT_RECEBER R WHERE R.IDCLIENTE = :IDCLIENTE AND R.IDFORMA_PAG <> 2) ');
+    SQL.Add('AND POSICAO = :POSICAO');
+    ParamByName('IDCLIENTE').AsInteger := idCliente;
+    ParamByName('POSICAO').AsString := 'AB';
+    Prepare;
+    ExecQuery;
+  end;
+
+  if qryComand.RecordCount > 0 then
+  begin
+    while not(qryComand.Eof) do
+    begin
+      diasRestantes := qryComand.FieldByName('DT_VENC').AsDate - Now - diasTolerancia;
+
+      if diasRestantes <= 0 then
+      begin
+        impedido := True;
+        Break;
+      end
+      else
+        qryComand.Next;
+    end;
+  end;
+
+  if impedido then
+  begin
+    Application.MessageBox('Este cliente possui notas vencidas além do prazo.', 'Cliente Bloqueado', MB_OK+MB_ICONEXCLAMATION);
+
+    temPermicao := uVerificaPermicao.Verifica('LIBERAR_CLIENTE_BLOQ');
+
+    if not(temPermicao) then
+    begin
+      Application.MessageBox('Usuário sem permição para liberar a venda para clientes bloqueados.', 'Atenção', MB_OK+MB_ICONEXCLAMATION);
+      ModalResult := mrCancel;
+    end;
+  end;
+end;
+
+end.

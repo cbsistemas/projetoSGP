@@ -1,0 +1,171 @@
+unit untCaixa;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Menus, ActnList, frxClass, frxDBSet, FIBQuery, pFIBQuery, ImgList,
+  cxGraphics, DB, FIBDataSet, pFIBDataSet, StdCtrls, DBCtrls, RzDBEdit, Grids,
+  DBGrids, JvExDBGrids, JvDBGrid, RzTabs, RzRadGrp, JvExStdCtrls, JvButton,
+  JvCtrls, JvExMask, JvToolEdit, JvMaskEdit, JvCheckedMaskEdit,
+  JvDatePickerEdit, Mask, RzEdit, JvCheckBox, RzCmboBx, RzPanel, RzSplit,
+  RzButton, RzLabel, dxGDIPlusClasses, ExtCtrls, JvExExtCtrls, JvImage, RzBckgnd;
+
+type
+  TfrmCaixa = class(TForm)
+    RzBackground1: TRzBackground;
+    RzPanel1: TRzPanel;
+    JvImage1: TJvImage;
+    lblTituloCliente: TRzLabel;
+    RzLabel13: TRzLabel;
+    lblTotal: TRzLabel;
+    btnPrior: TRzBitBtn;
+    btnFirst: TRzBitBtn;
+    btnNext: TRzBitBtn;
+    btnLast: TRzBitBtn;
+    btnTodos: TRzBitBtn;
+    btnInprimir: TRzBitBtn;
+    btnGraficos: TRzBitBtn;
+    RzPanel2: TRzPanel;
+    btnSair: TRzBitBtn;
+    RzSplitter1: TRzSplitter;
+    RzPanel4: TRzPanel;
+    pnlFilial: TRzGroupBox;
+    cbxFilial: TRzComboBox;
+    chkFilial: TJvCheckBox;
+    pnlNumVenda: TRzGroupBox;
+    edtPesqNumVenda: TRzEdit;
+    chkNumVenda: TJvCheckBox;
+    pnlPeriodo: TRzGroupBox;
+    RzLabel11: TRzLabel;
+    RzLabel12: TRzLabel;
+    dtpInicio: TJvDatePickerEdit;
+    dtpFim: TJvDatePickerEdit;
+    chkPeriodo: TJvCheckBox;
+    pnlCliente: TRzGroupBox;
+    edtPesqCliente: TRzEdit;
+    chkCliente: TJvCheckBox;
+    pnlTipoDoc: TRzGroupBox;
+    cbxTipoDoc: TRzComboBox;
+    chkTipoDoc: TJvCheckBox;
+    btnPesquisar: TJvImgBtn;
+    rgbStatus: TRzRadioGroup;
+    pgcControl: TRzPageControl;
+    tbsTabela: TRzTabSheet;
+    tbsItens: TRzTabSheet;
+    gdrItens: TJvDBGrid;
+    RzPanel3: TRzPanel;
+    lblCliente: TRzLabel;
+    RzLabel1: TRzLabel;
+    RzLabel2: TRzLabel;
+    RzLabel3: TRzLabel;
+    RzLabel4: TRzLabel;
+    RzLabel5: TRzLabel;
+    RzLabel6: TRzLabel;
+    RzLabel7: TRzLabel;
+    RzLabel8: TRzLabel;
+    RzLabel9: TRzLabel;
+    RzLabel10: TRzLabel;
+    RzLabel14: TRzLabel;
+    RzLabel15: TRzLabel;
+    RzLabel16: TRzLabel;
+    edtClienteNome: TRzDBEdit;
+    RzDBEdit1: TRzDBEdit;
+    RzDBEdit2: TRzDBEdit;
+    RzDBEdit3: TRzDBEdit;
+    RzDBEdit4: TRzDBEdit;
+    RzDBEdit5: TRzDBEdit;
+    RzDBEdit6: TRzDBEdit;
+    RzDBEdit7: TRzDBEdit;
+    RzDBEdit8: TRzDBEdit;
+    RzDBEdit9: TRzDBEdit;
+    RzDBEdit10: TRzDBEdit;
+    RzDBEdit11: TRzDBEdit;
+    RzDBMemo1: TRzDBMemo;
+    RzDBEdit12: TRzDBEdit;
+    fdsVenda: TpFIBDataSet;
+    fdsVendaID: TFIBBCDField;
+    fdsVendaIDFILIAL: TFIBBCDField;
+    fdsVendaIDCAIXA: TFIBBCDField;
+    fdsVendaDT_INC: TFIBDateField;
+    fdsVendaSTATUS: TFIBStringField;
+    fdsVendaIDCLIENTE: TFIBBCDField;
+    fdsVendaIDVENDEDOR: TFIBBCDField;
+    fdsVendaIDFORMA_PAG: TFIBBCDField;
+    fdsVendaVLR_TOTITEM: TFIBBCDField;
+    fdsVendaVLR_DESCONTO: TFIBBCDField;
+    fdsVendaVLR_FRETE: TFIBBCDField;
+    fdsVendaVLR_TOTAL: TFIBBCDField;
+    fdsVendaPESO: TFIBBCDField;
+    fdsVendaPREFIXO: TFIBStringField;
+    fdsVendaDT_FECHAMENTO: TFIBDateField;
+    fdsVendaSUBTRIBUTARIA: TFIBBCDField;
+    fdsVendaENVIADO_WEB: TFIBStringField;
+    fdsVendaFILIAL: TFIBStringField;
+    fdsVendaCLIENTE: TFIBStringField;
+    fdsVendaFORMA_PAG: TFIBStringField;
+    fdsVendaVLR_ENTRADA: TFIBBCDField;
+    fdsVendaENTREGAR: TFIBStringField;
+    fdsVendaOBS: TFIBStringField;
+    fdsVendaVENDEDOR: TFIBStringField;
+    fdsVendaTOT_PARCELA: TFIBSmallIntField;
+    fdsVendaItem: TpFIBDataSet;
+    fdsVendaItemIDVENDA: TFIBBCDField;
+    fdsVendaItemITEM: TFIBSmallIntField;
+    fdsVendaItemIDPROD_ITEM: TFIBBCDField;
+    fdsVendaItemDT_INC: TFIBDateField;
+    fdsVendaItemQTN: TFIBBCDField;
+    fdsVendaItemVLR_UNITARIO: TFIBBCDField;
+    fdsVendaItemVLR_TOTAL: TFIBBCDField;
+    fdsVendaItemPESO: TFIBBCDField;
+    fdsVendaItemQTN_RETORNO: TFIBIntegerField;
+    fdsVendaItemMOTIVO_RETORNO: TFIBStringField;
+    fdsVendaItemENVIADO_WEB: TFIBStringField;
+    fdsVendaItemIDFILIAL: TFIBBCDField;
+    fdsVendaItemPRODUTO: TFIBStringField;
+    fdsVendaItemREFERENCIA: TFIBStringField;
+    fdsVendaItemENTREGAR: TFIBStringField;
+    fdsVendaItemENTRE: TStringField;
+    fdsVendaItemVLR_DESC_ACRE: TFIBBCDField;
+    fdsVendaItemTIPO_DESC_ACRE: TFIBStringField;
+    fdsVendaItemTP: TFIBStringField;
+    dsVenda: TDataSource;
+    dsVendaItem: TDataSource;
+    cxImageList: TcxImageList;
+    fdsFilial: TpFIBDataSet;
+    fdsFilialID: TFIBBCDField;
+    fdsFilialSTATUS: TFIBStringField;
+    fdsFilialNOME: TFIBStringField;
+    dsFilial: TDataSource;
+    fdsCliente: TpFIBDataSet;
+    fdsClienteID: TFIBBCDField;
+    fdsClienteNOME: TFIBStringField;
+    fdsClienteTELEFONE: TFIBStringField;
+    fdsClienteTIPO: TFIBStringField;
+    fdsClienteCIDADE: TFIBStringField;
+    qrySomaTotal: TpFIBQuery;
+    frxDBVendas: TfrxDBDataset;
+    frxDBItensVenda: TfrxDBDataset;
+    ActionList1: TActionList;
+    impAtual: TAction;
+    impSintetico: TAction;
+    impAnalitico: TAction;
+    ppmImprimir: TPopupMenu;
+    ImprimirPedidoAtual1: TMenuItem;
+    RelatriodePedidosSinttico1: TMenuItem;
+    RelatriodePedidosAnaltico1: TMenuItem;
+    gdrVendasConfirmadas: TJvDBGrid;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCaixa: TfrmCaixa;
+
+implementation
+
+{$R *.dfm}
+
+end.
